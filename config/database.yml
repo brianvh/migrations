@@ -1,0 +1,31 @@
+# MySQL.  Versions 4.1 and 5.0 are recommended.
+
+development:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: migrations_development
+  pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+test:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: migrations_test
+  pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+production:
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: migrations_production
+  pool: 5
+  username: migrations
+  password:
+  socket: /tmp/mysql.sock

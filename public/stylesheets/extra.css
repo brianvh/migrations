@@ -1,0 +1,32 @@
+.lcol {
+  display: block;
+  float: left;
+  width: 15%;
+  text-align: right;
+  font-weight: bold;
+}
+
+.rcol {
+  display: block;
+  float: left;
+  width: 80%;
+  margin-left: 10px;
+}
+
+.buttons {
+  display: block;
+  float: left;
+  text-align: left;
+  font-size: 12px;
+  line-height: 20px;
+  padding-bottom: 0px;
+  vertical-align: bottom;
+}
+
+.right {
+  float: right;
+}
+
+.clear {
+  clear: left;
+}
