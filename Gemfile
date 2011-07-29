@@ -4,7 +4,7 @@ gem 'rails', '~> 3.0.9'
 
 gem 'mysql2', '~> 0.2.6'
 gem 'omniauth', '~> 0.2.6'
-gem 'net-dnd', '~> 1.1.2'
+gem 'net-dnd', '~> 1.1.2', :require => 'net/dnd'
 gem 'state_machine', '~> 1.0.1'
 gem 'capistrano', '~> 2.6.0'
 gem 'awesome_print', '~> 0.4.0', :require => 'ap'
