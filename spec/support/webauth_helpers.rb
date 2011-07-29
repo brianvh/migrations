@@ -1,7 +1,7 @@
 module WebauthHelpers
 
   def login_as(factory, opts={})
-    user = Factory(factory, opts)
+    user = FactoryGirl.create(factory, opts)
     webauth_valid_ticket_for('fake-webauth-ticket', user.name, user.uid)
     visit("/auth/cas/callback?ticket=fake-webauth-ticket")
     user
