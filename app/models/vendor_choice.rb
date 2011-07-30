@@ -1,0 +1,2 @@
+class VendorChoice < Choice
+end

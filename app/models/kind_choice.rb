@@ -1,0 +1,2 @@
+class KindChoice < Choice
+end

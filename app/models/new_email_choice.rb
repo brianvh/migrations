@@ -1,0 +1,2 @@
+class NewEmailChoice < Choice
+end
