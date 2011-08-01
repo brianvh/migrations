@@ -1,2 +1,0 @@
-class KindChoice < Choice
-end

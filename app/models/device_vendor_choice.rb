@@ -1,0 +1,2 @@
+class DeviceVendorChoice < Choice
+end

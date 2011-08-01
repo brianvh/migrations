@@ -1,0 +1,2 @@
+class DeviceKindChoice < Choice
+end
