@@ -1,0 +1,2 @@
+class OfficeVersionChoice < Choice
+end

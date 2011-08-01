@@ -1,0 +1,2 @@
+class ComplexityLevelChoice < Choice
+end

@@ -1,0 +1,2 @@
+class CurrentBrowserChoice < Choice
+end
