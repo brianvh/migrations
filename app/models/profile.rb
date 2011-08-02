@@ -1,5 +1,7 @@
 class Profile < ActiveRecord::Base
 
+  belongs_to :user
+
   def used_only_blitz?
     ec = used_email_clients.split(/, ?/)
     return false if ec.size > 1

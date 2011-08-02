@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   include DNDUser
+  
+  has_many :profiles
 
   before_validation :valid_in_dnd?, :on => :create
 
