@@ -1,0 +1,62 @@
+<%= form_for @profile do |f| -%>
+	<fieldset id="information_about_your_services">
+		<legend>Information about your Services to be Migrated</legend>
+
+		<p>
+			<label for="migrate_oracle_calendar" class="lcol">Migrate my Oracle Calendar
+			<%= f.select :migrate_oracle_calendar, [['Yes',true],['No',false]], {:include_blank => "Choose..."}, {:class => "rcol"} %>
+			</label>
+		</p>
+
+		<p>
+			<label for="uses_mail_forward" class="lcol">My mail is currently being forwarded
+			<%= f.select :uses_mail_forward, [['Yes',true],['No',false]], {:include_blank => "Choose..."}, {:class => "rcol"} %>
+			</label>
+		</p>
+
+		<p>
+			<label for="uses_local_mail" class="lcol">I store my mail on my local hard drive
+			<%= f.select :uses_local_mail, [['Yes',true],['No',false]], {:include_blank => "Choose..."}, {:class => "rcol"} %>
+			</label>
+		</p>
+	</fieldset>
+
+	<fieldset id="information_about_other_services_that_might_be_impacted_by_the_migration">
+		<legend>Information about Other Services that might be impacted by the Migration</legend>
+		
+		<p>
+			<label for="uses_ira">I'm currently using the IRA Application
+			<%= f.select :uses_ira, [['Yes',true],['No',false]], {:include_blank => "Choose..."}, {:class => "rcol"} %>
+			</label>
+		</p>
+		
+		<p>
+			<label for="uses_hyperion">I'm currently using the Hyperion client software
+			<%= f.select :uses_hyperion, [['Yes',true],['No',false]], {:include_blank => "Choose..."}, {:class => "rcol"} %>
+			</label>
+		</p>
+		
+	</fieldset>
+	
+	<fieldset>
+		<legend>Information about your email and calendar software experience</legend>
+		
+		<p>
+			<label for="used_email_clients">Please indicate any email client software you have used before <em>(please check all that apply)</em><br />
+				<%= render :partial => 'email_clients', :locals => {:f => f, :profile => @profile} %>
+			</label>
+		</p>		
+		
+		<p>
+			<label for="used_other_calendars">Have you ever used any calendaring software other than Oracle Calendar?
+			<%= f.select :used_other_calendars, [['Yes',true],['No',false]], {:include_blank => "Choose..."}, {:class => "rcol"} %>
+			</label>
+		</p>
+		
+	</fieldset>
+	
+	<p>
+		<%= f.submit @profile.new_record? ? "Create Profile" : "Update Profile" %>
+	</p>
+		
+<% end -%>
