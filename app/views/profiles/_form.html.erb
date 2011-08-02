@@ -1,62 +1,39 @@
 <%= form_for @profile do |f| -%>
-	<fieldset id="information_about_your_services">
-		<legend>Information about your Services to be Migrated</legend>
+	<fieldset id="services_to_be_migrated">
+		<legend>Services to be Migrated</legend>
 
-		<p>
-			<label for="migrate_oracle_calendar" class="lcol">Migrate my Oracle Calendar
-			<%= f.select :migrate_oracle_calendar, [['Yes',true],['No',false]], {:include_blank => "Choose..."}, {:class => "rcol"} %>
-			</label>
-		</p>
+		<div class="lcol"><%= f.label :migrate_oracle_calendar, "Migrate Oracle Calendar?" %></div>
+		<div class="rcol"><%= f.select :migrate_oracle_calendar, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
 
-		<p>
-			<label for="uses_mail_forward" class="lcol">My mail is currently being forwarded
-			<%= f.select :uses_mail_forward, [['Yes',true],['No',false]], {:include_blank => "Choose..."}, {:class => "rcol"} %>
-			</label>
-		</p>
+		<div class="lcol"><%= f.label :uses_mail_forward, "Mail is currently being forwarded?" %></div>
+		<div class="rcol"><%= f.select :uses_mail_forward, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
 
-		<p>
-			<label for="uses_local_mail" class="lcol">I store my mail on my local hard drive
-			<%= f.select :uses_local_mail, [['Yes',true],['No',false]], {:include_blank => "Choose..."}, {:class => "rcol"} %>
-			</label>
-		</p>
+		<div class="lcol"><%= f.label :uses_local_mail, "Mail stored on local hard drive?" %></div>
+		<div class="rcol"><%= f.select :uses_local_mail, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
 	</fieldset>
 
-	<fieldset id="information_about_other_services_that_might_be_impacted_by_the_migration">
-		<legend>Information about Other Services that might be impacted by the Migration</legend>
+	<fieldset id="other_services">
+		<legend>Other Services</legend>
 		
-		<p>
-			<label for="uses_ira">I'm currently using the IRA Application
-			<%= f.select :uses_ira, [['Yes',true],['No',false]], {:include_blank => "Choose..."}, {:class => "rcol"} %>
-			</label>
-		</p>
-		
-		<p>
-			<label for="uses_hyperion">I'm currently using the Hyperion client software
-			<%= f.select :uses_hyperion, [['Yes',true],['No',false]], {:include_blank => "Choose..."}, {:class => "rcol"} %>
-			</label>
-		</p>
-		
+		<div class="lcol"><%= f.label :uses_ira, "Using the IRA Application?" %></div>
+		<div class="rcol"><%= f.select :uses_ira, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
+
+		<div class="lcol"><%= f.label :uses_hyperion, "Using Hyperion B&P?" %></div>
+		<div class="rcol"><%= f.select :uses_hyperion, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
 	</fieldset>
 	
 	<fieldset>
-		<legend>Information about your email and calendar software experience</legend>
+		<legend>Software Experience</legend>
 		
-		<p>
-			<label for="used_email_clients">Please indicate any email client software you have used before <em>(please check all that apply)</em><br />
-				<%= render :partial => 'email_clients', :locals => {:f => f, :profile => @profile} %>
-			</label>
-		</p>		
+		<div class="lcol"><%= f.label :used_email_clients, "Email clients used?" %></div>
+		<div class="rcol"><%= render :partial => 'email_clients', :locals => {:f => f, :profile => @profile} %></div><br class="clear"/>
 		
-		<p>
-			<label for="used_other_calendars">Have you ever used any calendaring software other than Oracle Calendar?
-			<%= f.select :used_other_calendars, [['Yes',true],['No',false]], {:include_blank => "Choose..."}, {:class => "rcol"} %>
-			</label>
-		</p>
-		
+		<div class="lcol"><%= f.label :used_other_calendars, "Used calendar other than Oracle?" %></div>
+		<div class="rcol"><%= f.select :used_other_calendars, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
 	</fieldset>
 	
-	<p>
-		<%= f.submit @profile.new_record? ? "Create Profile" : "Update Profile" %>
-	</p>
-		
+	<div class="buttons"><%= link_to "Cancel", profile_path unless @profile.new_record? %></div>
+  <div class="right"><%= f.submit @profile.new_record? ? "Create Profile" : "Update Profile" %></div>
+  <br class="clear"/>
+  		
 <% end -%>

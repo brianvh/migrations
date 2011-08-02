@@ -19,7 +19,7 @@ feature "Client user working with their Profile" do
     
     context "WHEN: I submit a valid Profile, the resulting page" do
       before(:each) do
-        select "Yes", :from => "Migrate my Oracle Calendar"
+        select "Yes", :from => "Migrate Oracle Calendar"
         click_button "Create Profile"
       end
       
@@ -40,12 +40,12 @@ feature "Client user working with their Profile" do
 
     context "WHEN: I change my calendar migration to 'No' and submit the Profile, the resulting page" do
       before do
-        select "No", :from => "Migrate my Oracle Calendar"
+        select "No", :from => "Migrate Oracle Calendar"
         click_button "Update Profile"
       end
 
       it { should have_flash_notice "Success"}
-      it { should have_content "Calendar WILL NOT"}
+      it { should have_content "Calendar to be migrated? No"}
     end
 
   end
