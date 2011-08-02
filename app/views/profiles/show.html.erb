@@ -2,42 +2,42 @@
 <h2 id="profile-header">Migration Profile for <%= @profile.user.name %></h2>
 
 <fieldset id="information_about_your_services_to_be_migrated" class="">
-	<legend>Information about your Services to be Migrated</legend>
+	<legend>Services to be Migrated</legend>
 	<p>
-		Your Oracle Calendar <strong>WILL<%= " NOT" unless @profile.migrate_oracle_calendar %></strong> be migrated.
+		Oracle Calendar to be migrated? <strong><%= @profile.migrate_oracle_calendar ? "Yes" : "No" %></strong>
 	</p>
 	
 	<p>
-		Your email <strong>IS<%= " NOT" unless @profile.uses_mail_forward %></strong> being forwarded.
+		Email is being forwarded? <strong><%= @profile.uses_mail_forward ? "Yes" : "No" %></strong>
 	</p>
 	
 	<p>
-		You <strong><%= "DO NOT " unless @profile.uses_local_mail %> HAVE</strong> email stored on my local hard drive.
+		Email is stored on local hard drive? <strong><%= @profile.uses_local_mail ? "Yes" : "No" %></strong>
 	</p>
 	
 </fieldset>
 
 <fieldset id="information_about_other_services_that_might_be_impacted_by_the_migration" class="">
-	<legend>Information about Other Services that might be impacted by the Migration</legend>
+	<legend>Other Services</legend>
 	
 	<p>
-		You <strong>DO<%= " NOT" unless @profile.uses_ira %></strong> use the IRA Application.
+		IRA Application is used? <strong><%= @profile.uses_ira ? "Yes" : "No" %></strong>
 	</p>
 	
 	<p>
-		You <strong>DO<%= " NOT" unless @profile.uses_hyperion %></strong> use the Hyperion client application.
+		Hyperion client application is used? <strong><%= @profile.uses_hyperion ? "Yes" : "No" %></strong>
 	</p>
 	
 </fieldset>
 
 <fieldset id="information_about_your_email_and_calendar_software_experience" class="">
-	<legend>Information about your email and calendar software experience</legend>
+	<legend>Software Experience</legend>
 	<p>
-		You've used these email clients: <%= email_clients_display_string(@profile) %>
+		Email clients used: <strong><%= email_clients_display_string(@profile) %></strong>
 	</p>
 	
 	<p>
-		You <strong>HAVE<%= " NOT" unless @profile.used_other_calendars %></strong> used other calendaring software.
+		Other calendaring software used? <strong><%= @profile.used_other_calendars ? "Yes" : "No" %></strong>
 	</p>
 	
 </fieldset>
