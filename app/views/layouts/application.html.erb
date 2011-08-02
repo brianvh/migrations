@@ -3,6 +3,7 @@
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Blitz Migrations" %></title>
     <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "extra" %>
     <%= javascript_include_tag :defaults %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
