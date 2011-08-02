@@ -3,6 +3,7 @@
   float: left;
   width: 15%;
   text-align: right;
+  line-height: 30px;
   font-weight: bold;
 }
 
@@ -10,6 +11,7 @@
   display: block;
   float: left;
   width: 80%;
+  line-height: 30px;
   margin-left: 10px;
 }
 
