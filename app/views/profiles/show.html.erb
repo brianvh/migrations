@@ -1,6 +1,49 @@
 <% title "BlitzMail Migrations: Profile", false %>
-<h2 id="profile-header">Profile Information for <%= @user.name %></h2>
+<h2 id="profile-header">Migration Profile for <%= @profile.user.name %></h2>
+
+<fieldset id="information_about_your_services_to_be_migrated" class="">
+	<legend>Information about your Services to be Migrated</legend>
+	<p>
+		Your Oracle Calendar <strong>WILL<%= " NOT" unless @profile.migrate_oracle_calendar %></strong> be migrated.
+	</p>
+	
+	<p>
+		Your email <strong>IS<%= " NOT" unless @profile.uses_mail_forward %></strong> being forwarded.
+	</p>
+	
+	<p>
+		You <strong><%= "DO NOT " unless @profile.uses_local_mail %> HAVE</strong> email stored on my local hard drive.
+	</p>
+	
+</fieldset>
+
+<fieldset id="information_about_other_services_that_might_be_impacted_by_the_migration" class="">
+	<legend>Information about Other Services that might be impacted by the Migration</legend>
+	
+	<p>
+		You <strong>DO<%= " NOT" unless @profile.uses_ira %></strong> use the IRA Application.
+	</p>
+	
+	<p>
+		You <strong>DO<%= " NOT" unless @profile.uses_hyperion %></strong> use the Hyperion client application.
+	</p>
+	
+</fieldset>
+
+<fieldset id="information_about_your_email_and_calendar_software_experience" class="">
+	<legend>Information about your email and calendar software experience</legend>
+	<p>
+		You've used these email clients: <%= email_clients_display_string(@profile) %>
+	</p>
+	
+	<p>
+		You <strong>HAVE<%= " NOT" unless @profile.used_other_calendars %></strong> used other calendaring software.
+	</p>
+	
+</fieldset>
 
 <p>
-	blah
+	<%= link_to "Edit Profile", edit_profile_path(@profile) %>
 </p>
+
+<%= render :partial => 'show_support' %>

@@ -1,9 +1,11 @@
 class ProfilesController < ApplicationController
 
   def show
-    # @user = User.find(params[:id])
+    @profile = Profile.find(params[:id])
     @user = User.find(session[:user_id])
-    @profile = @user.profiles.first
+    unless @user.is_admin?
+      redirect_to user_path @user unless @profile.user_id == @user.id
+    end
   end
   
   def new
@@ -17,11 +19,32 @@ class ProfilesController < ApplicationController
     if @profile.save
       @user.profiles << @profile
       flash[:notice] = "Successfully created Profile."
-      redirect_to profile_path @profile
+      redirect_to @profile
     else
       render :action => 'new'
     end
-    
+  end
+  
+  def edit
+    @profile = Profile.find(params[:id])
+    @user = User.find(session[:user_id])
+    unless @user.is_admin?
+      redirect_to user_path @user unless @profile.user_id == @user.id
+    end
+  end
+
+  def update
+    @profile = Profile.find(params[:id])
+    @user = User.find(session[:user_id])
+    unless @user.is_admin?
+      redirect_to user_path @user unless @profile.user_id == @user.id
+    end
+    if @profile.update_attributes(params[:profile])
+      flash[:notice] = "Successfully updated Profile."
+      redirect_to @profile
+    else
+      render :action => 'edit'
+    end
   end
 
 end
