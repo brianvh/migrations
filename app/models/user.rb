@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include DNDUser
   
   has_many :profiles
+  has_many :devices
 
   before_validation :valid_in_dnd?, :on => :create
 
