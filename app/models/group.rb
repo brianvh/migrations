@@ -2,8 +2,6 @@ class Group < ActiveRecord::Base
   has_many :memberships
   has_many :users, :through => :memberships
 
-  attr_reader :users_added
-
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   validates_uniqueness_of :name, :on => :create, :message => "must be unique"
   validate :valid_deplclasses?, :on => :create
@@ -19,6 +17,10 @@ class Group < ActiveRecord::Base
 
   def deptclass=(depts)
     @deptclass = depts.split(/, */)
+  end
+
+  def users_added
+    @users_added || 0
   end
 
   private
