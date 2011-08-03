@@ -3,6 +3,7 @@
   float: left;
   width: 15%;
   text-align: right;
+  font-size: 12px;
   line-height: 30px;
   font-weight: bold;
 }
@@ -35,4 +36,11 @@
 
 form br {
   clear: left;
+}
+
+legend {
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: 1.2em;
+  font-weight: bold;
 }
