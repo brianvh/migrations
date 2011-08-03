@@ -32,3 +32,7 @@
 .clear {
   clear: left;
 }
+
+form br {
+  clear: left;
+}
