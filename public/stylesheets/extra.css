@@ -44,3 +44,8 @@ legend {
   font-size: 1.2em;
   font-weight: bold;
 }
+
+fieldset table {
+  width: 85%;
+  margin-left: 10px;
+}
