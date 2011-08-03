@@ -1,0 +1,13 @@
+<% title "BlitzMail Migrations: Device", false %>
+<h2 id="devise-header">Devise Information for <%= @device.user.name %></h2>
+
+<fieldset id="hardware">
+	<legend>Hardware</legend>
+	
+	<p>
+		Vendor: <%= @device.vendor %>
+	</p>
+	
+</fieldset>
+
+<%= link_to "Edit", edit_device_path %>

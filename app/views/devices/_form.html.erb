@@ -1,0 +1,27 @@
+<%= form_for @device do |f| -%>
+
+	<fieldset id="hardware">
+		<legend>Hardware</legend>
+		
+		<div class="lcol"><%= f.label :vendor, "Vendor" %></div>
+		<div class="rcol"><%= f.collection_select :vendor, DeviceVendorChoice.all, :value, :label, {:include_blank => "Choose..."} %></div><br class="clear"/>
+		
+		<div class="lcol"><%= f.label :kind, "Kind" %></div>
+		<div class="rcol"><%= f.collection_select :kind, DeviceKindChoice.all, :value, :label, {:include_blank => "Choose..."} %></div><br class="clear"/>
+		
+	</fieldset>
+	
+	<fieldset id="software">
+		<legend>Software</legend>
+		
+		<div class="lcol"><%= f.label :os_version, "OS Version" %></div>
+		<div class="rcol"><%= f.collection_select :os_version, OsVersionChoice.all, :value, :label, {:include_blank => "Choose..."} %></div><br class="clear"/>
+		
+		
+	</fieldset>
+
+	<div class="buttons"><%= link_to "Cancel", device_path unless @device.new_record? %></div>
+  <div class="right"><%= f.submit @device.new_record? ? "Create Device" : "Update Device" %></div>
+  <br class="clear"/>
+
+<% end -%>

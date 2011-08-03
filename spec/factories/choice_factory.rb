@@ -6,4 +6,10 @@ FactoryGirl.define do
     sort_order 0
   end
   
+  factory :device_vendor_choice do
+    label "Apple"
+    value "Apple"
+    sort_order 0
+  end
+  
 end
