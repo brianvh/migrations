@@ -3,11 +3,14 @@
 	<fieldset id="hardware">
 		<legend>Hardware</legend>
 		
-		<div class="lcol"><%= f.label :vendor, "Vendor" %></div>
-		<div class="rcol"><%= f.collection_select :vendor, DeviceVendorChoice.all, :value, :label, {:include_blank => "Choose..."} %></div><br class="clear"/>
+		<div class="lcol"><%= f.label :vendor_choice, "Vendor" %></div>
+		<div class="rcol"><%= f.select :vendor_choice, DeviceVendorChoice.to_options_array, {:include_blank => "Choose..."} %>
+		<%# f.select :vendor, DeviceVendorChoice.to_options_array, {:include_blank => "Choose..."} %>
+			<%= f.text_field :vendor_other %> (if Other selected)
+		</div><br class="clear"/>
 		
 		<div class="lcol"><%= f.label :kind, "Kind" %></div>
-		<div class="rcol"><%= f.collection_select :kind, DeviceKindChoice.all, :value, :label, {:include_blank => "Choose..."} %></div><br class="clear"/>
+		<div class="rcol"><%= f.select :kind, DeviceKindChoice.to_options_array, {:include_blank => "Choose..."} %></div><br class="clear"/>
 		
 	</fieldset>
 	
@@ -15,7 +18,7 @@
 		<legend>Software</legend>
 		
 		<div class="lcol"><%= f.label :os_version, "OS Version" %></div>
-		<div class="rcol"><%= f.collection_select :os_version, OsVersionChoice.all, :value, :label, {:include_blank => "Choose..."} %></div><br class="clear"/>
+		<div class="rcol"><%= f.select :os_version, OsVersionChoice.to_options_array, {:include_blank => "Choose..."} %></div><br class="clear"/>
 		
 		
 	</fieldset>
