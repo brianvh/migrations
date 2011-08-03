@@ -24,7 +24,7 @@ class DevicesController < ApplicationController
     if @device.save
       @user.devices << @device
       flash[:notice] = "Successfully created Device."
-      redirect_to @device
+      redirect_to devices_path
     else
       render :action => 'new'
     end
@@ -46,7 +46,7 @@ class DevicesController < ApplicationController
     end
     if @device.update_attributes(params[:device])
       flash[:notice] = "Successfully updated Device."
-      redirect_to @device
+      redirect_to devices_path
     else
       render :action => 'edit'
     end
