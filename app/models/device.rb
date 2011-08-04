@@ -5,6 +5,10 @@ class Device < ActiveRecord::Base
   attr_writer :vendor_other, :kind_other, :os_version_other, :office_version_other
   attr_writer :current_email_other, :current_browser_other, :new_email_other
   
+  def device_name
+    "#{vendor} #{kind}"
+  end
+  
   def new_email_choice
     return new_email if NewEmailChoice.to_options_array.include?(new_email)
     return "Other" unless new_email.blank?
