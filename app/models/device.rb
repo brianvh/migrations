@@ -2,7 +2,27 @@ class Device < ActiveRecord::Base
   
   belongs_to :user
 
-  attr_writer :vendor_other, :kind_other, :os_version_other, :office_version_other, :current_email_other, :current_browser_other
+  attr_writer :vendor_other, :kind_other, :os_version_other, :office_version_other
+  attr_writer :current_email_other, :current_browser_other, :new_email_other
+  
+  def new_email_choice
+    return new_email if NewEmailChoice.to_options_array.include?(new_email)
+    return "Other" unless new_email.blank?
+    nil
+  end
+  
+  def new_email_choice=(val)
+    if val == "Other"
+      self.new_email = @new_email_other
+    else
+      self.new_email = val
+    end
+  end
+
+  def new_email_other
+    return "" if NewEmailChoice.to_options_array.include?(new_email)
+    new_email
+  end
   
   def current_browser_choice
     return current_browser if CurrentBrowserChoice.to_options_array.include?(current_browser)

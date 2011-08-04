@@ -65,6 +65,7 @@ class DevicesController < ApplicationController
     @device.office_version_other = params[:device][:office_version_other]
     @device.current_email_other = params[:device][:current_email_other]
     @device.current_browser_other = params[:device][:current_browser_other]
+    @device.new_email_other = params[:device][:new_email_other]
   end
 
 end

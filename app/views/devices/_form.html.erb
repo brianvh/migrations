@@ -38,6 +38,11 @@
 			<%= f.text_field :current_browser_other %> (if Other selected)
 		</div><br class="clear" />
 		
+		<div class="lcol"><%= f.label :new_email_choice, "New Email Client" %></div>
+		<div class="rcol"><%= f.select :new_email_choice, NewEmailChoice.to_options_array, {:include_blank => "Choose..."} %>
+			<%= f.text_field :new_email_other %> (if Other selected)
+		</div><br class="clear" />
+		
 		
 	</fieldset>
 
