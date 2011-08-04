@@ -1,5 +1,5 @@
 <% title "BlitzMail Migrations: Devices", false %>
-<h2 id="devise-header">Devise List for <%= @user.name %></h2>
+<h2 id="device-header">Device List for <%= @user.name %></h2>
 
 <fieldset id="devices">
 	<legend>Devices</legend>
@@ -9,6 +9,9 @@
 			<th>Vendor</th>
 			<th>Kind</th>
 			<th>OS Version</th>
+			<th>Office Version</th>
+			<th>Email Client</th>
+			<th>Current Browser</th>
 		</tr>
 		<%= render :partial => "device", :collection => @devices %>
 	</table>

@@ -6,12 +6,12 @@
 		<div class="lcol"><%= f.label :vendor_choice, "Vendor" %></div>
 		<div class="rcol"><%= f.select :vendor_choice, DeviceVendorChoice.to_options_array, {:include_blank => "Choose..."} %>
 			<%= f.text_field :vendor_other %> (if Other selected)
-		</div><br class="clear"/>
+		</div><br class="clear" />
 		
 		<div class="lcol"><%= f.label :kind_choice, "Kind" %></div>
 		<div class="rcol"><%= f.select :kind_choice, DeviceKindChoice.to_options_array, {:include_blank => "Choose..."} %>
 			<%= f.text_field :kind_other %> (if Other selected)
-		</div><br class="clear"/>
+		</div><br class="clear" />
 		
 	</fieldset>
 	
@@ -21,7 +21,22 @@
 		<div class="lcol"><%= f.label :os_version_choice, "OS Version" %></div>
 		<div class="rcol"><%= f.select :os_version_choice, OsVersionChoice.to_options_array, {:include_blank => "Choose..."} %>
 			<%= f.text_field :os_version_other %> (if Other selected)
-		</div><br class="clear"/>
+		</div><br class="clear" />
+		
+		<div class="lcol"><%= f.label :office_version_choice, "Office Version" %></div>
+		<div class="rcol"><%= f.select :office_version_choice, OfficeVersionChoice.to_options_array, {:include_blank => "Choose..."} %>
+			<%= f.text_field :office_version_other %> (if Other selected)
+		</div><br class="clear" />
+		
+		<div class="lcol"><%= f.label :current_email_choice, "Current Email Client" %></div>
+		<div class="rcol"><%= f.select :current_email_choice, CurrentEmailChoice.to_options_array, {:include_blank => "Choose..."} %>
+			<%= f.text_field :current_email_other %> (if Other selected)
+		</div><br class="clear" />
+		
+		<div class="lcol"><%= f.label :current_browser_choice, "Current Browser" %></div>
+		<div class="rcol"><%= f.select :current_browser_choice, CurrentBrowserChoice.to_options_array, {:include_blank => "Choose..."} %>
+			<%= f.text_field :current_browser_other %> (if Other selected)
+		</div><br class="clear" />
 		
 		
 	</fieldset>

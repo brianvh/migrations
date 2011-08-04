@@ -2,10 +2,65 @@ class Device < ActiveRecord::Base
   
   belongs_to :user
 
-  attr_writer :vendor_other
-  attr_writer :kind_other
-  attr_writer :os_version_other
+  attr_writer :vendor_other, :kind_other, :os_version_other, :office_version_other, :current_email_other, :current_browser_other
   
+  def current_browser_choice
+    return current_browser if CurrentBrowserChoice.to_options_array.include?(current_browser)
+    return "Other" unless current_browser.blank?
+    nil
+  end
+  
+  def current_browser_choice=(val)
+    if val == "Other"
+      self.current_browser = @current_browser_other
+    else
+      self.current_browser = val
+    end
+  end
+
+  def current_browser_other
+    return "" if CurrentBrowserChoice.to_options_array.include?(current_browser)
+    current_browser
+  end
+  
+  def current_email_choice
+    return current_email if CurrentEmailChoice.to_options_array.include?(current_email)
+    return "Other" unless current_email.blank?
+    nil
+  end
+  
+  def current_email_choice=(val)
+    if val == "Other"
+      self.current_email = @current_email_other
+    else
+      self.current_email = val
+    end
+  end
+
+  def current_email_other
+    return "" if CurrentEmailChoice.to_options_array.include?(current_email)
+    current_email
+  end
+
+  def office_version_choice
+    return office_version if OfficeVersionChoice.to_options_array.include?(office_version)
+    return "Other" unless office_version.blank?
+    nil
+  end
+  
+  def office_version_choice=(val)
+    if val == "Other"
+      self.office_version = @office_version_other
+    else
+      self.office_version = val
+    end
+  end
+
+  def office_version_other
+    return "" if OfficeVersionChoice.to_options_array.include?(office_version)
+    office_version
+  end
+
   def os_version_choice
     return os_version if OsVersionChoice.to_options_array.include?(os_version)
     return "Other" unless os_version.blank?
@@ -16,7 +71,7 @@ class Device < ActiveRecord::Base
     if val == "Other"
       self.os_version = @os_version_other
     else
-      self.vendor = val
+      self.os_version = val
     end
   end
 
