@@ -16,6 +16,18 @@ class User < ActiveRecord::Base
     false
   end
 
+  def last_first
+    "#{lastname}, #{firstname}"
+  end
+
+  def profile_summary
+    'TODO'
+  end
+
+  def migration_date
+    'TODO'
+  end
+
   def self.authenticate(auth_hash)
     return nil unless auth_hash['provider'] == 'cas'
     realm = auth_hash['uid'].split(/@/)[1].downcase

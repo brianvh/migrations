@@ -1,0 +1,10 @@
+<% title "BlitzMail Migrations: Group Info", false %>
+<h2 id="group-header">Group Information for <%= @group.name %></h2>
+<fieldset id="group-members">
+  <legend>Group Members</legend>
+  <div class="buttons">Add Deptclass</div>
+  <div class="buttons right">Remove Deptclass</div><br />
+
+  <%= render('users/user_list') unless @users.empty? %>
+  <%= render('no_users') if @users.empty? %>
+</fieldset>
