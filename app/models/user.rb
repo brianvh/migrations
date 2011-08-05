@@ -28,10 +28,7 @@ class User < ActiveRecord::Base
     'TODO'
   end
 
-  def self.authenticate(auth_hash)
-    return nil unless auth_hash['provider'] == 'cas'
-    realm = auth_hash['uid'].split(/@/)[1].downcase
-    return nil unless realm == 'dartmouth.edu'
-    User.find_by_uid(auth_hash['extra']['uid'])
+  def self.authenticate(authenticator)
+    User.find_by_uid(authenticator.uid)
   end
 end
