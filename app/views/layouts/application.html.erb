@@ -11,7 +11,7 @@
   <body>
     <div id="container">
       <div id="logout">
-        <%= logout_link(@user) %>
+        <%= logout_link %>
       </div>
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
