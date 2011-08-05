@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    redirect_to user_path(session[:user_id])
+    redirect_to user_path(current_user)
   end
 
   def show
