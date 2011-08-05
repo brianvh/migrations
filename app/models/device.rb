@@ -4,9 +4,60 @@ class Device < ActiveRecord::Base
 
   attr_writer :vendor_other, :kind_other, :os_version_other, :office_version_other
   attr_writer :current_email_other, :current_browser_other, :new_email_other
+  attr_writer :carrier_other
+
+  attr_accessible :vendor, :kind, :type, :os_version, :office_version,
+                  :current_email, :current_browser, :new_email, :user_id,
+                  :carrier, :contacts_count,
+                  :vendor_other, :kind_other, :os_version_other, :office_version_other,
+                  :current_email_other, :current_browser_other, :new_email_other, :carrier_other,
+                  :mobile_vendor_choice, :mobile_kind_choice, :carrier_choice, :new_email_choice,
+                  :current_browser_choice, :current_email_choice, :office_version_choice,
+                  :os_version_choice, :vendor_choice, :kind_choice
+
+  validates_presence_of :vendor, :message => "can't be blank"
+  validates_presence_of :kind, :message => "can't be blank"
   
   def device_name
     "#{vendor} #{kind}"
+  end
+
+  def vendor_choice
+    return vendor if DeviceVendorChoice.to_options_array.include?(vendor)
+    return "Other" unless vendor.blank? #self.new_record?
+    nil
+  end
+    
+  def vendor_choice=(val)
+    if val == "Other"
+      self.vendor = @vendor_other
+    else
+      self.vendor = val
+    end
+  end
+
+  def vendor_other
+    return "" if DeviceVendorChoice.to_options_array.include?(vendor)
+    vendor
+  end
+  
+  def kind_choice
+    return kind if DeviceKindChoice.to_options_array.include?(kind)
+    return "Other" unless kind.blank?
+    nil
+  end
+    
+  def kind_choice=(val)
+    if val == "Other"
+      self.kind = @kind_other
+    else
+      self.kind = val
+    end
+  end
+
+  def kind_other
+    return "" if DeviceKindChoice.to_options_array.include?(kind)
+    kind
   end
   
   def new_email_choice
@@ -103,43 +154,24 @@ class Device < ActiveRecord::Base
     return "" if OsVersionChoice.to_options_array.include?(os_version)
     os_version
   end
-
-  def vendor_choice
-    return vendor if DeviceVendorChoice.to_options_array.include?(vendor)
-    return "Other" unless vendor.blank? #self.new_record?
+  
+  def carrier_choice
+    return carrier if CarrierChoice.to_options_array.include?(carrier)
+    return "Other" unless carrier.blank?
     nil
   end
-    
-  def vendor_choice=(val)
+  
+  def carrier_choice=(val)
     if val == "Other"
-      self.vendor = @vendor_other
+      self.carrier = @carrier_other
     else
-      self.vendor = val
+      self.carrier = val
     end
   end
-
-  def vendor_other
-    return "" if DeviceVendorChoice.to_options_array.include?(vendor)
-    vendor
-  end
   
-  def kind_choice
-    return kind if DeviceKindChoice.to_options_array.include?(kind)
-    return "Other" unless kind.blank?
-    nil
-  end
-    
-  def kind_choice=(val)
-    if val == "Other"
-      self.kind = @kind_other
-    else
-      self.kind = val
-    end
+  def carrier_other
+    return "" if CarrierChoice.to_options_array.include?(carrier)
+    carrier
   end
 
-  def kind_other
-    return "" if DeviceKindChoice.to_options_array.include?(kind)
-    kind
-  end
-  
 end

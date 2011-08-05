@@ -6,7 +6,8 @@
 	
 	<table border="0" cellspacing="5" cellpadding="5">
 		<tr>
-			<th>Device Name</th>
+			<th>Name</th>
+			<th>Type</th>
 			<th>OS Version</th>
 			<th>Office Version</th>
 			<th>Email Client</th>
@@ -20,5 +21,6 @@
 </fieldset>
 
 <p>
-	<%= link_to "Add Device", new_device_path %>
+	<%= link_to "Add Computer Device", new_device_path(:type => 'computer') %>&nbsp; &nbsp;
+	<%= link_to "Add Mobile Device", new_device_path(:type => 'mobile') %>
 </p>

@@ -1,4 +1,4 @@
-<%= form_for @device do |f| -%>
+	<%= f.hidden_field :type, :value => 'Computer' %>
 
 	<fieldset id="hardware">
 		<legend>Hardware</legend>
@@ -43,11 +43,4 @@
 			<%= f.text_field :new_email_other %> (if Other selected)
 		</div><br class="clear" />
 		
-		
 	</fieldset>
-
-	<div class="buttons"><%= link_to "Cancel", device_path unless @device.new_record? %></div>
-  <div class="right"><%= f.submit @device.new_record? ? "Create Device" : "Update Device" %></div>
-  <br class="clear"/>
-
-<% end -%>

@@ -1,6 +1,9 @@
-<tr id="device_<%= device.id %>">
+<tr id="device-<%= device.id %>">
 	<td>
-		<%= link_to device.device_name, device %>
+		<%= link_to device.device_name, device_path(device) %>
+	</td>
+	<td>
+		<%= device.type %>
 	</td>
 	<td>
 		<%= device.os_version %>

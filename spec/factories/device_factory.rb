@@ -1,4 +1,11 @@
-Factory.define :device do |f|
-  f.vendor 'HP'
-  f.kind 'Desktop'
+FactoryGirl.define do
+  factory :computer do
+    vendor 'HP'
+    kind 'Desktop'
+  end
+  
+  factory :mobile do
+    vendor 'Apple'
+    kind 'iPhone'
+  end
 end
