@@ -1,32 +1,30 @@
 class DevicesController < ApplicationController
   
   def index
-    @user = User.find(session[:user_id])
-    @devices = @user.devices
+    @devices = current_user.devices.order(:type)
+    @computers = Computer.find_all_by_user_id(current_user.id)
+    @mobiles = Mobile.find_all_by_user_id(current_user.id)
   end
   
   def show
     @device = Device.find(params[:id])
-    @user = User.find(session[:user_id])
-    unless @user.is_admin?
-      redirect_to user_path @user unless @device.user_id == @user.id
+    unless current_user.is_admin?
+      redirect_to user_path current_user unless @device.user_id == current_user.id
     end
   end
   
   def new
-    @user = User.find(session[:user_id])
     @device = Device.new
     @device_type = params[:type].downcase.titlecase
   end
   
   def create
-    @user = User.find(session[:user_id])
     @device = Device.new(params[:device])
     
     init_other_fields
     
     if @device.save
-      @user.devices << @device
+      current_user.devices << @device
       flash[:notice] = "Successfully created Device."
       redirect_to devices_path
     else
@@ -38,17 +36,15 @@ class DevicesController < ApplicationController
   def edit
     @device = Device.find(params[:id])
     @device_type = @device.type
-    @user = User.find(session[:user_id])
-    unless @user.is_admin?
-      redirect_to user_path @user unless @device.user_id == @user.id
+    unless current_user.is_admin?
+      redirect_to user_path current_user unless @device.user_id == current_user.id
     end
   end
   
   def update
     @device = Device.find(params[:id])
-    @user = User.find(session[:user_id])
-    unless @user.is_admin?
-      redirect_to user_path @user unless @device.user_id == @user.id
+    unless current_user.is_admin?
+      redirect_to user_path current_user unless @device.user_id == current_user.id
     end
 
     init_other_fields
@@ -69,7 +65,7 @@ class DevicesController < ApplicationController
     @device.current_email_other = params[:device][:current_email_other]
     @device.current_browser_other = params[:device][:current_browser_other]
     @device.new_email_other = params[:device][:new_email_other]
-    @device.carrier = params[:device][:carrier_other]
+    @device.carrier_other = params[:device][:carrier_other]
   end
 
 end
