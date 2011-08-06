@@ -2,35 +2,41 @@ require 'acceptance/acceptance_helper'
 
 feature "Client user editing an existing 'Computer' Device" do
 
-  subject { page }
-
-  before(:each) do
+  background do
     @user = login_as :client
+    device_vendor_choices
   end
+
+  subject { page }
   
-  context "GIVEN: I'm a Client and I need to modify one of my listed 'Computer' Devices" do
-    before(:each) do
-      device_vendor_choices
-      @device = Device.new(:vendor => 'Lenovo', :kind => 'Laptop', :type => 'Computer')
-      @user.devices << @device
-      visit edit_device_path(@device)
-    end
-
-    it { should have_button('Update Device') }
-
-    context "WHEN: I change the vendor to 'Dell' and submit the Device, the resulting page" do
-      before do
-        select "Dell", :from => "Vendor"
-        click_button "Update Device"
-        @device.reload
+  context "GIVEN: I have one Lenovo Laptop device in the system" do
+    let(:create_my_device) { @user.devices << Factory(:computer) }
+    let(:vendor) { 'Dell' }
+    let(:submit) { 
+      select vendor, :from => 'Vendor'
+      click_button "Update Device"
+      }
+    
+    before { create_my_device }
+    
+    context "WHEN: I visit the Device Information page" do
+      before { visit device_path @user.devices.first }
+      
+      it { should have_header :device, 'Device Information for Lenovo Laptop' }
+      
+      context "AND: I click the 'Edit' link" do
+        before { click_link 'Edit' }
+        
+        it { should have_select_field :device, :vendor_choice }
+        it { should have_button 'Update Device'}
+        
+        context "AND: I change the vendor to Dell and click 'Update Device'" do
+          before { submit }
+          
+          it { should have_flash_notice "Success" }
+          it { should have_header :device, 'Device Information for Dell Laptop'}
+        end
       end
-
-      it { @device.vendor.should == "Dell"}
-      it { should have_flash_notice "Success" }
-      it { should have_device @device }
     end
-
-  end
-  
-
+  end  
 end

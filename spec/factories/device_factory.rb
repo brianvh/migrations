@@ -1,17 +1,18 @@
 FactoryGirl.define do
   
   factory :device do
-    vendor 'Apple'
-    kind 'Laptop'
-  end
-  
-  factory :computer do
     vendor 'HP'
     kind 'Desktop'
+    type 'Computer'
+  end
+
+  factory :computer do
+    vendor 'Lenovo'
+    kind 'Laptop'
   end
   
   factory :mobile do
     vendor 'Apple'
-    kind 'iPhone'
+    kind 'Phone'
   end
 end

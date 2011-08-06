@@ -1,47 +1,52 @@
 require 'acceptance/acceptance_helper'
 
-feature "Client Adding a New 'Computer' Device" do
+feature "Client user creating a new 'Computer' device" do
+
+  background do
+    @user = login_as :client
+    device_vendor_choices
+    device_kind_choices
+  end
 
   subject { page }
-
-  before(:each) do
-    @user = login_as :client
-  end
-
-  context "GIVEN: I'm a Client and need to create a new 'Computer' Device" do
-    before do
-      device_vendor_choices
-      device_kind_choices
-      visit new_device_path(:type => 'computer')
-    end
-    
-    it { should have_header :device, "New Computer Device Information"}
-    it { should have_select_field(:device, :vendor_choice) }
-    
-    context "WHEN: I submit a valid Device, the resulting page" do
-      before(:each) do
-        select "Apple (Intel)", :from => "Vendor"
-        select "Laptop", :from => "Kind"
-        click_button "Create Device"
-        @device = Device.last
-      end
-      
-      it { should have_flash_notice "Success" }
-      it { should have_device @device }
-      
-    end
-
-    context "WHEN: I submit an INVALID Device, the resulting page" do
-      before(:each) do
-        select "Apple (Intel)", :from => "Vendor"
-        click_button "Create Device"
-        @device = Device.last
-      end
-      
-      it { should have_error_message "Invalid Fields" }
-      
-    end
-    
-  end
   
+  context "GIVEN: I need to create a new 'Computer' Device" do
+    let(:submit) {
+      select "Apple (Intel)", :from => 'Vendor'
+      select "Laptop", :from => 'Kind'
+      click_button "Create Device"
+      }
+    
+    context "WHEN: I visit the New Computer page" do
+      before { visit new_device_path(:type => 'computer') }
+      
+      it { should have_header :device, 'New Computer Device Information' }
+      it { should have_select_field :device, :vendor_choice }
+      it { should have_button 'Create Device'}
+      
+      context "WHEN: I select 'Apple' from Vendor and 'Phone' from Kind" do
+        before { submit }
+      
+        context "THEN: I should be successful" do
+          it { should have_flash_notice "Success" }
+          it { should have_header :device, 'Device Information for Apple (Intel) Laptop'}
+        end
+      end
+
+      context "WHEN: I select 'Apple' from Vendor and nothing from Kind" do
+        let(:submit) {
+          select "Apple", :from => 'Vendor'
+          click_button "Create Device"
+          }
+
+        before { submit }
+      
+        context "THEN: I should not be successful" do
+          it { should have_error_message "Invalid Fields" }
+          it { should have_header :device, 'New Computer Device Information'}
+        end
+      end
+
+    end
+  end
 end

@@ -26,7 +26,7 @@ class DevicesController < ApplicationController
     if @device.save
       current_user.devices << @device
       flash[:notice] = "Successfully created Device."
-      redirect_to devices_path
+      redirect_to device_path(@device)
     else
       @device_type = params[:device][:type]
       render :action => 'new'
