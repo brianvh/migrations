@@ -7,8 +7,8 @@ describe Device do
   end
 
   it "should have 'duh' for vendor when vendor_choice is 'Other' and vendor_other is 'duh'" do
-    @device.vendor_choice = "Other" # test fails if this runs first!
     @device.vendor_other = "duh"
+    @device.vendor_choice = "Other" # test fails if this runs first!
     @device.vendor.should == "duh"
   end
 
