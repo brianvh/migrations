@@ -9,15 +9,12 @@
 		<%= device.os_version %>
 	</td>
 	<td>
-		<%= device.office_version %>
-	</td>
-	<td>
-		<%= device.current_email %>
-	</td>
-	<td>
-		<%= device.current_browser %>
-	</td>
-	<td>
 		<%= device.new_email %>
+	</td>
+	<td>
+		<%= device.type == 'Computer' ? device.office_version : "N/A" %>
+	</td>
+	<td>
+		<%= device.type == 'Computer' ? device.current_browser : "N/A" %>
 	</td>
 </tr>
