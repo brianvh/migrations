@@ -1,0 +1,2 @@
+class DeviceMobileVendorChoice < Choice
+end

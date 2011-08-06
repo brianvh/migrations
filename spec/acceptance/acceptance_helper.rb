@@ -8,4 +8,5 @@ RSpec.configure do |config|
   config.include(PageHelpers)
   config.include(WebauthHelpers)
   config.include(ProfileHelpers)
+  config.include(DeviceHelpers)
 end

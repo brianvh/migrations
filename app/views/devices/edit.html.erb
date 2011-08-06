@@ -1,0 +1,13 @@
+<% title "BlitzMail Migrations: Edit Device", false %>
+<h2 id="device-header">Edit <%= @device.type %> Device Information</h2>
+
+<%= form_for @device, :url => device_path, :as => :device do |f| -%>
+	<%= f.error_messages %>
+
+	<%= render :partial => @device.type == 'Computer' ? "computer_form" : "mobile_form", :locals => {:f => f} %>
+
+	<div class="buttons"><%= link_to "Cancel", device_path %></div>
+  <div class="right"><%= f.submit "Update Device" %></div>
+  <br class="clear"/>
+
+<% end -%>

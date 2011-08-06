@@ -49,3 +49,7 @@ fieldset table {
   width: 85%;
   margin-left: 10px;
 }
+
+.prompt {
+	font-size: 0.85em;
+}

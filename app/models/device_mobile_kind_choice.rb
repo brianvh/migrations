@@ -1,0 +1,2 @@
+class DeviceMobileKindChoice < Choice
+end

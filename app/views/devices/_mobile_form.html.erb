@@ -1,0 +1,38 @@
+<%= f.hidden_field :type, :value => 'Mobile' %>
+
+	<fieldset id="hardware">
+		<legend>Hardware</legend>
+		
+		<div class="lcol"><%= f.label :vendor_choice, "Vendor" %></div>
+		<div class="rcol"><%= f.select :vendor_choice, DeviceMobileVendorChoice.to_options_array, {:include_blank => "Choose..."} %>
+			<%= f.text_field :vendor_other %> <span class="prompt">(if Other selected)</span>
+		</div><br class="clear" />
+		
+		<div class="lcol"><%= f.label :kind_choice, "Kind" %></div>
+		<div class="rcol"><%= f.select :kind_choice, DeviceMobileKindChoice.to_options_array, {:include_blank => "Choose..."} %>
+			<%= f.text_field :kind_other %> <span class="prompt">(if Other selected)</span>
+		</div><br class="clear" />
+		
+		<div class="lcol"><%= f.label :carrier_choice, "Carrier" %></div>
+		<div class="rcol"><%= f.select :carrier_choice, CarrierChoice.to_options_array, {:include_blank => "Choose..."} %>
+			<%= f.text_field :carrier_other %> <span class="prompt">(if Other selected)</span>
+		</div><br class="clear" />
+		
+	</fieldset>
+	
+	<fieldset id="software">
+		<legend>Software</legend>
+		
+		<div class="lcol"><%= f.label :os_version_choice, "OS Version" %></div>
+		<div class="rcol"><%= f.text_field :os_version %>
+		</div><br class="clear" />
+		
+		<div class="lcol"><%= f.label :contacts_count, "# Contacts" %></div>
+		<div class="rcol"><%= f.select :contacts_count, ["0","1-100",">100"], {:include_blank => "Choose..."} %>
+		</div><br class="clear" />
+		
+		<div class="lcol"><%= f.label :new_email_choice, "Email Client" %></div>
+		<div class="rcol"><%= f.select :new_email_choice, MobileEmailClientChoice.to_options_array, {:include_blank => "Choose..."} %></div>
+		<br class="clear" />
+		
+	</fieldset>

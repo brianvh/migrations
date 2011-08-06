@@ -2,5 +2,5 @@
 	<%= check_box_tag("profile[used_email_choices][]", choice["value"],
 										@profile.used_email_clients =~ Regexp.new(Regexp.escape(choice["value"])) ? true : false,
 										options = {}) %>
-	<%= choice["label"] %>
+	<%= choice["value"] %>
 <% end -%>
