@@ -55,7 +55,7 @@ class DevicesController < ApplicationController
     
     if @device.update_attributes(params[:device])
       flash[:notice] = "Successfully updated Device."
-      redirect_to devices_path
+      redirect_to device_path
     else
       render :action => 'edit'
     end

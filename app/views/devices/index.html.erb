@@ -4,15 +4,15 @@
 <fieldset id="devices">
 	<legend>Devices</legend>
 	
-	<table border="0" cellspacing="5" cellpadding="5">
+	<table>
 		<tr>
-			<th>Name</th>
-			<th>Type</th>
-			<th>OS Version</th>
-			<th>Office Version</th>
-			<th>Email Client</th>
-			<th>Browser</th>
-			<th>New Email</th>
+			<th align="left">Name</th>
+			<th align="left">Type</th>
+			<th align="left">OS Version</th>
+			<th align="left">Office Version</th>
+			<th align="left">Email Client</th>
+			<th align="left">Browser</th>
+			<th align="left">New Email</th>
 		</tr>
 		<%= render :partial => "device", :collection => @devices %>
 	</table>
