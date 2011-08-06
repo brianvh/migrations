@@ -5,17 +5,17 @@
 		
 		<div class="lcol"><%= f.label :vendor_choice, "Vendor" %></div>
 		<div class="rcol"><%= f.select :vendor_choice, DeviceMobileVendorChoice.to_options_array, {:include_blank => "Choose..."} %>
-			<%= f.text_field :vendor_other %> (if Other selected)
+			<%= f.text_field :vendor_other %> <span class="prompt">(if Other selected)</span>
 		</div><br class="clear" />
 		
 		<div class="lcol"><%= f.label :kind_choice, "Kind" %></div>
 		<div class="rcol"><%= f.select :kind_choice, DeviceMobileKindChoice.to_options_array, {:include_blank => "Choose..."} %>
-			<%= f.text_field :kind_other %> (if Other selected)
+			<%= f.text_field :kind_other %> <span class="prompt">(if Other selected)</span>
 		</div><br class="clear" />
 		
 		<div class="lcol"><%= f.label :carrier_choice, "Carrier" %></div>
 		<div class="rcol"><%= f.select :carrier_choice, CarrierChoice.to_options_array, {:include_blank => "Choose..."} %>
-			<%= f.text_field :carrier_other %> (if Other selected)
+			<%= f.text_field :carrier_other %> <span class="prompt">(if Other selected)</span>
 		</div><br class="clear" />
 		
 	</fieldset>
