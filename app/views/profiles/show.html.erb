@@ -25,7 +25,7 @@
 	</p>
 	
 	<p>
-		Hyperion client application is used? <strong><%= @profile.uses_hyperion ? "Yes" : "No" %></strong>
+		Hyperion Budget & Planning is used? <strong><%= @profile.uses_hyperion ? "Yes" : "No" %></strong>
 	</p>
 	
 </fieldset>
@@ -41,11 +41,11 @@
 	</p>
 	
 </fieldset>
-
+<br />
 <div class="buttons"><%= link_to "Cancel", user_path %></div>
 <div class="right buttons"><%= link_to "Edit Profile", edit_profile_path(@profile) %></div>
 <br class="clear"/>
 
-<%# if current_user.is_admin? %>
+<% if current_user.is_admin? %>
 	<%= render :partial => 'show_support' %>
-<%# end %>
+<% end %>

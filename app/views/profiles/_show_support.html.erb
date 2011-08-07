@@ -19,6 +19,9 @@
 
 	<p>
 		Complexity level: <%= @profile.complexity_level %>
+		<% if @profile.used_only_blitz? %>
+			<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; This person has only used the Blitz client</span>
+		<% end -%>
 	</p>
 
 	<p>

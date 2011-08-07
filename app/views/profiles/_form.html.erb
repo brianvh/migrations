@@ -2,38 +2,43 @@
 	<fieldset id="services_to_be_migrated">
 		<legend>Services to be Migrated</legend>
 
-		<div class="lcol"><%= f.label :migrate_oracle_calendar, "Migrate Oracle Calendar?" %></div>
-		<div class="rcol"><%= f.select :migrate_oracle_calendar, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
+		<div class="lcol_wide"><%= f.label :migrate_oracle_calendar, "Migrate Oracle Calendar?" %></div>
+		<div class="rcol_wide"><%= f.select :migrate_oracle_calendar, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
 
-		<div class="lcol"><%= f.label :uses_mail_forward, "Mail is currently being forwarded?" %></div>
-		<div class="rcol"><%= f.select :uses_mail_forward, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
+		<div class="lcol_wide"><%= f.label :uses_mail_forward, "Mail is currently being forwarded?" %></div>
+		<div class="rcol_wide"><%= f.select :uses_mail_forward, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
 
-		<div class="lcol"><%= f.label :uses_local_mail, "Mail stored on local hard drive?" %></div>
-		<div class="rcol"><%= f.select :uses_local_mail, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
+		<div class="lcol_wide"><%= f.label :uses_local_mail, "Mail stored on local hard drive?" %></div>
+		<div class="rcol_wide"><%= f.select :uses_local_mail, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
 	</fieldset>
 
 	<fieldset id="other_services">
 		<legend>Other Services</legend>
 		
-		<div class="lcol"><%= f.label :uses_ira, "Using the IRA Application?" %></div>
-		<div class="rcol"><%= f.select :uses_ira, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
+		<div class="lcol_wide"><%= f.label :uses_ira, "Using the IRA Application?" %></div>
+		<div class="rcol_wide"><%= f.select :uses_ira, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
 
-		<div class="lcol"><%= f.label :uses_hyperion, "Using Hyperion B&P?" %></div>
-		<div class="rcol"><%= f.select :uses_hyperion, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
+		<div class="lcol_wide"><%= f.label :uses_hyperion, "Using Hyperion B&P?" %></div>
+		<div class="rcol_wide"><%= f.select :uses_hyperion, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
 	</fieldset>
 	
 	<fieldset>
 		<legend>Software Experience</legend>
 		
-		<div class="lcol"><%= f.label :used_email_clients, "Email clients used?" %></div>
-		<div class="rcol"><%= render :partial => 'email_clients', :locals => {:f => f, :profile => @profile} %></div><br class="clear"/>
+		<div class="lcol_wide"><%= f.label :used_email_clients, "Email clients used?" %></div>
+		<div class="rcol_wide"><%= render :partial => 'email_clients', :locals => {:f => f, :profile => @profile} %></div><br class="clear"/>
 		
-		<div class="lcol"><%= f.label :used_other_calendars, "Used calendar other than Oracle?" %></div>
-		<div class="rcol"><%= f.select :used_other_calendars, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
+		<div class="lcol_wide"><%= f.label :used_other_calendars, "Used calendar other than Oracle?" %></div>
+		<div class="rcol_wide"><%= f.select :used_other_calendars, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
 	</fieldset>
+	<br>
 	
 	<div class="buttons"><%= link_to "Cancel", profile_path unless @profile.new_record? %></div>
   <div class="right"><%= f.submit @profile.new_record? ? "Create Profile" : "Update Profile" %></div>
-  <br class="clear"/>
-  		
+  <br class="clear" />
+	
+	<% if current_user.is_admin? %>
+		<%= render :partial => 'form_support', :locals => {:f => f} %>
+	<% end -%>
+
 <% end -%>
