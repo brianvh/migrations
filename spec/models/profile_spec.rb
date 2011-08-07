@@ -7,7 +7,7 @@ describe Profile do
   end
 
   it "used_only_blitz? should be true if user has only ever used blitz" do
-    @profile.used_email_clients = "blitz"
+    @profile.used_email_clients = ["Blitz[Mail]"]
     @profile.should be_used_only_blitz
   end
 

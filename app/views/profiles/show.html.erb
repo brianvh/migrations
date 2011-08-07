@@ -4,15 +4,15 @@
 <fieldset id="information_about_your_services_to_be_migrated" class="">
 	<legend>Services to be Migrated</legend>
 	<p>
-		Oracle Calendar to be migrated? <strong><%= @profile.migrate_oracle_calendar ? "Yes" : "No" %></strong>
+		Oracle Calendar to be migrated? <strong><%= boolean_display_as_todo @profile.migrate_oracle_calendar %></strong>
 	</p>
 	
 	<p>
-		Email is being forwarded? <strong><%= @profile.uses_mail_forward ? "Yes" : "No" %></strong>
+		Email is being forwarded? <strong><%= boolean_display_as_todo @profile.uses_mail_forward %></strong>
 	</p>
 	
 	<p>
-		Email is stored on local hard drive? <strong><%= @profile.uses_local_mail ? "Yes" : "No" %></strong>
+		Email is stored on local hard drive? <strong><%= boolean_display_as_todo @profile.uses_local_mail %></strong>
 	</p>
 	
 </fieldset>
@@ -21,11 +21,11 @@
 	<legend>Other Services</legend>
 	
 	<p>
-		IRA Application is used? <strong><%= @profile.uses_ira ? "Yes" : "No" %></strong>
+		IRA Application is used? <strong><%= boolean_display_as_todo @profile.uses_ira %></strong>
 	</p>
 	
 	<p>
-		Hyperion Budget & Planning is used? <strong><%= @profile.uses_hyperion ? "Yes" : "No" %></strong>
+		Hyperion Budget & Planning is used? <strong><%= boolean_display_as_todo @profile.uses_hyperion %></strong>
 	</p>
 	
 </fieldset>
@@ -33,11 +33,11 @@
 <fieldset id="information_about_your_email_and_calendar_software_experience" class="">
 	<legend>Software Experience</legend>
 	<p>
-		Email clients used: <strong><%= email_clients_display_string(@profile) %></strong>
+		Email clients used: <strong><%= email_clients_display_string @profile %></strong>
 	</p>
 	
 	<p>
-		Other calendaring software used? <strong><%= @profile.used_other_calendars ? "Yes" : "No" %></strong>
+		Other calendaring software used? <strong><%= boolean_display_as_todo @profile.used_other_calendars %></strong>
 	</p>
 	
 </fieldset>
