@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :uid, :on => :create, :message => "must be unique"
 
+  def is_support?
+    false
+  end
+
   def is_admin?
     false
   end

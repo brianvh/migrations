@@ -64,3 +64,21 @@ fieldset.inset legend {
 .prompt {
 	font-size: 0.85em;
 }
+
+.lcol_wide {
+  display: block;
+  float: left;
+  width: 30%;
+  text-align: right;
+  font-size: 12px;
+  line-height: 30px;
+  font-weight: bold;
+}
+
+.rcol_wide {
+  display: block;
+  float: left;
+  width: 65%;
+  line-height: 30px;
+  margin-left: 10px;
+}

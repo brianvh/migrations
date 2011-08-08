@@ -8,7 +8,7 @@ class DevicesController < ApplicationController
   
   def show
     @device = Device.find(params[:id])
-    unless current_user.is_admin?
+    unless current_user.is_support?
       redirect_to user_path current_user unless @device.user_id == current_user.id
     end
   end
@@ -36,14 +36,14 @@ class DevicesController < ApplicationController
   def edit
     @device = Device.find(params[:id])
     @device_type = @device.type
-    unless current_user.is_admin?
+    unless current_user.is_support?
       redirect_to user_path current_user unless @device.user_id == current_user.id
     end
   end
   
   def update
     @device = Device.find(params[:id])
-    unless current_user.is_admin?
+    unless current_user.is_support?
       redirect_to user_path current_user unless @device.user_id == current_user.id
     end
 

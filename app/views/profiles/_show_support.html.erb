@@ -1,10 +1,36 @@
-<div id="support_only">
-	<fieldset id="support_considerations">
-		<legend>Support Considerations</legend>
-		
-		<p>
-			This information is seen only by support and admin staff
-		</p>
-		
-	</fieldset>
-</div>
+<fieldset id="support_considerations">
+	<legend>Support Considerations</legend>
+	
+	<p>
+		Message count: <%= @profile.msg_count %>
+	</p>
+
+	<p>
+		Mailbox size: <%= @profile.mbox_size %>
+	</p>
+
+	<p>
+		Comfort level: <%= @profile.comfort_level %>
+	</p>
+
+	<p>
+		Uses sync? <%= @profile.uses_sync? ? "Yes" : "No" %>
+	</p>
+
+	<p>
+		Complexity level: <%= @profile.complexity_level %>
+		<% if @profile.used_only_blitz? %>
+			<span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp; This person has only used the Blitz client</span>
+		<% end -%>
+	</p>
+
+	<p>
+		VIP? <%= @profile.vip? ? "Yes" : "No" %>
+	</p>
+
+	<p>
+		Support Notes:<br />
+		<%= @profile.support_notes %>
+	</p>
+	
+</fieldset>
