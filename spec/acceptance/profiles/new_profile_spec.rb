@@ -32,7 +32,7 @@ feature "Client user creating their Profile" do
           it { should have_flash_notice "Success" }
           it { should have_header :profile, "Migration Profile for #{@user.name}" }
           it { should have_content 'Oracle Calendar to be migrated? Yes'}
-          it { should have_content "Email is being forwarded? TODO" }
+          it { should have_content "Email is being forwarded? Not yet specified" }
         end
       end
 
