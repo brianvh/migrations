@@ -2,7 +2,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.find(params[:id])
-    unless current_user.is_admin?
+    unless current_user.is_support?
       redirect_to user_path current_user unless @profile.user_id == current_user.id
     end
   end
@@ -24,14 +24,14 @@ class ProfilesController < ApplicationController
   
   def edit
     @profile = Profile.find(params[:id])
-    unless current_user.is_admin?
+    unless current_user.is_support?
       redirect_to user_path current_user unless @profile.user_id == current_user.id
     end
   end
 
   def update
     @profile = Profile.find(params[:id])
-    unless current_user.is_admin?
+    unless current_user.is_support?
       redirect_to user_path current_user unless @profile.user_id == current_user.id
     end
     if @profile.update_attributes(params[:profile])

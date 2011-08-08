@@ -37,7 +37,7 @@
   <div class="right"><%= f.submit @profile.new_record? ? "Create Profile" : "Update Profile" %></div>
   <br class="clear" />
 	
-	<% if current_user.is_admin? %>
+	<% if current_user.is_support? %>
 		<%= render :partial => 'form_support', :locals => {:f => f} %>
 	<% end -%>
 
