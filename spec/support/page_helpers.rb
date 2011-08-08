@@ -38,7 +38,7 @@ module PageHelpers
         has_selector?("#user-#{user.id}") } }
     end
   end
-  
+
   def have_device(device)
     PageMatch.match do |m|
       m.have "#{device.device_name} as a listed device"
@@ -46,12 +46,20 @@ module PageHelpers
         has_selector?("#device-#{device.id}") } }
     end
   end
-  
+
   def have_error_message(msg)
     PageMatch.match do |m|
       m.have "'#{msg}' shown as an error"
       m.page { within (".error_messages") {
         has_content?(msg) } }
+    end
+  end
+
+  def have_group(group)
+    PageMatch.match do |m|
+      m.have %("#{group.name}" as a listed group)
+      m.page { within("#groups") {
+        has_selector?("#group-#{group.id}") } }
     end
   end
 
