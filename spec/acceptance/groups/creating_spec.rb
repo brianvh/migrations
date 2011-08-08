@@ -11,8 +11,8 @@ feature "A Support user creating, and viewing, a group of users" do
   context "GIVEN: There are 3 users, across 2 deptclasses" do
     let(:dept) { 'Computing' }
     let(:users) { [
-      create(:client, :uid => 102, :firstname => "Bob", :deptclass => dept),
-      create(:client, :uid => 103, :firstname => "Jill", :deptclass => dept),
+      create(:client, :firstname => "Bob", :deptclass => dept),
+      create(:client, :firstname => "Jill", :deptclass => dept),
       create(:client) ] }
     let(:submit) {
       fill_in 'group_name', :with => group_fill
