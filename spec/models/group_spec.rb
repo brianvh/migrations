@@ -64,3 +64,34 @@ describe 'A Group instance, with a valid name' do
     its(:deptclass_display) { should == depts.join(', ') }
   end
 end
+
+describe 'An existing group instance' do
+  subject { group }
+
+  let(:group) { create :group }
+  let(:dept_string) { depts.join(', ') }
+
+  context 'adding a single deptclass' do
+    let(:depts) { ['Foo'] }
+
+    before do
+      group.action = 'add_deptclass'
+      group.add_deptclass = dept_string
+    end
+
+    its(:add_deptclass) { should == depts }
+
+  end
+
+  context 'removing a single deptclass' do
+    let(:depts) { ['Foo'] }
+
+    before do
+      group.action = 'remove_deptclass'
+      group.remove_deptclass = dept_string
+    end
+
+    its(:remove_deptclass) { should == depts }
+
+  end
+end

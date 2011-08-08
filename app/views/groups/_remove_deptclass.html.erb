@@ -1,0 +1,16 @@
+<div id="remove-deptclass" style="display: none">
+  <fieldset class="inset">
+    <legend>Removing a Deptclass</legend>
+    <%= form_for @group do |f| -%>
+    <div class="buttons">
+      <%= link_to_function "Cancel", "$('remove-deptclass').hide('slow')" %>
+    </div>
+    <div class="right"><%= f.submit "Remove from Group" %></div>
+    <br />
+
+    <%= f.hidden_field :action, :value => :remove_deptclass %>
+    <div class="lcol"><%= f.label :remove_deptclass, "Deptclass(es)" %></div>
+    <div class="rcol"><%= f.text_field :remove_deptclass, :size => 60 %></div> <br />
+    <% end -%>
+  </fieldset>
+</div>
