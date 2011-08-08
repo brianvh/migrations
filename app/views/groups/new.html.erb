@@ -9,6 +9,7 @@
     <div class="right"><%= f.submit "Create Group" %></div>
     <br />
 
+    <%= f.hidden_field :action, :value => :create %>
     <div class="lcol"><%= f.label :name, "Name" %></div>
     <div class="rcol"><%= f.text_field :name, :size => 40 %></div> <br />
 
