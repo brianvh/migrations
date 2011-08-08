@@ -8,7 +8,7 @@ class Profile < ActiveRecord::Base
 
   def used_email_choices=(choices)
     if choices.size == 0
-      self.used_email_clients = ''
+      self.used_email_clients = []
     else
       self.used_email_clients = choices
     end
