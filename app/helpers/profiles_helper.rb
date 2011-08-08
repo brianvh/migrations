@@ -6,7 +6,7 @@ module ProfilesHelper
   end
 
   def boolean_display_as_todo(val)
-    return "TODO" if val.nil?
+    return "Not yet specified" if val.nil?
     val ? "Yes" : "No"
   end
 
