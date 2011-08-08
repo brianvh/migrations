@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :admin do
-    uid 10
+    sequence :uid do |n|
+      10 + n
+    end
     firstname 'Joe'
     initials 'J.'
     lastname 'Admin'
@@ -10,7 +12,9 @@ FactoryGirl.define do
   end
 
   factory :webmaster do
-    uid 20
+    sequence :uid do |n|
+      20 + n
+    end
     firstname 'Joe'
     initials 'J.'
     lastname 'Webmaster'
@@ -20,7 +24,9 @@ FactoryGirl.define do
   end
 
   factory :client do
-    uid 101
+    sequence :uid do |n|
+      100 + n
+    end
     firstname 'Joe'
     initials 'J.'
     lastname 'Client'
@@ -30,7 +36,9 @@ FactoryGirl.define do
   end
 
   factory :support do
-    uid 201
+    sequence :uid do |n|
+      200 + n
+    end
     firstname 'Joe'
     initials 'J.'
     lastname 'Support'
