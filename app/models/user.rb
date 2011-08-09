@@ -24,6 +24,11 @@ class User < ActiveRecord::Base
     false
   end
 
+  def can_access_device?(device)
+    return true if is_support?
+    device.user_id == self.id
+  end
+
   def last_first
     "#{lastname}, #{firstname}"
   end

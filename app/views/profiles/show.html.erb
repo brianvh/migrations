@@ -1,51 +1,57 @@
 <% title "BlitzMail Migrations: Profile", false %>
 <h2 id="profile-header">Migration Profile for <%= @profile.user.name %></h2>
 
-<fieldset id="information_about_your_services_to_be_migrated" class="">
-	<legend>Services to be Migrated</legend>
-	<p>
-		Oracle Calendar to be migrated? <strong><%= boolean_display_as_todo @profile.migrate_oracle_calendar %></strong>
-	</p>
-	
-	<p>
-		Email is being forwarded? <strong><%= boolean_display_as_todo @profile.uses_mail_forward %></strong>
-	</p>
-	
-	<p>
-		Email is stored on local hard drive? <strong><%= boolean_display_as_todo @profile.uses_local_mail %></strong>
-	</p>
-	
-</fieldset>
-
-<fieldset id="information_about_other_services_that_might_be_impacted_by_the_migration" class="">
-	<legend>Other Services</legend>
-	
-	<p>
-		IRA Application is used? <strong><%= boolean_display_as_todo @profile.uses_ira %></strong>
-	</p>
-	
-	<p>
-		Hyperion Budget & Planning is used? <strong><%= boolean_display_as_todo @profile.uses_hyperion %></strong>
-	</p>
-	
-</fieldset>
-
-<fieldset id="information_about_your_email_and_calendar_software_experience" class="">
-	<legend>Software Experience</legend>
-	<p>
-		Email clients used: <strong><%= email_clients_display_string @profile %></strong>
-	</p>
-	
-	<p>
-		Other calendaring software used? <strong><%= boolean_display_as_todo @profile.used_other_calendars %></strong>
-	</p>
-	
-</fieldset>
-<br />
-<div class="buttons"><%= link_to "Cancel", user_path %></div>
+<div class="buttons"><%= link_to "Cancel", user_path(@profile.user) %></div>
 <div class="right buttons"><%= link_to "Edit Profile", edit_profile_path(@profile) %></div>
 <br class="clear"/>
 
-<% if current_user.is_support? %>
-	<%= render :partial => 'show_support' %>
-<% end %>
+<fieldset id="email-services">
+  <legend>Email Services</legend>
+
+  <div class="lcol_wide tight">Email clients used:</div>
+  <div class="rcol_wide tight">
+    <%= email_clients_display_string @profile %>
+  </div><br />
+
+  <div class="lcol_wide tight">Email being forwarded?</div>
+  <div class="rcol_wide tight">
+    <%= boolean_display_as_todo @profile.uses_mail_forward %>
+  </div><br />
+
+  <div class="lcol_wide tight">Email stored on local hard drive?</div>
+  <div class="rcol_wide tight">
+    <%= boolean_display_as_todo @profile.uses_local_mail %>
+  </div><br />
+
+</fieldset>
+
+<fieldset id="calendar-servives">
+  <legend>Calendar Services</legend>
+  <div class="lcol_wide tight">Oracle Calendar to be migrated?</div>
+  <div class="rcol_wide tight">
+    <%= boolean_display_as_todo @profile.migrate_oracle_calendar %>
+  </div><br />
+
+  <div class="lcol_wide tight">Other calendaring software used?</div>
+  <div class="rcol_wide tight">
+    <%= boolean_display_as_todo @profile.used_other_calendars %>
+  </div><br />
+
+</fieldset>
+
+<fieldset id="other-services">
+  <legend>Other Services</legend>
+  
+  <div class="lcol_wide tight">IRA Application used?</div>
+  <div class="rcol_wide tight">
+    <%= boolean_display_as_todo @profile.uses_ira %>
+  </div><br />
+  
+  <div class="lcol_wide tight">Hyperion Budget & Planning used?</div>
+  <div class="rcol_wide tight">
+    <%= boolean_display_as_todo @profile.uses_hyperion %>
+  </div><br />
+  
+</fieldset>
+
+<%= render :partial => 'show_support' if current_user.is_support? %>

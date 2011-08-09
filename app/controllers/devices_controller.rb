@@ -2,24 +2,19 @@ class DevicesController < ApplicationController
   
   def index
     @devices = current_user.devices.order(:type)
-    @computers = Computer.find_all_by_user_id(current_user.id)
-    @mobiles = Mobile.find_all_by_user_id(current_user.id)
   end
   
   def show
     @device = Device.find(params[:id])
-    unless current_user.is_support?
-      redirect_to user_path current_user unless @device.user_id == current_user.id
-    end
+    send_to_user_status unless current_user.can_access_device?(@device)
   end
   
   def new
-    @device = Device.new
-    @device_type = params[:type].downcase.titlecase
+    @device = Device.new_from_type(type_param, :user => current_user)
   end
   
   def create
-    @device = Device.new(params[:device])
+    @device = Device.new_from_type(type_param, params[:device])
     
     init_other_fields
     
@@ -28,33 +23,37 @@ class DevicesController < ApplicationController
       flash[:notice] = "Successfully created Device."
       redirect_to device_path(@device)
     else
-      @device_type = params[:device][:type]
       render :action => 'new'
     end
   end
   
   def edit
     @device = Device.find(params[:id])
-    @device_type = @device.type
-    unless current_user.is_support?
-      redirect_to user_path current_user unless @device.user_id == current_user.id
-    end
+    send_to_user_status unless current_user.can_access_device?(@device)
   end
   
   def update
     @device = Device.find(params[:id])
-    unless current_user.is_support?
-      redirect_to user_path current_user unless @device.user_id == current_user.id
-    end
+    send_to_user_status unless current_user.can_access_device?(@device)
 
     init_other_fields
     
     if @device.update_attributes(params[:device])
       flash[:notice] = "Successfully updated Device."
-      redirect_to device_path
+      redirect_to device_path(@device)
     else
       render :action => 'edit'
     end
+  end
+
+  private
+
+  def send_to_user_status
+    redirect_to user_path(current_user)
+  end
+
+  def type_param
+    params[:type].downcase.to_sym
   end
 
   def init_other_fields
