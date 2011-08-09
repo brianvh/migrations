@@ -1,0 +1,48 @@
+<% title "Resource" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @resource.name %>
+</p>
+<p>
+  <strong>Name Other:</strong>
+  <%= @resource.name_other %>
+</p>
+<p>
+  <strong>Dept:</strong>
+  <%= @resource.dept %>
+</p>
+<p>
+  <strong>Dept Group:</strong>
+  <%= @resource.dept_group %>
+</p>
+<p>
+  <strong>Oc User:</strong>
+  <%= @resource.oc_user %>
+</p>
+<p>
+  <strong>Migrate:</strong>
+  <%= @resource.migrate %>
+</p>
+<p>
+  <strong>Disposition:</strong>
+  <%= @resource.disposition %>
+</p>
+<p>
+  <strong>Notes:</strong>
+  <%= @resource.notes %>
+</p>
+<p>
+  <strong>Affiliation:</strong>
+  <%= @resource.affiliation %>
+</p>
+<p>
+  <strong>Migration Group:</strong>
+  <%= @resource.group.nil? ? "Not Assigned" : @resource.group.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_resource_path(@resource) %> |
+  <%= link_to "Destroy", @resource, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", resources_path %>
+</p>

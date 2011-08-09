@@ -1,0 +1,44 @@
+<%= form_for @resource do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :name_other %><br />
+    <%= f.text_field :name_other %>
+  </p>
+  <p>
+    <%= f.label :dept %><br />
+    <%= f.text_field :dept %>
+  </p>
+  <p>
+    <%= f.label :dept_group %><br />
+    <%= f.text_field :dept_group %>
+  </p>
+  <p>
+    <%= f.label :oc_user %><br />
+    <%= f.text_field :oc_user %>
+  </p>
+  <p>
+    <%= f.label :migrate %><br />
+    <%= f.check_box :migrate %>
+  </p>
+  <p>
+    <%= f.label :disposition %><br />
+    <%= f.text_field :disposition %>
+  </p>
+  <p>
+    <%= f.label :notes %><br />
+    <%= f.text_area :notes %>
+  </p>
+  <p>
+    <%= f.label :affiliation %><br />
+    <%= f.text_field :affiliation %>
+  </p>
+  <p>
+    <%= f.label :group_id %><br />
+    <%= f.text_field :group_id %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
