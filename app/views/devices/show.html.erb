@@ -1,20 +1,12 @@
 <% title "BlitzMail Migrations: Device", false %>
 <h2 id="device-header">Device Information for <%= @device.device_name %></h2>
 
-<fieldset id="hardware">
-	<legend>Hardware</legend>
-	
-	<%= render :partial => "#{@device.type.downcase}_hardware_detail" %>
-	
-</fieldset>
+<fieldset id="device">
+  <legend><%= @device.type %> Device Info</legend>
+  <div class="buttons"><%= link_to "Status Page", user_path(current_user) %></div>
+  <div class="buttons right"><%= link_to "Edit", edit_device_path %></div>
+  <br class="clear"/>
 
-<fieldset id="software">
-	<legend>Software</legend>
-	
-	<%= render :partial => "#{@device.type.downcase}_software_detail" %>
-	
-</fieldset>
+  <%= render @device.type_name %>
 
-<div class="buttons"><%= link_to "All Devices", devices_path %></div>
-<div class="right"><div class="buttons"><%= link_to "Edit", edit_device_path %></div></div>
-<br class="clear"/>
+</fieldset>
