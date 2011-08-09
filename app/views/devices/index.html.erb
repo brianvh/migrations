@@ -2,23 +2,23 @@
 <h2 id="device-header">Device List for <%= current_user.name %></h2>
 
 <fieldset id="devices">
-	<legend>Devices</legend>
-	
-	<table>
-		<tr>
-			<th align="left">Name</th>
-			<th align="left">Type</th>
-			<th align="left">OS Version</th>
-			<th align="left">Email Client</th>
-			<th align="left">Office Version</th>
-			<th align="left">Browser</th>
-		</tr>
-		<%= render :partial => "device", :collection => @devices %>
-	</table>
+  <legend>Devices</legend>
+  <div class="buttons right">
+    <%= link_to "Add Computer Device", new_device_path(:type => 'computer') %> | 
+    <%= link_to "Add Mobile Device", new_device_path(:type => 'mobile') %>
+  </div>
+  <br class="clear"/>
+
+  <table>
+    <tr>
+      <th align="left">Name</th>
+      <th align="left">Type</th>
+      <th align="left">OS Version</th>
+      <th align="left">Email Client</th>
+      <th align="left">Office Version</th>
+      <th align="left">Browser</th>
+    </tr>
+    <%= render :partial => 'device', :collection => @devices %>
+  </table>
 
 </fieldset>
-
-<p>
-	<%= link_to "Add Computer Device", new_device_path(:type => 'computer') %>&nbsp; &nbsp;
-	<%= link_to "Add Mobile Device", new_device_path(:type => 'mobile') %>
-</p>
