@@ -63,4 +63,27 @@ module PageHelpers
     end
   end
 
+  def have_group_name(name)
+    PageMatch.match do |m|
+      m.have %("#{name}" as its group name)
+      m.page { within("#group-name") { has_content?(name) } }
+    end
+  end
+
+  def have_profile_info
+    PageMatch.match do |m|
+      m.have %(a submitted profile)
+      m.page { within("#profile-info") {
+        has_link?('Full Migration Profile') } }
+    end
+  end
+
+  def have_devices_list
+    PageMatch.match do |m|
+      m.have %(listed devices)
+      m.page { within("#devices") {
+        has_no_content?('No devices listed.') } }
+    end
+  end
+
 end
