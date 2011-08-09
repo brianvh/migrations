@@ -1,12 +1,12 @@
-      <tr>
-        <td><%= resource.name %></td>
-        <td><%= resource.name_other %></td>
-        <td><%= resource.dept %></td>
-        <td><%= resource.dept_group %></td>
-        <td><%= resource.affiliation %></td>
-        <td><%= resource.oc_user %></td>
-        <td><%= boolean_display resource.migrate %></td>
-        <td><%= resource.disposition %></td>
-        <td><%= resource.notes %></td>
-        <td><%= resource.group.nil? ? "Not assigned" : resource.group  %></td>
-      </tr>
+<tr>
+  <td><%= link_to resource.name, resource_path(resource) %></td>
+  <td><%= resource.name_other %></td>
+  <td><%= resource.dept %></td>
+  <td><%= resource.dept_group %></td>
+  <td><%= resource.affiliation %></td>
+  <td><%= resource.oc_user %></td>
+  <td><%= boolean_display resource.migrate %></td>
+  <td><%= resource.disposition %></td>
+  <td><%= resource.notes %></td>
+  <td><%= resource.group.nil? ? "Not assigned" : resource.group  %></td>
+</tr>

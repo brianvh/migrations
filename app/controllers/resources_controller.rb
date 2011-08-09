@@ -1,7 +1,10 @@
 class ResourcesController < ApplicationController
   def index
-    # redirect_to user_path current_user and return unless current_user.is_support?
-    @resources = Resource.all
+    if current_user.is_support?
+      @resources = Resource.all
+    else
+      @resource = current_user.resources
+    end
   end
 
   def show
