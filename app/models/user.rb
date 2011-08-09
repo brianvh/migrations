@@ -3,10 +3,14 @@ class User < ActiveRecord::Base
   
   has_many :profiles
   has_many :devices
+  has_many :memberships
+  has_many :groups, :through => :memberships
 
   before_validation :valid_in_dnd?, :on => :create
-
   validates_uniqueness_of :uid, :on => :create, :message => "must be unique"
+
+  delegate  :netid, :affiliation, :blitzserv, :email, :emailsuffix,
+            :mailboxtype, :to => :profile
 
   def is_support?
     false
@@ -22,6 +26,10 @@ class User < ActiveRecord::Base
 
   def last_first
     "#{lastname}, #{firstname}"
+  end
+
+  def group_name
+    groups.first.nil? ? '' : groups.first.name
   end
 
   def profile_summary
