@@ -5,7 +5,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes([:profiles, :devices]).find(params[:id])
+    @profile = @user.profiles.first
+    @devices = @user.devices
   end
 
 end
