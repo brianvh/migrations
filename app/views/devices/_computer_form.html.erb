@@ -1,46 +1,41 @@
-	<%= f.hidden_field :type, :value => 'Computer' %>
+<div class="lcol"><%= f.label :vendor_choice, "Vendor" %></div>
+<div class="rcol">
+  <%= render 'choice_select', {:f => f, :field => 'vendor',
+    :klass => DeviceVendorChoice } %>
+</div><br class="clear" />
 
-	<fieldset id="hardware">
-		<legend>Hardware</legend>
-		
-		<div class="lcol"><%= f.label :vendor_choice, "Vendor" %></div>
-		<div class="rcol"><%= f.select :vendor_choice, DeviceVendorChoice.to_options_array, {:include_blank => "Choose..."} %>
-			<%= f.text_field :vendor_other %> <span class="prompt">(if Other selected)</span>
-		</div><br class="clear" />
-		
-		<div class="lcol"><%= f.label :kind_choice, "Kind" %></div>
-		<div class="rcol"><%= f.select :kind_choice, DeviceKindChoice.to_options_array, {:include_blank => "Choose..."} %>
-			<%= f.text_field :kind_other %> <span class="prompt">(if Other selected)</span>
-		</div><br class="clear" />
-		
-	</fieldset>
-	
-	<fieldset id="software">
-		<legend>Software</legend>
-		
-		<div class="lcol"><%= f.label :os_version_choice, "OS Version" %></div>
-		<div class="rcol"><%= f.select :os_version_choice, OsVersionChoice.to_options_array, {:include_blank => "Choose..."} %>
-			<%= f.text_field :os_version_other %> <span class="prompt">(if Other selected)</span>
-		</div><br class="clear" />
-		
-		<div class="lcol"><%= f.label :office_version_choice, "Office Version" %></div>
-		<div class="rcol"><%= f.select :office_version_choice, OfficeVersionChoice.to_options_array, {:include_blank => "Choose..."} %>
-			<%= f.text_field :office_version_other %> <span class="prompt">(if Other selected)</span>
-		</div><br class="clear" />
-		
-		<div class="lcol"><%= f.label :current_email_choice, "Current Email Client" %></div>
-		<div class="rcol"><%= f.select :current_email_choice, CurrentEmailChoice.to_options_array, {:include_blank => "Choose..."} %>
-			<%= f.text_field :current_email_other %> <span class="prompt">(if Other selected)</span>
-		</div><br class="clear" />
-		
-		<div class="lcol"><%= f.label :current_browser_choice, "Current Browser" %></div>
-		<div class="rcol"><%= f.select :current_browser_choice, CurrentBrowserChoice.to_options_array, {:include_blank => "Choose..."} %>
-			<%= f.text_field :current_browser_other %> <span class="prompt">(if Other selected)</span>
-		</div><br class="clear" />
-		
-		<div class="lcol"><%= f.label :new_email_choice, "New Email Client" %></div>
-		<div class="rcol"><%= f.select :new_email_choice, NewEmailChoice.to_options_array, {:include_blank => "Choose..."} %>
-			<%= f.text_field :new_email_other %> <span class="prompt">(if Other selected)</span>
-		</div><br class="clear" />
-		
-	</fieldset>
+<div class="lcol"><%= f.label :kind_choice, "Kind" %></div>
+<div class="rcol">
+  <%= render 'choice_select', {:f => f, :field => 'kind',
+    :klass => DeviceKindChoice } %>
+</div><br class="clear" />
+
+<div class="lcol"><%= f.label :os_version_choice, "OS Version" %></div>
+<div class="rcol">
+  <%= render 'choice_select', {:f => f, :field => 'os_version',
+    :klass => OsVersionChoice } %>
+</div><br class="clear" />
+
+<div class="lcol"><%= f.label :office_version_choice, "Office Version" %></div>
+<div class="rcol">
+  <%= render 'choice_select', {:f => f, :field => 'office_version',
+    :klass => OfficeVersionChoice } %>
+</div><br class="clear" />
+
+<div class="lcol"><%= f.label :current_email_choice, "Current Email Client" %></div>
+<div class="rcol">
+  <%= render 'choice_select', {:f => f, :field => 'current_email',
+    :klass => CurrentEmailChoice } %>
+</div><br class="clear" />
+
+<div class="lcol"><%= f.label :new_email_choice, "New Email Client" %></div>
+<div class="rcol">
+  <%= render 'choice_select', {:f => f, :field => 'new_email',
+    :klass => NewEmailChoice } %>
+</div><br class="clear" />
+
+<div class="lcol"><%= f.label :current_browser_choice, "Current Browser" %></div>
+<div class="rcol">
+  <%= render 'choice_select', {:f => f, :field => 'current_browser',
+    :klass => CurrentBrowserChoice } %>
+</div><br class="clear" />
