@@ -1,48 +1,53 @@
-<% title "Resource" %>
+<% title "BlitzMail Migrations: Resource Info", false %></strong>
+<h2 id="group-header">Resource Information for <%= @resource.name %></h2>
+<fieldset id="group-members">
+  <legend>Resource</legend>
+  <div class="buttons right">
+    <%= link_to "Add Resource", new_resource_path %>
+  </div><br />
+
 
 <p>
-  <strong>Name:</strong>
-  <%= @resource.name %>
+  Name:
+  <strong><%= @resource.name %></strong>
 </p>
 <p>
-  <strong>Name Other:</strong>
-  <%= @resource.name_other %>
+  Name Other:
+  <strong><%= @resource.name_other %></strong>
 </p>
 <p>
-  <strong>Dept:</strong>
-  <%= @resource.dept %>
+  Dept:
+  <strong><%= @resource.dept %></strong>
 </p>
 <p>
-  <strong>Dept Group:</strong>
-  <%= @resource.dept_group %>
+  Dept Group:
+  <strong><%= @resource.dept_group %></strong>
 </p>
 <p>
-  <strong>Oc User:</strong>
-  <%= @resource.oc_user %>
+  Oc User:
+  <strong><%= @resource.oc_user %></strong>
 </p>
 <p>
-  <strong>Migrate:</strong>
-  <%= @resource.migrate %>
+  Migrate:
+  <strong><%= @resource.migrate %></strong>
 </p>
 <p>
-  <strong>Disposition:</strong>
-  <%= @resource.disposition %>
+  Disposition:
+  <strong><%= @resource.disposition %></strong>
 </p>
 <p>
-  <strong>Notes:</strong>
-  <%= @resource.notes %>
+  Notes:
+  <strong><%= @resource.notes %></strong>
 </p>
 <p>
-  <strong>Affiliation:</strong>
-  <%= @resource.affiliation %>
+  Affiliation:
+  <strong><%= @resource.affiliation %></strong>
 </p>
 <p>
-  <strong>Migration Group:</strong>
-  <%= @resource.group.nil? ? "Not Assigned" : @resource.group.name %>
+  Migration Group:
+  <strong><%= @resource.group.nil? ? "Not Assigned" : @resource.group.name %></strong>
 </p>
 
 <p>
-  <%= link_to "Edit", edit_resource_path(@resource) %> |
-  <%= link_to "Destroy", @resource, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", resources_path %>
+  <strong><%= link_to "View All", resources_path %></strong>
 </p>
