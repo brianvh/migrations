@@ -1,20 +1,30 @@
 <br>
 <fieldset id="support_considerations">
-	<legend>Support Considerations</legend>
+  <legend>Support Considerations</legend>
 
-	<div class="lcol_wide"><%= f.label :comfort_level, "Comfort Level" %></div>
-	<div class="rcol_wide"><%= f.select :comfort_level, (1..5).map, {:include_blank => "Choose..."} %></div><br class="clear"/>
+  <div class="lcol_wide"><%= f.label :comfort_level, "Comfort Level" %></div>
+  <div class="rcol_wide">
+    <%= f.select :comfort_level, (1..5).map, {:include_blank => "Choose..."} %>
+  </div><br />
 
-	<div class="lcol_wide"><%= f.label :complexity_level, "Complexity Level" %></div>
-	<div class="rcol_wide"><%= f.select :complexity_level, (1..5).map, {:include_blank => "Choose..."} %></div><br class="clear"/>
+  <div class="lcol_wide"><%= f.label :complexity_level, "Complexity Level" %></div>
+  <div class="rcol_wide">
+    <%= f.select :complexity_level, (1..5).map, {:include_blank => "Choose..."} %>
+  </div><br />
 
-	<div class="lcol_wide"><%= f.label :uses_sync, "Uses Sync?" %></div>
-	<div class="rcol_wide"><%= f.select :uses_sync, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
+  <div class="lcol_wide"><%= f.label :uses_sync, "Uses Sync?" %></div>
+  <div class="rcol_wide">
+    <%= render 'yes_no_select', {:f => f, :field => :uses_sync } %>
+  </div><br />
 
-	<div class="lcol_wide"><%= f.label :vip, "VIP?" %></div>
-	<div class="rcol_wide"><%= f.select :vip, [['Yes',true],['No',false]], {:include_blank => "Choose..."} %></div><br class="clear"/>
+  <div class="lcol_wide"><%= f.label :vip, "VIP?" %></div>
+  <div class="rcol_wide">
+    <%= render 'yes_no_select', {:f => f, :field => :vip } %>
+  </div><br />
 
-	<div class="lcol_wide"><%= f.label :support_notes, "Brief notes" %></div>
-	<div class="rcol_wide"><%= f.text_area :support_notes, :size => '60x10' %></div><br class="clear"/>
+  <div class="lcol_wide"><%= f.label :support_notes, "Brief notes" %></div>
+  <div class="rcol_wide">
+    <%= f.text_area :support_notes, :size => '60x10' %>
+  </div><br />
 
 </fieldset>
