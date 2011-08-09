@@ -1,8 +1,11 @@
 module ProfilesHelper
 
   def email_clients_display_string(profile)
-    return "" unless profile.used_email_clients
-    profile.used_email_clients.join(", ") || ""
+    if profile.used_email_clients.blank? || profile.used_email_clients.empty?
+      "Not yet specified"
+    else
+      profile.used_email_clients.join(", ") || ""
+    end
   end
 
   def boolean_display_as_todo(val)

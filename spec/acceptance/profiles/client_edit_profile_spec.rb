@@ -12,8 +12,8 @@ feature "Client user editing their Profile" do
   context "GIVEN: I have a Profile in the system" do
     let(:create_my_profile) { @user.profiles << Factory(:profile) }
     let(:submit) {
-      # check "email_choice_0"
-      # check "email_choice_1"
+      uncheck "email_choice_0"
+      uncheck "email_choice_1"
       select "No", :from => :migrate_oracle_calendar
       click_button "Update Profile"
       }
@@ -38,6 +38,7 @@ feature "Client user editing their Profile" do
           
           it { should have_flash_notice "Success" }
           it { should have_content 'Oracle Calendar to be migrated? No'}
+          it { should_not have_content 'Email clients used: Blitz[Mail]'}
         end
       end
     end

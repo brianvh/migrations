@@ -7,16 +7,20 @@ class Profile < ActiveRecord::Base
   serialize :used_email_clients
 
   def used_email_choices=(choices)
-    if choices.size == 0
-      self.used_email_clients = []
-    else
-      self.used_email_clients = choices
+    
+    unless choices.nil?
+      choices.shift # remove blank hidden field
+      unless choices.empty?
+        return self.used_email_clients = choices
+      end
     end
+    self.used_email_clients = []
+
   end
 
   def used_only_blitz?
     return false if used_email_clients.size > 1
-    return true if used_email_clients.include?('Blitz[Mail]')
+    return true if used_email_clients.grep(/blitz/i)
     return false
   end
 
