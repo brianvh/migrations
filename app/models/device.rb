@@ -18,8 +18,17 @@ class Device < ActiveRecord::Base
   validates_presence_of :vendor, :message => "can't be blank"
   validates_presence_of :kind, :message => "can't be blank"
   
+  def self.new_from_type(type, attribs={})
+    return nil unless [:computer, :mobile].include?(type)
+    type.to_s.titlecase.constantize.send(:new, attribs)
+  end
+
   def device_name
     "#{vendor} #{kind}"
+  end
+
+  def type_name
+    self[:type].downcase
   end
 
   def vendor_choice
@@ -27,7 +36,7 @@ class Device < ActiveRecord::Base
     return "Other" unless vendor.blank? #self.new_record?
     nil
   end
-    
+
   def vendor_choice=(val)
     if val == "Other"
       self.vendor = @vendor_other
@@ -154,13 +163,13 @@ class Device < ActiveRecord::Base
     return "" if OsVersionChoice.to_options_array.include?(os_version)
     os_version
   end
-  
+
   def carrier_choice
     return carrier if CarrierChoice.to_options_array.include?(carrier)
     return "Other" unless carrier.blank?
     nil
   end
-  
+
   def carrier_choice=(val)
     if val == "Other"
       self.carrier = @carrier_other
@@ -168,7 +177,7 @@ class Device < ActiveRecord::Base
       self.carrier = val
     end
   end
-  
+
   def carrier_other
     return "" if CarrierChoice.to_options_array.include?(carrier)
     carrier
