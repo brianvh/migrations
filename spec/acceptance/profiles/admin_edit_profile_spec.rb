@@ -3,7 +3,7 @@ require 'acceptance/acceptance_helper'
 feature "Admin user editing a Client's Profile" do
 
   background do
-    @user = login_as :support
+    @user = login_as :support, :uid => 55497, :name => nil
     email_client_choices
   end
 
