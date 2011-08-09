@@ -16,6 +16,10 @@
   margin-left: 10px;
 }
 
+.tight {
+  line-height: 20px;
+}
+
 .buttons {
   display: block;
   float: left;
@@ -36,6 +40,10 @@
 
 form br {
   clear: left;
+}
+
+fieldset {
+  margin-bottom: 20px;
 }
 
 legend {

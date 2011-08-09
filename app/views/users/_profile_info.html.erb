@@ -1,0 +1,23 @@
+<fieldset id="profile-info">
+  <legend>Profile Info</legend>
+  <div class="buttons right">
+    <%= link_to "Full Migration Profile", profile_path(@profile) %>
+  </div>
+  <br class="clear"/>
+
+  <div class="lcol tight">Email Clients</div>
+  <div class="rcol tight"><%= email_clients_display_string(@profile) %></div>
+  <br class="clear"/>
+
+  <div class="lcol tight">Email Forwarded?</div>
+  <div class="rcol tight"><%= @profile.uses_mail_forward ? "Yes" : "No" %></div>
+  <br class="clear"/>
+
+  <div class="lcol tight">Calendar Migration?</div>
+  <div class="rcol tight"><%= @profile.migrate_oracle_calendar ? "Yes" : "No" %></div>
+  <br class="clear"/>
+
+  <div class="lcol tight">Other Calendars?</div>
+  <div class="rcol tight"><%= @profile.used_other_calendars ? "Yes" : "No" %></div>
+  <br class="clear"/>
+</fieldset>

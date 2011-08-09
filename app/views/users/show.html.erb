@@ -1,2 +1,21 @@
 <% title "BlitzMail Migrations: User Info", false %>
-<h2 id="user-header">User Information for <%= @user.name %></h2>
+<h2 id="user-header">User Status for <%= @user.name %></h2>
+<fieldset id="user-info">
+  <legend>User Info</legend>
+  <div class="lcol tight">Group</div>
+  <div class="rcol tight" id="group-name">
+    <%= @user.group_name %>
+  </div> <br class="clear"/>
+  <div class="lcol tight">Department/Class</div>
+  <div class="rcol tight"><%= @user.deptclass %></div> <br class="clear"/>
+  <div class="lcol tight">NetID</div>
+  <div class="rcol tight"><%= @user.netid %></div> <br class="clear"/>
+  <div class="lcol tight">BlitzMail Server</div>
+  <div class="rcol tight"><%= @user.blitzserv %></div> <br class="clear"/>
+  <div class="lcol tight">Affiliation</div>
+  <div class="rcol tight"><%= @user.affiliation %></div> <br class="clear"/>
+</fieldset>
+<%= render 'profile_info' unless @profile.nil? %>
+<%= render 'profile_no' if @profile.nil? %>
+<%= render 'devices_list' unless @devices.empty? %>
+<%= render 'devices_no' if @devices.empty? %>

@@ -1,0 +1,10 @@
+<fieldset id="devices">
+  <legend>Devices</legend>
+  <div class="buttons right">
+    <%= link_to "Add Computer Device", new_device_path(:type => 'computer') %> | 
+    <%= link_to "Add Mobile Device", new_device_path(:type => 'mobile') %>
+  </div>
+  <br class="clear"/>
+
+  <p>No devices listed. Please use the links above to add one.</p>
+</fieldset>
