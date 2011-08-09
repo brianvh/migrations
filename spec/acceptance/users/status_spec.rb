@@ -34,9 +34,9 @@ feature "A Client user viewing their status page" do
     it { should have_profile_info }
   end
 
-  context "Visiting their status page, with 2 devies (1 computer, 1 mobile)" do
+  context "Visiting their status page, with 2 devices (1 computer, 1 mobile)" do
     let(:profile) { nil }
 
-    it { save_and_open_page ; should have_devices_list }
+    it { should have_devices_list }
   end
 end
