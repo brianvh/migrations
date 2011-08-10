@@ -19,7 +19,7 @@ feature "Admin user editing a Client's Profile" do
       click_button "Update Profile"
       }
   
-    before { create_client_profile }  
+    before { create_client_profile }
     
     context "WHEN: I visit the Client's Profile page" do
       before { visit profile_path @client.profiles.first }
