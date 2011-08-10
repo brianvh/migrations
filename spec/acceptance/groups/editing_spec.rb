@@ -3,7 +3,7 @@ require 'acceptance/acceptance_helper'
 feature "A Support user editing and managing an existing group" do
 
   background do
-    login_as :support
+    login_as :support, :uid => 55497, :name => nil
     users
     group
     visit path
