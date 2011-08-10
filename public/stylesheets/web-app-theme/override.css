@@ -49,9 +49,9 @@ h2 { margin-top: 0px; }
   border: none;
 }
 
-.form div.left .wide { width: 30%; }
+.form div.left.wide { width: 30%; }
 
-.form div.right .wide { width: 65%; }
+.form div.right.wide { width: 65%; }
 
 .form .navform .right {
   width: auto;
