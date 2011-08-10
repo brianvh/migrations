@@ -1,0 +1,2 @@
+class EmailClientChoice < Choice
+end

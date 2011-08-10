@@ -1,0 +1,39 @@
+<div class="group wat-cf">
+  <div class="left label"><%= f.label :vendor_choice, "Vendor" %></div>
+  <div class="right">
+    <%= render 'choice_select', {:f => f, :field => 'vendor',
+      :klass => DeviceMobileVendorChoice } %>
+  </div>
+</div>
+<div class="group wat-cf">
+  <div class="left label"><%= f.label :kind_choice, "Kind" %></div>
+  <div class="right">
+    <%= render 'choice_select', {:f => f, :field => 'kind',
+      :klass => DeviceMobileKindChoice } %>
+  </div>
+</div>
+<div class="group wat-cf">
+  <div class="left label"><%= f.label :carrier_choice, "Carrier" %></div>
+  <div class="right">
+    <%= render 'choice_select', {:f => f, :field => 'carrier',
+      :klass => CarrierChoice } %>
+  </div>
+</div>
+<div class="group wat-cf">
+  <div class="left label"><%= f.label :os_version_choice, "OS Version" %></div>
+  <div class="right"><%= f.text_field :os_version %>
+  </div>
+</div>
+<div class="group wat-cf">
+  <div class="left label"><%= f.label :contacts_count, "# Contacts" %></div>
+  <div class="right">
+    <%= f.select :contacts_count, ["0","1-100",">100"], {:include_blank => "Choose..."} %>
+  </div>
+</div>
+<div class="group wat-cf">
+  <div class="left label"><%= f.label :new_email_choice, "Email Client" %></div>
+  <div class="right">
+    <%= f.select :new_email_choice, MobileEmailClientChoice.to_options_array, 
+        {:include_blank => "Choose..."} %>
+  </div>
+</div>

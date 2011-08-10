@@ -1,0 +1,8 @@
+<tr id="resource-<%= resource.id %>">
+  <td><%= link_to resource.name, resource_path(resource) %></td>
+  <td><%= resource.name_other %></td>
+  <td><%= resource.dept %></td>
+  <td><%= resource.dept_group %></td>
+  <td><%= resource.disposition %></td>
+  <td><%= resource.group.nil? ? "Not assigned" : resource.group  %></td>
+</tr>

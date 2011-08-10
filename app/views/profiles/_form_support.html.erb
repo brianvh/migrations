@@ -1,0 +1,33 @@
+<div class="fieldset form" id="support_considerations">
+  <h2>Support Considerations</h2>
+  <div class="group wat-cf">
+    <div class="left label wide"><%= f.label :comfort_level, "Comfort Level" %></div>
+    <div class="right wide">
+      <%= f.select :comfort_level, (1..5).map, {:include_blank => "Choose..."} %>
+    </div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label wide"><%= f.label :complexity_level, "Complexity Level" %></div>
+    <div class="right wide">
+      <%= f.select :complexity_level, (1..5).map, {:include_blank => "Choose..."} %>
+    </div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label wide"><%= f.label :uses_sync, "Uses Sync?" %></div>
+    <div class="right wide">
+      <%= render 'yes_no_select', {:f => f, :field => :uses_sync } %>
+    </div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label wide"><%= f.label :vip, "VIP?" %></div>
+    <div class="right wide">
+      <%= render 'yes_no_select', {:f => f, :field => :vip } %>
+    </div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label wide"><%= f.label :support_notes, "Brief notes" %></div>
+    <div class="right wide">
+      <%= f.text_area :support_notes, :size => '60x10' %>
+    </div>
+  </div>
+</div>

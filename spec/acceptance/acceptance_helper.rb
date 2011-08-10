@@ -7,4 +7,6 @@ RSpec.configure do |config|
   config.include(PageMatch::Helpers)
   config.include(PageHelpers)
   config.include(WebauthHelpers)
+  config.include(ProfileHelpers)
+  config.include(DeviceHelpers)
 end

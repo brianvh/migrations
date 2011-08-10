@@ -1,0 +1,92 @@
+<%= form_for @profile do |f| -%>
+  <div class="fieldset form" id="email-services">
+    <h2>Email Services</h2>
+    <div class="group navform wat-cf">
+      <div class="text_button_padding">
+        <%= link_to "Cancel", @profile.new_record? ? user_path(@profile.user) :
+         profile_path(@profile) %>
+      </div>
+      <div class="right">
+        <button class="button" type="submit">
+          <%= @profile.new_record? ? "Create Profile" : "Update Profile" %>
+        </button>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label wide">
+        <%= f.label :used_email_clients, "Email clients used?" %>
+      </div>
+      <div class="right wide">
+        <%= render :partial => 'email_clients', :locals => {:f => f, :profile => @profile} %>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label wide">
+        <%= f.label :uses_mail_forward, "Email being forwarded?" %>
+      </div>
+      <div class="right wide">
+        <%= render 'yes_no_select', {:f => f, :field => :uses_mail_forward } %>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label wide">
+        <%= f.label :uses_local_mail, "Email stored on local hard drive?" %>
+      </div>
+      <div class="right wide">
+        <%= render 'yes_no_select', {:f => f, :field => :uses_local_mail } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="fieldset form" id="calendar-services">
+    <h2>Calendar Services</h2>
+
+    <div class="group wat-cf">
+      <div class="left label wide">
+        <%= f.label :migrate_oracle_calendar, "Migrate Oracle Calendar?" %>
+      </div>
+      <div class="right wide">
+        <%= render 'yes_no_select', {:f => f, :field => :migrate_oracle_calendar } %>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label wide">
+        <%= f.label :used_other_calendars, "Used calendar other than Oracle?" %>
+      </div>
+      <div class="right wide">
+        <%= render 'yes_no_select', {:f => f, :field => :used_other_calendars } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="fieldset form" id="other_services">
+    <h2>Other Services</h2>
+
+    <div class="group wat-cf">
+      <div class="left label wide">
+        <%= f.label :uses_ira, "Using the IRA Application?" %>
+      </div>
+      <div class="right wide">
+        <%= render 'yes_no_select', {:f => f, :field => :uses_ira } %>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label wide">
+        <%= f.label :uses_hyperion, "Using Hyperion B&P?" %>
+      </div>
+      <div class="right wide">
+        <%= render 'yes_no_select', {:f => f, :field => :uses_hyperion } %>
+      </div>
+    </div>
+  </div>
+
+  <% if current_user.is_support? %>
+    <%= render :partial => 'form_support', :locals => {:f => f} %>
+  <% end -%>
+
+<% end -%>

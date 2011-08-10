@@ -1,0 +1,21 @@
+<% title "BlitzMail Migrations: Groups", false %>
+<h2 id="group-header">Groups List</h2>
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li><%= link_to "Add Group", new_group_path %></li>
+  </ul>
+</div>
+<div id="groups" class="fieldset">
+  <h2>Groups</h2>
+  <div class="inner">
+    <table class="table">
+      <tr>
+        <th align="left">Name</th>
+        <th align="center">Members</th>
+        <th align="left">Key Contacts</th>
+        <th align="left">Consultants</th>
+      </tr>
+      <%= render @groups %>
+    </table>
+  </div>
+</div>

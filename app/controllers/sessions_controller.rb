@@ -1,36 +1,73 @@
 class SessionsController < ApplicationController
-  skip_before_filter :authenticated?
+  skip_before_filter :authenticate
 
   def new
-    return_or_root if session[:user_id]
+    return_or_root if logged_in?
   end
 
   def create
-    if user = User.authenticate(env['omniauth.auth']) # login a known user
-      session[:user_id] = user.id
-      session[:is_admin] = user.is_admin?
+    return send_to_403 if authenticator.nil?
+    if user = User.authenticate(authenticator)
+      self.current_user = user
       return_or_root
-    else # Unknown users need to register
-      session[:user_id] = 0 # User is authenticated, but unregistered
-      redirect_to new_user_path(:name => env['omniauth.auth']['extra']['name'])
+    else
+      self.current_user = User.create(:uid => authenticator.uid)
+      redirect_to user_path(self.current_user)
     end
+  end
+
+  def not_authorized
+    render :template => "sessions/not_authorized", :status => 403
   end
 
   def destroy
     reset_session
-    app = 'BlitzMail Migration Tracking'
-    url = case Rails.env
-      when 'staging' then 'http://migrations.webapps.dartmouth.edu/'
-      when 'production' then 'https://migrations.dartmouth.edu/'
-    else
-      'http://migrations.local/'
-    end
-    redirect_to "https://login.dartmouth.edu/logout.php?app=#{app}&url=#{url}"
+    send_to_logout
   end
 
   private
 
   def return_or_root
     redirect_to session[:return_url] || root_path
+  end
+
+  def authenticator
+    @authenticator ||= Authenticator.from_hash(auth_hash)
+  end
+
+  def auth_hash
+    env['omniauth.auth']
+  end
+
+  def send_to_403
+    redirect_to not_authorized_path
+  end
+
+  def app_name
+    'migrations'
+  end
+
+  def app_title
+    'BlitzMail Migration Tracking'
+  end
+
+  def app_url
+    "http://#{app_name}." << case env_to_sym
+      when :development then 'local/'
+      when :staging     then 'webapps.dartmouth.edu/'
+      when :production  then 'dartmouth.edu/'
+    end
+  end
+
+  def env_to_sym
+    Rails.env.to_sym
+  end
+
+  def logout_url
+    "https://login.dartmouth.edu/logout.php?app=#{app_title}&url=#{app_url}"
+  end
+
+  def send_to_logout
+    redirect_to logout_url
   end
 end

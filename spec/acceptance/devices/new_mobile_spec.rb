@@ -1,0 +1,52 @@
+require 'acceptance/acceptance_helper'
+
+feature "Client user creating a new 'Mobile' device" do
+
+  background do
+    @user = login_as :client
+    device_mobile_vendor_choices
+    device_mobile_kind_choices
+  end
+
+  subject { page }
+  
+  context "GIVEN: I need to create a new 'Mobile' Device" do
+    let(:submit) {
+      select "Apple", :from => 'Vendor'
+      select "Phone", :from => 'Kind'
+      click_button "Create Device"
+      }
+    
+    context "WHEN: I visit the New Mobile page" do
+      before { visit new_device_path(:type => 'mobile') }
+      
+      it { should have_header :device, 'New Mobile Device Information' }
+      it { should have_select_field :device, :vendor_choice }
+      it { should have_button 'Create Device'}
+      
+      context "WHEN: I select 'Apple' from Vendor and 'Phone' from Kind" do
+        before { submit }
+      
+        context "THEN: I should be successful" do
+          it { should have_flash_notice "Success" }
+          it { should have_header :device, 'Device Information for Apple Phone'}
+        end
+      end
+
+      context "WHEN: I select 'Apple' from Vendor and nothing from Kind" do
+        let(:submit) {
+          select "Apple", :from => 'Vendor'
+          click_button "Create Device"
+          }
+
+        before { submit }
+      
+        context "THEN: I should not be successful" do
+          it { should have_error_message "Invalid Fields" }
+          it { should have_header :device, 'New Mobile Device Information'}
+        end
+      end
+
+    end
+  end
+end

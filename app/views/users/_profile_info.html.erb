@@ -1,0 +1,28 @@
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li><%= link_to "Full Migration Profile", profile_path(@profile) %></li>
+  </ul>
+</div>
+<div id="profile-info" class="fieldset form">
+  <h2>Profile Info</h2>
+
+  <div class="group wat-cf">
+    <div class="left label">Email Clients</div>
+    <div class="right"><%= email_clients_display_string(@profile) %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">Email Forwarded?</div>
+    <div class="right"><%= @profile.uses_mail_forward ? "Yes" : "No" %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">Calendar Migration?</div>
+    <div class="right"><%= @profile.migrate_oracle_calendar ? "Yes" : "No" %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">Other Calendars?</div>
+    <div class="right"><%= @profile.used_other_calendars ? "Yes" : "No" %></div>
+  </div>
+</div>

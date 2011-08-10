@@ -1,0 +1,57 @@
+<% title "BlitzMail Migrations: Resource", false %>
+<h2 id="device-header">Resource Information for <%= @resource.name %></h2>
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li>
+      <%= link_to "Edit", edit_resource_path %>
+    </li>
+    <li>
+      <%= link_to "Status Page", user_path(current_user) %>
+    </li>
+  </ul>
+</div>
+<div id="resource" class="fieldset form">
+  <h2>Resource Info</h2>
+  <div class="group wat-cf">
+    <div class="left label">Name</div>
+    <div class="right tight"><%= @resource.name %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label">Other Name</div>
+    <div class="right tight"><%= @resource.name_other %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label">Dept.</div>
+    <div class="right tight"><%= @resource.dept %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label">Dept. Group</div>
+    <div class="right tight"><%= @resource.dept_group %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label">Affiliation</div>
+    <div class="right tight"><%= @resource.affiliation %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label">Calendar Owner</div>
+    <div class="right tight"><%= @resource.oc_user %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label">Migrate</div>
+    <div class="right tight"><%= boolean_display @resource.migrate %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label">Data Disposition</div>
+    <div class="right tight"><%= @resource.disposition %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label">Migration Group</div>
+    <div class="right tight"><%= @resource.group.nil? ? "Not Assigned" : @resource.group.name %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label">Notes</div>
+    <div class="right tight"><%= @resource.notes %></div>
+  </div>
+</div>
+
+

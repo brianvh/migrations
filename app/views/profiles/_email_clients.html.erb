@@ -1,0 +1,7 @@
+<%= hidden_field_tag "profile[used_email_choices][]" %>
+<% EmailClientChoice.all.each_with_index do |choice, i| %>
+  <%= check_box_tag("profile[used_email_choices][]", choice["value"],
+                    @profile.used_email_clients && @profile.used_email_clients.include?(choice["value"]) ? true : false,
+                    options = {:id => "email_choice_#{i}" } ) %>
+  <%= choice["value"] %>
+<% end -%>

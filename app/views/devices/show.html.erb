@@ -1,0 +1,16 @@
+<% title "BlitzMail Migrations: Device", false %>
+<h2 id="device-header">Device Information for <%= @device.device_name %></h2>
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li>
+      <%= link_to "Edit", edit_device_path %>
+    </li>
+    <li>
+      <%= link_to "Status Page", user_path(current_user) %>
+    </li>
+  </ul>
+</div>
+<div id="device" class="fieldset form">
+  <h2><%= @device.type %> Device Info</h2>
+  <%= render @device.type_name %>
+</div>

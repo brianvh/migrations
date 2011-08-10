@@ -1,0 +1,18 @@
+<% title "BlitzMail Migrations: New Device", false %>
+<h2 id="device-header">New <%= @device.type %> Device Information</h2>
+<%= form_for @device, :url => devices_path, :as => :device do |f| -%>
+  <div class="fieldset form">
+    <h2>Device Info</h2>
+    <div class="group navform wat-cf">
+      <div class="text_button_padding">
+        <%= link_to "Cancel", user_path(current_user) %>
+      </div>
+      <div class="right">
+        <button class="button" type="submit">Create Device</button>
+      </div>
+    </div>
+    <%= f.error_messages %>
+    <%= f.hidden_field :type, :value => @device.type %>
+    <%= render "#{@device.type_name}_form", {:f => f} %>
+  </div>
+<% end -%>

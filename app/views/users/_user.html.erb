@@ -1,0 +1,7 @@
+<tr id="user-<%= user.id %>">
+  <td><%= link_to user.last_first, user_path(user) %></td>
+  <td><%= user.deptclass %></td>
+  <td><%= user.profile_summary %></td>
+  <td><%= user.migration_date %></td>
+  <td><%= render 'groups/remove_member', :user => user %></td>
+</tr>

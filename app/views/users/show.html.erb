@@ -1,0 +1,33 @@
+<% title "BlitzMail Migrations: User Info", false %>
+<h2 id="user-header">User Status for <%= @user.name %></h2>
+<div id="user-info" class="fieldset form">
+  <h2>User Info</h2>
+  <div class="group wat-cf">
+    <div class="left label">Group</div>
+    <div class="right" id="group-name"><%= @user.group_name %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">Department/Class</div>
+    <div class="right"><%= @user.deptclass %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">NetID</div>
+    <div class="right"><%= @user.netid %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">BlitzMail Server</div>
+    <div class="right"><%= @user.blitzserv %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">Affiliation</div>
+    <div class="right"><%= @user.affiliation %></div>
+  </div>
+</div>
+<%= render 'profile_info' unless @profile.nil? %>
+<%= render 'profile_no' if @profile.nil? %>
+<%= render 'devices_list' unless @devices.empty? %>
+<%= render 'devices_no' if @devices.empty? %>

@@ -1,0 +1,2 @@
+class ComfortLevelChoice < Choice
+end
