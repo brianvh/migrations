@@ -3,7 +3,7 @@ require 'acceptance/acceptance_helper'
 feature "A Support user creating, and viewing, a group of users" do
 
   background do
-    login_as :support
+    login_as :support, :uid => 55497, :name => nil
   end
 
   subject { page }

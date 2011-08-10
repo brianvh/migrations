@@ -3,7 +3,7 @@ require 'acceptance/acceptance_helper'
 feature "Client user creating their Profile" do
 
   background do
-    @user = login_as :client
+    @user = login_as :client, :uid => 58789, :name => nil
     email_client_choices
   end
 

@@ -1,41 +1,49 @@
-<div class="lcol"><%= f.label :vendor_choice, "Vendor" %></div>
-<div class="rcol">
-  <%= render 'choice_select', {:f => f, :field => 'vendor',
-    :klass => DeviceVendorChoice } %>
-</div><br class="clear" />
-
-<div class="lcol"><%= f.label :kind_choice, "Kind" %></div>
-<div class="rcol">
-  <%= render 'choice_select', {:f => f, :field => 'kind',
-    :klass => DeviceKindChoice } %>
-</div><br class="clear" />
-
-<div class="lcol"><%= f.label :os_version_choice, "OS Version" %></div>
-<div class="rcol">
-  <%= render 'choice_select', {:f => f, :field => 'os_version',
-    :klass => OsVersionChoice } %>
-</div><br class="clear" />
-
-<div class="lcol"><%= f.label :office_version_choice, "Office Version" %></div>
-<div class="rcol">
-  <%= render 'choice_select', {:f => f, :field => 'office_version',
-    :klass => OfficeVersionChoice } %>
-</div><br class="clear" />
-
-<div class="lcol"><%= f.label :current_email_choice, "Current Email Client" %></div>
-<div class="rcol">
-  <%= render 'choice_select', {:f => f, :field => 'current_email',
-    :klass => CurrentEmailChoice } %>
-</div><br class="clear" />
-
-<div class="lcol"><%= f.label :new_email_choice, "New Email Client" %></div>
-<div class="rcol">
-  <%= render 'choice_select', {:f => f, :field => 'new_email',
-    :klass => NewEmailChoice } %>
-</div><br class="clear" />
-
-<div class="lcol"><%= f.label :current_browser_choice, "Current Browser" %></div>
-<div class="rcol">
-  <%= render 'choice_select', {:f => f, :field => 'current_browser',
-    :klass => CurrentBrowserChoice } %>
-</div><br class="clear" />
+<div class="group wat-cf">
+  <div class="left label"><%= f.label :vendor_choice, "Vendor" %></div>
+  <div class="right">
+    <%= render 'choice_select', {:f => f, :field => 'vendor',
+      :klass => DeviceVendorChoice } %>
+  </div>
+</div>
+<div class="group wat-cf">
+  <div class="left label"><%= f.label :kind_choice, "Kind" %></div>
+  <div class="right">
+    <%= render 'choice_select', {:f => f, :field => 'kind',
+      :klass => DeviceKindChoice } %>
+  </div>
+</div>
+<div class="group wat-cf">
+  <div class="left label"><%= f.label :os_version_choice, "OS Version" %></div>
+  <div class="right">
+    <%= render 'choice_select', {:f => f, :field => 'os_version',
+      :klass => OsVersionChoice } %>
+  </div>
+</div>
+<div class="group wat-cf">
+  <div class="left label"><%= f.label :office_version_choice, "Office Version" %></div>
+  <div class="right">
+    <%= render 'choice_select', {:f => f, :field => 'office_version',
+      :klass => OfficeVersionChoice } %>
+  </div>
+</div>
+<div class="group wat-cf">
+  <div class="left label"><%= f.label :current_email_choice, "Current Email Client" %></div>
+  <div class="right">
+    <%= render 'choice_select', {:f => f, :field => 'current_email',
+      :klass => CurrentEmailChoice } %>
+  </div>
+</div>
+<div class="group wat-cf">
+  <div class="left label"><%= f.label :new_email_choice, "New Email Client" %></div>
+  <div class="right">
+    <%= render 'choice_select', {:f => f, :field => 'new_email',
+      :klass => NewEmailChoice } %>
+  </div>
+</div>
+<div class="group wat-cf">
+  <div class="left label"><%= f.label :current_browser_choice, "Current Browser" %></div>
+  <div class="right">
+    <%= render 'choice_select', {:f => f, :field => 'current_browser',
+      :klass => CurrentBrowserChoice } %>
+  </div>
+</div>

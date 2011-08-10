@@ -53,7 +53,7 @@ class DevicesController < ApplicationController
   end
 
   def type_param
-    params[:type].downcase.to_sym
+    (params[:type] || params[:device][:type]).downcase.to_sym
   end
 
   def init_other_fields

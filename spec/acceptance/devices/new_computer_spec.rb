@@ -3,7 +3,7 @@ require 'acceptance/acceptance_helper'
 feature "Client user creating a new 'Computer' device" do
 
   background do
-    @user = login_as :client
+    @user = login_as :client, :uid => 58789, :name => nil
     device_vendor_choices
     device_kind_choices
   end

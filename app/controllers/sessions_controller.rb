@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
   end
 
   def not_authorized
-    render :template => "not_authorized", :status => 403
+    render :template => "sessions/not_authorized", :status => 403
   end
 
   def destroy

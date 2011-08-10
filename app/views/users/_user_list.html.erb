@@ -1,10 +1,12 @@
-<table>
-  <tr>
-    <th align="left">Last, First</th>
-    <th align="left">Deptclass</th>
-    <th align="left">Profile Summary</th>
-    <th align="left">Migration Date</th>
-    <td></td>
-  </tr>
-  <%= render :partial => 'users/user', :collection => @users %>
-</table>
+<div class="inner">
+  <table class="table">
+    <tr>
+      <th align="left">Last, First</th>
+      <th align="left">Deptclass</th>
+      <th align="left">Profile Summary</th>
+      <th align="left">Migration Date</th>
+      <th>&nbsp;</th>
+    </tr>
+    <%= render :partial => 'users/user', :collection => @users %>
+  </table>
+</div>
