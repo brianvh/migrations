@@ -1,0 +1,49 @@
+/* Override here any style defined by web-app-theme */
+h2 { margin-top: 0px; }
+
+#main { width: 72%; }
+
+#main-navigation .right { float: right; }
+
+.fieldset {
+  background: #FFF;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+.fieldset h2 {
+  margin: 0 0 20px 0;
+  background-color: #E9FAE6;
+  padding: 5px 5px 5px 15px;
+  font-size:18px;
+}
+
+.fieldset p { padding: 5px 5px 5px 15px; }
+
+.fieldset .inner { padding: 0 15px 15px; }
+
+.fieldset .table td { padding: 8px 0px 8px 4px; }
+
+.form .label {
+  padding-bottom: 2px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.form div.left {
+  width: 20%;
+  float: left;
+}
+
+.form div.right {
+  width: 75%;
+  float: left;
+  margin-left: 10px;
+}
+
+.form div.left .wide { width: 30%; }
+
+.form div.right .wide { width: 65%; }
+
+.secondary-navigation ul li { float: right; }
+
