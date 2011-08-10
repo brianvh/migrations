@@ -1,57 +1,76 @@
 <% title "BlitzMail Migrations: Profile", false %>
 <h2 id="profile-header">Migration Profile for <%= @profile.user.name %></h2>
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li>
+      <%= link_to "Edit Profile", edit_profile_path(@profile) %>
+    </li>
+    <li>
+      <%= link_to "Status Page", user_path(@profile.user) %>
+    </li>
+  </ul>
+</div>
+<div class="fieldset form" id="email-services">
+  <h2>Email Services</h2>
 
-<div class="buttons"><%= link_to "Cancel", user_path(@profile.user) %></div>
-<div class="right buttons"><%= link_to "Edit Profile", edit_profile_path(@profile) %></div>
-<br class="clear"/>
+  <div class="group wat-cf">
+    <div class="left label wide">Email clients used:</div>
+    <div class="right wide">
+      <%= email_clients_display_string @profile %>
+    </div>
+  </div>
 
-<fieldset id="email-services">
-  <legend>Email Services</legend>
+  <div class="group wat-cf">
+    <div class="left label wide">Email being forwarded?</div>
+    <div class="right wide">
+      <%= boolean_display_as_todo @profile.uses_mail_forward %>
+    </div>
+  </div>
 
-  <div class="lcol_wide tight">Email clients used:</div>
-  <div class="rcol_wide tight">
-    <%= email_clients_display_string @profile %>
-  </div><br />
+  <div class="group wat-cf">
+    <div class="left label wide">Email stored on local hard drive?</div>
+    <div class="right wide">
+      <%= boolean_display_as_todo @profile.uses_local_mail %>
+    </div>
+  </div>
 
-  <div class="lcol_wide tight">Email being forwarded?</div>
-  <div class="rcol_wide tight">
-    <%= boolean_display_as_todo @profile.uses_mail_forward %>
-  </div><br />
+</div>
 
-  <div class="lcol_wide tight">Email stored on local hard drive?</div>
-  <div class="rcol_wide tight">
-    <%= boolean_display_as_todo @profile.uses_local_mail %>
-  </div><br />
+<div class="fieldset form" id="calendar-servives">
+  <h2>Calendar Services</h2>
+  <div class="group wat-cf">
+    <div class="left label wide">Oracle Calendar to be migrated?</div>
+    <div class="right wide">
+      <%= boolean_display_as_todo @profile.migrate_oracle_calendar %>
+    </div>
+  </div>
 
-</fieldset>
+  <div class="group wat-cf">
+    <div class="left label wide">Other calendar software used?</div>
+    <div class="right wide">
+      <%= boolean_display_as_todo @profile.used_other_calendars %>
+    </div>
+  </div>
 
-<fieldset id="calendar-servives">
-  <legend>Calendar Services</legend>
-  <div class="lcol_wide tight">Oracle Calendar to be migrated?</div>
-  <div class="rcol_wide tight">
-    <%= boolean_display_as_todo @profile.migrate_oracle_calendar %>
-  </div><br />
+</div>
 
-  <div class="lcol_wide tight">Other calendaring software used?</div>
-  <div class="rcol_wide tight">
-    <%= boolean_display_as_todo @profile.used_other_calendars %>
-  </div><br />
-
-</fieldset>
-
-<fieldset id="other-services">
-  <legend>Other Services</legend>
+<div class="fieldset form" id="other-services">
+  <h2>Other Services</h2>
   
-  <div class="lcol_wide tight">IRA Application used?</div>
-  <div class="rcol_wide tight">
-    <%= boolean_display_as_todo @profile.uses_ira %>
-  </div><br />
+  <div class="group wat-cf">
+    <div class="left label wide">IRA Application used?</div>
+    <div class="right wide">
+      <%= boolean_display_as_todo @profile.uses_ira %>
+    </div>
+  </div>
   
-  <div class="lcol_wide tight">Hyperion Budget & Planning used?</div>
-  <div class="rcol_wide tight">
-    <%= boolean_display_as_todo @profile.uses_hyperion %>
-  </div><br />
+  <div class="group wat-cf">
+    <div class="left label wide">Hyperion B & P used?</div>
+    <div class="right wide">
+      <%= boolean_display_as_todo @profile.uses_hyperion %>
+    </div>
+  </div>
   
-</fieldset>
+</div>
 
 <%= render :partial => 'show_support' if current_user.is_support? %>

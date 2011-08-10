@@ -1,30 +1,37 @@
-<fieldset id="support_considerations">
-  <legend>Support Considerations</legend>
+<div class="fieldset form" id="support_considerations">
+  <h2>Support Considerations</h2>
   
-  <div class="lcol_wide">Message count:</div>
-  <div class="rcol_wide"><%= @profile.msg_count %></div><br class="clear"/>
-
-  <div class="lcol_wide">Mailbox size:</div>
-  <div class="rcol_wide"><%= @profile.mbox_size %></div><br class="clear"/>
-
-  <div class="lcol_wide">Comfort level:</div>
-  <div class="rcol_wide"><%= @profile.comfort_level %></div><br class="clear"/>
-
-  <div class="lcol_wide">Complexity level:</div>
-  <div class="rcol_wide">
-    <%= @profile.complexity_level %><br />
-    <% if @profile.used_only_blitz? %>
-    <em>This person has only used the Blitz client.</em>
-    <% end -%>
-  </div><br class="clear"/>
-
-  <div class="lcol_wide">Uses sync?</div>
-  <div class="rcol_wide"><%= @profile.uses_sync %></div><br class="clear"/>
-
-  <div class="lcol_wide">VIP?</div>
-  <div class="rcol_wide"><%= @profile.vip %></div><br class="clear"/>
-
-  <div class="lcol_wide">Support Notes:</div>
-  <div class="rcol_wide"><%= @profile.support_notes %></div><br class="clear"/>
-
-</fieldset>
+  <div class="group wat-cf">
+    <div class="left label wide">Message count:</div>
+    <div class="right wide"><%= @profile.msg_count %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label wide">Mailbox size:</div>
+    <div class="right wide"><%= @profile.mbox_size %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label wide">Comfort level:</div>
+    <div class="right wide"><%= @profile.comfort_level %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label wide">Complexity level:</div>
+    <div class="right wide">
+      <%= @profile.complexity_level %><br />
+      <% if @profile.used_only_blitz? %>
+      <em>This person has only used the Blitz client.</em>
+      <% end -%>
+    </div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label wide">Uses sync?</div>
+    <div class="right wide"><%= @profile.uses_sync %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label wide">VIP?</div>
+    <div class="right wide"><%= @profile.vip %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label wide">Support Notes:</div>
+    <div class="right wide"><%= @profile.support_notes %></div>
+  </div>
+</div>
