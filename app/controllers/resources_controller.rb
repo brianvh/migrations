@@ -45,7 +45,7 @@ class ResourcesController < ApplicationController
       @resource = Resource.find(params[:id])
     else
       @resource = current_user.resources.find(params[:id])
-      redirect_to user_path if @resource.nil?
+      redirect_to user_path and return if @resource.nil?
     end
     if @resource.update_attributes(params[:resource])
       redirect_to @resource, :notice  => "Successfully updated resource."

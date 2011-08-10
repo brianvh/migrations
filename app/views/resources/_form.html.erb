@@ -1,44 +1,100 @@
 <%= form_for @resource do |f| %>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :name_other %><br />
-    <%= f.text_field :name_other %>
-  </p>
-  <p>
-    <%= f.label :dept %><br />
-    <%= f.text_field :dept %>
-  </p>
-  <p>
-    <%= f.label :dept_group %><br />
-    <%= f.text_field :dept_group %>
-  </p>
-  <p>
-    <%= f.label :oc_user %><br />
-    <%= f.text_field :oc_user %>
-  </p>
-  <p>
-    <%= f.label :migrate %><br />
-    <%= f.check_box :migrate %>
-  </p>
-  <p>
-    <%= f.label :disposition %><br />
-    <%= f.text_field :disposition %>
-  </p>
-  <p>
-    <%= f.label :notes %><br />
-    <%= f.text_area :notes %>
-  </p>
-  <p>
-    <%= f.label :affiliation %><br />
-    <%= f.text_field :affiliation %>
-  </p>
-  <p>
-    <%= f.label :group_id %><br />
-    <%= f.text_field :group_id %>
-  </p>
-  <p><%= f.submit %></p>
+  <div class="fieldset form" id="resource-info">
+    <h2>Resource Information</h2>
+    <div class="group navform wat-cf">
+      <div class="text_button_padding">
+        <%= link_to "Cancel", @resource.new_record? ? resources_path :
+         resource_path(@resource) %>
+      </div>
+      <div class="right">
+        <button class="button" type="submit">
+          <%= @resource.new_record? ? "Create Resource" : "Update Resource" %>
+        </button>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label">
+        <%= f.label :name, "Name" %>
+      </div>
+      <div class="right">
+        <%= f.text_field :name, :disabled => true %>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label">
+        <%= f.label :name_other, "Other Name" %>
+      </div>
+      <div class="right">
+        <%= f.text_field :name_other, :disabled => true %>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label">
+        <%= f.label :dept, "Department" %>
+      </div>
+      <div class="right">
+        <%= f.text_field :dept, :disabled => true %>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label">
+        <%= f.label :dept_group, "Dept. Group" %>
+      </div>
+      <div class="right">
+        <%= f.text_field :dept_group, :disabled => true %>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label">
+        <%= f.label :affiliation, "Affiliation" %>
+      </div>
+      <div class="right">
+        <%= f.text_field :affiliation, :disabled => true %>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label">
+        <%= f.label :oc_user, "Calender User" %>
+      </div>
+      <div class="right">
+        <%= f.text_field :oc_user, :disabled => true %>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label">
+        <%= f.label :migrate, "Migrate?" %>
+      </div>
+      <div class="right">
+        <%= f.select :migrate, [["Yes",true],["No",false]], {:include_blank => "Choose..."} %>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label">
+        <%= f.label :disposition, "Disposition" %>
+      </div>
+      <div class="right">
+        <%= f.select :disposition, ["Retain","Remove"], {:include_blank => "Choose..."} %>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label">
+        <%= f.label :notes, "Notes" %>
+      </div>
+      <div class="right">
+        <%= f.text_area :notes, :size => '60x12' %>
+      </div>
+    </div>
+
+
+  </div>
 <% end %>
