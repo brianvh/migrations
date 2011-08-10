@@ -1,26 +1,23 @@
 <% title "BlitzMail Migrations: Resources", false %>
 <h2 id="resource-header">Resources List</h2>
-
-<fieldset id="resources">
-  <legend>Resources</legend>
-  <div class="buttons right">
-    <%= link_to "Add Resource", new_resource_path %>
-  </div><br />
-
-  <table>
-    <tr>
-      <th align="left">Name</th>
-      <th align="left">Name Other</th>
-      <th align="left">Dept</th>
-      <th align="left">Dept Group</th>
-      <th align="left">Affiliation</th>
-      <th align="left">Calendar User</th>
-      <th align="left">Migrate?</th>
-      <th align="left">Disposition</th>
-      <th align="left">Notes</th>
-      <th align="left">Migration Group</th>
-    </tr>
-    <%= render @resources %>
-  </table>
-
-</fieldset>
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li><%= link_to "Add Resource", new_resource_path %></li>
+  </ul>
+</div>
+<div id="resources" class="fieldset">
+  <h2>Resources</h2>
+  <div class="inner">
+    <table class="table">
+      <tr>
+        <th align="left">Name</th>
+        <th align="left">Name Other</th>
+        <th align="left">Dept</th>
+        <th align="left">Dept Group</th>
+        <th align="left">Disposition</th>
+        <th align="left">Migration Group</th>
+      </tr>
+      <%= render @resources %>
+    </table>
+  </div>
+</div>
