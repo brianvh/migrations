@@ -12,7 +12,7 @@ h2 { margin-top: 0px; }
 }
 
 .fieldset h2 {
-  margin: 0 0 20px 0;
+  margin: 0 0 10px 0;
   background-color: #E9FAE6;
   padding: 5px 5px 5px 15px;
   font-size:18px;
@@ -41,9 +41,22 @@ h2 { margin-top: 0px; }
   margin-left: 10px;
 }
 
+.form .navform {
+  background-color: #FFF;
+  padding: 4px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  border: none;
+}
+
 .form div.left .wide { width: 30%; }
 
 .form div.right .wide { width: 65%; }
+
+.form .navform .right {
+  width: auto;
+  float: right;
+}
 
 .secondary-navigation ul li { float: right; }
 

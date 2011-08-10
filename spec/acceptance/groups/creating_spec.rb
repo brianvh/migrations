@@ -3,7 +3,7 @@ require 'acceptance/acceptance_helper'
 feature "A Support user creating, and viewing, a group of users" do
 
   background do
-    login_as :support
+    login_as :support, :uid => 55497, :name => nil
   end
 
   subject { page }
@@ -25,6 +25,7 @@ feature "A Support user creating, and viewing, a group of users" do
     context "WHEN: I visit the New Group form" do
       before { visit new_group_path }
 
+      it { save_and_open_page }
       it { should have_text_field :group, :name }
       it { should have_text_field :group, :week_of }
       it { should have_text_field :group, :deptclass }
