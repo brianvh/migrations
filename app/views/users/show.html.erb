@@ -1,20 +1,32 @@
 <% title "BlitzMail Migrations: User Info", false %>
 <h2 id="user-header">User Status for <%= @user.name %></h2>
-<fieldset id="user-info">
-  <legend>User Info</legend>
-  <div class="lcol tight">Group</div>
-  <div class="rcol tight" id="group-name">
-    <%= @user.group_name %>
-  </div> <br class="clear"/>
-  <div class="lcol tight">Department/Class</div>
-  <div class="rcol tight"><%= @user.deptclass %></div> <br class="clear"/>
-  <div class="lcol tight">NetID</div>
-  <div class="rcol tight"><%= @user.netid %></div> <br class="clear"/>
-  <div class="lcol tight">BlitzMail Server</div>
-  <div class="rcol tight"><%= @user.blitzserv %></div> <br class="clear"/>
-  <div class="lcol tight">Affiliation</div>
-  <div class="rcol tight"><%= @user.affiliation %></div> <br class="clear"/>
-</fieldset>
+<div id="user-info" class="fieldset form">
+  <h2>User Info</h2>
+  <div class="group wat-cf">
+    <div class="left label">Group</div>
+    <div class="right" id="group-name"><%= @user.group_name %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">Department/Class</div>
+    <div class="right"><%= @user.deptclass %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">NetID</div>
+    <div class="right"><%= @user.netid %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">BlitzMail Server</div>
+    <div class="right"><%= @user.blitzserv %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">Affiliation</div>
+    <div class="right"><%= @user.affiliation %></div>
+  </div>
+</div>
 <%= render 'profile_info' unless @profile.nil? %>
 <%= render 'profile_no' if @profile.nil? %>
 <%= render 'devices_list' unless @devices.empty? %>
