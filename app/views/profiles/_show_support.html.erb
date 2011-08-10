@@ -24,11 +24,11 @@
   </div>
   <div class="group wat-cf">
     <div class="left label wide">Uses sync?</div>
-    <div class="right wide"><%= @profile.uses_sync %></div>
+    <div class="right wide"><%= boolean_display_as_todo @profile.uses_sync %></div>
   </div>
   <div class="group wat-cf">
     <div class="left label wide">VIP?</div>
-    <div class="right wide"><%= @profile.vip %></div>
+    <div class="right wide"><%= boolean_display_as_todo @profile.vip %></div>
   </div>
   <div class="group wat-cf">
     <div class="left label wide">Support Notes:</div>
