@@ -3,7 +3,7 @@ require 'acceptance/acceptance_helper'
 feature "Client user creating a new 'Mobile' device" do
 
   background do
-    @user = login_as :client
+    @user = login_as :client, :uid => 58789, :name => nil
     device_mobile_vendor_choices
     device_mobile_kind_choices
   end

@@ -25,8 +25,6 @@ feature "Admin user editing a Client's Profile" do
       before { visit profile_path @client.profiles.first }
       
       it { should have_header :profile, "Migration Profile for #{@client.name}" }
-      it { should have_content 'Oracle Calendar to be migrated? Yes' }
-      it { should have_content 'Comfort level: 3' }
 
       context "AND: I click the 'Edit Profile' link" do
         before { click_link 'Edit Profile' }
@@ -39,8 +37,6 @@ feature "Admin user editing a Client's Profile" do
           before { submit }
           
           it { should have_flash_notice "Success" }
-          it { should have_header :profile, "Migration Profile for #{@client.name}" }
-          it { should have_content 'Oracle Calendar to be migrated? No'}
         end
       end
     end

@@ -11,7 +11,7 @@ module PageHelpers
     PageMatch.match do |m|
       m.have %(a logout link for "#{user.name}")
       m.page { within("#logout") {
-        has_selector?(:xpath, %(.//a), :text => user.name) } }
+        has_content?(user.name) } }
     end
   end
 
@@ -73,7 +73,7 @@ module PageHelpers
   def have_profile_info
     PageMatch.match do |m|
       m.have %(a submitted profile)
-      m.page { within("#profile-info") {
+      m.page { within("#profile-info-nav") {
         has_link?('Full Migration Profile') } }
     end
   end
