@@ -3,10 +3,10 @@ require 'acceptance/acceptance_helper'
 feature "Client user views a list of assigned Resources" do
 
   background do
-    @user = login_as :client
+    @user = login_as :client, :uid => 58789, :name => nil
     @user.resources << Factory(:resource)
     @user.profiles << Factory(:profile)
-    @other_resource = Factory(:resource)
+    @other_resource = Factory(:resource, :name => "Does Not Belong To Me")
   end
 
   subject { page }

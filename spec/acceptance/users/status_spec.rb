@@ -7,25 +7,31 @@ feature "A Client user viewing their status page" do
     group
     profile
     devices
+    resources
     visit user_path(user)
   end
 
-  let(:user) { login_as :client, :uid => 58789, :name => nil }
+  let(:user) { @user = login_as :client, :uid => 58789, :name => nil }
   let(:group) { create :group, :name => "Class '17", :deptclass => "'17" }
   let(:profile) { create :profile, :user => user }
   let(:devices) { [
     create(:computer, :user => user),
     create(:mobile, :user => user) ] }
-
+  let(:resources) { 
+    @resource = Factory(:resource)
+    @user.resources << @resource
+    }
   subject { page }
 
   context "Visit their status page, with no profile or devices" do
     let(:profile) { nil }
     let(:devices) { nil }
+    let(:resources) { nil }
 
     it { should have_group_name group.name }
     it { should_not have_profile_info }
     it { should_not have_devices_list }
+    it { should_not have_resources_list }
   end
 
   context "Visiting their status page, with a submitted profile" do
@@ -39,4 +45,13 @@ feature "A Client user viewing their status page" do
 
     it { should have_devices_list }
   end
+  
+  context "Visiting their status page, with one resource" do
+    let(:profile) { nil }
+    let(:devices) { nil }
+    
+    it { should have_resources_list }
+    
+  end
+  
 end

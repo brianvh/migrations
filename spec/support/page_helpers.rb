@@ -50,7 +50,7 @@ module PageHelpers
   def have_error_message(msg)
     PageMatch.match do |m|
       m.have "'#{msg}' shown as an error"
-      m.page { within (".error_messages") {
+      m.page { within(".error_messages") {
         has_content?(msg) } }
     end
   end
@@ -83,6 +83,24 @@ module PageHelpers
       m.have %(listed devices)
       m.page { within("#devices") {
         has_no_content?('No devices listed.') } }
+    end
+  end
+
+  def have_resources_list
+    PageMatch.match do |m|
+      m.have "listed resources"
+      m.page { within("#resources") {
+        has_no_content?('No calendar resources currently owned by you.')
+        }
+      }
+    end
+  end
+
+  def have_resource(resource)
+    PageMatch.match do |m|
+      m.have %("#{resource.name}" as a listed resource)
+      m.page { within("#resources") {
+        has_selector?("#resource-#{resource.id}") } }
     end
   end
 
