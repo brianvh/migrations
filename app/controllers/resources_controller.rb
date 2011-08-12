@@ -44,7 +44,7 @@ class ResourcesController < ApplicationController
     if current_user.is_support?
       @resource = Resource.find(params[:id])
     else
-      @resource = current_user.resources.find(params[:id])
+      @resource = current_user.resources.find(params[:id], :readonly => false)
       redirect_to user_path and return if @resource.nil?
     end
     if @resource.update_attributes(params[:resource])

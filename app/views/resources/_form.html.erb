@@ -19,7 +19,7 @@
         <%= f.label :name, "Name" %>
       </div>
       <div class="right">
-        <%= f.text_field :name, :disabled => true %>
+        <%= @resource.name %>
       </div>
     </div>
 
@@ -28,7 +28,7 @@
         <%= f.label :name_other, "Other Name" %>
       </div>
       <div class="right">
-        <%= f.text_field :name_other, :disabled => true %>
+        <%= @resource.name_other %>
       </div>
     </div>
 
@@ -37,7 +37,7 @@
         <%= f.label :dept, "Department" %>
       </div>
       <div class="right">
-        <%= f.text_field :dept, :disabled => true %>
+        <%= @resource.dept %>
       </div>
     </div>
 
@@ -46,7 +46,7 @@
         <%= f.label :dept_group, "Dept. Group" %>
       </div>
       <div class="right">
-        <%= f.text_field :dept_group, :disabled => true %>
+        <%= @resource.dept_group %>
       </div>
     </div>
 
@@ -55,7 +55,7 @@
         <%= f.label :affiliation, "Affiliation" %>
       </div>
       <div class="right">
-        <%= f.text_field :affiliation, :disabled => true %>
+        <%= @resource.affiliation %>
       </div>
     </div>
 
@@ -64,7 +64,7 @@
         <%= f.label :oc_user, "Calender User" %>
       </div>
       <div class="right">
-        <%= f.text_field :oc_user, :disabled => true %>
+        <%= @resource.oc_user %>
       </div>
     </div>
 
