@@ -1,4 +1,4 @@
 <%= hidden_field_tag "profile[used_email_choices][]" %>
-<% EmailClientChoice.all.each_with_index do |choice, i| %>
-  <%= email_checkbox(choice, i) %> <%= choice["value"] %><br />
+<% EmailClientChoice.to_options_array.each_with_index do |choice, i| %>
+  <%= email_checkbox(choice, i) %> <%= choice %><br />
 <% end -%>
