@@ -1,12 +1,12 @@
 <div class="group wat-cf">
-  <div class="left label"><%= f.label :vendor_choice, "Vendor" %></div>
+  <div class="left label fieldWithErrors"><%= f.label :vendor_choice, "Vendor" %></div>
   <div class="right">
     <%= render 'choice_select', {:f => f, :field => 'vendor',
       :klass => DeviceVendorChoice } %>
   </div>
 </div>
 <div class="group wat-cf">
-  <div class="left label"><%= f.label :kind_choice, "Kind" %></div>
+  <div class="left label fieldWithErrors"><%= f.label :kind_choice, "Kind" %></div>
   <div class="right">
     <%= render 'choice_select', {:f => f, :field => 'kind',
       :klass => DeviceKindChoice } %>

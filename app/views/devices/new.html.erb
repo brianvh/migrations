@@ -11,7 +11,7 @@
         <button class="button" type="submit">Create Device</button>
       </div>
     </div>
-    <%= f.error_messages %>
+    <%# f.error_messages %>
     <%= f.hidden_field :type, :value => @device.type %>
     <%= render "#{@device.type_name}_form", {:f => f} %>
   </div>

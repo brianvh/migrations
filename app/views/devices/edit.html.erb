@@ -1,6 +1,5 @@
 <% title "BlitzMail Migrations: Edit Device", false %>
 <h2 id="device-header">Edit <%= @device.type %> Device Information</h2>
-
 <%= form_for @device, :url => device_path(@device), :as => :device do |f| -%>
   <div class="fieldset form">
     <h2>Device Info</h2>
@@ -12,7 +11,7 @@
         <button class="button" type="submit">Update Device</button>
       </div>
     </div>
-    <%= f.error_messages %>
+    <%# f.error_messages %>
     <%= f.hidden_field :type, :value => @device.type %>
     <%= render "#{@device.type_name}_form", {:f => f} %>
   </div>
