@@ -13,4 +13,12 @@ module ProfilesHelper
     val ? "Yes" : "No"
   end
 
+  def email_checkbox(choice, index)
+    checked = false
+    unless @profile.used_email_clients.nil?
+      checked = @profile.used_email_clients.include?(choice["value"]) ? true : false
+    end
+    check_box_tag("profile[used_email_choices][]", choice["value"], checked, options = {:id => "email_choice_#{index}" } )
+  end
+
 end
