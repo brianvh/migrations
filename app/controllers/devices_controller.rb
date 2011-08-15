@@ -16,8 +16,6 @@ class DevicesController < ApplicationController
   def create
     @device = Device.new_from_type(type_param, params[:device])
     
-    init_other_fields
-    
     if @device.save
       current_user.devices << @device
       flash[:notice] = "Successfully created Device."
