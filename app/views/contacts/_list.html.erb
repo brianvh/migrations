@@ -7,6 +7,6 @@
       <th align="left">Migration Date</th>
       <th>&nbsp;</th>
     </tr>
-    <%= render @contacts %>
+    <%= render :partial => 'contacts/contact', :collection => @contacts %>
   </table>
 </div>

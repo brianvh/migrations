@@ -1,5 +1,5 @@
 <%= form_for @group do |f| -%>
-  <%= f.hidden_field :action, :value => :remove_member %>
+  <%= f.hidden_field :action, :value => :clear_contact %>
   <%= f.hidden_field :contact_id, :value => contact.id %>
   <%= f.submit "Clear Contact", :confirm => "Clear the key contact setting for #{contact.name}?" %>
 <% end -%>
