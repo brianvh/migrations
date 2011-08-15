@@ -31,11 +31,11 @@ module PageHelpers
     end
   end
 
-  def have_group_member(user)
+  def have_group_member(member)
     PageMatch.match do |m|
-      m.have %(#{user.last_first} as a group member)
+      m.have %(#{member.last_first} as a group member)
       m.page { within("#group-members") {
-        has_selector?("#user-#{user.id}") } }
+        has_selector?("#member-#{member.id}") } }
     end
   end
 

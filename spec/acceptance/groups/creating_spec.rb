@@ -35,7 +35,7 @@ feature "A Support user creating, and viewing, a group of users" do
 
         before { submit }
 
-        it { should have_flash_notice "New group created. 0 users added." }
+        it { should have_flash_notice "New group created. 0 members added." }
         it { should have_header :group, "Group Information for Computing Services" }
         it { should have_no_group_members }
       end
@@ -45,7 +45,7 @@ feature "A Support user creating, and viewing, a group of users" do
 
         before { submit }
 
-        it { should have_flash_notice "New group created. 2 users added." }
+        it { should have_flash_notice "New group created. 2 members added." }
         it { should have_group_members 2 }
         it { should have_group_member users[0] }
         it { should have_group_member users[1] }
@@ -57,7 +57,7 @@ feature "A Support user creating, and viewing, a group of users" do
 
         before { submit }
 
-        it { should have_flash_notice "New group created. 3 users added." }
+        it { should have_flash_notice "New group created. 3 members added." }
         it { should have_group_members 3 }
         it { should have_group_member users[2] }
       end

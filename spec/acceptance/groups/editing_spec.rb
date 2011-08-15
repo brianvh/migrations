@@ -36,7 +36,7 @@ feature "A Support user editing and managing a newly created group" do
 
   context "After removing a member from the group" do
     before do
-      within("#user-#{users[2].id}") { click_button 'Remove' }
+      within("#member-#{users[2].id}") { click_button 'Remove' }
     end
 
     it { should have_flash_notice 'Member was removed from group.' }
@@ -51,7 +51,7 @@ feature "A Support user editing and managing a newly created group" do
       click_button 'Add to Group'
     end
 
-    it { should have_flash_notice '1 user added to group.' }
+    it { should have_flash_notice '1 member added to group.' }
     it { should have_group_members 4 }
     it { should have_group_member users[3] }
   end
@@ -63,7 +63,7 @@ feature "A Support user editing and managing a newly created group" do
       click_button 'Remove from Group'
     end
 
-    it { should have_flash_notice '1 user removed from group.' }
+    it { should have_flash_notice '1 member removed from group.' }
     it { should have_group_members 2 }
     it { should_not have_group_member users[2] }
   end
