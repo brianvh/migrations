@@ -16,9 +16,9 @@ class Device < ActiveRecord::Base
                   :os_version_choice, :vendor_choice, :kind_choice
 
   validates_presence_of :vendor_choice, :message => "can't be blank"
-  # validates_presence_of :vendor, :message => "can't be blank"
+  validates_presence_of :vendor, :message => "can't be blank"
   validates_presence_of :kind_choice, :message => "can't be blank"
-  # validates_presence_of :kind, :message => "can't be blank"
+  validates_presence_of :kind, :message => "can't be blank"
   
   def self.new_from_type(type, attribs={})
     return nil unless [:computer, :mobile].include?(type)
