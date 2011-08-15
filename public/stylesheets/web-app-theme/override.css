@@ -60,3 +60,18 @@ h2 { margin-top: 0px; }
 
 .secondary-navigation ul li { float: right; }
 
+.flash .message {
+	width: 100%;
+	font-weight: bold;
+}
+
+.flash .notice {
+  border: 1px solid #c7d8d8;
+	background-color: #ffc;
+}
+
+.flash .error {
+  border: 1px solid #b00;
+  background-color: #b00;
+	color: white;
+}
