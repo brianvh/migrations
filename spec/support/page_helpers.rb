@@ -113,4 +113,12 @@ module PageHelpers
     end
   end
 
+  def have_group_contact(contact)
+    PageMatch.match do |m|
+      m.have %("#{contact.last_first}" as a Key Contact)
+      m.page { within("#group-contacts") {
+        has_selector?("#contact-#{contact.id}") } }
+    end
+  end
+
 end
