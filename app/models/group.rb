@@ -47,12 +47,12 @@ class Group < ActiveRecord::Base
     self.deptclass = depts
   end
 
-  def users_added
-    @users_added || 0
+  def members_added
+    @members_added || 0
   end
 
-  def users_removed
-    @users_removed || 0
+  def members_removed
+    @members_removed || 0
   end
 
   def contacts_display
@@ -69,7 +69,7 @@ class Group < ActiveRecord::Base
 
   def members_for_contact_list
     contact_ids = contacts.map(&:id)
-    members.select { |m| !contact_ids.include?(m.id) }.map { |m| [m.id, m.name] }
+    members.select { |m| !contact_ids.include?(m.id) }.map { |m| [m.name, m.id] }
   end
 
   private
@@ -83,19 +83,19 @@ class Group < ActiveRecord::Base
 
   def add_deptclass_users
     return unless adding_deptclass?
-    deptclass_users.each { |user| add_user(user.id) }
-    @users_added = deptclass_users.size
+    deptclass_users.each { |member| add_member(member.id) }
+    @members_added = deptclass_users.size
   end
 
   def remove_deptclass_users
     return unless removing_deptclass?
-    memberships_to_remove.each { |memship| memship.destroy }
-    @users_removed = memberships_to_remove.size
+    member_users_to_remove.each { |memship| memship.destroy }
+    @members_removed = member_users_to_remove.size
   end
 
   def remove_member
     return unless removing_member?
-    member_to_remove.destroy unless member_to_remove.nil?
+    member_user_to_remove.destroy unless member_user_to_remove.nil?
   end
 
   def adding_deptclass?
@@ -114,16 +114,16 @@ class Group < ActiveRecord::Base
     @deptclass_users ||= User.where(:deptclass => deptclass)
   end
 
-  def memberships_to_remove
-    @memberships_to_remove ||= memberships.includes(:user).
+  def member_users_to_remove
+    @member_users_to_remove ||= memberships.includes(:user).
       where('users.deptclass' => remove_deptclass)
   end
 
-  def member_to_remove
-    @member_to_remove ||= memberships.where(:user_id => member_id).first
+  def member_user_to_remove
+    @member_user_to_remove ||= member_users.where(:user_id => member_id).first
   end
 
-  def add_user(user_id)
-    memberships.create(:user_id => user_id)
+  def add_member(mem_id)
+    member_users.create(:user_id => mem_id)
   end
 end
