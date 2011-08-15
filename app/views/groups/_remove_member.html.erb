@@ -1,5 +1,0 @@
-<%= form_for @group do |f| -%>
-  <%= f.hidden_field :action, :value => :remove_member %>
-  <%= f.hidden_field :member_id, :value => user.id %>
-  <%= f.submit "Remove", :confirm => "Remove #{user.name} from this group?" %>
-<% end -%>

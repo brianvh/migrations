@@ -1,6 +1,6 @@
 require 'acceptance/acceptance_helper'
 
-feature "A Support user editing and managing an existing group" do
+feature "A Support user editing and managing a newly created group" do
 
   background do
     login_as :support, :uid => 55497, :name => nil
@@ -20,6 +20,10 @@ feature "A Support user editing and managing an existing group" do
   let(:depts) { %w[ Computing Test\ Group Library ] }
   let(:group) { create :group, :deptclass => depts[0..1].join(', ') }
   let(:path) { group_path group }
+  let(:choose_contact) { 
+    click_link 'Choose a Contact'
+    select users[2].last_first, :from => 'Choose a Member'
+    click_button 'Add Contact' }
 
   context "Viewing the groups list page" do
     let(:path) { groups_path }
@@ -29,15 +33,14 @@ feature "A Support user editing and managing an existing group" do
   end
 
   context "Viewing the group detail page" do
-    it { should have_link "Add Deptclass" }
-    it { should have_link "Remove Deptclass" }
     it { should have_group_member users[2] }
     it { should_not have_group_member users[3] }
+    it { should_not have_group_contacts }
   end
 
   context "After removing a member from the group" do
     before do
-      within("#user-#{users[2].id}") { click_button 'Remove' }
+      within("#member-#{users[2].id}") { click_button 'Remove' }
     end
 
     it { should have_flash_notice 'Member was removed from group.' }
@@ -52,7 +55,7 @@ feature "A Support user editing and managing an existing group" do
       click_button 'Add to Group'
     end
 
-    it { should have_flash_notice '1 user added to group.' }
+    it { should have_flash_notice '1 member added to group.' }
     it { should have_group_members 4 }
     it { should have_group_member users[3] }
   end
@@ -64,8 +67,29 @@ feature "A Support user editing and managing an existing group" do
       click_button 'Remove from Group'
     end
 
-    it { should have_flash_notice '1 user removed from group.' }
+    it { should have_flash_notice '1 member removed from group.' }
     it { should have_group_members 2 }
     it { should_not have_group_member users[2] }
+  end
+
+  context "After choosing a Key Contact for the group" do
+    before do
+      choose_contact
+    end
+
+    it { should have_flash_notice "#{users[2].last_first} added as a Key Contact." }
+    it { should have_group_contact users[2] }
+    it { should_not have_group_member users[2] }
+  end
+
+  context "After clearing an existing Key Contact" do
+    before do
+      choose_contact
+      within("#contact-#{users[2].id}") { click_button 'Clear Contact' }
+    end
+
+    it { should have_flash_notice "#{users[2].last_first} removed as a Key Contact." }
+    it { should_not have_group_contacts }
+    it { should have_group_member users[2] }
   end
 end

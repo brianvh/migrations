@@ -31,11 +31,11 @@ module PageHelpers
     end
   end
 
-  def have_group_member(user)
+  def have_group_member(member)
     PageMatch.match do |m|
-      m.have %(#{user.last_first} as a group member)
+      m.have %(#{member.last_first} as a group member)
       m.page { within("#group-members") {
-        has_selector?("#user-#{user.id}") } }
+        has_selector?("#member-#{member.id}") } }
     end
   end
 
@@ -101,6 +101,23 @@ module PageHelpers
       m.have %("#{resource.name}" as a listed resource)
       m.page { within("#resources") {
         has_selector?("#resource-#{resource.id}") } }
+    end
+  end
+
+  def have_group_contacts
+    PageMatch.match do |m|
+      m.have "group key contacts"
+      m.page { within("#group-contacts") {
+        has_no_content?('No key contacts assigned to this group.') }
+      }
+    end
+  end
+
+  def have_group_contact(contact)
+    PageMatch.match do |m|
+      m.have %("#{contact.last_first}" as a Key Contact)
+      m.page { within("#group-contacts") {
+        has_selector?("#contact-#{contact.id}") } }
     end
   end
 

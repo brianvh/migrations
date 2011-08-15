@@ -1,0 +1,11 @@
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li><%= show_div_link "Choose a Contact", 'choose-contact' %></li>
+  </ul>
+</div>
+<%= render 'contacts/choose' %>
+<div id="group-contacts" class="fieldset">
+  <h2>Key Contacts</h2>
+  <%= render 'contacts/list' unless @contacts.empty? %>
+  <%= content_tag(:p, 'No key contacts assigned to this group.') if @contacts.empty? %>
+</div>
