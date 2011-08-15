@@ -1,0 +1,7 @@
+<tr id="member-<%= member.id %>">
+  <td><%= link_to member.last_first, user_path(member) %></td>
+  <td><%= member.deptclass %></td>
+  <td><%= member.profile_summary %></td>
+  <td><%= member.migration_date %></td>
+  <td><%= render 'members/remove', :member => member %></td>
+</tr>

@@ -1,0 +1,14 @@
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li><%= show_div_link 'Add Member', 'add-member' %></li>
+    <li><%= show_div_link 'Add Deptclass', 'add-deptclass' %></li>
+    <li><%= show_div_link 'Remove Deptclass', 'remove-deptclass' %></li>
+  </ul>
+</div>
+<%= render 'members/add_deptclass' %>
+<%= render 'members/remove_deptclass' %>
+<div id="group-members" class="fieldset">
+  <h2>Group Members</h2>
+  <%= render 'members/list' unless @members.empty? %>
+  <%= content_tag(:p, 'No users assigned to this group.') if @members.empty? %>
+</div>
