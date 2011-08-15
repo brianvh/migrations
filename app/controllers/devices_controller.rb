@@ -23,7 +23,7 @@ class DevicesController < ApplicationController
       flash[:notice] = "Successfully created Device."
       redirect_to device_path(@device)
     else
-      flash[:error] = "Error creating Device."
+      flash.now[:error] = "Error creating Device."
       render :action => 'new'
     end
   end
@@ -43,7 +43,7 @@ class DevicesController < ApplicationController
       flash[:notice] = "Successfully updated Device."
       redirect_to device_path(@device)
     else
-      flash[:error] = "Error updating Device."
+      flash.now[:error] = "Error updating Device."
       render :action => 'edit'
     end
   end
