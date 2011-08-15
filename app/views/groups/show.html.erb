@@ -3,6 +3,19 @@
 <div class="secondary-navigation">
   <ul class="wat-cf">
     <li>
+      <%= link_to_function "Set Key Contact", "$('choose-contact').show('slow')" %>
+    </li>
+  </ul>
+</div>
+<%= render 'contacts/choose' %>
+<div id="group-contacts" class="fieldset">
+  <h2>Key Contacts</h2>
+  <%= render 'contacts/list' unless @contacts.empty? %>
+  <%= content_tag(:p, 'No key contacts assigned to this group.') if @contacts.empty? %>
+</div>
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li>
       <%= link_to "Add User", "#" %>
     </li>
     <li>
