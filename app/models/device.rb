@@ -15,7 +15,9 @@ class Device < ActiveRecord::Base
                   :current_browser_choice, :current_email_choice, :office_version_choice,
                   :os_version_choice, :vendor_choice, :kind_choice
 
+  validates_presence_of :vendor_choice, :message => "can't be blank"
   validates_presence_of :vendor, :message => "can't be blank"
+  validates_presence_of :kind_choice, :message => "can't be blank"
   validates_presence_of :kind, :message => "can't be blank"
   
   def self.new_from_type(type, attribs={})

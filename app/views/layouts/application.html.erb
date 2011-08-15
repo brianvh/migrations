@@ -28,14 +28,14 @@
       </div>
     </div>
     <div id="wrapper" class="wat-cf">
-      <div class="flash">
-        <% flash.each do |type, message| -%>
-          <div class="message <%= type %>" id="flash_<%= type %>">
-            <p><%= message %></p>
-          </div>
-        <% end -%>
-      </div>
       <div id="main">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>" id="flash_<%= type %>">
+              <p><%= message %></p>
+            </div>
+          <% end -%>
+        </div><br clear="all">
         <%= yield %>
       </div>
       <div id="sidebar">
