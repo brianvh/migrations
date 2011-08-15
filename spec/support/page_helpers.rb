@@ -104,4 +104,13 @@ module PageHelpers
     end
   end
 
+  def have_group_contacts
+    PageMatch.match do |m|
+      m.have "group key contacts"
+      m.page { within("#group-contacts") {
+        has_no_content?('No key contacts assigned to this group.') }
+      }
+    end
+  end
+
 end

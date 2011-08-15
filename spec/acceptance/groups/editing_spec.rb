@@ -1,6 +1,6 @@
 require 'acceptance/acceptance_helper'
 
-feature "A Support user editing and managing an existing group" do
+feature "A Support user editing and managing a newly created group" do
 
   background do
     login_as :support, :uid => 55497, :name => nil
@@ -29,10 +29,9 @@ feature "A Support user editing and managing an existing group" do
   end
 
   context "Viewing the group detail page" do
-    it { should have_link "Add Deptclass" }
-    it { should have_link "Remove Deptclass" }
     it { should have_group_member users[2] }
     it { should_not have_group_member users[3] }
+    it { should_not have_group_contacts }
   end
 
   context "After removing a member from the group" do
