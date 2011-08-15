@@ -2,12 +2,21 @@ class Group < ActiveRecord::Base
   has_many :memberships
   has_many :users, :through => :memberships
 
+  has_many :member_users, :class_name => "Member", :foreign_key => "group_id"
+  has_many :members, :through => :member_users, :source => :user
+
+  has_many :contact_users, :class_name => "Contact", :foreign_key => "group_id"
+  has_many :contacts, :through => :contact_users, :source => :user
+
+  has_many :consultant_users, :class_name => "Consultant", :foreign_key => "group_id"
+  has_many :consultants, :through => :consultant_users, :source => :user
+
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   validates_uniqueness_of :name, :on => :create, :message => "must be unique"
   validate :valid_deplclasses?, :on => :create
   after_save :add_deptclass_users, :remove_deptclass_users, :remove_member
 
-  attr_accessor :member_id
+  attr_accessor :member_id, :contact_id
   attr_writer :action
 
   def deptclass_display
@@ -56,6 +65,11 @@ class Group < ActiveRecord::Base
 
   def action
     @action_sym ||= @action.to_sym
+  end
+
+  def members_for_contact_list
+    contact_ids = contacts.map(&:id)
+    members.select { |m| !contact_ids.include?(m.id) }.map { |m| [m.id, m.name] }
   end
 
   private
