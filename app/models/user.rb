@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
   has_many :devices
   has_many :memberships
   has_many :groups, :through => :memberships
-	has_many :ownerships
-	has_many :resources, :through => :ownerships
+  has_many :ownerships
+  has_many :resources, :through => :ownerships
 
   before_validation :valid_in_dnd?, :on => :create
   validates_uniqueness_of :uid, :on => :create, :message => "must be unique"
@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   end
 
   def last_first
-    "#{lastname}, #{firstname}"
+    @last_first ||= firstname.present? ? "#{lastname}, #{firstname}" : lastname
   end
 
   def group_name
