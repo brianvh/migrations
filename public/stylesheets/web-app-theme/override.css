@@ -3,6 +3,8 @@ h2 { margin-top: 0px; }
 
 #main { width: 72%; }
 
+#main-wide { width: 98%; }
+
 #main-navigation .right { float: right; }
 
 .fieldset {
