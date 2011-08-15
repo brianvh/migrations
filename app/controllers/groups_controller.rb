@@ -52,6 +52,16 @@ class GroupsController < ApplicationController
     send_to_group
   end
 
+  def choose_contact
+    flash[:notice] = "#{@group.contact_name} added as a Key Contact."
+    send_to_group
+  end
+
+  def clear_contact
+    flash[:notice] = "#{@group.contact_name} removed as a Key Contact."
+    send_to_group
+  end
+
   def send_to_group
     redirect_to group_path(@group)
   end

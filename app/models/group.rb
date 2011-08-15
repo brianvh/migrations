@@ -14,10 +14,12 @@ class Group < ActiveRecord::Base
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   validates_uniqueness_of :name, :on => :create, :message => "must be unique"
   validate :valid_deplclasses?, :on => :create
-  after_save :add_deptclass_users, :remove_deptclass_users, :remove_member
+  after_save  :add_deptclass_users, :remove_deptclass_users, :remove_member,
+              :add_contact, :remove_contact
 
   attr_accessor :member_id, :contact_id
   attr_writer :action
+  attr_reader :contact_name
 
   def deptclass_display
     deptclass.join(', ')
@@ -69,7 +71,7 @@ class Group < ActiveRecord::Base
 
   def members_for_contact_list
     contact_ids = contacts.map(&:id)
-    members.select { |m| !contact_ids.include?(m.id) }.map { |m| [m.name, m.id] }
+    members.select { |m| !contact_ids.include?(m.id) }.map { |m| [m.last_first, m.id] }
   end
 
   private
@@ -98,6 +100,16 @@ class Group < ActiveRecord::Base
     member_user_to_remove.destroy unless member_user_to_remove.nil?
   end
 
+  def add_contact
+    return unless adding_contact?
+    promote_member
+  end
+
+  def remove_contact
+    return unless removing_contact?
+    demote_contact
+  end
+
   def adding_deptclass?
     add_deptclass.blank? ? false : [:create, :add_deptclass].include?(action)
   end
@@ -107,7 +119,15 @@ class Group < ActiveRecord::Base
   end
 
   def removing_member?
-    member_id.nil? ? false : action = :remove_member
+    member_id.nil? ? false : action == :remove_member
+  end
+
+  def adding_contact?
+    contact_id.nil? ? false : action == :choose_contact
+  end
+
+  def removing_contact?
+    contact_id.nil? ? false : action == :clear_contact
   end
 
   def deptclass_users
@@ -125,5 +145,17 @@ class Group < ActiveRecord::Base
 
   def add_member(mem_id)
     member_users.create(:user_id => mem_id)
+  end
+
+  def promote_member
+    member = member_users.where(:user_id => contact_id).first
+    member.update_attribute :type, 'Contact'
+    @contact_name = member.user.last_first
+  end
+
+  def demote_contact
+    contact = contact_users.where(:user_id => contact_id).first
+    contact.update_attribute :type, 'Member'
+    @contact_name = contact.user.last_first
   end
 end
