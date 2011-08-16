@@ -18,12 +18,9 @@
       </div>
       <div id="main-navigation">
         <ul class="wat-cf">
-          <li class="active"><%= link_to "Home", '#' %></li>
-          <li><%= link_to "Profile", '#' %></li>
-          <li><%= link_to "Devices", '#' %></li>
-          <li class="right"><%= link_to "Migrations", '#' %></li>
-          <li class="right"><%= link_to "Groups", '#' %></li>
-          <li class="right"><%= link_to "Resources", '#' %></li>
+          <%= user_nav_tabs %>
+          <%= admin_nav_tabs %>
+          <%= support_nav_tabs %>
         </ul>
       </div>
     </div>
