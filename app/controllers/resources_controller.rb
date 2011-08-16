@@ -3,7 +3,7 @@ class ResourcesController < ApplicationController
     if current_user.is_support?
       @resources = Resource.all
     else
-      @resources = current_user.resources
+      @resources = current_user.primary_resource_ownerships
     end
   end
 
@@ -11,7 +11,7 @@ class ResourcesController < ApplicationController
     if current_user.is_support?
       @resource = Resource.find(params[:id])
     else
-      @resource = current_user.resources.find(params[:id])
+      @resource = current_user.primary_resource_ownerships.find(params[:id])
       redirect_to user_path if @resource.nil?
     end
   end
@@ -35,7 +35,7 @@ class ResourcesController < ApplicationController
     if current_user.is_support?
       @resource = Resource.find(params[:id])
     else
-      @resource = current_user.resources.find(params[:id])
+      @resource = current_user.primary_resource_ownerships.find(params[:id])
       redirect_to user_path if @resource.nil?
     end
   end
@@ -44,7 +44,7 @@ class ResourcesController < ApplicationController
     if current_user.is_support?
       @resource = Resource.find(params[:id])
     else
-      @resource = current_user.resources.find(params[:id], :readonly => false)
+      @resource = current_user.primary_resource_ownerships.find(params[:id], :readonly => false)
       redirect_to user_path and return if @resource.nil?
     end
     if @resource.update_attributes(params[:resource])

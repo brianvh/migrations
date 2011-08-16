@@ -5,6 +5,6 @@ Factory.define :resource do |f|
   f.dept_group "Admissions"
   f.oc_user "Resource"
   f.migrate true
-  f.disposition "Retain"
+  f.migrate_data true
   f.affiliation "DART"
 end

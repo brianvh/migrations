@@ -4,8 +4,6 @@ feature "Admin user views a list of all Resources" do
 
   background do
     @user = login_as :admin, :uid => 55497, :name => nil
-    # @user.resources << Factory(:resource)
-    # @user.profiles << Factory(:profile)
     @resource_a = Factory(:resource, :name => "Foo")
     @resource_b = Factory(:resource, :name => "-bar")
   end

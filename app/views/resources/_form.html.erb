@@ -69,7 +69,7 @@
 
     <div class="group wat-cf">
       <div class="left label">
-        <%= f.label :migrate, "Migrate?" %>
+        <%= f.label :migrate, "Migrate Calendar?" %>
       </div>
       <div class="right">
         <%= f.select :migrate, [["Yes",true],["No",false]], {:include_blank => "Choose..."} %>
@@ -78,10 +78,19 @@
 
     <div class="group wat-cf">
       <div class="left label">
-        <%= f.label :disposition, "Disposition" %>
+        <%= f.label :migrate_data, "Migrate Data?" %>
       </div>
       <div class="right">
-        <%= f.select :disposition, ["Retain","Remove"], {:include_blank => "Choose..."} %>
+        <%= f.select :migrate_data, [["Yes",true],["No",false]], {:include_blank => "Choose..."} %>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label">
+        <%= f.label :secondary_owner, "Secondary Owner" %>
+      </div>
+      <div class="right">
+        TODO
       </div>
     </div>
 
