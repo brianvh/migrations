@@ -121,4 +121,28 @@ module PageHelpers
     end
   end
 
+  def have_group_consultants
+    PageMatch.match do |m|
+      m.have "group support consultants"
+      m.page { within("#group-consultants") {
+        has_no_content?('No support consultants assigned to this group.') }
+      }
+    end
+  end
+
+  def have_group_consultant(consultant)
+    PageMatch.match do |m|
+      m.have %("#{consultant.last_first}" as a Support Consultant)
+      m.page { within("#group-consultants") {
+        has_selector?("#consultant-#{consultant.id}") } }
+    end
+  end
+
+  def have_consultant_choice(consultant)
+    PageMatch.match do |m|
+      m.have %("#{consultant.last_first}" as a consultant choice)
+      m.page { within("#group_consultant_id") {
+        has_selector?(:xpath, %(.//option[@value="#{consultant.id}"])) } }
+    end
+  end
 end

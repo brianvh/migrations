@@ -3,7 +3,7 @@ require 'acceptance/acceptance_helper'
 feature "A Support user editing and managing a newly created group" do
 
   background do
-    login_as :support, :uid => 55497, :name => nil
+    login
     users
     group
     visit path
@@ -11,19 +11,25 @@ feature "A Support user editing and managing a newly created group" do
 
   subject { page }
 
+  let(:login) { login_as :support, :uid => 55497, :name => nil }
   let(:users) { [
     create(:client, :firstname => 'Joe'),
     create(:client, :firstname => 'Jill'),
     create(:client, :firstname => 'Bob', :deptclass => depts[0]),
-    create(:client, :firstname => 'Sam', :deptclass => depts[2]) ]
+    create(:client, :firstname => 'Sam', :deptclass => depts[2]),
+    create(:support, :firstname => 'Jack') ]
   }
   let(:depts) { %w[ Computing Test\ Group Library ] }
   let(:group) { create :group, :deptclass => depts[0..1].join(', ') }
   let(:path) { group_path group }
-  let(:choose_contact) { 
+  let(:choose_contact) {
     click_link 'Choose a Contact'
     select users[2].last_first, :from => 'Choose a Member'
     click_button 'Add Contact' }
+  let(:choose_consultant) {
+    click_link 'Choose a Consultant'
+    select login.last_first, :from => 'Choose a Consultant'
+    click_button 'Assign Consultant' }
 
   context "Viewing the groups list page" do
     let(:path) { groups_path }
@@ -36,6 +42,7 @@ feature "A Support user editing and managing a newly created group" do
     it { should have_group_member users[2] }
     it { should_not have_group_member users[3] }
     it { should_not have_group_contacts }
+    it { save_and_open_page ; should_not have_group_consultants }
   end
 
   context "After removing a member from the group" do
@@ -91,5 +98,26 @@ feature "A Support user editing and managing a newly created group" do
     it { should have_flash_notice "#{users[2].last_first} removed as a Key Contact." }
     it { should_not have_group_contacts }
     it { should have_group_member users[2] }
+  end
+
+  context "After assigning a Support Consultant for the group" do
+    before do
+      choose_consultant
+    end
+
+    it { should have_flash_notice "#{login.last_first} assigned as a Support Consultant." }
+    it { should have_group_consultant login }
+    it { should_not have_consultant_choice login }
+  end
+
+  context "After un-assigning a Support Consultant" do
+    before do
+      choose_consultant
+      within("#consultant-#{login.id}") { click_button 'Unassign' }
+    end
+
+    it { should have_flash_notice "#{login.last_first} un-assigned as a Support Consultant." }
+    it { should_not have_group_consultants }
+    it { should have_consultant_choice login }
   end
 end
