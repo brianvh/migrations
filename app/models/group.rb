@@ -15,11 +15,11 @@ class Group < ActiveRecord::Base
   validates_uniqueness_of :name, :on => :create, :message => "must be unique"
   validate :valid_deplclasses?, :on => :create
   after_save  :add_deptclass_users, :remove_deptclass_users, :remove_member,
-              :add_contact, :remove_contact
+              :add_contact, :remove_contact, :add_consultant, :remove_consultant
 
-  attr_accessor :member_id, :contact_id
+  attr_accessor :member_id, :contact_id, :consultant_id
   attr_writer :action
-  attr_reader :contact_name
+  attr_reader :contact_name, :consultant_name
 
   def deptclass_display
     deptclass.join(', ')
@@ -110,6 +110,16 @@ class Group < ActiveRecord::Base
     demote_contact
   end
 
+  def add_consultant
+    return unless adding_consultant?
+    assign_consultant
+  end
+
+  def remove_consultant
+    return unless removing_consultant?
+    unassign_consultant
+  end
+
   def adding_deptclass?
     add_deptclass.blank? ? false : [:create, :add_deptclass].include?(action)
   end
@@ -128,6 +138,14 @@ class Group < ActiveRecord::Base
 
   def removing_contact?
     contact_id.nil? ? false : action == :clear_contact
+  end
+
+  def adding_consultant?
+    consultant_id.nil? ? false : action == :choose_consultant
+  end
+
+  def removing_consultant?
+    consultant_id.nil? ? false : action == :clear_consultant
   end
 
   def deptclass_users
@@ -157,5 +175,16 @@ class Group < ActiveRecord::Base
     contact = contact_users.where(:user_id => contact_id).first
     contact.update_attribute :type, 'Member'
     @contact_name = contact.user.last_first
+  end
+
+  def assign_consultant
+    consultant = consultant_users.create(:user_id => consultant_id)
+    @consultant_name = consultant.user.last_first
+  end
+
+  def unassign_consultant
+    consultant = consultant_users.where(:user_id => consultant_id).first
+    @consultant_name = consultant.user.last_first
+    consultant.destroy
   end
 end
