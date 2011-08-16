@@ -30,6 +30,14 @@ class User < ActiveRecord::Base
     return true if is_support?
     device.user_id == self.id
   end
+  
+  def is_contact?(group)
+    group.contacts.include?(self) ? true : false
+  end
+
+  def is_consultant?(group)
+    group.consultants.include?(self) ? true : false
+  end
 
   def last_first
     @last_first ||= firstname.present? ? "#{lastname}, #{firstname}" : lastname
