@@ -41,10 +41,4 @@ class ResourcesController < ApplicationController
     end
   end
 
-  def destroy
-    # redirect_to user_path current_user and return unless current_user.is_support?
-    @resource = Resource.find(params[:id])
-    @resource.destroy
-    redirect_to resources_url, :notice => "Successfully destroyed resource."
-  end
 end
