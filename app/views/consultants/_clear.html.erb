@@ -1,0 +1,5 @@
+<%= form_for @group do |f| -%>
+  <%= f.hidden_field :action, :value => :clear_consultant %>
+  <%= f.hidden_field :consultant_id, :value => consultant.id %>
+  <%= f.submit "Unassign", :confirm => "Unassign #{consultant.name} as a Support Consultant?" %>
+<% end -%>

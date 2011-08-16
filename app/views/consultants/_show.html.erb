@@ -1,0 +1,7 @@
+<%= render 'consultants/nav' %>
+<%= render 'consultants/choose' %>
+<div id="group-consultants" class="fieldset">
+  <h2>Support Consultants</h2>
+  <%= render 'consultants/list' unless @consultants.empty? %>
+  <%= content_tag(:p, 'No support consultants assigned to this group.') if @consultants.empty? %>
+</div>
