@@ -42,7 +42,7 @@ feature "A Support user editing and managing a newly created group" do
     it { should have_group_member users[2] }
     it { should_not have_group_member users[3] }
     it { should_not have_group_contacts }
-    it { save_and_open_page ; should_not have_group_consultants }
+    it { should_not have_group_consultants }
   end
 
   context "After removing a member from the group" do
