@@ -23,6 +23,7 @@ class GroupsController < ApplicationController
     @group = Group.includes([:users]).find(params[:id])
     @members = @group.members
     @contacts = @group.contacts
+    @consultants = @group.consultants
   end
 
   def update
@@ -60,6 +61,16 @@ class GroupsController < ApplicationController
 
   def clear_contact
     flash[:notice] = "#{@group.contact_name} removed as a Key Contact."
+    send_to_group
+  end
+
+  def choose_consultant
+    flash[:notice] = "#{@group.consultant_name} assigned as a Support Consultant."
+    send_to_group
+  end
+
+  def clear_consultant
+    flash[:notice] = "#{@group.consultant_name} un-assigned as a Support Consultant."
     send_to_group
   end
 
