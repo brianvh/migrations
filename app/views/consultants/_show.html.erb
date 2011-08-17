@@ -1,5 +1,5 @@
-<%= render 'consultants/nav' %>
-<%= render 'consultants/choose' %>
+<%= render 'consultants/nav' if current_user.is_support? %>
+<%= render 'consultants/choose' if current_user.is_support? %>
 <div id="group-consultants" class="fieldset">
   <h2>Support Consultants</h2>
   <%= render 'consultants/list' unless @consultants.empty? %>
