@@ -16,7 +16,7 @@ module DNDUser
   end
 
   def cache_expires
-    return unless profile_fields.include?(expires)
+    return unless profile_fields.include?('expires')
     return if profile.expires.blank?
     return unless respond_to?('expire_on=')
     expire_on = profile.expires.to_date
