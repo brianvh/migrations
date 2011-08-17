@@ -37,6 +37,15 @@ class GroupsController < ApplicationController
 
   private
 
+  def add_member
+    if @group.member_name_error
+      flash[:error] = @group.member_name_error
+    else
+      flash[:notice] = %(Member "#{@group.member_name}" added to group.)
+    end
+    send_to_group
+  end
+
   def add_deptclass
     flash[:notice] =  "#{@group.members_added} member" + 
                       "#{@group.members_added == 1 ? '' : 's'} added to group."
