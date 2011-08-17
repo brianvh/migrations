@@ -33,10 +33,6 @@
     <div class="right tight"><%= @resource.affiliation %></div>
   </div>
   <div class="group wat-cf">
-    <div class="left label">Resource Owner</div>
-    <div class="right tight"><%= @resource.oc_user %></div>
-  </div>
-  <div class="group wat-cf">
     <div class="left label">Migrate Calendar?</div>
     <div class="right tight"><%= boolean_display @resource.migrate %></div>
   </div>
@@ -46,7 +42,7 @@
   </div>
   <div class="group wat-cf">
     <div class="left label">Secondary Owner</div>
-    <div class="right tight"><%= @resource.secondary_owner_name %></div>
+    <div class="right tight"><%= @resource.secondary_owner_name(true) %></div>
   </div>
   <div class="group wat-cf">
     <div class="left label">Migration Group</div>

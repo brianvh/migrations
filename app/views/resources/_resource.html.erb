@@ -3,7 +3,7 @@
   <% if current_user.is_support? and controller.controller_name == "resources" %>
     <td><%= link_to(resource.primary_owner_name, user_path(resource.primary_owner)) unless resource.primary_owner.nil? %></td>
   <% end -%>
-  <td><%= resource.secondary_owner_name %></td>
+  <td><%= resource.secondary_owner_name(true) %></td>
   <td><%= resource.dept %></td>
   <td><%= resource.dept_group %></td>
   <td><%= boolean_display resource.migrate %></td>
