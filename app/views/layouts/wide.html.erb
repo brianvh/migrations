@@ -9,7 +9,9 @@
   <%= javascript_include_tag "chosen.jquery.min", :cache => true %>
   <%= csrf_meta_tag %>
   <script type="text/javascript">
-    $(".chzn-select").chosen()
+    $(document).ready(function() {
+      $(".chzn-select").chosen()
+    });
   </script>
 </head>
 <body>
