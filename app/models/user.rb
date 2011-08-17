@@ -27,10 +27,13 @@ class User < ActiveRecord::Base
   end
 
   def can_access_device?(device)
-    return true if is_support?
-    device.user_id == self.id
+    is_support? ? true : device.user_id == self.id
   end
-  
+
+  def can_access_group?(group)
+    is_support? ? true : is_contact?(group)
+  end
+
   def is_contact?(group)
     group.contacts.include?(self) ? true : false
   end

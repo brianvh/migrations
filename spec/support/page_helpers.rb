@@ -159,4 +159,12 @@ module PageHelpers
       m.page { within("#flash_error") { has_content?(error) } }
     end
   end
+
+  def have_clear_contact(contact)
+    PageMatch.match do |m|
+      m.have %(Clear Contact button for "#{contact.last_first}")
+      m.page { within("#contact-#{contact.id}") {
+        has_button?('Clear Contact') } }
+    end
+  end
 end

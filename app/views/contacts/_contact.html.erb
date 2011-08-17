@@ -3,5 +3,5 @@
   <td><%= contact.deptclass %></td>
   <td><%= contact.profile_summary %></td>
   <td><%= contact.migration_date %></td>
-  <td><%= render 'contacts/clear', :contact => contact %></td>
+  <td><%= render 'contacts/clear', :contact => contact if current_user.is_support? %></td>
 </tr>

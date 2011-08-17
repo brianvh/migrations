@@ -3,5 +3,5 @@
   <td><%= member.deptclass %></td>
   <td><%= member.profile_summary %></td>
   <td><%= member.migration_date %></td>
-  <td><%= render 'members/remove', :member => member %></td>
+  <td><%= render 'members/remove', :member => member if current_user.is_support? %></td>
 </tr>
