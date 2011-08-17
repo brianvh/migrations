@@ -1,0 +1,18 @@
+<%= form_for @group do |f| -%>
+<div id="add-member" class="fieldset form" style="display: none">
+  <h2>Adding a Member</h2>
+  <div class="group navform wat-cf">
+    <div class="text_button_padding">
+      <%= hide_div_link 'Cancel', 'add-member' %>
+    </div>
+    <div class="right">
+      <button class="button" type="submit">Add Member</button>
+    </div>
+  </div>
+  <%= f.hidden_field :action, :value => :add_member %>
+  <div class="group wat-cf">
+    <div class="left label"><%= f.label :member_name, "Member Name" %></div>
+    <div class="right"><%= f.text_field :member_name, :size => 40 %></div>
+  </div>
+</div>
+<% end -%>
