@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   layout 'wide'
+  before_filter :support_user?, :except => [:show]
 
   def index
     @groups = Group.all
@@ -21,6 +22,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.includes([:users]).find(params[:id])
+    send_to_user unless current_user.can_access_group?(@group)
     @members = @group.members
     @contacts = @group.contacts
     @consultants = @group.consultants
@@ -36,6 +38,11 @@ class GroupsController < ApplicationController
   end
 
   private
+
+  def support_user?
+    return true if current_user.is_support?
+    send_to_user
+  end
 
   def add_member
     if @group.member_name_error
@@ -85,5 +92,10 @@ class GroupsController < ApplicationController
 
   def send_to_group
     redirect_to group_path(@group)
+  end
+
+  def send_to_user
+    redirect_to user_path(current_user)
+    false
   end
 end
