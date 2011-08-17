@@ -1,9 +1,5 @@
-<div class="secondary-navigation">
-  <ul class="wat-cf">
-    <li><%= show_div_link "Choose a Contact", 'choose-contact' %></li>
-  </ul>
-</div>
-<%= render 'contacts/choose' %>
+<%= render 'contacts/nav' if current_user.is_support? %>
+<%= render 'contacts/choose' if current_user.is_support?  %>
 <div id="group-contacts" class="fieldset">
   <h2>Key Contacts</h2>
   <%= render 'contacts/list' unless @contacts.empty? %>

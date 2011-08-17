@@ -1,13 +1,7 @@
-<div class="secondary-navigation">
-  <ul class="wat-cf">
-    <li><%= show_div_link 'Add Member', 'add-member' %></li>
-    <li><%= show_div_link 'Add Deptclass', 'add-deptclass' %></li>
-    <li><%= show_div_link 'Remove Deptclass', 'remove-deptclass' %></li>
-  </ul>
-</div>
-<%= render 'members/add_member' %>
-<%= render 'members/add_deptclass' %>
-<%= render 'members/remove_deptclass' %>
+<%= render 'members/nav' if current_user.is_support? %>
+<%= render 'members/add_member' if current_user.is_support? %>
+<%= render 'members/add_deptclass' if current_user.is_support? %>
+<%= render 'members/remove_deptclass' if current_user.is_support? %>
 <div id="group-members" class="fieldset">
   <h2>Group Members</h2>
   <%= render 'members/list' unless @members.empty? %>
