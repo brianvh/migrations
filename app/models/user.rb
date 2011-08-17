@@ -42,6 +42,20 @@ class User < ActiveRecord::Base
     group.consultants.include?(self) ? true : false
   end
 
+  def needs_resync?
+    return false if updated_at.nil?
+    Time.now.to_date > updated_at.to_date
+  end
+
+  def profile_fetched?
+    @profile_fetched == true
+  end
+
+  def profile
+    fetch_profile unless profile_fetched?
+    @profile
+  end
+
   def last_first
     @last_first ||= firstname.present? ? "#{lastname}, #{firstname}" : lastname
   end
@@ -65,5 +79,25 @@ class User < ActiveRecord::Base
   def self.lookup_by_name(name)
     lookup = User.new(:name => name)
     lookup.profile.nil? ? nil : User.find_by_uid(lookup.profile.uid)
+  end
+
+  private
+
+  def fetch_profile
+    dnd_prof = nil
+    Net::DartmouthDND.start(profile_fields) do |dnd|
+      dnd_prof = dnd.find(uid || name, :one)
+    end
+    Rails.logger.info("\nProfile Fetched!\n")
+    @profile = dnd_prof
+    @profile_fetched = true
+    resync_profile
+  end
+
+  def resync_profile
+    return unless needs_resync?
+    profile_to_attributes
+    cache_expires
+    self.touch
   end
 end
