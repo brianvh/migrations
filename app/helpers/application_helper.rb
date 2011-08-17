@@ -4,11 +4,11 @@ module ApplicationHelper
   end
 
   def show_div_link(label, div)
-    link_to_function label, "$('#{div}').show('slow')"
+    link_to_function label, "$('##{div}').show('slow')"
   end
 
   def hide_div_link(label, div)
-    link_to_function label, "$('#{div}').hide('slow')"
+    link_to_function label, "$('##{div}').hide('slow')"
   end
   
   def user_nav_tabs
