@@ -2,5 +2,5 @@
   <td><%= consultant.name %></td>
   <td><%= consultant.email %></td>
   <td><%= consultant.phone %></td>
-  <td><%= render 'consultants/clear', :consultant => consultant %></td>
+  <td><%= render 'consultants/clear', :consultant => consultant if current_user.is_support? %></td>
 </tr>
