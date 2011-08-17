@@ -5,14 +5,14 @@ class User < ActiveRecord::Base
   has_many :devices
   has_many :memberships
   has_many :groups, :through => :memberships
-	has_many :ownerships
-	has_many :resources, :through => :ownerships
+  has_many :primary_resource_ownerships, :class_name => "Resource", :foreign_key => "primary_owner_id"
+  has_many :secondary_resource_ownerships, :class_name => "Resource", :foreign_key => "secondary_owner_id"
 
   before_validation :valid_in_dnd?, :on => :create
   validates_uniqueness_of :uid, :on => :create, :message => "must be unique"
 
   delegate  :netid, :affiliation, :blitzserv, :email, :emailsuffix,
-            :mailboxtype, :to => :profile
+            :mailboxtype, :phone, :to => :profile
 
   def is_support?
     false
@@ -27,12 +27,37 @@ class User < ActiveRecord::Base
   end
 
   def can_access_device?(device)
-    return true if is_support?
-    device.user_id == self.id
+    is_support? ? true : device.user_id == self.id
+  end
+
+  def can_access_group?(group)
+    is_support? ? true : is_contact?(group)
+  end
+
+  def is_contact?(group)
+    group.contacts.include?(self) ? true : false
+  end
+
+  def is_consultant?(group)
+    group.consultants.include?(self) ? true : false
+  end
+
+  def needs_resync?
+    return false if updated_at.nil?
+    Time.now.to_date > updated_at.to_date
+  end
+
+  def profile_fetched?
+    @profile_fetched == true
+  end
+
+  def profile
+    fetch_profile unless profile_fetched?
+    @profile
   end
 
   def last_first
-    "#{lastname}, #{firstname}"
+    @last_first ||= firstname.present? ? "#{lastname}, #{firstname}" : lastname
   end
 
   def group_name
@@ -49,5 +74,30 @@ class User < ActiveRecord::Base
 
   def self.authenticate(authenticator)
     User.find_by_uid(authenticator.uid)
+  end
+
+  def self.lookup_by_name(name)
+    lookup = User.new(:name => name)
+    lookup.profile.nil? ? nil : User.find_by_uid(lookup.profile.uid)
+  end
+
+  private
+
+  def fetch_profile
+    dnd_prof = nil
+    Net::DartmouthDND.start(profile_fields) do |dnd|
+      dnd_prof = dnd.find(uid || name, :one)
+    end
+    Rails.logger.info("\nProfile Fetched!\n")
+    @profile = dnd_prof
+    @profile_fetched = true
+    resync_profile
+  end
+
+  def resync_profile
+    return unless needs_resync?
+    profile_to_attributes
+    cache_expires
+    self.touch
   end
 end

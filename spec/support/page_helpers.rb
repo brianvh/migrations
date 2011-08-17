@@ -11,7 +11,7 @@ module PageHelpers
     PageMatch.match do |m|
       m.have %(a logout link for "#{user.name}")
       m.page { within("#logout") {
-        has_selector?(:xpath, %(.//a), :text => user.name) } }
+        has_content?(user.name) } }
     end
   end
 
@@ -31,11 +31,11 @@ module PageHelpers
     end
   end
 
-  def have_group_member(user)
+  def have_group_member(member)
     PageMatch.match do |m|
-      m.have %(#{user.last_first} as a group member)
+      m.have %(#{member.last_first} as a group member)
       m.page { within("#group-members") {
-        has_selector?("#user-#{user.id}") } }
+        has_selector?("#member-#{member.id}") } }
     end
   end
 
@@ -50,7 +50,7 @@ module PageHelpers
   def have_error_message(msg)
     PageMatch.match do |m|
       m.have "'#{msg}' shown as an error"
-      m.page { within (".error_messages") {
+      m.page { within(".error_messages") {
         has_content?(msg) } }
     end
   end
@@ -73,7 +73,7 @@ module PageHelpers
   def have_profile_info
     PageMatch.match do |m|
       m.have %(a submitted profile)
-      m.page { within("#profile-info") {
+      m.page { within("#profile-info-nav") {
         has_link?('Full Migration Profile') } }
     end
   end
@@ -86,4 +86,85 @@ module PageHelpers
     end
   end
 
+  def have_resources_list
+    PageMatch.match do |m|
+      m.have "listed resources"
+      m.page { within("#resources") {
+        has_no_content?('No calendar resources currently owned by you.')
+        }
+      }
+    end
+  end
+
+  def have_resource(resource)
+    PageMatch.match do |m|
+      m.have %("#{resource.name}" as a listed resource)
+      m.page { within("#resources") {
+        has_selector?("#resource-#{resource.id}") } }
+    end
+  end
+
+  def have_group_contacts
+    PageMatch.match do |m|
+      m.have "group key contacts"
+      m.page { within("#group-contacts") {
+        has_no_content?('No key contacts assigned to this group.') }
+      }
+    end
+  end
+
+  def have_group_contact(contact)
+    PageMatch.match do |m|
+      m.have %("#{contact.last_first}" as a Key Contact)
+      m.page { within("#group-contacts") {
+        has_selector?("#contact-#{contact.id}") } }
+    end
+  end
+
+  def have_group_consultants
+    PageMatch.match do |m|
+      m.have "group support consultants"
+      m.page { within("#group-consultants") {
+        has_no_content?('No support consultants assigned to this group.') }
+      }
+    end
+  end
+
+  def have_group_consultant(consultant)
+    PageMatch.match do |m|
+      m.have %("#{consultant.last_first}" as a Support Consultant)
+      m.page { within("#group-consultants") {
+        has_selector?("#consultant-#{consultant.id}") } }
+    end
+  end
+
+  def have_consultant_choice(consultant)
+    PageMatch.match do |m|
+      m.have %("#{consultant.last_first}" as a consultant choice)
+      m.page { within("#group_consultant_id") {
+        has_selector?(:xpath, %(.//option[@value="#{consultant.id}"])) } }
+    end
+  end
+
+  def have_group_member_name(name)
+    PageMatch.match do |m|
+      m.have %(a group member named #{name})
+      m.page { within("#group-members") { has_content?(name) } }
+    end
+  end
+
+  def have_flash_error(error)
+    PageMatch.match do |m|
+      m.have %(a flash error containing "#{error}")
+      m.page { within("#flash_error") { has_content?(error) } }
+    end
+  end
+
+  def have_clear_contact(contact)
+    PageMatch.match do |m|
+      m.have %(Clear Contact button for "#{contact.last_first}")
+      m.page { within("#contact-#{contact.id}") {
+        has_button?('Clear Contact') } }
+    end
+  end
 end

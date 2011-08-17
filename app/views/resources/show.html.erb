@@ -1,12 +1,12 @@
 <% title "BlitzMail Migrations: Resource", false %>
-<h2 id="device-header">Resource Information for <%= @resource.name %></h2>
+<h2 id="resource-header">Resource Information for <%= @resource.name %></h2>
 <div class="secondary-navigation">
   <ul class="wat-cf">
     <li>
       <%= link_to "Edit", edit_resource_path %>
     </li>
     <li>
-      <%= link_to "Status Page", user_path(current_user) %>
+      <%= link_to "Status Page", user_path(@resource.primary_owner) %>
     </li>
   </ul>
 </div>
@@ -33,16 +33,16 @@
     <div class="right tight"><%= @resource.affiliation %></div>
   </div>
   <div class="group wat-cf">
-    <div class="left label">Calendar Owner</div>
-    <div class="right tight"><%= @resource.oc_user %></div>
-  </div>
-  <div class="group wat-cf">
-    <div class="left label">Migrate</div>
+    <div class="left label">Migrate Calendar?</div>
     <div class="right tight"><%= boolean_display @resource.migrate %></div>
   </div>
   <div class="group wat-cf">
-    <div class="left label">Data Disposition</div>
-    <div class="right tight"><%= @resource.disposition %></div>
+    <div class="left label">Migrate Data?</div>
+    <div class="right tight"><%= boolean_display @resource.migrate_data %></div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label">Secondary Owner</div>
+    <div class="right tight"><%= @resource.secondary_owner_name(true) %></div>
   </div>
   <div class="group wat-cf">
     <div class="left label">Migration Group</div>

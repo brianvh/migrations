@@ -1,0 +1,17 @@
+<div id="resources" class="fieldset">
+  <h2>Resources</h2>
+  <div class="inner">
+    <table class="table">
+      <tr>
+        <th align="left">Name</th>
+        <th align="left">Secondary Owner</th>
+        <th align="left">Dept</th>
+        <th align="left">Dept Group</th>
+        <th align="center">Migrate Calendar</th>
+        <th align="center">Migrate Data</th>
+        <th align="left">Group</th>
+      </tr>
+      <%= render :partial => 'resources/resource', :collection => @resources %>
+    </table>
+  </div>
+</div>

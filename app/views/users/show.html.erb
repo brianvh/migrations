@@ -4,7 +4,7 @@
   <h2>User Info</h2>
   <div class="group wat-cf">
     <div class="left label">Group</div>
-    <div class="right" id="group-name"><%= @user.group_name %></div>
+    <div class="right" id="group-name"><%= links_to_groups(@user).html_safe %></div>
   </div>
 
   <div class="group wat-cf">
@@ -31,3 +31,5 @@
 <%= render 'profile_no' if @profile.nil? %>
 <%= render 'devices_list' unless @devices.empty? %>
 <%= render 'devices_no' if @devices.empty? %>
+<%= render 'resources_list' unless @resources.empty? %>
+<%= render 'resources_no' if @resources.empty? %>

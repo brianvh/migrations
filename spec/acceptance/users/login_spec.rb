@@ -10,7 +10,7 @@ feature "Handling a user returning from a WebAuth login" do
       @user = login_as :client, :uid => 58789, :name => nil
     end
 
-    it { should have_header :user, "User Information for #{@user.name}" }
+    it { should have_header :user, "User Status for #{@user.name}" }
     it { should have_logout_link @user }
     
   end

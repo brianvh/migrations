@@ -8,9 +8,10 @@ gem 'net-dnd', '~> 1.1.2', :require => 'net/dnd'
 gem 'state_machine', '~> 1.0.1'
 gem 'capistrano', '~> 2.6.0'
 gem 'awesome_print', '~> 0.4.0', :require => 'ap'
-gem 'nifty-generators', '~> 0.4.6'
+gem 'jquery-rails', '>= 1.0.12'
 
 group :development, :test do
+  gem 'nifty-generators', '~> 0.4.6'
   gem 'capybara', '~> 1.0.0'
   gem 'page_match', :git => 'git://github.com/brianvh/page_match.git', :branch => 'develop'
   gem 'database_cleaner', '~> 0.6.7'

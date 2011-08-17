@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @user = User.includes([:profiles, :devices]).find(params[:id])
     @profile = @user.profiles.first
     @devices = @user.devices
+    @resources = @user.primary_resource_ownerships
   end
 
 end

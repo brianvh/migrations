@@ -18,24 +18,21 @@
       </div>
       <div id="main-navigation">
         <ul class="wat-cf">
-          <li class="active"><%= link_to "Home", '#' %></li>
-          <li><%= link_to "Profile", '#' %></li>
-          <li><%= link_to "Devices", '#' %></li>
-          <li class="right"><%= link_to "Migrations", '#' %></li>
-          <li class="right"><%= link_to "Groups", '#' %></li>
-          <li class="right"><%= link_to "Resources", '#' %></li>
+          <%= user_nav_tabs %>
+          <%= admin_nav_tabs %>
+          <%= support_nav_tabs %>
         </ul>
       </div>
     </div>
     <div id="wrapper" class="wat-cf">
-      <div class="flash">
-        <% flash.each do |type, message| -%>
-          <div class="message <%= type %>">
-            <p><%= message %></p>
-          </div>
-        <% end -%>
-      </div>
       <div id="main">
+        <div class="flash">
+          <% flash.each do |type, message| -%>
+            <div class="message <%= type %>" id="flash_<%= type %>">
+              <p><%= message %></p>
+            </div>
+          <% end -%>
+        </div><br clear="all">
         <%= yield %>
       </div>
       <div id="sidebar">

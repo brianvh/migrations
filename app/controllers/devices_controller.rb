@@ -16,13 +16,12 @@ class DevicesController < ApplicationController
   def create
     @device = Device.new_from_type(type_param, params[:device])
     
-    init_other_fields
-    
     if @device.save
       current_user.devices << @device
       flash[:notice] = "Successfully created Device."
       redirect_to device_path(@device)
     else
+      flash.now[:error] = "Error creating Device."
       render :action => 'new'
     end
   end
@@ -42,6 +41,7 @@ class DevicesController < ApplicationController
       flash[:notice] = "Successfully updated Device."
       redirect_to device_path(@device)
     else
+      flash.now[:error] = "Error updating Device."
       render :action => 'edit'
     end
   end

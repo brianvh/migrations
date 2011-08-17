@@ -1,22 +1,5 @@
 <% title "BlitzMail Migrations: Group Info", false %>
 <h2 id="group-header">Group Information for <%= @group.name %></h2>
-<div class="secondary-navigation">
-  <ul class="wat-cf">
-    <li>
-      <%= link_to "Add User", "#" %>
-    </li>
-    <li>
-      <%= link_to_function "Add Deptclass", "$('add-deptclass').show('slow')" %>
-    </li>
-    <li>
-      <%= link_to_function "Remove Deptclass", "$('remove-deptclass').show('slow')" %>
-    </li>
-  </ul>
-</div>
-<%= render 'add_deptclass' %>
-<%= render 'remove_deptclass' %>
-<div id="group-members" class="fieldset">
-  <h2>Group Members</h2>
-  <%= render 'users/user_list' unless @users.empty? %>
-  <%= render 'no_users' if @users.empty? %>
-</div>
+<%= render 'contacts/show' %>
+<%= render 'members/show' %>
+<%= render 'consultants/show' %>

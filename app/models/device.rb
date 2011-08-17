@@ -15,8 +15,24 @@ class Device < ActiveRecord::Base
                   :current_browser_choice, :current_email_choice, :office_version_choice,
                   :os_version_choice, :vendor_choice, :kind_choice
 
+  validates_presence_of :vendor_choice, :message => "can't be blank"
   validates_presence_of :vendor, :message => "can't be blank"
+  validates_presence_of :kind_choice, :message => "can't be blank"
   validates_presence_of :kind, :message => "can't be blank"
+  
+  def initialize(attrs)
+    @vendor_other = attrs[:vendor_other]
+    @kind_other = attrs[:kind_other]
+    @os_version_other = attrs[:os_version_other]
+    @office_version_other = attrs[:office_version_other]
+    @current_email_other = attrs[:current_email_other]
+    @current_browser_other = attrs[:current_browser_other]
+    @new_email_other = attrs[:new_email_other]
+    @carrier_other = attrs[:carrier_other]
+    
+    super
+    
+  end
   
   def self.new_from_type(type, attribs={})
     return nil unless [:computer, :mobile].include?(type)

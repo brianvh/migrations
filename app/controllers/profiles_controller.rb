@@ -18,6 +18,7 @@ class ProfilesController < ApplicationController
       flash[:notice] = "Successfully created Profile."
       redirect_to @profile
     else
+      flash.now[:error] = "Error creating Profile."
       render :action => 'new'
     end
   end
@@ -38,6 +39,7 @@ class ProfilesController < ApplicationController
       flash[:notice] = "Successfully updated Profile."
       redirect_to @profile
     else
+      flash.now[:error] = "Error updating Profile."
       render :action => 'edit'
     end
   end

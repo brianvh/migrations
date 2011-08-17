@@ -1,0 +1,9 @@
+<%= render 'members/nav' if current_user.is_support? %>
+<%= render 'members/add_member' if current_user.is_support? %>
+<%= render 'members/add_deptclass' if current_user.is_support? %>
+<%= render 'members/remove_deptclass' if current_user.is_support? %>
+<div id="group-members" class="fieldset">
+  <h2>Group Members</h2>
+  <%= render 'members/list' unless @members.empty? %>
+  <%= content_tag(:p, 'No users assigned to this group.') if @members.empty? %>
+</div>

@@ -1,0 +1,7 @@
+<%= render 'contacts/nav' if current_user.is_support? %>
+<%= render 'contacts/choose' if current_user.is_support?  %>
+<div id="group-contacts" class="fieldset">
+  <h2>Key Contacts</h2>
+  <%= render 'contacts/list' unless @contacts.empty? %>
+  <%= content_tag(:p, 'No key contacts assigned to this group.') if @contacts.empty? %>
+</div>
