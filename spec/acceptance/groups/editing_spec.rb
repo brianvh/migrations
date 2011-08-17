@@ -22,6 +22,11 @@ feature "A Support user editing and managing a newly created group" do
   let(:depts) { %w[ Computing Test\ Group Library ] }
   let(:group) { create :group, :deptclass => depts[0..1].join(', ') }
   let(:path) { group_path group }
+  let(:member_name) { login.name }
+  let(:add_member) {
+    click_link 'Add Member'
+    fill_in :group_member_name, :with => member_name
+    click_button 'Add Member' }
   let(:choose_contact) {
     click_link 'Choose a Contact'
     select users[2].last_first, :from => 'Choose a Member'
@@ -53,6 +58,25 @@ feature "A Support user editing and managing a newly created group" do
     it { should have_flash_notice 'Member was removed from group.' }
     it { should have_group_members 2 }
     it { should_not have_group_member users[2] }
+  end
+
+  context "After adding a member to the group, by name" do
+    before do
+      add_member
+    end
+
+    it { should have_flash_notice "Member \"#{member_name}\" added to group." }
+    it { should have_group_member_name member_name }
+  end
+
+  context "After trying to add a member with an invalid name" do
+    let(:member_name) { 'Bad Name' }
+
+    before do
+      add_member
+    end
+
+    it { should have_flash_error %("#{member_name}" is not a unique match) }
   end
 
   context "After adding a deptclass, with 1 user, to the group" do

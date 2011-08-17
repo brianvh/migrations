@@ -145,4 +145,18 @@ module PageHelpers
         has_selector?(:xpath, %(.//option[@value="#{consultant.id}"])) } }
     end
   end
+
+  def have_group_member_name(name)
+    PageMatch.match do |m|
+      m.have %(a group member named #{name})
+      m.page { within("#group-members") { has_content?(name) } }
+    end
+  end
+
+  def have_flash_error(error)
+    PageMatch.match do |m|
+      m.have %(a flash error containing "#{error}")
+      m.page { within("#flash_error") { has_content?(error) } }
+    end
+  end
 end
