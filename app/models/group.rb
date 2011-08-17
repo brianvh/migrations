@@ -4,6 +4,7 @@ class Group < ActiveRecord::Base
 
   include Groups::Contacts
   include Groups::Members
+  include Groups::Deptclass
   include Groups::Consultants
 
   validates_presence_of :name, :on => :create, :message => "can't be blank"
