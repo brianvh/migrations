@@ -58,4 +58,9 @@ class User < ActiveRecord::Base
   def self.authenticate(authenticator)
     User.find_by_uid(authenticator.uid)
   end
+
+  def self.lookup_by_name(name)
+    lookup = User.new(:name => name)
+    lookup.profile.nil? ? nil : User.find_by_uid(lookup.profile.uid)
+  end
 end
