@@ -71,7 +71,7 @@ class GroupsController < ApplicationController
   end
 
   def choose_contact
-    flash[:notice] = "#{@group.contact_name} added as a Key Contact."
+    flash[:notice] = "#{@group.contact_name} added as a Key Contact." unless @group.contact_name.blank?
     send_to_group
   end
 
@@ -81,7 +81,7 @@ class GroupsController < ApplicationController
   end
 
   def choose_consultant
-    flash[:notice] = "#{@group.consultant_name} assigned as a Support Consultant."
+    flash[:notice] = "#{@group.consultant_name} assigned as a Support Consultant." unless @group.consultant_name.blank?
     send_to_group
   end
 
