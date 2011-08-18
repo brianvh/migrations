@@ -13,8 +13,11 @@
   <div class="group wat-cf">
     <div class="left label"><%= f.label :contact_id, "Choose a Member" %></div>
     <div class="right">
-      <%= f.select :contact_id, @group.members_for_contact_list,
-      {:include_blank => "Choose..."} %>
+      <%= f.select(:contact_id,
+            [""].concat(@group.members_for_contact_list), {},
+            {"data-placeholder" => "Choose contact...",
+             :class => "chzn-select",
+             :style => "width: 300px"}) %>
     </div>
   </div>
 </div>

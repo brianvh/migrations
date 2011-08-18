@@ -1,4 +1,7 @@
 class Group < ActiveRecord::Base
+  
+  default_scope order(:name)
+  
   has_many :memberships
   has_many :users, :through => :memberships
 
@@ -27,6 +30,10 @@ class Group < ActiveRecord::Base
 
   def action
     @action_sym ||= @action.to_sym
+  end
+  
+  def member_deptclasses
+    users.all.map { |u| u.deptclass }.uniq.sort
   end
 
   private

@@ -29,6 +29,23 @@ module ApplicationHelper
     content_tag(:li, link_to("Migrations", '#'), :class => active_tab_class("migrations", "right"))
   end
   
+  def add_chosen_assets
+    content_for :head_css do
+      stylesheet_link_tag "chosen", :cache => true
+    end
+    content_for :head_script do
+      %{
+        <script type="text/javascript">
+        $(document).ready(function() {
+          $(".chzn-select").chosen()
+        });
+        </script>
+      }.html_safe
+    end
+  end
+
+  private
+  
   def active_tab_class(controller_name, classes="")
     classes = classes.split
     active = controller.controller_name == controller_name ? "active" : ""
