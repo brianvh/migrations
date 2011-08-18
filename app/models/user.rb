@@ -80,6 +80,10 @@ class User < ActiveRecord::Base
     lookup = User.new(:name => name)
     lookup.profile.nil? ? nil : User.find_by_uid(lookup.profile.uid)
   end
+  
+  def self.deptclass_unique_array
+    select("DISTINCT(deptclass)").order(:deptclass).map { |u| u.deptclass }
+  end
 
   private
 

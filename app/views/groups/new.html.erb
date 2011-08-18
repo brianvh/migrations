@@ -1,3 +1,13 @@
+<% content_for :head_css do %>
+  <%= stylesheet_link_tag "chosen", :cache => true %>
+<% end -%>
+<% content_for :head_script do %>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $(".chzn-select").chosen()
+  });
+  </script>
+<% end -%>
 <% title "BlitzMail Migrations: New Group", false %>
 <h2 id="group-header">Add a New Group of Users</h2>
 <%= form_for @group do |f| -%>
@@ -20,7 +30,14 @@
     </div>
     <div class="group wat-cf">
       <div class="left label"><%= f.label :deptclass, "Add Deptclass(es)" %></div>
-      <div class="right"><%= f.text_field :deptclass, :size => 60 %></div>
+      <div class="right">
+        <%= f.select(:deptclass,
+              [""].concat(User.deptclass_unique_array), {},
+              {"data-placeholder" => "Choose deptclass...",
+               :multiple => true, 
+               :class => "chzn-select",
+               :style => "width: 50%"}) %>
+      </div>
     </div>
   </div>
 <% end -%>
