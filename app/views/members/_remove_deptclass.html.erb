@@ -12,7 +12,12 @@
   <%= f.hidden_field :action, :value => :remove_deptclass %>
   <div class="group wat-cf">
     <div class="left label"><%= f.label :remove_deptclass, "Deptclass(es)" %></div>
-    <div class="right"><%= f.text_field :remove_deptclass, :size => 60 %></div>
+    <%= f.select(:remove_deptclass,
+          [""].concat(@group.member_deptclasses), {},
+          {"data-placeholder" => "Choose deptclass...",
+           :multiple => true, 
+           :class => "chzn-select",
+           :style => "width: 600px"}) %>
   </div>
 </div>
 <% end -%>
