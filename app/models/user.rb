@@ -85,6 +85,10 @@ class User < ActiveRecord::Base
     select("DISTINCT(deptclass)").order(:deptclass).map { |u| u.deptclass }
   end
 
+  def self.find_for_deptclass(dept, ids_to_exclude=[])
+    User.where(:deptclass => dept).select { |u| ! ids_to_exclude.include?(u.id) }
+  end
+
   private
 
   def fetch_profile
