@@ -31,7 +31,7 @@ class Group < ActiveRecord::Base
   def action
     @action_sym ||= @action.to_sym
   end
-  
+
   def member_deptclasses
     users.all.map { |u| u.deptclass }.uniq.sort
   end
@@ -46,7 +46,7 @@ class Group < ActiveRecord::Base
   end
 
   def deptclass_users
-    @deptclass_users ||= User.where(:deptclass => deptclass)
+    @deptclass_users ||= User.find_for_deptclass(deptclass, member_ids)
   end
 
 end

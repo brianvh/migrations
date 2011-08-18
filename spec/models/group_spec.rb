@@ -95,3 +95,35 @@ describe 'An existing group instance' do
 
   end
 end
+
+describe 'A Group with a member from an exiting deptclass' do
+  subject { @group }
+
+  let(:member) { create :client, :firstname => 'Jack' }
+  let(:dept) { member.deptclass }
+
+  before do
+    @group = create :group, :deptclass => dept
+    @group = Group.find(@group.id)
+  end
+
+  its(:members) { should have(1).member }
+
+  context 'adding the existing deptclass, with no new members' do
+    before do
+      @group.update_attributes :add_deptclass => dept, :action => :add_deptclass
+    end
+
+    its(:members) { should have(1).member }
+  end
+
+  context 'adding the existing deptclass, with 1 new member' do
+    before do
+      @new_member = create :client, :firstname => 'Jill'
+      @group.update_attributes :add_deptclass => dept, :action => :add_deptclass
+    end
+
+    its(:members) { should have(2).members }
+    its(:member_ids) { should == [member.id, @new_member.id] }
+  end
+end
