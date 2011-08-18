@@ -23,9 +23,9 @@ class GroupsController < ApplicationController
   def show
     @group = Group.includes([:users]).find(params[:id])
     send_to_user unless current_user.can_access_group?(@group)
-    @members = @group.members
-    @contacts = @group.contacts
-    @consultants = @group.consultants
+    @members = @group.members.order('lastname, firstname')
+    @contacts = @group.contacts.order('lastname, firstname')
+    @consultants = @group.consultants.order('lastname, firstname')
   end
 
   def update
