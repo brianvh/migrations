@@ -1,13 +1,5 @@
-<% content_for :head_css do %>
-  <%= stylesheet_link_tag "chosen", :cache => true %>
-<% end -%>
-<% content_for :head_script do %>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $(".chzn-select").chosen()
-  });
-  </script>
-<% end -%>
+<% add_chosen_assets %>
+
 <%= form_for @group do |f| -%>
 <div id="add-deptclass" class="fieldset form" style="display: none">
   <h2>Adding a Deptclass</h2>
@@ -28,7 +20,7 @@
             {"data-placeholder" => "Choose deptclass...",
              :multiple => true, 
              :class => "chzn-select",
-             :style => "width: 600px"}) %>
+             :style => "width: 300px"}) %>
     </div>
   </div>
 </div>

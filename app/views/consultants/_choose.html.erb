@@ -13,12 +13,9 @@
   <div class="group wat-cf">
     <div class="left label"><%= f.label :consultant_id, "Choose a Consultant" %></div>
     <div class="right">
-      <%# f.select :consultant_id, Support.group_select_list(@consultants),
-      {:include_blank => "Choose..."} %>
       <%= f.select(:consultant_id,
             [""].concat(Support.group_select_list(@consultants)), {},
             {"data-placeholder" => "Choose consultant...",
-             # :multiple => true,
              :class => "chzn-select",
              :style => "width: 300px"}) %>
     </div>

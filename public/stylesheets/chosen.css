@@ -5,7 +5,8 @@ select.chzn-select {
   min-height: 28px !important;
 }
 .chzn-container {
-  font-size: 13px;
+/*  font-size: 13px;*/
+	font-size: 1.0em;
   position: relative;
   display: inline-block;
   zoom: 1;
