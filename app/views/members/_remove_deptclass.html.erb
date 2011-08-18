@@ -11,7 +11,7 @@
   </div>
   <%= f.hidden_field :action, :value => :remove_deptclass %>
   <div class="group wat-cf">
-    <div class="left label"><%= f.label :remove_deptclass, "Deptclass(es)" %></div>
+    <div class="left label"><%= f.label :remove_deptclass, "Remove Deptclass(es)" %></div>
     <%= f.select(:remove_deptclass,
           [""].concat(@group.member_deptclasses), {},
           {"data-placeholder" => "Choose deptclass...",

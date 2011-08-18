@@ -11,7 +11,7 @@
   </div>
   <%= f.hidden_field :action, :value => :add_deptclass %>
   <div class="group wat-cf">
-    <div class="left label"><%= f.label :add_deptclass, "Deptclass(es)" %></div>
+    <div class="left label"><%= f.label :add_deptclass, "Add Deptclass(es)" %></div>
     <div class="right">
       <%= f.select(:add_deptclass,
             [""].concat(User.deptclass_unique_array), {},
