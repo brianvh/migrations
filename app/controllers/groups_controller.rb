@@ -26,6 +26,7 @@ class GroupsController < ApplicationController
     @members = @group.members.order('lastname, firstname')
     @contacts = @group.contacts.order('lastname, firstname')
     @consultants = @group.consultants.order('lastname, firstname')
+    @calendars = @group.calendars.order('name')
   end
 
   def update

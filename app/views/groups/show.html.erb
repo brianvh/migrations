@@ -4,4 +4,5 @@
 <h2 id="group-header">Group Information for <%= @group.name %></h2>
 <%= render 'contacts/show' %>
 <%= render 'members/show' %>
+<%= render 'calendars/show' unless @calendars.empty? %>
 <%= render 'consultants/show' %>
