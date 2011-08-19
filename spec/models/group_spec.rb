@@ -96,38 +96,6 @@ describe 'An existing group instance' do
   end
 end
 
-describe 'A Group with a member from an exiting deptclass' do
-  subject { @group }
-
-  let(:member) { create :client, :firstname => 'Jack' }
-  let(:dept) { member.deptclass }
-
-  before do
-    @group = create :group, :deptclass => dept
-    @group = Group.find(@group.id)
-  end
-
-  its(:members) { should have(1).member }
-
-  context 'adding the existing deptclass, with no new members' do
-    before do
-      @group.update_attributes :add_deptclass => dept, :action => :add_deptclass
-    end
-
-    its(:members) { should have(1).member }
-  end
-
-  context 'adding the existing deptclass, with 1 new member' do
-    before do
-      @new_member = create :client, :firstname => 'Jill'
-      @group.update_attributes :add_deptclass => dept, :action => :add_deptclass
-    end
-
-    its(:members) { should have(2).members }
-    its(:member_ids) { should == [member.id, @new_member.id] }
-  end
-end
-
 describe 'A Group with a member, with a calendar resource' do
   subject { group }
 
@@ -165,4 +133,48 @@ describe 'A Group with a member, with a calendar resource' do
     end
   end
 
+end
+
+describe 'A Group with a member from an exiting deptclass' do
+  subject { @group }
+
+  let(:member) { create :client, :firstname => 'Jack' }
+  let(:dept) { member.deptclass }
+
+  before do
+    @group = create :group, :deptclass => dept
+    @group = Group.find(@group.id)
+  end
+
+  its(:members) { should have(1).member }
+
+  context 'adding the existing member, by name' do
+    let(:stub_user) { stub(:profile => stub_profile) }
+    let(:stub_profile) { stub(:uid => member.uid) }
+
+    before do
+      User.should_receive(:new).once.and_return(stub_user)
+      @group.update_attributes :member_name => member.name, :action => :add_member
+    end
+
+    its(:members) { should have(1).member }
+  end
+
+  context 'adding the existing deptclass, with no new members' do
+    before do
+      @group.update_attributes :add_deptclass => dept, :action => :add_deptclass
+    end
+
+    its(:members) { should have(1).member }
+  end
+
+  context 'adding the existing deptclass, with 1 new member' do
+    before do
+      @new_member = create :client, :firstname => 'Jill'
+      @group.update_attributes :add_deptclass => dept, :action => :add_deptclass
+    end
+
+    its(:members) { should have(2).members }
+    its(:member_ids) { should == [member.id, @new_member.id] }
+  end
 end
