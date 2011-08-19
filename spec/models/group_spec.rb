@@ -127,3 +127,42 @@ describe 'A Group with a member from an exiting deptclass' do
     its(:member_ids) { should == [member.id, @new_member.id] }
   end
 end
+
+describe 'A Group with a member, with a calendar resource' do
+  subject { group }
+
+  before { calendar }
+
+  let(:member) { create :client, :firstname => 'Jack' }
+  let(:calendar) { create :resource, :primary_owner => member }
+  let(:dept) { member.deptclass }
+
+  context 'adding the member from deptclass, on create' do
+    let(:group) { create :group, :deptclass => dept }
+
+    its(:calendars) { should have(1).calendar }
+
+    context 'removing the member, via their deptclass' do
+      before do
+        @group = Group.find(group.id)
+        @group.update_attributes :remove_deptclass => dept, :action => :remove_deptclass
+      end
+
+      subject { @group }
+
+      its(:calendars) { should have(0).calendars }
+    end
+
+    context 'removing the member, via their member_id' do
+      before do
+        @group = Group.find(group.id)
+        @group.update_attributes :member_id => member.id, :action => :remove_member
+      end
+
+      subject { @group }
+
+      its(:calendars) { should have(0).calendars }
+    end
+  end
+
+end
