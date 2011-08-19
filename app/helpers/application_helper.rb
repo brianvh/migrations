@@ -34,6 +34,7 @@ module ApplicationHelper
       stylesheet_link_tag "chosen", :cache => true
     end
     content_for :head_script do
+      javascript_include_tag("chosen.jquery.min", :cache => true) + 
       %{
         <script type="text/javascript">
         $(document).ready(function() {

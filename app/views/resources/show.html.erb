@@ -46,7 +46,7 @@
   </div>
   <div class="group wat-cf">
     <div class="left label">Migration Group</div>
-    <div class="right tight"><%= @resource.group.nil? ? "Not Assigned" : @resource.group.name %></div>
+    <div class="right tight"><%= @resource.groups.empty? ? "Not Assigned" : @resource.groups.join(", ") %></div>
   </div>
   <div class="group wat-cf">
     <div class="left label">Notes</div>

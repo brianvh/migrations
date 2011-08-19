@@ -6,7 +6,6 @@
       "web-app-theme/override", :cache => true %>
   <%= yield :head_css %>
   <%= javascript_include_tag :defaults, :cache => true %>
-  <%= javascript_include_tag "chosen.jquery.min", :cache => true %>
   <%= csrf_meta_tag %>
   <%= yield :head_script %>
 </head>
