@@ -25,7 +25,8 @@ module Groups
       end
 
       def add_member_user(mem_id)
-        self.member_users.create(:user_id => mem_id)
+        member = self.member_users.create(:user_id => mem_id)
+        add_calendars(member.user)
       end
 
       def lookup_member_name
@@ -38,7 +39,9 @@ module Groups
 
       def remove_member
         return unless removing_member?
-        member_user_to_remove.destroy unless member_user_to_remove.nil?
+        return if member_user_to_remove.nil?
+        remove_calendars(member_user_to_remove.user)
+        member_user_to_remove.destroy
       end
 
       def removing_member?

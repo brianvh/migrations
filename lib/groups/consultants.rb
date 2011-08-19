@@ -32,7 +32,7 @@ module Groups
       end
 
       def adding_consultant?
-        consultant_id.nil? ? false : action == :choose_consultant
+        consultant_id.blank? ? false : action == :choose_consultant
       end
 
       def removing_consultant?

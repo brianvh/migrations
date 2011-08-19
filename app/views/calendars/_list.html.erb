@@ -1,0 +1,13 @@
+<div class="inner">
+  <table class="table">
+    <tr>
+      <th align="left">Name</th>
+      <th align="left">Primary Owner</th>
+      <th align="left">Secondary Owner</th>
+      <th align="left">Dept</th>
+      <th align="left">Migrate Calendar</th>
+      <th align="left">Migrate Data</th>
+    </tr>
+    <%= render :partial => 'calendars/calendar', :collection => @calendars %>
+  </table>
+</div>

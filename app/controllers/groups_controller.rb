@@ -23,9 +23,10 @@ class GroupsController < ApplicationController
   def show
     @group = Group.includes([:users]).find(params[:id])
     send_to_user unless current_user.can_access_group?(@group)
-    @members = @group.members
-    @contacts = @group.contacts
-    @consultants = @group.consultants
+    @members = @group.members.order('lastname, firstname')
+    @contacts = @group.contacts.order('lastname, firstname')
+    @consultants = @group.consultants.order('lastname, firstname')
+    @calendars = @group.calendars.order('name')
   end
 
   def update
@@ -71,7 +72,7 @@ class GroupsController < ApplicationController
   end
 
   def choose_contact
-    flash[:notice] = "#{@group.contact_name} added as a Key Contact."
+    flash[:notice] = "#{@group.contact_name} added as a Key Contact." unless @group.contact_name.blank?
     send_to_group
   end
 
@@ -81,7 +82,7 @@ class GroupsController < ApplicationController
   end
 
   def choose_consultant
-    flash[:notice] = "#{@group.consultant_name} assigned as a Support Consultant."
+    flash[:notice] = "#{@group.consultant_name} assigned as a Support Consultant." unless @group.consultant_name.blank?
     send_to_group
   end
 

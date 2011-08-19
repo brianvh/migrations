@@ -82,7 +82,7 @@ feature "A Support user editing and managing a newly created group" do
   context "After adding a deptclass, with 1 user, to the group" do
     before do
       click_link 'Add Deptclass'
-      fill_in 'group_add_deptclass', :with => depts[2]
+      select depts[2], :from => 'Add Deptclass(es)'
       click_button 'Add to Group'
     end
 
@@ -94,7 +94,7 @@ feature "A Support user editing and managing a newly created group" do
   context "After removing a deptclass, with 1 user, from the group" do
     before do
       click_link 'Remove Deptclass'
-      fill_in 'group_remove_deptclass', :with => depts[0]
+      select depts[0], :from => 'Remove Deptclass(es)'
       click_button 'Remove from Group'
     end
 

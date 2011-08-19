@@ -40,3 +40,31 @@ describe "An existing User instance, updating from the DND" do
     end
   end
 end
+
+describe "Finding users by their deptclass values" do
+  subject { User.find_for_deptclass(deptclass, exclude_ids) }
+
+  let(:users) { [
+    create(:client, :firstname => 'Joe'),
+    create(:client, :firstname => 'Jill') ]
+  }
+  let(:deptclass) { users[0].deptclass }
+
+  context "excluding no users" do
+    let(:exclude_ids) { [] }
+
+    it { should have(2).items }
+  end
+
+  context "excluding the first user" do
+    let(:exclude_ids) { [users[0].id] }
+
+    it { should have(1).items }
+  end
+
+  context "excluding all users" do
+    let(:exclude_ids) { [users[0].id, users[1].id] }
+
+    it { should have(0).items }
+  end
+end

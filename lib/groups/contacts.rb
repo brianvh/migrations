@@ -33,7 +33,7 @@ module Groups
       end
 
       def adding_contact?
-        contact_id.nil? ? false : action == :choose_contact
+        contact_id.blank? ? false : action == :choose_contact
       end
 
       def removing_contact?

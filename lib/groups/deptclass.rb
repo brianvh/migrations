@@ -41,11 +41,16 @@ module Groups
       def remove_by_deptclass
         return unless removing_deptclass?
         @members_removed = deptclass_members_to_remove.size
-        deptclass_members_to_remove.map(&:destroy)
+        deptclass_members_to_remove.each { |mem| remove_member_user(mem) }
       end
 
       def adding_deptclass?
         add_deptclass.blank? ? false : [:create, :add_deptclass].include?(action)
+      end
+
+      def remove_member_user(member_user)
+        remove_calendars(member_user.user)
+        member_user.destroy
       end
 
       def removing_deptclass?

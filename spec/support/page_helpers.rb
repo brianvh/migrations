@@ -167,4 +167,19 @@ module PageHelpers
         has_button?('Clear Contact') } }
     end
   end
+
+  def have_group_calendars
+    PageMatch.match do |m|
+      m.have "group calendar resources"
+      m.page { within("#main-wide") { has_selector?('#group-calendars') } }
+    end
+  end
+
+  def have_group_calendar(calendar)
+    PageMatch.match do |m|
+      m.have %("#{calendar.name}" as a Calendar Resource)
+      m.page { within("#group-calendars") {
+        has_selector?("#calendar-#{calendar.id}") } }
+    end
+  end
 end

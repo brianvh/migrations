@@ -1,4 +1,7 @@
 class Group < ActiveRecord::Base
+  
+  default_scope order(:name)
+  
   has_many :memberships
   has_many :users, :through => :memberships
 
@@ -6,6 +9,7 @@ class Group < ActiveRecord::Base
   include Groups::Members
   include Groups::Deptclass
   include Groups::Consultants
+  include Groups::Calendars
 
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   validates_uniqueness_of :name, :on => :create, :message => "must be unique"
@@ -29,6 +33,10 @@ class Group < ActiveRecord::Base
     @action_sym ||= @action.to_sym
   end
 
+  def member_deptclasses
+    users.all.map { |u| u.deptclass }.uniq.sort
+  end
+
   private
 
   def valid_deplclasses?
@@ -39,7 +47,7 @@ class Group < ActiveRecord::Base
   end
 
   def deptclass_users
-    @deptclass_users ||= User.where(:deptclass => deptclass)
+    @deptclass_users ||= User.find_for_deptclass(deptclass, member_ids)
   end
 
 end
