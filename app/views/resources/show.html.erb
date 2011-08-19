@@ -44,14 +44,6 @@
     <div class="left label">Secondary Owner</div>
     <div class="right tight"><%= @resource.secondary_owner_name(true) %></div>
   </div>
-  <div class="group wat-cf">
-    <div class="left label">Migration Group</div>
-    <div class="right tight"><%= @resource.groups.empty? ? "Not Assigned" : @resource.groups.each.map { |r| r.name }.join(", ") %></div>
-  </div>
-  <div class="group wat-cf">
-    <div class="left label">Notes</div>
-    <div class="right tight"><%= @resource.notes %></div>
-  </div>
 </div>
 
 
