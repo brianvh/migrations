@@ -9,6 +9,7 @@ class Group < ActiveRecord::Base
   include Groups::Members
   include Groups::Deptclass
   include Groups::Consultants
+  include Groups::Calendars
 
   validates_presence_of :name, :on => :create, :message => "can't be blank"
   validates_uniqueness_of :name, :on => :create, :message => "must be unique"
