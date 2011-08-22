@@ -3,6 +3,7 @@
 <% title "BlitzMail Migrations: Group Info", false %>
 <h2 id="group-header">Group Information for <%= @group.name %></h2>
 <%= render 'contacts/show' %>
-<%= render 'members/show' %>
+<%= render 'members/show' unless show_devices? %>
+<%= render 'devices/show' if show_devices? %>
 <%= render 'calendars/show' unless @calendars.empty? %>
 <%= render 'consultants/show' %>

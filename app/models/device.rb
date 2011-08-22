@@ -39,6 +39,11 @@ class Device < ActiveRecord::Base
     type.to_s.titlecase.constantize.send(:new, attribs)
   end
 
+  def self.for_group(group_id)
+    Device.includes([:user => :groups]).where('groups.id' => group_id).
+          order('users.lastname, users.firstname')
+  end
+
   def device_name
     "#{vendor} #{kind}"
   end
