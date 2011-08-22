@@ -17,6 +17,7 @@ module Groups
         return unless adding_member?
         return bad_member_name if lookup_member_name.nil?
         @member_name = lookup_member_name.name
+        return existing_member if member_ids.include?(lookup_member_name.id)
         add_member_user(lookup_member_name.id)
       end
 
@@ -35,6 +36,10 @@ module Groups
 
       def bad_member_name
         @member_name_error = %("#{member_name}" is not a unique match in the DND.)
+      end
+
+      def existing_member
+        @member_name_error = %("#{member_name}" is already a member of this group.)
       end
 
       def remove_member
