@@ -1,7 +1,14 @@
 <tr id="contact-<%= contact.id %>">
   <td><%= link_to contact.last_first, user_path(contact) %></td>
   <td><%= contact.deptclass %></td>
-  <td><%= contact.profile_summary %></td>
-  <td><%= contact.migration_date %></td>
+  <td id="contact-<%= contact.id %>-profile">
+    <%= contact.profile_state %>
+  </td>
+  <td id="contact-<%= contact.id %>-devices">
+    &nbsp;<%= contact.devices.size %>
+  </td>
+  <td id="contact-<%= contact.id %>-migration">
+    <%= contact.migration_state %>
+  </td>
   <td><%= render 'contacts/clear', :contact => contact if current_user.is_support? %></td>
 </tr>
