@@ -37,6 +37,7 @@ class ResourcesController < ApplicationController
     if @resource.update_attributes(params[:resource])
       redirect_to @resource, :notice  => "Successfully updated resource."
     else
+      flash.now[:error] = "Error updating Resource."
       render :action => 'edit'
     end
   end
