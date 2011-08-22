@@ -20,7 +20,7 @@ class Device < ActiveRecord::Base
   validates_presence_of :kind_choice, :message => "can't be blank"
   validates_presence_of :kind, :message => "can't be blank"
   
-  def initialize(attrs)
+  def initialize(attrs={})
     @vendor_other = attrs[:vendor_other]
     @kind_other = attrs[:kind_other]
     @os_version_other = attrs[:os_version_other]
