@@ -182,4 +182,12 @@ module PageHelpers
         has_selector?("#calendar-#{calendar.id}") } }
     end
   end
+
+  def have_group_member_devices(member, num)
+    PageMatch.match do |m|
+      m.have %(#{num} device#{num == 1 ? '' : 's'} listed for member #{member.last_first})
+      m.page { within("#member-#{member.id}-devices") {
+        has_content?(num.to_s) } }
+    end
+  end
 end
