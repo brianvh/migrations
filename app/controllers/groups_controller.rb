@@ -23,7 +23,11 @@ class GroupsController < ApplicationController
   def show
     @group = Group.includes([:users]).find(params[:id])
     send_to_user unless current_user.can_access_group?(@group)
-    @members = @group.members.order('lastname, firstname')
+    if show_devices?
+      @devices = Device.for_group(@group.id)
+    else
+      @members = @group.members.order('lastname, firstname')
+    end
     @contacts = @group.contacts.order('lastname, firstname')
     @consultants = @group.consultants.order('lastname, firstname')
     @calendars = @group.calendars.order('name')
@@ -37,6 +41,12 @@ class GroupsController < ApplicationController
       render :show
     end
   end
+
+  def show_devices?
+    params[:view] == 'devices'
+  end
+
+  helper_method :show_devices?
 
   private
 

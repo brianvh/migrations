@@ -1,0 +1,6 @@
+<%= render 'devices/nav' %>
+<div id="group-devices" class="fieldset">
+  <h2>Group Member Devices</h2>
+  <%= render 'devices/list' unless @devices.empty? %>
+  <%= content_tag(:p, 'No group members have entered any devices.') if @devices.empty? %>
+</div>

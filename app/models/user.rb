@@ -64,12 +64,17 @@ class User < ActiveRecord::Base
     groups.first.nil? ? '' : groups.first.name
   end
 
-  def profile_summary
-    'TODO'
+  def profile_state
+    'Pending' if migration_profile.nil?
+    'Submitted'
   end
 
-  def migration_date
-    'TODO'
+  def migration_profile
+    @migration_profile ||= profiles.first
+  end
+
+  def migration_state
+    'Pending'
   end
 
   def self.authenticate(authenticator)

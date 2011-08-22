@@ -20,7 +20,7 @@ class Device < ActiveRecord::Base
   validates_presence_of :kind_choice, :message => "can't be blank"
   validates_presence_of :kind, :message => "can't be blank"
   
-  def initialize(attrs)
+  def initialize(attrs={})
     @vendor_other = attrs[:vendor_other]
     @kind_other = attrs[:kind_other]
     @os_version_other = attrs[:os_version_other]
@@ -37,6 +37,11 @@ class Device < ActiveRecord::Base
   def self.new_from_type(type, attribs={})
     return nil unless [:computer, :mobile].include?(type)
     type.to_s.titlecase.constantize.send(:new, attribs)
+  end
+
+  def self.for_group(group_id)
+    Device.includes([:user => :groups]).where('groups.id' => group_id).
+          order('users.lastname, users.firstname')
   end
 
   def device_name
