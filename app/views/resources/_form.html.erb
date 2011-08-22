@@ -80,7 +80,7 @@
         <%= f.label :secondary_owner_name, "Secondary Owner" %>
       </div>
       <div class="right">
-        <%= f.text_field :secondary_owner_name %>
+        <%= f.text_field :secondary_owner_name, :value => @resource.display_secondary_owner_name.blank? ? @resource.secondary_owner_name : @resource.display_secondary_owner_name %>
       </div>
     </div>
 
