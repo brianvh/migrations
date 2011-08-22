@@ -29,5 +29,13 @@ feature "A Support user viewing the devices associated with group members" do
     it { should have_group_members 2 }
     it { should have_group_member_devices members[0], 2 }
     it { should have_link 'View Devices' }
+
+    context "After clicking the View Devices link" do
+      before { click_link 'View Devices' }
+
+      it { should have_link 'View Members' }
+      it { should have_group_devices }
+      it { should have_group_device devices[2] }
+    end
   end
 end

@@ -190,4 +190,21 @@ module PageHelpers
         has_content?(num.to_s) } }
     end
   end
+
+  def have_group_devices
+    PageMatch.match do |m|
+      m.have "a list of group member devices"
+      m.page { within("#group-devices") {
+        has_no_content?('No group members have entered any devices.') }
+      }
+    end
+  end
+
+  def have_group_device(device)
+    PageMatch.match do |m|
+      m.have %("#{device.device_name}" listed as a device for #{device.user.last_first})
+      m.page { within("#group-devices") {
+        has_selector?("#device-#{device.id}") } }
+    end
+  end
 end
