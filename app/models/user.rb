@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def profile_state
-    'Pending' if migration_profile.nil?
+    return 'Pending' if migration_profile.nil?
     'Submitted'
   end
 
