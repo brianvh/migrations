@@ -36,6 +36,10 @@ class Group < ActiveRecord::Base
   def member_deptclasses
     users.all.map { |u| u.deptclass }.uniq.sort
   end
+  
+  def device_count
+    contacts.count + members.count
+  end
 
   private
 
