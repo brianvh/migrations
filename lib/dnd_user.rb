@@ -6,7 +6,7 @@ module DNDUser
 
   def profile_fields
     %w(uid name firstname initials lastname deptclass expires netid email 
-        emailsuffix mailboxtype affiliation blitzserv phone)
+        emailsuffix mailboxtype affiliation blitzserv phone assignednetid)
   end
 
   def profile_to_attributes
