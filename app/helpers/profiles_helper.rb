@@ -21,4 +21,9 @@ module ProfilesHelper
     check_box_tag("profile[used_email_choices][]", choice, checked, options = {:id => "email_choice_#{index}" } )
   end
 
+  def link_to_toggle_review_status(profile)
+    return "" unless current_user.is_support?
+    content_tag :li, link_to("Mark as #{profile.state}", '#')
+  end
+
 end

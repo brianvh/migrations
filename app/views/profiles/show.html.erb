@@ -8,6 +8,7 @@
     <li>
       <%= link_to "Status Page", user_path(@profile.user) %>
     </li>
+    <%= link_to_toggle_review_status(@profile) %>
   </ul>
 </div>
 <div class="fieldset form" id="email-services">
