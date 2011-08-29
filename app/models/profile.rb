@@ -7,6 +7,18 @@ class Profile < ActiveRecord::Base
   serialize :used_email_clients
                       
   before_save :nullify_boolean_attributes
+  
+  state_machine :initial => :submitted do
+    
+    event :reviewed do
+      transition :submitted => :reviewed
+    end
+    
+    event :reset do
+      transition all => :submitted
+    end
+    
+  end
 
   def used_email_choices=(choices)
     unless choices.nil?
