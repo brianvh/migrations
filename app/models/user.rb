@@ -66,6 +66,8 @@ class User < ActiveRecord::Base
 
   def profile_state
     return 'Pending' if migration_profile.nil?
+    return "Reviewed" if migration_profile.reviewed?
+    return 'Incomplete' if migration_profile.missing_vital_attributes?
     'Submitted'
   end
 
