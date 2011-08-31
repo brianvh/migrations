@@ -40,6 +40,32 @@ class Group < ActiveRecord::Base
   def member_count
     contacts.count + members.count
   end
+  
+  def invitations_sent
+    @invitations_sent || 0
+  end
+  
+  
+  def send_invitations
+    bcc = []
+    sent_to_ids = []
+    recips = contacts.map { |c| c.email } # contacts always get email addressed to them
+    memberships.find_all_by_type('Member').each do |m| # other group members addressed in bulk as bcc
+      unless m.invitation_sent || !m.user.needs_migration?
+        bcc << m.user.email
+        sent_to_ids << m.id
+      end
+    end
+    
+    unless recips.empty? && bcc.empty?
+      GroupMailer.invitation(self, recips, bcc).deliver
+      Membership.update_all({:invitation_sent => true},
+                             "group_id = #{self.id} AND type = 'Member' AND id IN (#{sent_to_ids.join(',')})")
+    end
+
+    @invitations_sent = recips.count + bcc.count
+
+  end
 
   private
 

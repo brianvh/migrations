@@ -109,4 +109,11 @@ class GroupsController < ApplicationController
     redirect_to user_path(current_user)
     false
   end
+
+  def send_invitations
+    @group.send_invitations
+    flash[:notice] = "#{@group.invitations_sent} invitation" +
+                     "#{@group.invitations_sent == 1 ? '' : 's'} sent."
+    send_to_group
+  end
 end

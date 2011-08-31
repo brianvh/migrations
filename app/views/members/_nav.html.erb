@@ -1,8 +1,9 @@
 <div class="secondary-navigation">
   <ul class="wat-cf">
+    <li><%= link_to 'View Devices', group_path(@group, :view => 'devices') %></li>
     <li><%= show_div_link 'Add Member', 'add-member' %></li>
     <li><%= show_div_link 'Add Deptclass', 'add-deptclass' %></li>
     <li><%= show_div_link 'Remove Deptclass', 'remove-deptclass' %></li>
-    <li><%= link_to 'View Devices', group_path(@group, :view => 'devices') %></li>
+    <li><%= show_div_link 'Send Invitations', 'send-invitations' %></li>
   </ul>
 </div>

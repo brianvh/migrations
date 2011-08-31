@@ -1,0 +1,22 @@
+<%= form_for @group do |f| -%>
+<div id="send-invitations" class="fieldset form" style="display: none">
+  <h2>Compose and Send Invitation Email</h2>
+  <div class="group navform wat-cf">
+    <div class="text_button_padding">
+      <%= hide_div_link 'Cancel', 'send-invitations' %>
+    </div>
+    <div class="right">
+      <button class="button" type="submit">Send Invitations</button>
+    </div>
+  </div>
+  <%= f.hidden_field :action, :value => :send_invitations %>
+  <div class="group wat-cf">
+    <div class="left label"><%= f.label :invite_msg, "Message" %></div>
+    <div class="right">
+      <%= f.text_area :invite_msg, :size => '80x10', :value => !@group.invite_msg.blank? ? @group.invite_msg :
+      %{In preparation for moving your email and calendar accounts to Blitz2, we request that you visit our migration information tracking system and provide a bit of information about your current email and calendar accounts, your computing environment, and the computing devices you'll need configured for Blitz2.
+} %>
+    </div>
+  </div>
+</div>
+<% end -%>
