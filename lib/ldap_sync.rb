@@ -10,7 +10,7 @@ module LDAPSync
       users = ldap.users_by_uid(options[:filter], options[:attrs])
     end
     users.map! { |user| new_entry(user, options[:attrs]) }
-    users.inject({}) { |hash, user| hash[user.dnduid] = user ; hash }
+    users.inject({}) { |hash, user| hash[user.dnduid.to_i] = user ; hash }
   end
 
   def self.new_entry(user_hash, attrs)
