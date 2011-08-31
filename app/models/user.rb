@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :uid, :on => :create, :message => "must be unique"
 
   delegate  :netid, :affiliation, :blitzserv, :email, :emailsuffix,
-            :mailboxtype, :phone, :assignednetid, :to => :profile
+            :phone, :assignednetid, :to => :profile
 
   def is_support?
     false
