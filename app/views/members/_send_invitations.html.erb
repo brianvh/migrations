@@ -13,9 +13,9 @@
   <div class="group wat-cf">
     <div class="left label"><%= f.label :invite_msg, "Message" %></div>
     <div class="right">
-      <%= f.text_area :invite_msg, :size => '80x10', :value => !@group.invite_msg.blank? ? @group.invite_msg : %{
-In preparation for moving your email and calendar accounts to Blitz2, we request that you visit our migration tracking system and provide a bit of information about you, your use of email, and the computing devices you use. You may log in and provide that information at the URL listed below.
-      } %>
+      <%= f.text_area :invite_msg, :size => '80x10', :value => !@group.invite_msg.blank? ? @group.invite_msg :
+      %{In preparation for moving your email and calendar accounts to Blitz2, we request that you visit our migration information tracking system and provide a bit of information about your current email and calendar accounts, your computing environment, and the computing devices you'll need configured for Blitz2.
+} %>
     </div>
   </div>
 </div>

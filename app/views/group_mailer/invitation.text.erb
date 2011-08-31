@@ -1,7 +1,5 @@
-Dear <%= @user.name %>,
-
 <%= @group.invite_msg %>
-
 Thank you.
+The Blitz2 Migrations Team
 
-Log in to begin completing your profile here: <<%= profile_path(@user) %>>.
+Log in and begin completing your profile here: <<%= login_url(:only_path => false) %>>.

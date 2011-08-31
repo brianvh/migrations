@@ -76,7 +76,17 @@ class User < ActiveRecord::Base
   end
 
   def migration_state
+    return 'Complete' if mailboxtype == 'cloud'
     'Pending'
+  end
+  
+  def needs_migration?
+    return false if mailboxtype == 'cloud'
+    true
+  end
+  
+  def invitation_sent_for_group?(group)
+    memberships.where(:group_id => group.id, :type => 'Member').first.invitation_sent?
   end
 
   def self.authenticate(authenticator)

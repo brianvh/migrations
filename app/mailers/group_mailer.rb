@@ -1,10 +1,9 @@
 class GroupMailer < ActionMailer::Base
   default :from => "help@dartmouth.edu"
-  
-  def invitation(group, user)
+
+  def invitation(group, recipients, bcc)
     @group = group
-    @user = user
-    mail(:to => user.email, :subject => "B2B Migration Profile Request") if m.migration_profile.nil?
+    mail(:to => recipients, :bcc => bcc, :subject => "B2B Migration Profile Request")
   end
   
 end
