@@ -90,7 +90,11 @@ describe "Syncing users from the daily LDAP hash" do
   end
 
   context "When a new user is present" do
-    
+    let(:stub3) { ldap_stub(58789, 'Computing') }
+    before { ldap_hash[stub3.dnduid] = stub3 }
+
+    its([:updated]) { should == 2 }
+    its([:added]) { should == 1 }
   end
 
   context "When a user is no longer present" do
