@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include DNDUser
+  include LDAPUser
   
   has_many :profiles
   has_many :devices
