@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include DNDUser
+  include LDAPUser
   
   has_many :profiles
   has_many :devices
@@ -10,6 +11,8 @@ class User < ActiveRecord::Base
 
   before_validation :valid_in_dnd?, :on => :create
   validates_uniqueness_of :uid, :on => :create, :message => "must be unique"
+
+  after_create :activate
 
   delegate  :netid, :affiliation, :blitzserv, :email, :emailsuffix,
             :phone, :assignednetid, :to => :profile
@@ -34,6 +37,25 @@ class User < ActiveRecord::Base
       transition any => :pending
     end
 
+  end
+
+  state_machine :initial => :pending do
+
+    event :activate do
+      transition any => :active
+    end
+
+    event :deactivate do
+      transition any => :expired
+    end
+
+    event :skip_migration do
+      transition :active => :do_not_migrate
+    end
+
+    event :reset do
+      transition any => :pending
+    end
   end
 
   def is_support?
