@@ -13,6 +13,28 @@ class User < ActiveRecord::Base
 
   delegate  :netid, :affiliation, :blitzserv, :email, :emailsuffix,
             :phone, :assignednetid, :to => :profile
+  
+  after_create :activate
+  
+  state_machine :initial => :pending do
+
+    event :activate do
+      transition any => :active
+    end
+
+    event :deactivate do
+      transition any => :expired
+    end
+
+    event :skip_migration do
+      transition :active => :do_not_migrate
+    end
+
+    event :reset do
+      transition any => :pending
+    end
+
+  end
 
   def is_support?
     false
