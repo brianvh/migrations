@@ -54,7 +54,7 @@ class SessionsController < ApplicationController
   def app_url
     "http://#{app_name}." << case env_to_sym
       when :development then 'local/'
-      when :staging     then 'webapps.dartmouth.edu/'
+      when :staging     then 'webapp.dartmouth.edu/'
       when :production  then 'dartmouth.edu/'
     end
   end

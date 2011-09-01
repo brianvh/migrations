@@ -42,5 +42,13 @@ module Migrations
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    config.action_mailer.default_url_options = { :host => case Rails.env
+        when 'development' then 'migrations.local'
+        when 'staging'     then 'migrations.webapp.dartmouth.edu'
+        when 'production'  then 'migrations.dartmouth.edu'
+      end
+     }
+    
   end
 end

@@ -68,3 +68,43 @@ describe "Finding users by their deptclass values" do
     it { should have(0).items }
   end
 end
+
+describe "Syncing users from the daily LDAP hash" do
+
+  let(:users) { [
+    create(:client, :firstname => 'Joe'),
+    create(:client, :firstname => 'Jill') ]
+  }
+  let(:stub1) { ldap_stub(101, 'Test Group') }
+  let(:stub2) { ldap_stub(102, 'Computing') }
+  let(:ldap_hash) { {stub1.dnduid => stub1, stub2.dnduid => stub2} }
+
+  before { users }
+
+  subject { User.sync_from_ldap(ldap_hash) }
+
+  context "When the number of users is constant" do
+    its([:updated]) { should == 2 }
+    its([:added]) { should == 0 }
+    its([:expired]) { should == 0 }
+  end
+
+  context "When a new dnduid is present" do
+    let(:stub3) { ldap_stub(58789, 'Computing') }
+    before { ldap_hash[stub3.dnduid] = stub3 }
+
+    its([:updated]) { should == 2 }
+    its([:added]) { should == 1 }
+  end
+
+  context "When an exiting user's dnduid is no longer present" do
+    before { ldap_hash.delete(stub2.dnduid) }
+
+    its([:updated]) { should == 1 }
+    its([:expired]) { should == 1 }
+  end
+end
+
+def ldap_stub(uid, dept, expires=nil)
+  stub(:dnduid => uid, :dnddeptclass => dept, :dndexpires => expires)
+end

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include DNDUser
+  include LDAPUser
   
   has_many :profiles
   has_many :devices
@@ -11,8 +12,30 @@ class User < ActiveRecord::Base
   before_validation :valid_in_dnd?, :on => :create
   validates_uniqueness_of :uid, :on => :create, :message => "must be unique"
 
+  after_create :activate
+
   delegate  :netid, :affiliation, :blitzserv, :email, :emailsuffix,
-            :mailboxtype, :phone, :to => :profile
+            :phone, :assignednetid, :to => :profile
+
+  state_machine :initial => :pending do
+
+    event :activate do
+      transition any => :active
+    end
+
+    event :deactivate do
+      transition any => :expired
+    end
+
+    event :skip_migration do
+      transition :active => :do_not_migrate
+    end
+
+    event :reset do
+      transition any => :pending
+    end
+
+  end
 
   def is_support?
     false
@@ -65,7 +88,9 @@ class User < ActiveRecord::Base
   end
 
   def profile_state
-    'Pending' if migration_profile.nil?
+    return 'Pending' if migration_profile.nil?
+    return "Reviewed" if migration_profile.reviewed?
+    return 'Incomplete' if migration_profile.missing_vital_attributes?
     'Submitted'
   end
 
@@ -74,7 +99,17 @@ class User < ActiveRecord::Base
   end
 
   def migration_state
+    return 'Complete' if mailboxtype == 'cloud'
     'Pending'
+  end
+  
+  def needs_migration?
+    return false if mailboxtype == 'cloud'
+    true
+  end
+  
+  def invitation_sent_for_group?(group)
+    memberships.where(:group_id => group.id, :type => 'Member').first.invitation_sent?
   end
 
   def self.authenticate(authenticator)
