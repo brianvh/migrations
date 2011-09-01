@@ -33,8 +33,8 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: migrations_production
   pool: 5
+  database: migrations_app_db
   username: migrations
-  password:
-  socket: /tmp/mysql.sock
+  password: "scyt0[stroam"
+  host: mysql.dartmouth.edu
