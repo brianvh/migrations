@@ -89,7 +89,7 @@ describe "Syncing users from the daily LDAP hash" do
     its([:expired]) { should == 0 }
   end
 
-  context "When a new user is present" do
+  context "When a new dnduid is present" do
     let(:stub3) { ldap_stub(58789, 'Computing') }
     before { ldap_hash[stub3.dnduid] = stub3 }
 
@@ -97,8 +97,11 @@ describe "Syncing users from the daily LDAP hash" do
     its([:added]) { should == 1 }
   end
 
-  context "When a user is no longer present" do
-    
+  context "When an exiting user's dnduid is no longer present" do
+    before { ldap_hash.delete(stub2.dnduid) }
+
+    its([:updated]) { should == 1 }
+    its([:expired]) { should == 1 }
   end
 end
 

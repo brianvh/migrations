@@ -39,12 +39,13 @@ module LDAPUser
    end
 
    def add_from_ldap
-     add_uids.each { |uid| User.create(:uid => uid) }
+     add_uids.each { |uid| Client.create(:uid => uid) }
      sync_results[:added] = add_uids.size
    end
 
    def expire_from_ldap
-
+     expire_uids.each { |uid| update_users[uid].deactivate_from_ldap }
+     sync_results[:expired] = expire_uids.size
    end
 
    def update_users
@@ -95,6 +96,11 @@ module LDAPUser
      self.deptclass = entry.dnddeptclass unless entry.dnddeptclass.nil?
      self.expire_date = entry.dndexpires.to_date unless entry.dndexpires.nil?
      self.save
+   end
+
+   def deactivate_from_ldap
+     return if self.expired?
+     self.deactivate
    end
 
  end
