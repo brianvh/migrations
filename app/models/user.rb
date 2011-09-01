@@ -136,7 +136,6 @@ class User < ActiveRecord::Base
     Net::DartmouthDND.start(profile_fields) do |dnd|
       dnd_prof = dnd.find(uid || name, :one)
     end
-    Rails.logger.info("\nProfile Fetched!\n")
     @profile = dnd_prof
     @profile_fetched = true
     resync_profile
