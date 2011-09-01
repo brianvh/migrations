@@ -16,9 +16,7 @@ class User < ActiveRecord::Base
 
   delegate  :netid, :affiliation, :blitzserv, :email, :emailsuffix,
             :phone, :assignednetid, :to => :profile
-  
-  after_create :activate
-  
+
   state_machine :initial => :pending do
 
     event :activate do
