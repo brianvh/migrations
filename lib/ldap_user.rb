@@ -14,7 +14,6 @@ module LDAPUser
 
    def sync_from_ldap(ldap_hash)
      start_sync(ldap_hash)
-     Rails.logger.info("\nldap_users: #{ldap_users.inspect}\n")
      update_from_ldap
      add_from_ldap
      expire_from_ldap
