@@ -1,4 +1,7 @@
 class Resource < ActiveRecord::Base
+  
+  default_scope order(:name)
+  
   has_many :memberships
   has_many :groups, :through => :memberships
 
