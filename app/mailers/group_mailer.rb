@@ -3,7 +3,7 @@ class GroupMailer < ActionMailer::Base
 
   def invitation(group, recipients, bcc)
     @group = group
-    mail(:to => recipients, :bcc => bcc, :subject => "B2B Migration Profile Request")
+    mail(:to => recipients, :bcc => bcc, :subject => "Prepare for New Email System")
   end
   
 end

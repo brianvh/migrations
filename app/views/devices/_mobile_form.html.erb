@@ -25,13 +25,13 @@
   </div>
 </div>
 <div class="group wat-cf">
-  <div class="left label"><%= f.label :contacts_count, "# Contacts" %></div>
+  <div class="left label"><%= f.label :contacts_count, "Number of Contacts on Device" %></div>
   <div class="right">
     <%= f.select :contacts_count, ["0","1-100",">100"], {:include_blank => "Choose..."} %>
   </div>
 </div>
 <div class="group wat-cf">
-  <div class="left label"><%= f.label :new_email_choice, "Email Client" %></div>
+  <div class="left label"><%= f.label :new_email_choice, "Email Program" %></div>
   <div class="right">
     <%= f.select :new_email_choice, MobileEmailClientChoice.to_options_array, 
         {:include_blank => "Choose..."} %>
