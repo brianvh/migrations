@@ -48,6 +48,17 @@
       </div>
     </div>
 
+    <% if current_user.is_support? %>
+      <div class="group wat-cf">
+        <div class="left label">
+          <%= f.label :primary_owner_name, "Primary Owner" %>
+        </div>
+        <div class="right">
+          <%= f.text_field :primary_owner_name, :value => @resource.display_primary_owner_name.blank? ? @resource.primary_owner_name : @resource.display_primary_owner_name %>
+        </div>
+      </div>
+    <% end -%>
+
     <div class="group wat-cf">
       <div class="left label">
         <%= f.label :secondary_owner_name, "Secondary Owner" %>
