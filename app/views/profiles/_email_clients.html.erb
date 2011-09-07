@@ -1,4 +1,9 @@
-<%= hidden_field_tag "profile[used_email_choices][]" %>
-<% EmailClientChoice.to_options_array.each_with_index do |choice, i| %>
-  <%= email_checkbox(choice, i) %> <%= choice %><br />
-<% end -%>
+<div style="float: left; margin-right: 20px;">
+  <%= hidden_field_tag "profile[used_email_choices][]" %>
+  <% EmailClientChoice.to_options_array.each_with_index do |choice, i| %>
+    <%= email_checkbox(choice, i) %> <%= choice %><br />
+  <% end -%>
+</div>
+<div style="">
+  <p style="font-style: italic;">Check all that apply.</p>
+</div>
