@@ -15,7 +15,7 @@
 
     <div class="group wat-cf">
       <div class="left label wide">
-        <%= f.label :used_email_clients, "Email clients used?" %>
+        <%= f.label :used_email_clients, "Email programs used?" %>
       </div>
       <div class="right wide">
         <%= render :partial => 'email_clients', :locals => {:f => f, :profile => @profile} %>
@@ -24,7 +24,7 @@
 
     <div class="group wat-cf">
       <div class="left label wide">
-        <%= f.label :uses_mail_forward, "Email being forwarded?" %>
+        <%= f.label :uses_mail_forward, "Is your Email being sent to another account?" %>
       </div>
       <div class="right wide">
         <%= render 'yes_no_select', {:f => f, :field => :uses_mail_forward } %>
@@ -55,7 +55,7 @@
 
     <div class="group wat-cf">
       <div class="left label wide">
-        <%= f.label :used_other_calendars, "Used calendar other than Oracle?" %>
+        <%= f.label :used_other_calendars, "Used Calendar system other than Oracle?" %>
       </div>
       <div class="right wide">
         <%= render 'yes_no_select', {:f => f, :field => :used_other_calendars } %>
@@ -77,7 +77,7 @@
 
     <div class="group wat-cf">
       <div class="left label wide">
-        <%= f.label :uses_hyperion, "Using Hyperion B&P?" %>
+        <%= f.label :uses_hyperion, "Using Hyperion Budget & Planning?" %>
       </div>
       <div class="right wide">
         <%= render 'yes_no_select', {:f => f, :field => :uses_hyperion } %>

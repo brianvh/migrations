@@ -3,7 +3,7 @@
   <div class="group wat-cf">
     <div class="left label wide"><%= f.label :comfort_level, "Comfort Level" %></div>
     <div class="right wide">
-      <%= f.select :comfort_level, (1..5).map, {:include_blank => "Choose..."} %>
+      <%= f.select :comfort_level, ["High","Medium","Low"], {:include_blank => "Choose..."} %>
     </div>
   </div>
   <div class="group wat-cf">
@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="group wat-cf">
-    <div class="left label wide"><%= f.label :uses_sync, "Uses Sync?" %></div>
+    <div class="left label wide"><%= f.label :uses_sync, "Syncs with other accounts?" %></div>
     <div class="right wide">
       <%= render 'yes_no_select', {:f => f, :field => :uses_sync } %>
     </div>

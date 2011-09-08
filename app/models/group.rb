@@ -58,7 +58,7 @@ class Group < ActiveRecord::Base
     end
     
     unless recips.empty? && bcc.empty?
-      GroupMailer.invitation(self, recips, bcc).deliver
+      NotificationMailer.invite_group(self, recips, bcc).deliver
       Membership.update_all({:invitation_sent => true},
                              "group_id = #{self.id} AND type = 'Member' AND id IN (#{sent_to_ids.join(',')})")
     end

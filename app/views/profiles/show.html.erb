@@ -14,14 +14,14 @@
   <h2>Email Services</h2>
 
   <div class="group wat-cf">
-    <div class="left label wide">Email clients used:</div>
+    <div class="left label wide">Email programs used:</div>
     <div class="right wide">
       <%= email_clients_display_string @profile %>
     </div>
   </div>
 
   <div class="group wat-cf">
-    <div class="left label wide">Email being forwarded?</div>
+    <div class="left label wide">Is your Email being sent to another account?</div>
     <div class="right wide">
       <%= boolean_display_as_todo @profile.uses_mail_forward %>
     </div>
@@ -65,7 +65,7 @@
   </div>
   
   <div class="group wat-cf">
-    <div class="left label wide">Hyperion B & P used?</div>
+    <div class="left label wide">Hyperion Budget & Planning used?</div>
     <div class="right wide">
       <%= boolean_display_as_todo @profile.uses_hyperion %>
     </div>

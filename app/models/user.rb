@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
   end
 
   def migration_state
-    return 'Complete' if mailboxtype == 'cloud'
+    return 'Complete' if mailboxtype =~ /cloud|exchange/i
     'Pending'
   end
   

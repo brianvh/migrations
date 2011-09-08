@@ -20,28 +20,28 @@
   </div>
 </div>
 <div class="group wat-cf">
-  <div class="left label"><%= f.label :office_version_choice, "Office Version" %></div>
+  <div class="left label"><%= f.label :office_version_choice, "MS Office Version" %></div>
   <div class="right">
     <%= render 'choice_select', {:f => f, :field => 'office_version',
       :klass => OfficeVersionChoice } %>
   </div>
 </div>
 <div class="group wat-cf">
-  <div class="left label"><%= f.label :current_email_choice, "Current Email Client" %></div>
+  <div class="left label"><%= f.label :current_email_choice, "Current Email Program" %></div>
   <div class="right">
     <%= render 'choice_select', {:f => f, :field => 'current_email',
       :klass => CurrentEmailChoice } %>
   </div>
 </div>
 <div class="group wat-cf">
-  <div class="left label"><%= f.label :new_email_choice, "New Email Client" %></div>
+  <div class="left label"><%= f.label :new_email_choice, "New Email Program" %></div>
   <div class="right">
     <%= render 'choice_select', {:f => f, :field => 'new_email',
       :klass => NewEmailChoice } %>
   </div>
 </div>
 <div class="group wat-cf">
-  <div class="left label"><%= f.label :current_browser_choice, "Current Browser" %></div>
+  <div class="left label"><%= f.label :current_browser_choice, "Web Browser Primarily Used" %></div>
   <div class="right">
     <%= render 'choice_select', {:f => f, :field => 'current_browser',
       :klass => CurrentBrowserChoice } %>

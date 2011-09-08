@@ -29,6 +29,10 @@
     <div class="right tight"><%= boolean_display @resource.migrate_data %></div>
   </div>
   <div class="group wat-cf">
+    <div class="left label">Primary Owner</div>
+    <div class="right tight"><%= @resource.display_primary_owner_name(true) %></div>
+  </div>
+  <div class="group wat-cf">
     <div class="left label">Secondary Owner</div>
     <div class="right tight"><%= @resource.display_secondary_owner_name(true) %></div>
   </div>
