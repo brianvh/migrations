@@ -7,7 +7,7 @@ namespace :ldap do
                                   :auth => ldap_auth)
     sync_status = User.sync_from_ldap(ldap_hash)
     p sync_status
-    Webmaster.send_email("Migrations - Nightly LDAP Sync Results", sync_status)
+    Webmaster.ldap_sync_notify(sync_status)
   end
 
   def ldap_attrs
