@@ -2,6 +2,9 @@ set :stages, %w(staging production)
 set :default_stage, "staging"
 require 'capistrano/ext/multistage'
 
+set :whenever_environment, defer { stage }
+require "whenever/capistrano"
+
 set :user, "migrations"
 set :use_sudo, false
 set :deploy_to, "/home/#{user}/app/"
