@@ -1,7 +1,7 @@
-class GroupMailer < ActionMailer::Base
+class NotificationMailer < ActionMailer::Base
   default :from => "help@dartmouth.edu"
 
-  def invitation(group, recipients, bcc)
+  def invite_group(group, recipients, bcc)
     @group = group
     mail(:to => recipients, :bcc => bcc, :subject => "Prepare for New Email System")
   end
