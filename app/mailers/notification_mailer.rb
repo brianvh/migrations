@@ -6,4 +6,9 @@ class NotificationMailer < ActionMailer::Base
     mail(:to => recipients, :bcc => bcc, :subject => "Prepare for New Email System")
   end
   
+  def notify_webmaster(subject, msg, recipients)
+    @msg = msg
+    mail(:from => 'webmaster@dartmouth.edu', :to => recipients, :subject => subject)
+  end
+  
 end
