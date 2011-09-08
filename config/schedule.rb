@@ -1,3 +1,3 @@
-every :day, :at => Chronic.parse('5 minutes from now') do
+every :day, :at => "5:00 am" do
   rake "ldap:sync"
 end
