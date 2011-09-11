@@ -43,8 +43,7 @@ module LDAPUser
    end
 
    def expire_from_ldap
-     expire_uids.each { |uid| update_users[uid].deactivate_from_ldap }
-     sync_results[:expired] = expire_uids.size
+     sync_results[:expired] = expire_uids.inject(0) { |sum, uid| sum + update_users[uid].deactivate_from_ldap }
    end
 
    def update_users
@@ -98,8 +97,9 @@ module LDAPUser
    end
 
    def deactivate_from_ldap
-     return if self.expired?
+     return 0 if self.expired?
      self.deactivate
+     return 1
    end
 
  end
