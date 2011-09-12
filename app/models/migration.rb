@@ -9,10 +9,15 @@ class Migration < ActiveRecord::Base
   validates :four_week_email,
             :one_week_email,
             :day_before_email,
-            :day_of_email, :presence => true
+            :day_of_email,
+            :presence => true
   
-  validates :date, :uniqueness => { :message => "there is already a migration established for that day" }, :on => :create
-  validates :max_accounts, :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
+  validates :date,
+            :uniqueness => { :message => "there is already a migration established for that day" },
+            :on => :create
+            
+  validates :max_accounts,
+            :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
   
   validate :valid_date
   
