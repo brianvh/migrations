@@ -1,0 +1,21 @@
+<% title "BlitzMail Migrations: Migrations", false %>
+<h2 id="group-header">Migrations List</h2>
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li><%= link_to "Add Migration", new_migration_path %></li>
+  </ul>
+</div>
+<div id="groups" class="fieldset">
+  <h2>Migrations</h2>
+  <div class="inner">
+    <table class="table">
+      <tr>
+        <th align="left">Date</th>
+        <th align="left">Max # Accounts</th>
+        <th align="left"># User Accounts</th>
+        <th align="left"># Resource Accounts</th>
+      </tr>
+      <%= render @migrations %>
+    </table>
+  </div>
+</div>

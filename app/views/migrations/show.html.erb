@@ -1,0 +1,54 @@
+
+<% title "BlitzMail Migrations: Migration Info", false %>
+<h2 id="migration-header">Migration Information for <%= @migration.date %></h2>
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li>
+      <%= link_to "Edit", edit_migration_path %>
+    </li>
+  </ul>
+</div>
+
+<div id="device" class="fieldset form">
+  <h2>Migration Info</h2>
+  <div class="group wat-cf">
+    <div class="left label">Date</div>
+    <div class="right tight"><%= @migration.date %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">Maximum # of accounts</div>
+    <div class="right tight"><%= @migration.max_accounts %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label"># of user accounts</div>
+    <div class="right tight"><%= @migration.users.size %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label"># of resource accounts</div>
+    <div class="right tight"><%= @migration.resources.size %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">4 weeks prior email</div>
+    <div class="right tight"><%= @migration.four_week_email %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">1 week prior email</div>
+    <div class="right tight"><%= @migration.one_week_email %></div>
+  </div>
+  
+  <div class="group wat-cf">
+    <div class="left label">Day before email</div>
+    <div class="right tight"><%= @migration.day_before_email %></div>
+  </div>
+  
+  <div class="group wat-cf">
+    <div class="left label">Day of email</div>
+    <div class="right tight"><%= @migration.day_of_email %></div>
+  </div>
+  
+</div>

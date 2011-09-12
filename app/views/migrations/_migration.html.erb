@@ -1,0 +1,6 @@
+<tr id="migration-<%= migration.id %>">
+  <td><%= link_to migration.date, migration_path(migration) %></td>
+  <td align="left"><%= migration.max_accounts %></td>
+  <td align="left"><%= migration.users.size %></td>
+  <td align="left"><%= migration.resources.size %></td>
+</tr>

@@ -1,0 +1,38 @@
+<%= form_for @migration do |f| -%>
+  <div class="fieldset form">
+    <h2>Migration Info</h2>
+    <div class="group navform wat-cf">
+      <div class="text_button_padding"><%= link_to "Cancel", @migration.new_record? ? migrations_path :
+       migration_path(@migration) %></div>
+      <div class="right">
+        <button class="button" type="submit">
+          <%= @migration.new_record? ? "Create Migration" : "Update Migration" %>
+        </button>
+      </div>
+    </div>
+    <div class="group wat-cf">
+      <div class="left label"><%= f.label :date, "Date" %></div>
+      <div class="right"><%= f.text_field :date, :size => 20 %></div>
+    </div>
+    <div class="group wat-cf">
+      <div class="left label"><%= f.label :max_accounts, "Max # of Accounts" %></div>
+      <div class="right"><%= f.text_field :max_accounts, :size => 4 %></div>
+    </div>
+    <div class="group wat-cf">
+      <div class="left label"><%= f.label :four_week_email, "Four Week Email Message" %></div>
+      <div class="right"><%= f.text_area :four_week_email, :size => '60x10' %></div>
+    </div>
+    <div class="group wat-cf">
+      <div class="left label"><%= f.label :one_week_email, "One Week Email Message" %></div>
+      <div class="right"><%= f.text_area :one_week_email, :size => '60x10' %></div>
+    </div>
+    <div class="group wat-cf">
+      <div class="left label"><%= f.label :day_before_email, "Day Before Email Message" %></div>
+      <div class="right"><%= f.text_area :day_before_email, :size => '60x10' %></div>
+    </div>
+    <div class="group wat-cf">
+      <div class="left label"><%= f.label :day_of_email, "Day Of Email Message" %></div>
+      <div class="right"><%= f.text_area :day_of_email, :size => '60x10' %></div>
+    </div>
+  </div>
+<% end -%>
