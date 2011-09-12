@@ -2,9 +2,10 @@ class Migration < ActiveRecord::Base
   
   default_scope order("date")
   
-  has_many :migration_events
-  has_many :users, :through => :migration_events
-  has_many :resources, :through => :migration_events
+  has_many :user_migration_events
+  has_many :users, :through => :user_migration_events
+  has_many :resource_migration_events
+  has_many :resources, :through => :resource_migration_events
   
   validates :four_week_email,
             :one_week_email,
@@ -20,6 +21,10 @@ class Migration < ActiveRecord::Base
             :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
   
   validate :valid_date
+  
+  def total_accounts
+    users.size + resources.size
+  end
   
   private
   
