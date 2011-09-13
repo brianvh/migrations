@@ -4,56 +4,14 @@
 <div class="secondary-navigation">
   <ul class="wat-cf">
     <li>
-      <%= link_to "Edit", edit_migration_path %>
+      <%= link_to "View Info", migration_path(@migration) if show_accounts? %>
+      <%= link_to "View Accounts", migration_path(@migration, :view => "accounts") unless show_accounts? %>
+    </li>
+    <li>
+      <%= link_to "Edit", edit_migration_path unless show_accounts? %>
     </li>
   </ul>
 </div>
 
-<div id="device" class="fieldset form">
-  <h2>Migration Info</h2>
-  <div class="group wat-cf">
-    <div class="left label">Date</div>
-    <div class="right tight"><%= @migration.date %></div>
-  </div>
-
-  <div class="group wat-cf">
-    <div class="left label">Maximum # of accounts</div>
-    <div class="right tight"><%= @migration.max_accounts %></div>
-  </div>
-
-  <div class="group wat-cf">
-    <div class="left label"># of user accounts</div>
-    <div class="right tight"><%= @migration.users.size %></div>
-  </div>
-
-  <div class="group wat-cf">
-    <div class="left label"># of devices</div>
-    <div class="right tight"><%= Device.for_migration(@migration.id).size %></div>
-  </div>
-
-  <div class="group wat-cf">
-    <div class="left label"># of resource accounts</div>
-    <div class="right tight"><%= @migration.resources.size %></div>
-  </div>
-
-  <div class="group wat-cf">
-    <div class="left label">4 weeks prior email</div>
-    <div class="right tight"><%= simple_format(@migration.four_week_email, :class => 'email-font') %></div>
-  </div>
-
-  <div class="group wat-cf">
-    <div class="left label">1 week prior email</div>
-    <div class="right tight"><%= simple_format(@migration.one_week_email, :class => 'email-font') %></div>
-  </div>
-  
-  <div class="group wat-cf">
-    <div class="left label">Day before email</div>
-    <div class="right tight"><%= simple_format(@migration.day_before_email, :class => 'email-font') %></div>
-  </div>
-  
-  <div class="group wat-cf">
-    <div class="left label">Day of email</div>
-    <div class="right tight"><%= simple_format(@migration.day_of_email, :class => 'email-font') %></div>
-  </div>
-  
-</div>
+<%= render :partial => 'info' unless show_accounts? %>
+<%= render :partial => "accounts" if show_accounts? %>

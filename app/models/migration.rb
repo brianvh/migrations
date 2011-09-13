@@ -26,6 +26,23 @@ class Migration < ActiveRecord::Base
     users.size + resources.size
   end
   
+  def add_users_and_resources(new_users)
+    new_users.each do |u|
+      add_user(u)
+      u.primary_resource_ownerships.each do |c|
+        add_resource(c)
+      end
+    end
+  end
+  
+  def add_user(new_user) # TODO: check validity, too (i.e. already migrated!)
+    users << new_user unless user_migration_events.where(:user_id => new_user.id)
+  end
+  
+  def add_resource(new_resource) # TODO: check validity, too (i.e. already migrated!)
+    resources << c unless resource_migration_events.where(:resource_id => new_resource.id)
+  end
+  
   private
   
   def valid_date

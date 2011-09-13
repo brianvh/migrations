@@ -8,6 +8,9 @@ class MigrationsController < ApplicationController
   
   def show
     @migration = Migration.find(params[:id])
+    if show_accounts?
+      @accounts = @migration.users + @migration.resources
+    end
   end
   
   def new
@@ -38,6 +41,12 @@ class MigrationsController < ApplicationController
       render :edit
     end
   end
+
+  def show_accounts?
+    params[:view] == 'accounts'
+  end
+
+  helper_method :show_accounts?
   
   private
   
