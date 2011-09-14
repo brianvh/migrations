@@ -119,9 +119,10 @@ class User < ActiveRecord::Base
   
   def needs_migration?
     return false if mailboxtype == 'cloud'
+    return false if migration_events.first
     true
   end
-  
+
   def invitation_sent_for_group?(group)
     memberships.where(:group_id => group.id, :type => 'Member').first.invitation_sent?
   end

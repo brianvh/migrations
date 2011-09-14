@@ -75,5 +75,10 @@ class Resource < ActiveRecord::Base
   def migration_state
     migration_events.first.migration_state
   end
+  
+  def needs_migration?
+    return false if migration_events.first
+    true
+  end
 
 end

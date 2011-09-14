@@ -29,39 +29,34 @@ class Migration < ActiveRecord::Base
     users.size + resources.size
   end
   
-  def total_devices
-    users.inject(0) { |sum, u| sum + u.devices.count }
-  end
-
-  def devices
-    d = []
-    users.each do |user|
-      user.devices.each { |dev| d << dev }
+  def add_users_and_resources(new_users)
+    new_users.each do |user|
+      add_user(user)
+      add_user_resources(user)
     end
   end
   
-  def add_users_and_resources(new_users)
-    new_users.each do |u|
-      add_user(u)
-      u.primary_resource_ownerships.each do |c|
-        add_resource(c)
-      end
+  def add_user_resources(user)
+    user.primary_resource_ownerships.each do |calendar|
+      add_resource(calendar)
     end
   end
   
   def add_user(new_user) # TODO: check validity, too (i.e. already migrated!)
-    users << new_user unless user_migration_events.where(:user_id => new_user.id)
+    # users << new_user unless user_migration_events.where(:user_id => new_user.id)
+    users << new_user if new_user.needs_migration?
   end
   
   def add_resource(new_resource) # TODO: check validity, too (i.e. already migrated!)
-    resources << c unless resource_migration_events.where(:resource_id => new_resource.id)
+    # resources << new_resource unless resource_migration_events.where(:resource_id => new_resource.id)
+    resources << new_resource unless new_resource.needs_migration?
   end
   
   private
   
   def valid_date
-    d = Chronic.parse(date)
-    errors.add(:date, "must be a valid future date") if (d.nil? || d.to_date < Date.today)
+    the_date = Chronic.parse(date)
+    errors.add(:date, "must be a valid future date") if (the_date.nil? || the_date.to_date < Date.today)
   end
 
 end
