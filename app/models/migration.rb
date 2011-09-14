@@ -4,6 +4,9 @@ class Migration < ActiveRecord::Base
   
   has_many :user_migration_events
   has_many :users, :through => :user_migration_events
+  
+  has_many :devices, :through => :users, :source => :devices
+  
   has_many :resource_migration_events
   has_many :resources, :through => :resource_migration_events
   
@@ -24,6 +27,17 @@ class Migration < ActiveRecord::Base
   
   def total_accounts
     users.size + resources.size
+  end
+  
+  def total_devices
+    users.inject(0) { |sum, u| sum + u.devices.count }
+  end
+
+  def devices
+    d = []
+    users.each do |user|
+      user.devices.each { |dev| d << dev }
+    end
   end
   
   def add_users_and_resources(new_users)

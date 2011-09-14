@@ -9,7 +9,9 @@ class MigrationsController < ApplicationController
   def show
     @migration = Migration.find(params[:id])
     if show_accounts?
-      @accounts = @migration.users + @migration.resources
+      @accounts = @migration.users
+    elsif show_resources?
+      @resources = @migration.resources
     end
   end
   
@@ -21,7 +23,7 @@ class MigrationsController < ApplicationController
     @migration = Migration.new(params[:migration])
     if @migration.save
       flash[:notice] = "New migration created."
-      redirect_to :index
+      redirect_to migrations_path
     else
       flash.now[:error] = "Error creating migration"
       render :new
@@ -45,8 +47,17 @@ class MigrationsController < ApplicationController
   def show_accounts?
     params[:view] == 'accounts'
   end
-
   helper_method :show_accounts?
+  
+  def show_resources?
+    params[:view] == 'resources'
+  end
+  helper_method :show_resources?
+  
+  def show_info?
+    params[:view].nil?
+  end
+  helper_method :show_info?
   
   private
   

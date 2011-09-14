@@ -1,0 +1,17 @@
+<div id="resources-list" class="fieldset form">
+  <% if @resources.empty? %>
+    <%= content_tag(:p, 'No resource calendars scheduled for this migration.') %>
+  <% else %>
+  <h2>Resources Scheduled</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th align="left">Name</th>
+          <th align="left">Group</th>
+          <th align="status">Status</th>
+        </tr>
+        <%= render :partial => 'resource', :collection => @resources %>
+      </table>
+    </div>
+  <% end -%>
+</div>

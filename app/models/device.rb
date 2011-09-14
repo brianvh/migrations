@@ -45,12 +45,6 @@ class Device < ActiveRecord::Base
         order('users.lastname, users.firstname')
   end
 
-  def self.for_migration(migration_id)
-    Device.includes([:user => [:migrations, :migration_events]]).
-        where("migrations.id = #{migration_id}").
-        order('users.lastname, users.firstname')
-  end
-
   def device_name
     "#{vendor} #{kind}"
   end

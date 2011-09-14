@@ -4,14 +4,20 @@
 <div class="secondary-navigation">
   <ul class="wat-cf">
     <li>
-      <%= link_to "View Info", migration_path(@migration) if show_accounts? %>
+      <%= link_to "View Resources", migration_path(@migration, :view => "resources") unless show_resources? %>
+    </li>
+    <li>
       <%= link_to "View Accounts", migration_path(@migration, :view => "accounts") unless show_accounts? %>
     </li>
     <li>
-      <%= link_to "Edit", edit_migration_path unless show_accounts? %>
+      <%= link_to("View Migration Info", migration_path(@migration)) unless show_info? %>
+    </li>
+    <li>
+      <%= link_to "Edit", edit_migration_path if show_info? %>
     </li>
   </ul>
 </div>
 
-<%= render :partial => 'info' unless show_accounts? %>
-<%= render :partial => "accounts" if show_accounts? %>
+<%= render :partial => 'info' if show_info? %>
+<%= render :partial => "account_list" if show_accounts? %>
+<%= render :partial => "resource_list" if show_resources? %>

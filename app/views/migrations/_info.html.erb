@@ -16,33 +16,28 @@
   </div>
 
   <div class="group wat-cf">
-    <div class="left label"># of devices</div>
-    <div class="right tight"><%= Device.for_migration(@migration.id).size %></div>
-  </div>
-
-  <div class="group wat-cf">
     <div class="left label"># of resource accounts</div>
     <div class="right tight"><%= @migration.resources.size %></div>
   </div>
 
   <div class="group wat-cf">
     <div class="left label">4 weeks prior email</div>
-    <div class="right tight"><%= simple_format(@migration.four_week_email, :class => 'email-font') %></div>
+    <div class="right tight"><%= simple_format(html_escape(@migration.four_week_email), :class => 'email-font') %></div>
   </div>
 
   <div class="group wat-cf">
     <div class="left label">1 week prior email</div>
-    <div class="right tight"><%= simple_format(@migration.one_week_email, :class => 'email-font') %></div>
+    <div class="right tight"><%= simple_format(html_escape(@migration.one_week_email), :class => 'email-font') %></div>
   </div>
   
   <div class="group wat-cf">
     <div class="left label">Day before email</div>
-    <div class="right tight"><%= simple_format(@migration.day_before_email, :class => 'email-font') %></div>
+    <div class="right tight"><%= simple_format(html_escape(@migration.day_before_email), :class => 'email-font') %></div>
   </div>
   
   <div class="group wat-cf">
     <div class="left label">Day of email</div>
-    <div class="right tight"><%= simple_format(@migration.day_of_email, :class => 'email-font') %></div>
+    <div class="right tight"><%= simple_format(html_escape(@migration.day_of_email), :class => 'email-font') %></div>
   </div>
   
 </div>

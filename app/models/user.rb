@@ -100,9 +100,21 @@ class User < ActiveRecord::Base
     @migration_profile ||= profiles.first
   end
 
+  def migration_event_state_for_display
+    migration_events.first.state.titleize
+  end
+  
+  def has_migration_event?
+    migration_events.first
+  end
+
   def migration_state
-    return 'Complete' if mailboxtype =~ /cloud|exchange/i
-    'Pending'
+    if has_migration_event?
+      return migration_event_state_for_display
+    else
+      return 'Complete' if mailboxtype == 'cloud'  # =~ /cloud|exchange/i
+      'Pending'
+    end
   end
   
   def needs_migration?

@@ -4,6 +4,8 @@ class Resource < ActiveRecord::Base
   
   has_many :memberships
   has_many :groups, :through => :memberships
+  has_many :migration_events
+  has_many :migrations, :through => :migration_events
 
   belongs_to :primary_owner, :class_name => "User", :foreign_key => "primary_owner_id"
   belongs_to :secondary_owner, :class_name => "User", :foreign_key => "secondary_owner_id"
@@ -68,6 +70,10 @@ class Resource < ActiveRecord::Base
 
   def set_secondary_owner
     self.secondary_owner = secondary_owner_name.blank? ? nil : lookup_secondary_owner_name
+  end
+
+  def migration_state
+    migration_events.first.migration_state
   end
 
 end

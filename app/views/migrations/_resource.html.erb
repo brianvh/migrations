@@ -1,0 +1,6 @@
+<tr id="resource-<%= resource.id %>">
+  <td><%= link_to resource.name, resource_path(resource) %></td>
+  <td><%= link_to resource.primary_owner.group_name, group_path(resource.primary_owner.groups.first) %></td>
+  <td><%= resource.migration_state %></td>
+  <td></td>
+</tr>

@@ -1,0 +1,22 @@
+<div id="account-list" class="fieldset">
+  <% if @accounts.empty? %>
+    <%= content_tag(:p, 'No accounts scheduled for this migration.') %>
+  <% else %>
+    <h2>Accounts Scheduled</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th align="left">Last, First</th>
+          <th align="left">Deptclass</th>
+          <th align="left">New Email</th>
+          <th align="left">Mailbox Type</th>
+          <th align="left">Group</th>
+          <th align="left">Profile</th>
+          <th align="left">Status</th>
+        </tr>
+        <%= render :partial => 'account', :collection => @accounts %>
+      </table>
+    </div>
+  <% end -%>
+</div>
+
