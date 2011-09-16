@@ -1,4 +1,20 @@
-<div id="account-list" class="fieldset">
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li>
+      <%= link_to "View Resources", migration_path(@migration, :view => "resources") %>
+    </li>
+    <li>
+      <%= link_to "Send 2-Week Email", '#' unless @accounts.empty? %>
+    </li>
+    <li>
+      <%= link_to "Send 1-Week Email", '#' unless @accounts.empty? %>
+    </li>
+    <li>
+      <%= link_to "Send 1-Day Email", '#' unless @accounts.empty? %>
+    </li>
+  </ul>
+</div>
+<div id="account-list" class="fieldset form">
   <% if @accounts.empty? %>
     <%= content_tag(:p, 'No accounts scheduled for this migration.') %>
   <% else %>
@@ -11,7 +27,6 @@
           <th align="left">New Email</th>
           <th align="left">Mailbox Type</th>
           <th align="left">Group</th>
-          <!-- <th align="left">Profile</th> -->
           <th align="left">Status</th>
         </tr>
         <%= render :partial => 'account', :collection => @accounts %>
