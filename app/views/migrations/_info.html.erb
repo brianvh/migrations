@@ -21,23 +21,13 @@
   </div>
 
   <div class="group wat-cf">
-    <div class="left label">4 weeks prior email</div>
-    <div class="right tight"><%= simple_format(html_escape(@migration.four_week_email), :class => 'email-font') %></div>
-  </div>
-
-  <div class="group wat-cf">
-    <div class="left label">1 week prior email</div>
-    <div class="right tight"><%= simple_format(html_escape(@migration.one_week_email), :class => 'email-font') %></div>
+    <div class="left label">Two-weeks prior email</div>
+    <div class="right tight"><%= simple_format(html_escape(@migration.two_week_email), :class => 'email-font') %></div>
   </div>
   
   <div class="group wat-cf">
     <div class="left label">Day before email</div>
     <div class="right tight"><%= simple_format(html_escape(@migration.day_before_email), :class => 'email-font') %></div>
-  </div>
-  
-  <div class="group wat-cf">
-    <div class="left label">Day of email</div>
-    <div class="right tight"><%= simple_format(html_escape(@migration.day_of_email), :class => 'email-font') %></div>
   </div>
   
 </div>

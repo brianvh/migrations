@@ -101,7 +101,8 @@ class User < ActiveRecord::Base
   end
 
   def migration_event_state_for_display
-    migration_events.first.state.titleize
+    # migration_events.first.state.titleize
+    migration_events.first.migration.date
   end
   
   def has_migration_event?
@@ -118,9 +119,24 @@ class User < ActiveRecord::Base
   end
   
   def needs_migration?
+    return false unless active?
+    return false if do_not_migrate?
     return false if mailboxtype == 'cloud'
     return false if migration_events.first
     true
+  end
+
+  def resources_to_migrate
+    resources = []
+    primary_resource_ownerships.each do |calendar|
+      resources << calendar if calendar.needs_migration?
+    end
+    resources
+  end
+  
+  def display_mailboxtype
+    return "blitz" if mailboxtype.blank?
+    mailboxtype
   end
 
   def invitation_sent_for_group?(group)

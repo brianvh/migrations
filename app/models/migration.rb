@@ -1,6 +1,8 @@
 class Migration < ActiveRecord::Base
   
   default_scope order("date")
+
+  has_many :migration_events
   
   has_many :user_migration_events
   has_many :users, :through => :user_migration_events
@@ -10,10 +12,8 @@ class Migration < ActiveRecord::Base
   has_many :resource_migration_events
   has_many :resources, :through => :resource_migration_events
   
-  validates :four_week_email,
-            :one_week_email,
+  validates :two_week_email,
             :day_before_email,
-            :day_of_email,
             :presence => true
   
   validates :date,
@@ -30,28 +30,26 @@ class Migration < ActiveRecord::Base
   end
   
   def add_users_and_resources(new_users)
-    new_users.each do |user|
+    new_users.each do |new_user|
+      user = User.find(new_user)
       add_user(user)
       add_user_resources(user)
     end
   end
   
   def add_user_resources(user)
-    user.primary_resource_ownerships.each do |calendar|
-      add_resource(calendar)
-    end
+    resources << user.resources_to_migrate
+    resources.flatten
   end
   
-  def add_user(new_user) # TODO: check validity, too (i.e. already migrated!)
-    # users << new_user unless user_migration_events.where(:user_id => new_user.id)
+  def add_user(new_user)
     users << new_user if new_user.needs_migration?
   end
   
-  def add_resource(new_resource) # TODO: check validity, too (i.e. already migrated!)
-    # resources << new_resource unless resource_migration_events.where(:resource_id => new_resource.id)
-    resources << new_resource unless new_resource.needs_migration?
+  def self.available_dates
+    Migration.where("date >= '#{Date.today}'").select { |m| m.max_accounts > m.migration_events.size }.map { |m| [m.date, m.id] }
   end
-  
+
   private
   
   def valid_date

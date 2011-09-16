@@ -1,9 +1,9 @@
 <tr id="account-<%= account.id %>">
   <td><%= link_to account.last_first, user_path(account) %></td>
   <td><%= account.deptclass %></td>
-  <td><%= account.email %></td>
-  <td><%= account.mailboxtype %></td>
+  <td><%= account.email %></td> <!-- this needs to be newemail -->
+  <td><%= account.display_mailboxtype %></td>
   <td><%= link_to account.group_name, group_path(account.groups.first) %></td>
-  <td><%= account.profile_state %></td>
+  <!-- <td><%# account.profile_state %> <%# link_to_profile(account) %></td> -->
   <td><%= account.migration_state %></td>
 </tr>

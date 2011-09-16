@@ -18,21 +18,16 @@
       <div class="left label"><%= f.label :max_accounts, "Max # of Accounts" %></div>
       <div class="right"><%= f.text_field :max_accounts, :size => 4 %></div>
     </div>
+
     <div class="group wat-cf">
-      <div class="left label"><%= f.label :four_week_email, "Four Week Email Message" %></div>
-      <div class="right"><%= f.text_area :four_week_email, :size => '80x10' %></div>
+      <div class="left label"><%= f.label :two_week_email, "Two weeks prior Email Message" %></div>
+      <div class="right"><%= f.text_area :two_week_email, :size => '80x10' %></div>
     </div>
-    <div class="group wat-cf">
-      <div class="left label"><%= f.label :one_week_email, "One Week Email Message" %></div>
-      <div class="right"><%= f.text_area :one_week_email, :size => '80x10' %></div>
-    </div>
+
     <div class="group wat-cf">
       <div class="left label"><%= f.label :day_before_email, "Day Before Email Message" %></div>
       <div class="right"><%= f.text_area :day_before_email, :size => '80x10' %></div>
     </div>
-    <div class="group wat-cf">
-      <div class="left label"><%= f.label :day_of_email, "Day Of Email Message" %></div>
-      <div class="right"><%= f.text_area :day_of_email, :size => '80x10' %></div>
-    </div>
+
   </div>
 <% end -%>

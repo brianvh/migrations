@@ -1,0 +1,12 @@
+<div id="get-migration-dates" class="fieldset form">
+  <div class="group navform wat-cf">
+    <div class="text_button_padding">
+      <%= link_to 'Cancel', group_path %>
+    </div>
+    <div class="right">
+      <button class="button" onclick="return count_checked();">Find Available Migration Dates</button>
+    </div>
+  </div>
+  <%= f.hidden_field :action, :value => :get_migration_dates %>
+  <%# hidden_field_tag :view, "choose_migration_date" %>
+</div>

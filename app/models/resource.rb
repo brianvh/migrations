@@ -73,11 +73,13 @@ class Resource < ActiveRecord::Base
   end
 
   def migration_state
-    migration_events.first.migration_state
+    return migration_events.first.migration.date unless migration_events.empty?
+    "Pending"
   end
   
   def needs_migration?
     return false if migration_events.first
+    return false unless migrate?
     true
   end
 

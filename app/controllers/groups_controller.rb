@@ -23,14 +23,20 @@ class GroupsController < ApplicationController
   def show
     @group = Group.includes([:users]).find(params[:id])
     send_to_user unless current_user.can_access_group?(@group)
-    if show_devices?
-      @devices = Device.for_group(@group.id)
+    
+    if schedule_migrations?
+      @members = @group.find_for_migrate
     else
-      @members = @group.members.order('lastname, firstname')
+      if show_devices?
+        @devices = Device.for_group(@group.id)
+      else
+        @members = @group.members.order('lastname, firstname')
+      end
+      @contacts = @group.contacts.order('lastname, firstname')
+      @consultants = @group.consultants.order('lastname, firstname')
+      @calendars = @group.calendars.order('name')
     end
-    @contacts = @group.contacts.order('lastname, firstname')
-    @consultants = @group.consultants.order('lastname, firstname')
-    @calendars = @group.calendars.order('name')
+    
   end
 
   def update
@@ -45,8 +51,22 @@ class GroupsController < ApplicationController
   def show_devices?
     params[:view] == 'devices'
   end
-
   helper_method :show_devices?
+  
+  def schedule_migrations?
+    params[:view] == 'migrations'
+  end
+  helper_method :schedule_migrations?
+  
+  # def get_migration_dates?
+  #   params[:view] == 'get_migration_dates'
+  # end
+  # helper_method :get_migration_dates?
+  # 
+  # def choose_migration_date?
+  #   params[:view] == 'choose_migration_date'
+  # end
+  # helper_method :choose_migration_date?
 
   private
 
@@ -114,6 +134,12 @@ class GroupsController < ApplicationController
     @group.send_invitations
     flash[:notice] = "#{@group.invitations_sent} invitation" +
                      "#{@group.invitations_sent == 1 ? '' : 's'} sent."
+    send_to_group
+  end
+
+  def schedule_migrations
+    # @group = Group.find(params[:id])
+    @group.schedule_migrations
     send_to_group
   end
 end

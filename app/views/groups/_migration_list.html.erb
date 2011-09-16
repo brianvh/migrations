@@ -1,0 +1,48 @@
+<script type="text/javascript">
+  function count_checked () {
+    if ($("input:checked").length == 0) {
+      alert("You must specify at least one account before assigning a date.");
+      return false;
+    }
+    return true;
+  }
+  
+  function check_all_checkboxes () {
+    $("input[type=checkbox]").each (
+      function () {
+        this.checked = true;
+      });
+  }
+  
+  function uncheck_all_checkboxes () {
+    $("input[type=checkbox]").each (
+      function () {
+        this.checked = false;
+      });
+  }
+  
+</script>
+
+<%= form_for @group, :html => {:id => "migrations-form"} do |f| -%>
+
+<%# render :partial => 'choose_migration_date', :locals => {:f => f} if get_migration_dates? %>
+<%# render :partial => 'get_migration_dates', :locals => {:f => f} if schedule_migrations? %>
+<%= render :partial => 'choose_migration_date', :locals => {:f => f} %>
+
+<div class="inner">
+  <table class="table">
+    <tr>
+      <th align="right">Select&nbsp;<span style="font-size: 0.85em;">
+        (
+        <%= link_to "All", '#', :onclick => 'check_all_checkboxes();', :style => 'color: white;' %> &nbsp;/&nbsp;
+        <%= link_to "None", '#', :onclick => 'uncheck_all_checkboxes();', :style => 'color: white;' %>
+        )
+        </span></th>
+        <th align="left">Account or Resource</th>
+        <th align="left">Mailbox Type</th>
+    </tr>
+    <%= render :partial => "member", :collection => @members, :locals => {:f => f} %>
+  </table>
+</div>
+
+<% end -%>
