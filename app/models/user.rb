@@ -142,6 +142,19 @@ class User < ActiveRecord::Base
     mailboxtype.titleize
   end
 
+  def newemailaddress
+    parts = email.split('@')
+    case
+    when m = /^'([0-9][0-9])/.match(deptclass.strip)
+      suffix = Regexp.new("#{m[1]}$").match(parts[0]) ? "" : m[1]
+    when suffix_map.key?(deptclass.strip)
+      suffix = suffix_map[deptclass.strip]
+    else
+      suffix = ""
+    end
+    "#{parts[0]}#{suffix}@#{parts[1]}"
+  end
+
   def invitation_sent_for_group?(group)
     memberships.where(:group_id => group.id, :type => 'Member').first.invitation_sent?
   end
@@ -181,4 +194,31 @@ class User < ActiveRecord::Base
     cache_expires
     self.touch
   end
+
+  def suffix_map
+    {
+      "DM" => "DM",
+      "FOR UN" => "",
+      "GR" => "GR",
+      "GREC" => "GR",
+      "GRGS" => "GR",
+      "GRHC" => "GR",
+      "GRLS" => "GR",
+      "HS" => "HS",
+      "MT" => "MT",
+      "S1" => "S1",
+      "SC" => "SC",
+      "SD" => "SD",
+      "SX" => "SX",
+      "TH" => "TH",
+      "TU" => "TU",
+      "TU08" => "TU08",
+      "TU09" => "TU09",
+      "TU10" => "TU10",
+      "TU11" => "TU11",
+      "TU12" => "TU12",
+      "UG" => "UG"
+    }
+  end
+
 end
