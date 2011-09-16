@@ -10,6 +10,12 @@
       <%= link_to "View Accounts", migration_path(@migration, :view => "accounts") unless show_accounts? %>
     </li>
     <li>
+      <%= link_to "Send 2wk Email", '#' if show_accounts? %>
+    </li>
+    <li>
+      <%= link_to "Send Day Before Email", '#' if show_accounts? %>
+    </li>
+    <li>
       <%= link_to("View Migration Info", migration_path(@migration)) unless show_info? %>
     </li>
     <li>
