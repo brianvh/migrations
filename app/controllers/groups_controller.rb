@@ -57,16 +57,6 @@ class GroupsController < ApplicationController
     params[:view] == 'migrations'
   end
   helper_method :schedule_migrations?
-  
-  # def get_migration_dates?
-  #   params[:view] == 'get_migration_dates'
-  # end
-  # helper_method :get_migration_dates?
-  # 
-  # def choose_migration_date?
-  #   params[:view] == 'choose_migration_date'
-  # end
-  # helper_method :choose_migration_date?
 
   private
 
@@ -138,7 +128,6 @@ class GroupsController < ApplicationController
   end
 
   def schedule_migrations
-    # @group = Group.find(params[:id])
     @group.schedule_migrations
     send_to_group
   end

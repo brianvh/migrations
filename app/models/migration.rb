@@ -46,6 +46,10 @@ class Migration < ActiveRecord::Base
     users << new_user if new_user.needs_migration?
   end
   
+  def week_of
+    date.beginning_of_week
+  end
+  
   def self.available_dates
     Migration.where("date >= '#{Date.today}'").select { |m| m.max_accounts > m.migration_events.size }.map { |m| [m.date, m.id] }
   end
