@@ -17,6 +17,25 @@ class Group < ActiveRecord::Base
 
   attr_writer :action
 
+  attr_accessor :accounts
+  attr_accessor :migration_id
+  
+  def accounts=(params)
+    @accounts = params
+  end
+  
+  def accounts
+    @accounts ||= []
+  end
+  
+  def migration_id=(params)
+    @migration_id = params
+  end
+  
+  def migration_id
+    @migration_id ||= nil
+  end
+
   def deptclass_display
     deptclass.join(', ')
   end
@@ -44,8 +63,7 @@ class Group < ActiveRecord::Base
   def invitations_sent
     @invitations_sent || 0
   end
-  
-  
+
   def send_invitations
     bcc = []
     sent_to_ids = []
@@ -65,6 +83,25 @@ class Group < ActiveRecord::Base
 
     @invitations_sent = recips.count + bcc.count
 
+  end
+
+  def find_for_migrate
+    users_to_migrate = []
+    resources_to_migrate = []
+    members.each do |member|
+      users_to_migrate << member if member.needs_migration?
+      resources_to_migrate << member.resources_to_migrate
+    end
+    users_to_migrate + resources_to_migrate.flatten
+  end
+  
+  def schedule_migrations
+    unless migration_id.nil?
+      unless migration_id == 0
+        migration = Migration.find(migration_id)
+        migration.add_users_and_resources(accounts)
+      end
+    end
   end
 
   private

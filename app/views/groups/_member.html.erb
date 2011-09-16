@@ -1,0 +1,11 @@
+<tr id="member-<%= member.id %>">
+  <td align="left">
+    &nbsp;&nbsp;&nbsp;<%= check_box_tag "group[accounts][]", member.id, @group.accounts.include?(member.id) %>
+  </td>
+  <td>
+    <%= member.name %>
+  </td>
+  <td>
+    <%= member.display_mailboxtype if member.is_a?(User) %>
+  </td>
+</tr>

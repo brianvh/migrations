@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
   has_many :groups, :through => :memberships
   has_many :primary_resource_ownerships, :class_name => "Resource", :foreign_key => "primary_owner_id"
   has_many :secondary_resource_ownerships, :class_name => "Resource", :foreign_key => "secondary_owner_id"
-
+  has_many :migration_events
+  has_many :migrations, :through => :migration_events
+  
   before_validation :valid_in_dnd?, :on => :create
   validates_uniqueness_of :uid, :on => :create, :message => "must be unique"
 
@@ -98,16 +100,61 @@ class User < ActiveRecord::Base
     @migration_profile ||= profiles.first
   end
 
+  def migration_event_state_for_display
+    return migration_events.first.migration.date if migration_events.first.pending?
+    migration_events.first.human_state_name
+  end
+  
+  def has_migration_event?
+    return true if migration_events.first
+    false
+  end
+
   def migration_state
-    return 'Complete' if mailboxtype =~ /cloud|exchange/i
+    return migration_event_state_for_display if has_migration_event?
+    return 'Complete' if mailboxtype == 'cloud'
+    return 'DO NOT MIGRATE' if do_not_migrate?
     'Pending'
   end
   
-  def needs_migration?
-    return false if mailboxtype == 'cloud'
-    true
+  def drop_from_migration
+    migration_events.first.delete unless migration_events.empty?
   end
   
+  def needs_migration?
+    return false unless active?
+    return false if do_not_migrate?
+    return false if mailboxtype == 'cloud'
+    return false if migration_events.first
+    true
+  end
+
+  def resources_to_migrate
+    resources = []
+    primary_resource_ownerships.each do |calendar|
+      resources << calendar if calendar.needs_migration?
+    end
+    resources
+  end
+  
+  def display_mailboxtype
+    return "Blitz" if mailboxtype.blank?
+    mailboxtype.titleize
+  end
+
+  def newemailaddress
+    parts = email.split('@')
+    case
+    when m = /^'([0-9][0-9])/.match(deptclass.strip)
+      suffix = Regexp.new("#{m[1]}$").match(parts[0]) ? "" : m[1]
+    when suffix_map.key?(deptclass.strip)
+      suffix = suffix_map[deptclass.strip]
+    else
+      suffix = ""
+    end
+    "#{parts[0]}#{suffix}@#{parts[1]}"
+  end
+
   def invitation_sent_for_group?(group)
     memberships.where(:group_id => group.id, :type => 'Member').first.invitation_sent?
   end
@@ -147,4 +194,31 @@ class User < ActiveRecord::Base
     cache_expires
     self.touch
   end
+
+  def suffix_map
+    {
+      "DM" => "DM",
+      "FOR UN" => "",
+      "GR" => "GR",
+      "GREC" => "GR",
+      "GRGS" => "GR",
+      "GRHC" => "GR",
+      "GRLS" => "GR",
+      "HS" => "HS",
+      "MT" => "MT",
+      "S1" => "S1",
+      "SC" => "SC",
+      "SD" => "SD",
+      "SX" => "SX",
+      "TH" => "TH",
+      "TU" => "TU",
+      "TU08" => "TU08",
+      "TU09" => "TU09",
+      "TU10" => "TU10",
+      "TU11" => "TU11",
+      "TU12" => "TU12",
+      "UG" => "UG"
+    }
+  end
+
 end

@@ -31,13 +31,13 @@ class Profile < ActiveRecord::Base
   end
 
   def used_only_blitz?
-    return false if used_email_clients.empty? || used_email_clients.size > 1
+    return false if used_email_clients.nil? || used_email_clients.empty? || used_email_clients.size > 1
     return false if (used_email_clients.first =~ /blitz/i).nil?
     return true
   end
   
   def missing_vital_attributes?
-    return true if used_email_clients.empty?
+    return true if used_email_clients.nil? || used_email_clients.empty?
     boolean_attributes.each do |attribute|
       return true if self[attribute].nil?
     end
