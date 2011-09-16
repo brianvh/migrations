@@ -101,12 +101,13 @@ class User < ActiveRecord::Base
   end
 
   def migration_event_state_for_display
-    migration_events.first.migration.date if migration_events.first.pending?
+    return migration_events.first.migration.date if migration_events.first.pending?
     migration_events.first.state.titleize
   end
   
   def has_migration_event?
-    migration_events.first
+    return true if migration_events.first
+    false
   end
 
   def migration_state
