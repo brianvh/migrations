@@ -27,7 +27,11 @@
 
   <div class="group wat-cf">
     <div class="left label">Two-weeks prior email</div>
-    <div class="right tight"><%= simple_format(html_escape(@migration.two_week_email), :class => 'email-font') %></div>
+    <div class="right tight">
+    <p class="email-font">From: e-mail.transition@dartmouth.edu<br />
+    Subject: IMPORTANT: Your BlitzMail Account Is Moving!</p>
+    <%= simple_format(html_escape(@migration.two_week_email), :class => 'email-font') %>
+    </div>
   </div>
   
   <div class="group wat-cf">

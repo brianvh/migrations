@@ -21,7 +21,10 @@
 
     <div class="group wat-cf">
       <div class="left label"><%= f.label :two_week_email, "Two weeks prior Email Message" %></div>
-      <div class="right"><%= f.text_area :two_week_email, :size => '80x10' %></div>
+      <div class="right">
+      <p class="email-font">From: e-mail.transition@dartmouth.edu<br />
+      Subject: IMPORTANT: Your BlitzMail Account Is Moving!</p>
+      <%= f.text_area :two_week_email, :size => '80x10' %></div>
     </div>
 
     <div class="group wat-cf">

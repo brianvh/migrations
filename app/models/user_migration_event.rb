@@ -7,12 +7,20 @@ class UserMigrationEvent < MigrationEvent
     event :notify_at_two_weeks do
       transition :pending => :two_week_notification_sent
     end
-    after_transition :on => :two_week_notification_sent, :do => :deliver_two_week_notification
+    after_transition :on => :notify_at_two_weeks, :do => :deliver_two_week_notification
+    
+    event :notify_at_two_weeks_quiet do
+      transition any => :two_week_notification_sent
+    end
     
     event :notify_day_before do
       transition :two_week_notification_sent => :day_before_notification_sent
     end
-    after_transition :on => :day_before_notification_sent, :do => :deliver_day_before_notification
+    after_transition :on => :notify_day_before, :do => :deliver_day_before_notification
+
+    event :notify_day_before_quiet do
+      transition any => :day_before_notification_sent
+    end
     
     event :reset do
       transition any => :pending
