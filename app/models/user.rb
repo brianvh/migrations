@@ -101,8 +101,8 @@ class User < ActiveRecord::Base
   end
 
   def migration_event_state_for_display
-    # migration_events.first.state.titleize
-    migration_events.first.migration.date
+    migration_events.first.migration.date if migration_events.first.pending?
+    migration_events.first.state.titleize
   end
   
   def has_migration_event?
@@ -110,12 +110,14 @@ class User < ActiveRecord::Base
   end
 
   def migration_state
-    if has_migration_event?
-      return migration_event_state_for_display
-    else
-      return 'Complete' if mailboxtype == 'cloud'  # =~ /cloud|exchange/i
-      'Pending'
-    end
+    return migration_event_state_for_display if has_migration_event?
+    return 'Complete' if mailboxtype == 'cloud'
+    return 'DO NOT MIGRATE' if do_not_migrate?
+    'Pending'
+  end
+  
+  def drop_from_migration
+    migration_events.first.delete unless migration_events.empty?
   end
   
   def needs_migration?

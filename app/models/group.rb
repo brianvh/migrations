@@ -96,7 +96,6 @@ class Group < ActiveRecord::Base
   end
   
   def schedule_migrations
-  
     unless migration_id.nil?
       unless migration_id == 0
         migration = Migration.find(migration_id)
