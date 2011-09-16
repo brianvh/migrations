@@ -138,8 +138,8 @@ class User < ActiveRecord::Base
   end
   
   def display_mailboxtype
-    return "blitz" if mailboxtype.blank?
-    mailboxtype
+    return "Blitz" if mailboxtype.blank?
+    mailboxtype.titleize
   end
 
   def invitation_sent_for_group?(group)
