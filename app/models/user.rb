@@ -105,13 +105,13 @@ class User < ActiveRecord::Base
     migration_events.first.human_state_name
   end
   
-  def has_migration_event?
+  def has_migration?
     return true if migration_events.first
     false
   end
 
   def migration_state
-    return migration_event_state_for_display if has_migration_event?
+    return migration_event_state_for_display if has_migration?
     return 'Complete' if mailboxtype == 'cloud'
     return 'DO NOT MIGRATE' if do_not_migrate?
     'Pending'

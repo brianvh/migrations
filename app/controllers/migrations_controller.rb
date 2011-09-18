@@ -37,7 +37,11 @@ class MigrationsController < ApplicationController
   def update
     @migration = Migration.find(params[:id])
     if @migration.update_attributes(params[:migration])
-      send_to_migration
+      if params[:migration][:action]
+        self.send(params[:migration][:action])
+      else
+        send_to_migration
+      end
     else
       flash.now[:error] = "Error updating migration"
       render :edit
@@ -68,6 +72,20 @@ class MigrationsController < ApplicationController
 
   def send_to_migration
     redirect_to migration_path(@migration)
+  end
+  
+  def cancel_user_migration
+    if @migration.cancel_user_migration(params[:migration][:user_id])
+      flash[:notice] = "Migration successfully canceled."
+    end
+    redirect_to user_path(params[:migration][:user_id])
+  end
+  
+  def reschedule_user_migration
+    if @migration.reschedule_user_migration(params[:migration][:user_id], params[:migration][:migration_id])
+      flash[:notice] = "Migration successfully rescheduled."
+    end
+    redirect_to user_path(params[:migration][:user_id])
   end
 
 end

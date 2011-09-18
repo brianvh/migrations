@@ -25,8 +25,11 @@
   <div class="group wat-cf">
     <div class="left label">Affiliation</div>
     <div class="right"><%= @user.affiliation %></div>
-  </div>
+  </div>  
 </div>
+
+<%= render :partial => 'migration_info', :locals => { :user => @user } if @user.has_migration? %>
+
 <%= render 'profile_info' unless @profile.nil? %>
 <%= render 'profile_no' if @profile.nil? %>
 <%= render 'devices_list' unless @devices.empty? %>
