@@ -1,7 +1,6 @@
 <div id="assign-date" class="fieldset form" style="display: none;">
   <div class="group navform wat-cf">
     <div class="text_button_padding">
-      <%# link_to 'Cancel', group_path %>
       <%= hide_div_link 'Cancel', 'assign-date' %>
     </div>
     <div class="right">
@@ -13,7 +12,7 @@
     <div class="left label"><%= f.label :accounts, "Select Migration Date" %></div>
     <div class="right">
       <%= select("group","migration_id",
-            [""] + (Migration.available_dates << ["DO NOT MIGRATE", 0]), {},
+            [""] + (Migration.available_dates), {},
             {"data-placeholder" => "Choose date...",
              :id => "date-select",
              :class => "chzn-select",

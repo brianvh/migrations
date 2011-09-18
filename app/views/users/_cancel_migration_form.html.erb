@@ -1,0 +1,14 @@
+<% form_for user.migrations.first do |f| -%>
+  <div id="cancel-migration" class="fieldset form" style="display: none">
+    <h2>Cancel This Migration</h2>
+    <div class="group navform wat-cf">
+      <div class="text_button_padding">
+        <%= hide_div_link 'Cancel', 'cancel-migration' %>
+      </div>
+      <div class="right">
+        <button class="button" type="submit" onclick="return confirm('Are you sure you want to cancel this migration?');">Cancel Migration</button>
+      </div>
+    </div>
+    <%= f.hidden_field :action, :value => :cancel_migration %>
+  </div>
+<% end -%>

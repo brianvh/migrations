@@ -105,7 +105,7 @@ class User < ActiveRecord::Base
     migration_events.first.human_state_name
   end
   
-  def has_migration_event?
+  def has_migration?
     return true if migration_events.first
     false
   end
