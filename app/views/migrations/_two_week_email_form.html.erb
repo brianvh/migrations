@@ -1,0 +1,26 @@
+    <div id="two-week-email" class="fieldset form" style="display: none">
+      <h2>Compose and Send Two-Week Notification Email</h2>
+      <div class="group navform wat-cf">
+        <div class="text_button_padding">
+          <%= hide_div_link 'Cancel', 'two-week-email' %>
+        </div>
+        <div class="right">
+          <button class="button" type="submit">Send Email</button>
+        </div>
+      </div>
+      <%= f.hidden_field :action, :value => :send_two_week_email %>
+      <div class="group wat-cf">
+        <div class="left label">&nbsp;</div>
+        <div class="right email-font">
+          From: e-mail.transition@dartmouth.edu<br />
+          Subject: IMPORTANT: Your BlitzMail Account Is Moving!
+        </div>
+      </div>
+      <div class="group wat-cf">
+        <div class="left label"><%= f.label :two_week_email, "Message Body" %></div>
+        <div class="right">
+          <%= f.text_area :two_week_email, :size => '80x10',
+              :value => !@migration.two_week_email.blank? ? @migration.two_week_email : render(:file => 'migrations/_two_week_message_default.text') %>
+        </div>
+      </div>
+    </div>
