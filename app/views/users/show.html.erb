@@ -26,6 +26,9 @@
     <div class="left label">Affiliation</div>
     <div class="right"><%= @user.affiliation %></div>
   </div>
+  
+<%= render :partial => 'user_migration_info', :locals => { :user => @user } %>
+  
 </div>
 <%= render 'profile_info' unless @profile.nil? %>
 <%= render 'profile_no' if @profile.nil? %>

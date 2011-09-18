@@ -1,0 +1,11 @@
+<div class="group wat-cf">
+  <div class="left label">Scheduled Migration Date</div>
+  <div class="right"><%= user.migrations.first.date.to_s(:long) %></div>
+</div>
+
+<% if user.email.downcase != user.newemailaddress.downcase %>
+  <div class="group wat-cf">
+    <div class="left label">Email address after migration</div>
+    <div class="right"><%= user.newemailaddress %></div>
+  </div>
+<% end -%>
