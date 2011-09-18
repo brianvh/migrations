@@ -129,6 +129,18 @@ class GroupsController < ApplicationController
 
   def schedule_migrations
     @group.schedule_migrations
+    msg = ""
+    if @group.users_added > 0
+      msg = "#{@group.users_added} user"
+      msg += " and " if @group.resources_added > 0
+    end
+    if @group.resources_added > 0
+      msg += "#{@group.resources_added} resource"
+    end
+    msg += " account"
+    msg += "s" if @group.users_added + @group.resources_added > 1
+    msg += " added."
+    flash[:notice] = msg
     send_to_group
   end
 end

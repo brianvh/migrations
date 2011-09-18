@@ -64,6 +64,14 @@ class Group < ActiveRecord::Base
     @invitations_sent || 0
   end
 
+  def users_added
+    @users_added ||= 0
+  end
+  
+  def resources_added
+    @resources_added ||= 0
+  end
+
   def send_invitations
     bcc = []
     sent_to_ids = []
@@ -96,12 +104,10 @@ class Group < ActiveRecord::Base
   end
   
   def schedule_migrations
-    unless migration_id.nil?
-      unless migration_id == 0
-        migration = Migration.find(migration_id)
-        migration.add_users_and_resources(accounts)
-      end
-    end
+    migration = Migration.find(migration_id)
+    migration.add_users_and_resources(accounts)
+    @users_added = migration.users_added
+    @resources_added = migration.resources_added
   end
 
   private

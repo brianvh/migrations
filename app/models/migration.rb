@@ -30,6 +30,8 @@ class Migration < ActiveRecord::Base
   attr_accessor :resource_id
   attr_accessor :migration_id
   attr_accessor :action
+  attr_accessor :users_added
+  attr_accessor :resources_added
   
   def user_id=(params)
     @user_id = params
@@ -63,6 +65,22 @@ class Migration < ActiveRecord::Base
     @migration_id = params
   end
   
+  def users_added
+    @users_added ||= 0
+  end
+  
+  def users_added=(params)
+    @users_added = params
+  end
+  
+  def resources_added
+    @resources_added ||= 0
+  end
+  
+  def resources_added=(params)
+    @resources_added = params
+  end
+  
   def total_accounts
     users.size + resources.size
   end
@@ -76,12 +94,19 @@ class Migration < ActiveRecord::Base
   end
   
   def add_user_resources(user)
-    resources << user.resources_to_migrate
-    resources.flatten
+    new_resources = user.resources_to_migrate ||= []
+    unless new_resources.empty?
+      resources << new_resources
+      resources.flatten
+      self.resources_added += new_resources.size
+    end
   end
   
   def add_user(new_user)
-    users << new_user if new_user.needs_migration?
+    if new_user.needs_migration?
+      users << new_user
+      self.users_added += 1
+    end
   end
   
   def week_of
