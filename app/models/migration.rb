@@ -14,16 +14,54 @@ class Migration < ActiveRecord::Base
   
   validates :two_week_email,
             :day_before_email,
-            :presence => true
+            :presence => true, :unless => Proc.new { |m| m.action }
   
   validates :date,
             :uniqueness => { :message => "there is already a migration established for that day" },
-            :on => :create
+            :on => :create, :unless => Proc.new { |m| m.action }
             
   validates :max_accounts,
-            :numericality => { :greater_than_or_equal_to => 0, :only_integer => true }
+            :numericality => { :greater_than_or_equal_to => 0, :only_integer => true },
+            :unless => Proc.new { |m| m.action }
   
-  validate :valid_date
+  validate :valid_date, :unless => Proc.new { |m| m.action }
+  
+  attr_accessor :user_id
+  attr_accessor :resource_id
+  attr_accessor :migration_id
+  attr_accessor :action
+  
+  def user_id=(params)
+    @user_id = params
+  end
+  
+  def user_id
+    @user_id ||= nil
+  end
+  
+  def resource_id=(params)
+    @resource_id = params
+  end
+  
+  def resource_id
+    @resource_id ||= nil
+  end
+  
+  def action=(params)
+    @action = params
+  end
+  
+  def action
+    @action ||= nil
+  end
+  
+  def migration_id
+    @migration_id ||= nil
+  end
+  
+  def migration_id=(params)
+    @migration_id = params
+  end
   
   def total_accounts
     users.size + resources.size
@@ -50,8 +88,23 @@ class Migration < ActiveRecord::Base
     date.beginning_of_week
   end
   
+  def cancel_user_migration(user_id)
+    event = migration_events.where(:user_id => user_id).first
+    if event
+      migration_events.where(:user_id => user_id).first.delete
+      return true
+    end
+    false
+  end
+  
+  def reschedule_user_migration(user_id, migration_id)
+    cancel_user_migration(user_id)
+    Migration.find(migration_id).add_user(User.find(user_id))
+    true
+  end
+  
   def self.available_dates
-    Migration.where("date >= '#{Date.today}'").select { |m| m.max_accounts > m.migration_events.size }.map { |m| [m.date, m.id] }
+    where("date >= '#{Date.today}'").select { |m| m.max_accounts > m.migration_events.size }.map { |m| [m.date, m.id] }
   end
 
   private

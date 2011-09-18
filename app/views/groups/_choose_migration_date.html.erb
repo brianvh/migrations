@@ -1,7 +1,7 @@
-<div id="assign-date" class="fieldset form" style="display: none;">
+<div id="assign-date" class="fieldset form">
   <div class="group navform wat-cf">
     <div class="text_button_padding">
-      <%= hide_div_link 'Cancel', 'assign-date' %>
+      <%= link_to 'Cancel', group_path(@group) %>
     </div>
     <div class="right">
       <button class="button" onclick="return count_checked();">Assign Migration Date</button>
