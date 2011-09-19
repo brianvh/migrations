@@ -13,22 +13,19 @@ class NotificationMailer < ActionMailer::Base
   def notify_at_two_weeks(user, msg)
     @user = user
     @msg = ERB.new(msg.html_safe).result(binding)
-    # mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving!')
-    mail(:from => 'alan.german@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving!')
+    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving!')
   end
   
   def notify_at_one_week(user, msg)
     @user = user
     @msg = ERB.new(msg.html_safe).result(binding)
-    # mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving NEXT WEEK!')
-    mail(:from => 'alan.german@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving NEXT WEEK!')
+    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving NEXT WEEK!')
   end
   
   def notify_at_one_day(user, msg)
     @user = user
     @msg = ERB.new(msg.html_safe).result(binding)
-    # mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving TOMORROW!')
-    mail(:from => 'alan.german@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving TOMORROW!')
+    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving TOMORROW!')
   end
   
   def dndname
