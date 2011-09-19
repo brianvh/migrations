@@ -124,6 +124,24 @@ class Migration < ActiveRecord::Base
     true
   end
   
+  def send_two_week_email
+    users_to_notify = user_migration_events.with_state(:pending)
+    users_to_notify.each { |e| e.notify_at_two_weeks }
+    users_to_notify.size
+  end
+  
+  def send_one_week_email
+    users_to_notify = user_migration_events.with_state(:two_week_notification_sent)
+    users_to_notify.each { |e| e.notify_at_one_week }
+    users_to_notify.size
+  end
+
+  def send_day_before_email
+    users_to_notify = user_migration_events.with_state(:one_week_notification_sent)
+    users_to_notify.each { |e| e.notify_day_before }
+    users_to_notify.size
+  end
+  
   def self.available_dates
     where("date >= '#{Date.today}'").select { |m| m.max_accounts > m.migration_events.size }.map { |m| [m.date, m.id] }
   end
