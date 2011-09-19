@@ -1,10 +1,8 @@
 <%= render :partial => 'account_nav', :locals => { :migration => @migration } %>
 
-<% form_for @migration do |f| -%>
-  <%= render :partial => 'two_week_email_form', :locals => { :f => f } %>
-  <%= render :partial => 'one_week_email_form', :locals => { :f => f } %>
-  <%= render :partial => 'day_before_email_form', :locals => { :f => f } %>
-<% end -%>
+<%= render :partial => 'two_week_email_form' %>
+<%= render :partial => 'one_week_email_form' %>
+<%= render :partial => 'day_before_email_form' %>
 
 <div id="account-list" class="fieldset form">
   <% if @accounts.empty? %>
