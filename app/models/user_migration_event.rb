@@ -1,6 +1,7 @@
 class UserMigrationEvent < MigrationEvent
 
   belongs_to :user
+  belongs_to :migration
 
   state_machine :initial => :pending do
     
@@ -43,15 +44,15 @@ class UserMigrationEvent < MigrationEvent
   end
 
   def deliver_two_week_notification
-    
+    NotificationMailer.notify_at_two_weeks(user, migration.two_week_email).deliver
   end
   
   def deliver_one_week_notification
-    
+    NotificationMailer.notify_at_one_week(user, migration.one_week_email).deliver
   end
 
   def deliver_day_before_notification
-    
+    NotificationMailer.notify_day_before(user, migration.day_before_email).deliver
   end
   
 end
