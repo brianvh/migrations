@@ -6,4 +6,4 @@ ActionMailer::Base.smtp_settings = {
     :domain => "dartmouth.edu",
     } 
 
-ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development? || Rails.env.test?
+ActionMailer::Base.register_interceptor(DevelopmentMailInterceptor) unless Rails.env.production?

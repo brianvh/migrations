@@ -1,5 +1,6 @@
 <div class="secondary-navigation">
   <ul class="wat-cf">
+    <%= content_tag(:li, link_to('Schedule Migrations', group_path(@group, :view => 'migrations'))) if current_user.is_admin? %>
     <li><%= link_to 'View Devices', group_path(@group, :view => 'devices') %></li>
     <li><%= show_div_link 'Add Member', 'add-member' %></li>
     <li><%= show_div_link 'Add Deptclass', 'add-deptclass' %></li>

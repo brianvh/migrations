@@ -1,0 +1,12 @@
+<div id="migrations" class="fieldset">
+  <% if @members.empty? %>
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li><%= link_to "View Group", group_path(@group) %></li>
+    </ul>
+  </div>
+  <% end -%>
+  <h2>Schedule Migrations</h2>
+  <%= render :partial => "migration_list" unless @members.empty? %>
+  <%= content_tag(:p, 'No accounts eligible for migration.') if @members.empty? %>
+</div>

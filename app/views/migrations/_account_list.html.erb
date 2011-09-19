@@ -1,0 +1,29 @@
+<%= render :partial => 'account_nav', :locals => { :migration => @migration } %>
+
+<% form_for @migration do |f| -%>
+  <%= render :partial => 'two_week_email_form', :locals => { :f => f } %>
+  <%= render :partial => 'one_week_email_form', :locals => { :f => f } %>
+  <%= render :partial => 'day_before_email_form', :locals => { :f => f } %>
+<% end -%>
+
+<div id="account-list" class="fieldset form">
+  <% if @accounts.empty? %>
+    <%= content_tag(:p, 'No accounts scheduled for this migration.') %>
+  <% else %>
+    <h2>Accounts Scheduled</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th align="left">Last, First</th>
+          <th align="left">Deptclass</th>
+          <th align="left">New Email</th>
+          <th align="left">Mailbox Type</th>
+          <th align="left">Group</th>
+          <th align="left">Status</th>
+        </tr>
+        <%= render :partial => 'account', :collection => @accounts %>
+      </table>
+    </div>
+  <% end -%>
+</div>
+

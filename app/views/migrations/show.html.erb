@@ -1,0 +1,14 @@
+
+<% title "BlitzMail Migrations: Migration Info", false %>
+<h2 id="migration-header">Migration Information for <%= @migration.date %></h2>
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li>
+      <%= link_to "Edit", edit_migration_path %>
+    </li>
+  </ul>
+</div>
+
+<%= render :partial => 'info' %>
+<%= render :partial => "account_list" unless show_resources? %>
+<%= render :partial => "resource_list" if show_resources? %>

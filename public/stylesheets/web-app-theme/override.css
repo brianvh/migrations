@@ -77,3 +77,10 @@ h2 { margin-top: 0px; }
   background-color: #b00;
 	color: white;
 }
+
+email-font {
+	font-family: sans-serif;
+	font-size: 1.0em;
+	margin-top: 0px;
+	margin-bottom: 15px;
+}
