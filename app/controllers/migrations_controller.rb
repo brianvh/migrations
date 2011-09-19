@@ -90,19 +90,19 @@ class MigrationsController < ApplicationController
 
   def send_two_week_email
     count_sent = @migration.send_two_week_email
-    flash[:success] = "#{count_sent} 2-Week Notification#{(count_sent == 0 || count_sent > 1) ? 's' : ''} sent."
+    flash[:notice] = "#{count_sent} 2-Week Notification#{(count_sent == 0 || count_sent > 1) ? 's' : ''} sent."
     send_to_migration
   end
   
   def send_one_week_email
     count_sent = @migration.send_one_week_email
-    flash[:success] = "#{count_sent} 1-Week Notification#{(count_sent == 0 || count_sent > 1) ? 's' : ''} sent."
+    flash[:notice] = "#{count_sent} 1-Week Notification#{(count_sent == 0 || count_sent > 1) ? 's' : ''} sent."
     send_to_migration
   end
 
   def send_day_before_email
     count_sent = @migration.send_day_before_email
-    flash[:success] = "#{count_sent} 1-Day Notification#{(count_sent == 0 || count_sent > 1) ? 's' : ''} sent."
+    flash[:notice] = "#{count_sent} 1-Day Notification#{(count_sent == 0 || count_sent > 1) ? 's' : ''} sent."
     send_to_migration
   end
 

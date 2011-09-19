@@ -52,7 +52,7 @@ class UserMigrationEvent < MigrationEvent
   end
 
   def deliver_day_before_notification
-    NotificationMailer.notify_day_before(user, migration.day_before_email).deliver
+    NotificationMailer.notify_at_one_day(user, migration.day_before_email).deliver
   end
   
 end
