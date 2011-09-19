@@ -9,9 +9,9 @@ class MigrationsController < ApplicationController
   def show
     @migration = Migration.find(params[:id])
     if show_accounts? || show_info?
-      @accounts = @migration.users
+      @accounts = @migration.users_sorted
     elsif show_resources?
-      @resources = @migration.resources
+      @resources = @migration.resources_sorted
     end
   end
   
