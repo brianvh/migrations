@@ -29,6 +29,14 @@ class Migration < ActiveRecord::Base
   attr_accessor :users_added
   attr_accessor :resources_added
   
+  def users_sorted
+    users.order("users.lastname, users.firstname")
+  end
+  
+  def resources_sorted
+    resources.order("name")
+  end
+  
   def user_id=(params)
     @user_id = params
   end

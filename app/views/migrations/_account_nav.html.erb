@@ -1,8 +1,8 @@
 <div class="secondary-navigation">
   <ul class="wat-cf">
     <li><%= link_to "View Resources", migration_path(migration, :view => "resources") %></li>
-    <li><%= show_div_link 'Send 2-Week Email', 'two-week-email' %></li>
-    <li><%= show_div_link 'Send 1-Week Email', 'one-week-email' %></li>
-    <li><%= show_div_link 'Send 1-Day Email', 'one-day-email' %></li>
+    <li><%= show_div_link 'Send 2-Week Email', 'two-week-email' unless @accounts.empty? %></li>
+    <li><%= show_div_link 'Send 1-Week Email', 'one-week-email' unless @accounts.empty? %></li>
+    <li><%= show_div_link 'Send 1-Day Email', 'one-day-email' unless @accounts.empty? %></li>
   </ul>
 </div>

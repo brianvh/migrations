@@ -146,9 +146,9 @@ class User < ActiveRecord::Base
     parts = email.split('@')
     case
     when m = /^'([0-9][0-9])/.match(deptclass.strip)
-      suffix = Regexp.new("#{m[1]}$").match(parts[0]) ? "" : m[1]
+      suffix = "." + (Regexp.new("#{m[1]}$").match(parts[0]) ? "" : m[1])
     when suffix_map.key?(deptclass.strip)
-      suffix = suffix_map[deptclass.strip]
+      suffix = "." + suffix_map[deptclass.strip]
     else
       suffix = ""
     end
