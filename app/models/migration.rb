@@ -12,10 +12,6 @@ class Migration < ActiveRecord::Base
   has_many :resource_migration_events
   has_many :resources, :through => :resource_migration_events
   
-  validates :two_week_email,
-            :day_before_email,
-            :presence => true, :unless => Proc.new { |m| m.action }
-  
   validates :date,
             :uniqueness => { :message => "there is already a migration established for that day" },
             :on => :create, :unless => Proc.new { |m| m.action }
