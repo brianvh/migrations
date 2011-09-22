@@ -1,3 +1,9 @@
+<script type="text/javascript">
+  function confirm_cancel () {
+    return confirm('Are you sure you want to cancel this migration?');
+  };
+</script>
+
 <%= form_for user.migrations.first do |f| -%>
 <%= f.hidden_field :user_id, :value => user.id %>
   <div id="cancel-migration" class="fieldset form" style="display: none">
@@ -7,7 +13,7 @@
         <%= hide_div_link 'Cancel', 'cancel-migration' %>
       </div>
       <div class="right">
-        <button class="button" type="submit" onclick="return confirm('Are you sure you want to cancel this migration?');">Cancel Migration</button>
+        <button class="button" type="submit" onclick="return confirm_cancel();">Cancel Migration</button>
       </div>
     </div>
     <%= f.hidden_field :action, :value => :cancel_user_migration %>

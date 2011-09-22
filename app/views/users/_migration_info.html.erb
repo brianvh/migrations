@@ -1,8 +1,10 @@
-<% if current_user.is_admin? %>
+<% if current_user.is_admin? && user.has_migration? %>
   <% add_chosen_assets %>
-  <%= render :partial => 'migration_nav' %>
+  <%= render :partial => 'migration_nav', :locals => { :user => user } %>
   <%= render :partial => 'cancel_migration_form', :locals => { :user => user } %>
   <%= render :partial => 'reschedule_migration_form', :locals => { :user => user } %>
+<% elsif current_user.is_support? && user.needs_migration? %>
+  <%= render :partial => 'migration_nav', :locals => { :user => user } %>
 <% end -%>
 
 
@@ -10,14 +12,17 @@
   <h2>Migration Info</h2>
 
   <div class="group wat-cf">
-    <div class="left label">Scheduled Migration Date</div>
-    <div class="right"><%= user.migrations.first.date.to_s(:long) %></div>
+    <div class="left label">Scheduled Date</div>
+    <div class="right">
+      <%= migration_schedule_date(user) %>
+    </div>
   </div>
 
   <% if user.email.downcase != user.newemailaddress.downcase %>
     <div class="group wat-cf">
-      <div class="left label">Email address after migration</div>
+      <div class="left label">New email address after migration</div>
       <div class="right"><%= user.newemailaddress %></div>
     </div>
   <% end -%>
+
 </div>

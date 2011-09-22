@@ -28,7 +28,7 @@
   </div>  
 </div>
 
-<%= render :partial => 'migration_info', :locals => { :user => @user } if @user.has_migration? %>
+<%= render :partial => 'migration_info', :locals => { :user => @user } %>
 
 <%= render 'profile_info' unless @profile.nil? %>
 <%= render 'profile_no' if @profile.nil? %>

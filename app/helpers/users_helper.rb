@@ -12,4 +12,20 @@ module UsersHelper
     group_list.join(", ")
   end
   
+  def migration_schedule_date(user)
+    case 
+    when user.has_migration?
+      user.migrations.first.date.to_s(:long)
+    when user.needs_migration?
+      "Not yet scheduled"
+    else
+      "Completed"
+    end
+  end
+  
+  
+  def block_migration_link_label(user)
+    "#{user.do_not_migrate? ? "Unblock" : "Block"} Migration"
+  end
+
 end

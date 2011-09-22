@@ -1,6 +1,11 @@
   <div class="secondary-navigation" id="migration-info-nav">
     <ul class="wat-cf">
-      <li><%= show_div_link 'Reschedule Migration', 'reschedule-migration' %></li>
-      <li><%= show_div_link 'Cancel Migration', 'cancel-migration' %></li>
+      <% if current_user.is_admin? && user.has_migration? %>
+        <li><%= show_div_link 'Reschedule Migration', 'reschedule-migration' %></li>
+        <li><%= show_div_link 'Cancel Migration', 'cancel-migration' %></li>
+      <% end -%>
+      <% if current_user.is_admin? || current_user.is_support? && user.needs_migration? %>
+        <li><%= show_div_link block_migration_link_label(user), 'block-migration' %></li>
+      <% end -%>
     </ul>
   </div>
