@@ -3,7 +3,7 @@
   <%= render :partial => 'migration_nav', :locals => { :user => user } %>
   <%= render :partial => 'cancel_migration_form', :locals => { :user => user } %>
   <%= render :partial => 'reschedule_migration_form', :locals => { :user => user } %>
-<% elsif current_user.is_support? && user.needs_migration? %>
+<% elsif (user.do_not_migrate? && user.mailboxtype == 'cloud') || (current_user.is_support? && user.needs_migration?) %>
   <%= render :partial => 'migration_nav', :locals => { :user => user } %>
 <% end -%>
 
