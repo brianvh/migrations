@@ -1,10 +1,12 @@
 <% if current_user.is_admin? && user.has_migration? %>
   <% add_chosen_assets %>
   <%= render :partial => 'migration_nav', :locals => { :user => user } %>
+  <%= render :partial => "block_migration_form", :locals => { :user => user } %>
   <%= render :partial => 'cancel_migration_form', :locals => { :user => user } %>
   <%= render :partial => 'reschedule_migration_form', :locals => { :user => user } %>
 <% elsif (user.do_not_migrate? && user.mailboxtype == 'cloud') || (current_user.is_support? && user.needs_migration?) %>
   <%= render :partial => 'migration_nav', :locals => { :user => user } %>
+  <%= render :partial => "block_migration_form", :locals => { :user => user } %>
 <% end -%>
 
 

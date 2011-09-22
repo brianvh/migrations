@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
 
   after_create :activate
 
+  attr_writer :action
+
   delegate  :netid, :affiliation, :blitzserv, :email, :emailsuffix,
             :phone, :assignednetid, :to => :profile
 
@@ -30,7 +32,7 @@ class User < ActiveRecord::Base
     end
 
     event :skip_migration do
-      transition :active => :do_not_migrate
+      transition [:active, :pending] => :do_not_migrate
     end
 
     event :reset do

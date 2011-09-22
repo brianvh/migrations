@@ -18,6 +18,8 @@ module UsersHelper
       user.migrations.first.date.to_s(:long)
     when user.needs_migration?
       "Not yet scheduled"
+    when user.do_not_migrate?
+      "DO NOT MIGRATE"
     else
       "Completed"
     end
