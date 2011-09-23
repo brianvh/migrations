@@ -32,11 +32,13 @@ class UsersController < ApplicationController
 
   def block_user_migration
     @user.block_from_migration
+    flash[:notice] = "User successfully blocked from migration."
     send_to_user
   end
   
   def unblock_user_migration
     @user.unblock_from_migration
+    flash[:notice] = "User successfully unblocked from migration."
     send_to_user
   end
   
