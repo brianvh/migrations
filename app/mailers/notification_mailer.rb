@@ -41,7 +41,7 @@ class NotificationMailer < ActionMailer::Base
   end
   
   def migdate
-    @user.migration_events.first.migration.date.to_s(:long)
+    @user.migration_events.first.migration.date.strftime('%B %d, %Y').sub(/ 0([\d])/,' \1')
   end
   
   def migday
