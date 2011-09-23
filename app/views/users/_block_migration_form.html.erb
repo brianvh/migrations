@@ -1,0 +1,20 @@
+<script type="text/javascript">
+  function confirm_block () {
+    return confirm('Are you sure you want to block this migration?');
+  };
+</script>
+
+<%= form_for @user, :url => user_path(@user), :as => :user do |f| -%>
+  <div id="block-migration" class="fieldset form" style="display: none">
+    <h2><%= @user.do_not_migrate? ? "Unblock" : "Block" %> This Migration</h2>
+    <div class="group navform wat-cf">
+      <div class="text_button_padding">
+        <%= hide_div_link 'Cancel', 'block-migration' %>
+      </div>
+      <div class="right">
+        <button class="button" type="submit"<%= ' onclick="return confirm_block();"' unless @user.do_not_migrate? %>><%= @user.do_not_migrate? ? "Unblock" : "Block" %> Migration</button>
+      </div>
+    </div>
+    <%= f.hidden_field :action, :value => @user.do_not_migrate? ? :unblock_user_migration : :block_user_migration %>
+  </div>
+<% end -%>

@@ -25,7 +25,7 @@ module ApplicationHelper
   
   def admin_nav_tabs
     return "" if controller_path == "sessions"
-    return "" unless current_user.is_support?
+    return "" unless current_user.is_admin?
     content_tag(:li, link_to("Migrations", migrations_path), :class => active_tab_class("migrations", "right"))
   end
   
