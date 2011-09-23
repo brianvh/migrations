@@ -1,5 +1,15 @@
+<script type="text/javascript">
+  function confirm_reschedule () {
+    if ($("#date-select").val() == "") {
+      alert("Please select a date.");
+      return false;
+    }
+    return confirm('Are you sure you want to reschedule this migration?');
+  }
+</script>
+
 <%= form_for user.migrations.first do |f| -%>
-<%= f.hidden_field :user_id, :value => user.id %>
+  <%= f.hidden_field :user_id, :value => user.id %>
   <div id="reschedule-migration" class="fieldset form" style="display: none">
     <h2>Reschedule this Migration</h2>
     <div class="group navform wat-cf">
@@ -7,7 +17,7 @@
         <%= hide_div_link 'Cancel', 'reschedule-migration' %>
       </div>
       <div class="right">
-        <button class="button" type="submit" onclick="return confirm('Are you sure you want to reschedule this migration?');">Reschedule Migration</button>
+        <button class="button" type="submit" onclick="return confirm_reschedule();">Reschedule Migration</button>
       </div>
     </div>
     <%= f.hidden_field :action, :value => :reschedule_user_migration %>

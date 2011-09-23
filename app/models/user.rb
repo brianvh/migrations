@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
 
   after_create :activate
 
+  attr_writer :action
+
   delegate  :netid, :affiliation, :blitzserv, :email, :emailsuffix,
             :phone, :assignednetid, :to => :profile
 
@@ -30,7 +32,7 @@ class User < ActiveRecord::Base
     end
 
     event :skip_migration do
-      transition :active => :do_not_migrate
+      transition [:active, :pending] => :do_not_migrate
     end
 
     event :reset do
@@ -157,6 +159,15 @@ class User < ActiveRecord::Base
 
   def invitation_sent_for_group?(group)
     memberships.where(:group_id => group.id, :type => 'Member').first.invitation_sent?
+  end
+  
+  def block_from_migration
+    skip_migration
+  end
+  
+  def unblock_from_migration
+    reset
+    activate
   end
 
   def self.authenticate(authenticator)

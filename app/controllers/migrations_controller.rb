@@ -67,7 +67,7 @@ class MigrationsController < ApplicationController
   
   def admin_user?
     return true if current_user.is_admin?
-    send_to_user
+    redirect_to user_path(current_user)
   end
 
   def send_to_migration
