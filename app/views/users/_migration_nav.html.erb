@@ -4,7 +4,7 @@
         <li><%= show_div_link 'Reschedule Migration', 'reschedule-migration' %></li>
         <li><%= show_div_link 'Cancel Migration', 'cancel-migration' %></li>
       <% end -%>
-      <% if user.do_not_migrate? || (current_user.is_admin? || current_user.is_support? && user.needs_migration?) %>
+      <% if current_user.is_support? && (user.needs_migration? || user.do_not_migrate?) %>
         <li><%= show_div_link block_migration_link_label(user), 'block-migration' %></li>
       <% end -%>
     </ul>

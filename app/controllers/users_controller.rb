@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
      self.send(params[:user][:action])
     else
-     redirect_to user_path(@user)
+     send_to_user
     end
   end
 
@@ -31,13 +31,17 @@ class UsersController < ApplicationController
   end
 
   def block_user_migration
-    @user.skip_migration
-    redirect_to user_path(@user)
+    @user.block_from_migration
+    send_to_user
   end
   
   def unblock_user_migration
-    @user.reset
-    redirect_to user_path(@user)
+    @user.unblock_from_migration
+    send_to_user
+  end
+  
+  def send_to_user
+     redirect_to user_path(@user)
   end
   
 end

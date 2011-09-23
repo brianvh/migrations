@@ -24,4 +24,5 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.6.1'
   gem 'rcov', '~> 0.9.9'
   gem 'web-app-theme', '~> 0.7.0'
+  gem 'rails-erd'
 end

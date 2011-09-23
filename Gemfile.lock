@@ -160,6 +160,10 @@ GEM
       activesupport (= 3.0.10)
       bundler (~> 1.0)
       railties (= 3.0.10)
+    rails-erd (0.4.5)
+      activerecord (~> 3.0)
+      activesupport (~> 3.0)
+      ruby-graphviz (~> 0.9.18)
     railties (3.0.10)
       actionpack (= 3.0.10)
       activesupport (= 3.0.10)
@@ -184,6 +188,7 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.6.0)
+    ruby-graphviz (0.9.21)
     ruby-openid (2.1.8)
     ruby-openid-apps-discovery (1.2.0)
       ruby-openid (>= 2.1.7)
@@ -228,6 +233,7 @@ DEPENDENCIES
   omniauth (~> 0.2.6)
   page_match!
   rails (~> 3.0.9)
+  rails-erd
   rcov (~> 0.9.9)
   rspec-rails (~> 2.6.1)
   state_machine (~> 1.0.1)

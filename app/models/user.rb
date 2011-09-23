@@ -160,6 +160,15 @@ class User < ActiveRecord::Base
   def invitation_sent_for_group?(group)
     memberships.where(:group_id => group.id, :type => 'Member').first.invitation_sent?
   end
+  
+  def block_from_migration
+    skip_migration
+  end
+  
+  def unblock_from_migration
+    reset
+    activate
+  end
 
   def self.authenticate(authenticator)
     User.find_by_uid(authenticator.uid)
