@@ -41,11 +41,11 @@ class NotificationMailer < ActionMailer::Base
   end
   
   def migdate
-    @user.migration_events.first.migration.date.strftime('%B %d, %Y').sub(/ 0([\d])/,' \1')
+    @user.migdate
   end
   
   def migday
-    @user.migration_events.first.migration.date.strftime('%A')
+    @user.migday
   end
 
 end
