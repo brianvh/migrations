@@ -11,7 +11,11 @@
     &nbsp;<%= member.devices.size %>
   </td>
   <td id="member-<%= member.id %>-migration">
-    <%= member.migration_state %>
+    <% if current_user.is_admin? && member.has_migration? %>
+      <%= link_to member.migration_state, migration_path(member.migrations.first) %>
+    <% else %>
+      <%= member.migration_state %>
+    <% end -%>
   </td>
   <td>
     <%= render 'members/remove', :member => member if current_user.is_support? %>

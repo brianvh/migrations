@@ -170,6 +170,14 @@ class User < ActiveRecord::Base
     activate
   end
 
+  def migdate
+    migration_events.first.migration.date.strftime('%B %d, %Y').sub(/ 0([\d])/,' \1')
+  end
+
+  def migday
+    migration_events.first.migration.date.strftime('%A')
+  end
+
   def self.authenticate(authenticator)
     User.find_by_uid(authenticator.uid)
   end

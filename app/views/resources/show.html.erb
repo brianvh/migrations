@@ -6,7 +6,7 @@
       <%= link_to "Edit", edit_resource_path %>
     </li>
     <li>
-      <%= link_to "Status Page", user_path(@resource.primary_owner) %>
+      <%= link_to "Status Page", user_path(@resource.primary_owner) unless @resource.primary_owner.nil? %>
     </li>
   </ul>
 </div>
