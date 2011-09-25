@@ -1,0 +1,18 @@
+<% if current_user.is_admin? && resource.has_migration? %>
+  <% add_chosen_assets %>
+  <%= render :partial => 'migration_nav', :locals => { :resource => resource } %>
+  <%= render :partial => 'cancel_migration_form', :locals => { :resource => resource } %>
+<% end -%>
+
+
+<div id="migration-info" class="fieldset form">
+  <h2>Migration Info</h2>
+
+  <div class="group wat-cf">
+    <div class="left label">Scheduled Date</div>
+    <div class="right">
+      <%= resource_migration_schedule_date(resource) %>
+    </div>
+  </div>
+
+</div>
