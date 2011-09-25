@@ -1,9 +1,17 @@
 <tr id="resource-<%= resource.id %>">
   <td><%= link_to resource.name, resource_path(resource) %></td>
-  <% if current_user.is_support? and controller.controller_name == "resources" %>
-    <td><%= link_to(resource.display_primary_owner_name, user_path(resource.primary_owner)) unless resource.primary_owner.nil? %></td>
-  <% end -%>
-  <td><%= resource.display_secondary_owner_name(true) %></td>
+  <td>
+    <% if resource.has_owner? %>
+      <% if current_user.is_support? %>
+        <%= link_to(resource.display_primary_owner_name, user_path(resource.primary_owner)) if current_user.is_support? %>
+      <% else %>
+        <%= resource.display_primary_owner_name %>
+      <% end -%>
+    <% else %>
+        &nbsp;
+    <% end -%>
+  </td>
   <td><%= boolean_display resource.migrate %></td>
   <td><%= boolean_display resource.migrate_data %></td>
+  <td><%= links_to_groups(resource.primary_owner) if resource.has_owner? %></td>
 </tr>

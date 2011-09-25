@@ -73,12 +73,29 @@ class Resource < ActiveRecord::Base
   end
 
   def migration_state
-    return migration_events.first.migration.date unless migration_events.empty?
+    return migration_events.first.migration.date if has_migration?
     "Pending"
   end
   
+  def migdate
+    migration_events.first.migration.date
+  end
+  
+  def do_not_migrate?
+    primary_owner.nil?
+  end
+  
+  def has_migration?
+    migration_events.first
+  end
+  
+  def has_owner?
+    primary_owner
+  end
+  
   def needs_migration?
-    return false if migration_events.first
+    return false if do_not_migrate?
+    return false if has_migration?
     return false unless migrate?
     true
   end
