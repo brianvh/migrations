@@ -44,15 +44,15 @@ class UserMigrationEvent < MigrationEvent
   end
 
   def deliver_two_week_notification
-    NotificationMailer.notify_at_two_weeks(user, migration.two_week_email).deliver
+    NotificationMailer.notify_at_two_weeks(user, migration.two_week_email).deliver unless user.expired?
   end
   
   def deliver_one_week_notification
-    NotificationMailer.notify_at_one_week(user, migration.one_week_email).deliver
+    NotificationMailer.notify_at_one_week(user, migration.one_week_email).deliver unless user.expired?
   end
 
   def deliver_day_before_notification
-    NotificationMailer.notify_at_one_day(user, migration.day_before_email).deliver
+    NotificationMailer.notify_at_one_day(user, migration.day_before_email).deliver unless user.expired?
   end
   
 end

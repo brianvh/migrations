@@ -139,6 +139,10 @@ class User < ActiveRecord::Base
     resources
   end
   
+  def owns_resource?(resource)
+    !primary_resource_ownerships.where(:id => resource.id).empty?
+  end
+  
   def display_mailboxtype
     return "Blitz" if mailboxtype.blank?
     mailboxtype.titleize
@@ -168,6 +172,12 @@ class User < ActiveRecord::Base
   def unblock_from_migration
     reset
     activate
+  end
+
+  def cancel_resource_migrations
+    primary_resource_ownerships.each do |ownership|
+      ownership.cancel_migration
+    end
   end
 
   def migdate

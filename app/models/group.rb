@@ -96,7 +96,7 @@ class Group < ActiveRecord::Base
   def find_for_migrate
     users_to_migrate = []
     resources_to_migrate = []
-    members.each do |member|
+    (members + contacts).each do |member|
       users_to_migrate << member if member.needs_migration?
       resources_to_migrate << member.resources_to_migrate
     end

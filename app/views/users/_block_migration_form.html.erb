@@ -1,8 +1,4 @@
-<script type="text/javascript">
-  function confirm_block () {
-    return confirm('Are you sure you want to block this migration?');
-  };
-</script>
+<% add_form_assets %>
 
 <%= form_for @user, :url => user_path(@user), :as => :user do |f| -%>
   <div id="block-migration" class="fieldset form" style="display: none">

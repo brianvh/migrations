@@ -6,9 +6,9 @@
     <%= member.name %>
   </td>
   <td>
-    <%= member.deptclass %>
+    <%= member.deptclass if member.is_a?(User) %>
   </td>
   <td>
-    <%= member.display_mailboxtype if member.is_a?(User) %>
+    <%= member.is_a?(User) ? member.display_mailboxtype : "Calendar" %>
   </td>
 </tr>

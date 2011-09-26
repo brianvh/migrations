@@ -1,0 +1,7 @@
+  <div class="secondary-navigation" id="migration-info-nav">
+    <ul class="wat-cf">
+      <% if current_user.is_admin? && resource.has_migration? %>
+        <li><%= show_div_link 'Cancel Migration', 'cancel-migration' %></li>
+      <% end -%>
+    </ul>
+  </div>
