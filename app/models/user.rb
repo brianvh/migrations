@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :groups, :through => :memberships
   has_many :primary_resource_ownerships, :class_name => "Resource", :foreign_key => "primary_owner_id"
-  # has_many :resources, :through => :primary_resource_ownerships, :source => :primary_owner
   has_many :secondary_resource_ownerships, :class_name => "Resource", :foreign_key => "secondary_owner_id"
   has_many :migration_events
   has_many :migrations, :through => :migration_events
