@@ -5,9 +5,16 @@
     <li>
       <%= link_to "Edit", edit_resource_path %>
     </li>
-    <li>
-      <%= link_to "Status Page", user_path(@resource.primary_owner) %>
-    </li>
+    <% if @resource.primary_owner %>
+      <li>
+        <% if current_user.owns_resource?(@resource) %>
+          <% link_text = "Status Page" %>
+        <% else %>
+          <% link_text = "Owner Status Page" %>
+        <% end -%>
+        <%= link_to link_text, user_path(@resource.primary_owner) %>
+      </li>
+    <% end -%>
   </ul>
 </div>
 <div id="resource" class="fieldset form">
@@ -30,7 +37,13 @@
   </div>
   <div class="group wat-cf">
     <div class="left label">Primary Owner</div>
-    <div class="right tight"><%= @resource.display_primary_owner_name(true) %></div>
+    <div class="right tight">
+      <% if current_user.is_support? and @resource.has_owner? %>
+        <%= link_to @resource.display_primary_owner_name(true), user_path(@resource.primary_owner``) %>
+      <% else %>
+        <%= @resource.display_primary_owner_name(true) %>
+      <% end -%>
+    </div>
   </div>
   <div class="group wat-cf">
     <div class="left label">Secondary Owner</div>
@@ -38,4 +51,5 @@
   </div>
 </div>
 
+<%= render :partial => 'migration_info', :locals => { :resource => @resource } %>
 

@@ -81,6 +81,13 @@ class MigrationsController < ApplicationController
     redirect_to user_path(params[:migration][:user_id])
   end
   
+  def cancel_resource_migration
+    if @migration.cancel_resource_migration(params[:migration][:resource_id])
+      flash[:notice] = "Migration successfully canceled."
+    end
+    redirect_to resource_path(params[:migration][:resource_id])
+  end
+  
   def reschedule_user_migration
     if @migration.reschedule_user_migration(params[:migration][:user_id], params[:migration][:migration_id])
       flash[:notice] = "Migration successfully rescheduled."

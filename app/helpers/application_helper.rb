@@ -45,6 +45,10 @@ module ApplicationHelper
     end
   end
 
+  def add_form_assets
+    content_for(:head_script, javascript_include_tag('form_scripts'))
+  end
+
   private
   
   def active_tab_class(controller_name, classes="")

@@ -6,12 +6,10 @@
     <table class="table">
       <tr>
         <th align="left">Name</th>
-        <% if current_user.is_support? %>
-          <th align="left">Primary Owner</th>
-        <% end -%>
-        <th align="left">Secondary Owner</th>
+        <th align="left">Primary Owner</th>
         <th align="left">Migrate Calendar</th>
         <th align="left">Migrate Data</th>
+        <th align="left">Group</th>
       </tr>
       <%= render @resources %>
     </table>
