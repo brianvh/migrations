@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :groups, :through => :memberships
   has_many :primary_resource_ownerships, :class_name => "Resource", :foreign_key => "primary_owner_id"
+  # has_many :resources, :through => :primary_resource_ownerships, :source => :primary_owner
   has_many :secondary_resource_ownerships, :class_name => "Resource", :foreign_key => "secondary_owner_id"
   has_many :migration_events
   has_many :migrations, :through => :migration_events
@@ -172,6 +173,12 @@ class User < ActiveRecord::Base
   def unblock_from_migration
     reset
     activate
+  end
+
+  def cancel_resource_migrations
+    primary_resource_ownerships.each do |ownership|
+      ownership.cancel_migration
+    end
   end
 
   def migdate

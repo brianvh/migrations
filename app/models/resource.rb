@@ -100,4 +100,8 @@ class Resource < ActiveRecord::Base
     true
   end
 
+  def cancel_migration
+    ResourceMigrationEvent.delete(migration_events)
+  end
+
 end

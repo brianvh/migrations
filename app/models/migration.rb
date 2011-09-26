@@ -120,8 +120,8 @@ class Migration < ActiveRecord::Base
   def cancel_user_migration(user_id)
     event = migration_events.where(:user_id => user_id).first
     if event
+      event.user.cancel_resource_migrations
       UserMigrationEvent.delete(event)
-      # migration_events.where(:user_id => user_id).first.delete
       return true
     end
     false
@@ -131,7 +131,6 @@ class Migration < ActiveRecord::Base
     event = migration_events.where(:resource_id => resource_id).first
     if event
       ResourceMigrationEvent.delete(event)
-      # migration_events.where(:user_id => user_id).first.delete
       return true
     end
     false
