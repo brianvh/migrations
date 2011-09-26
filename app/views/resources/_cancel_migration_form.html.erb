@@ -1,8 +1,4 @@
-<script type="text/javascript">
-  function confirm_cancel () {
-    return confirm('Are you sure you want to cancel this migration?');
-  };
-</script>
+<% add_form_assets %>
 
 <%= form_for resource.migrations.first do |f| -%>
 <%= f.hidden_field :resource_id, :value => resource.id %>

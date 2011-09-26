@@ -1,12 +1,4 @@
-<script type="text/javascript">
-  function confirm_reschedule () {
-    if ($("#date-select").val() == "") {
-      alert("Please select a date.");
-      return false;
-    }
-    return confirm('Are you sure you want to reschedule this migration?');
-  }
-</script>
+<% add_form_assets %>
 
 <%= form_for user.migrations.first do |f| -%>
   <%= f.hidden_field :user_id, :value => user.id %>
