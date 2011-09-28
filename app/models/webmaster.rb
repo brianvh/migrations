@@ -1,4 +1,8 @@
 class Webmaster < User
+  def is_tech?
+    true
+  end
+  
   def is_support?
     true
   end

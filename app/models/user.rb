@@ -52,6 +52,10 @@ class User < ActiveRecord::Base
   def is_webmaster?
     false
   end
+  
+  def is_tech?
+    false
+  end
 
   def can_access_device?(device)
     is_support? ? true : device.user_id == self.id
@@ -148,7 +152,7 @@ class User < ActiveRecord::Base
     mailboxtype.titleize
   end
 
-  def newemailaddress
+  def emailsuffix
     parts = email.split('@')
     case
     when m = /^'([0-9][0-9])/.match(deptclass.strip)
@@ -158,7 +162,11 @@ class User < ActiveRecord::Base
     else
       suffix = ""
     end
-    "#{parts[0]}#{suffix}@#{parts[1]}"
+  end
+
+  def newemailaddress
+    parts = email.split('@')
+    "#{parts[0]}#{emailsuffix}@#{parts[1]}"
   end
 
   def invitation_sent_for_group?(group)

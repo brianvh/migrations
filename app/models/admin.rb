@@ -3,6 +3,10 @@ class Admin < User
     true
   end
 
+  def is_tech?
+    true
+  end
+  
   def is_admin?
     true
   end

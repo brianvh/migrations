@@ -163,7 +163,7 @@ class Migration < ActiveRecord::Base
   def self.available_dates
     where("date >= '#{Date.today}'").select { |m| m.max_accounts > m.migration_events.size }.map { |m| [m.date, m.id] }
   end
-
+  
   private
   
   def valid_date

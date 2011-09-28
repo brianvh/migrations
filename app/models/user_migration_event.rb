@@ -55,4 +55,37 @@ class UserMigrationEvent < MigrationEvent
     NotificationMailer.notify_at_one_day(user, migration.day_before_email).deliver unless user.expired?
   end
   
+  def cn
+    user.name
+  end
+
+  def move_type
+    user.mailboxtype == "" ? "imap" : "onprem"
+  end
+
+  def include_oc_migration
+    return false if user.profiles.empty?
+    user.profiles.first.migrate_oracle_calendar.nil? ? false : user.profiles.first.migrate_oracle_calendar
+  end
+
+  def emailsuffix
+    user.emailsuffix.sub(/^\./,'')
+  end
+
+  def resource_owner1
+    ""
+  end
+
+  def resource_owner2
+    ""
+  end
+
+  def num_of_messages
+    "-1"
+  end
+
+  def mailbox_size
+    "-1"
+  end
+  
 end

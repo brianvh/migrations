@@ -1,0 +1,30 @@
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li><%= link_to "Download", migration_path(@migration, :view => "export", :format => 'csv') %></li>
+    <li><%= link_to "View Accounts", migration_path(@migration, :view => "accounts") unless current_user.is_tech? %></li>
+  </ul>
+</div>
+
+<div id="account-list" class="fieldset form">
+  <% if @accounts.empty? %>
+    <%= content_tag(:p, 'No accounts scheduled for this migration.') %>
+  <% else %>
+    <h2>Accounts Scheduled</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>
+          <th align="left">cn</th>
+          <th align="left">move type</th>
+          <th align="left">include oc migration</th>
+          <th align="left">emailsuffix</th>
+          <th align="left">resource owner1</th>
+          <th align="left">resource owner2</th>
+          <th align="left">num of messages</th>
+          <th align="left">mailbox size</th>
+        </tr>
+        <%= render :partial => 'account_download', :collection => @accounts %>
+      </table>
+    </div>
+  <% end -%>
+</div>
+
