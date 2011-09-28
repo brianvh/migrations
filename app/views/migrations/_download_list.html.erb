@@ -1,7 +1,7 @@
 <div class="secondary-navigation">
   <ul class="wat-cf">
     <li><%= link_to "Download", migration_path(@migration, :view => "export", :format => 'csv') %></li>
-    <li><%= link_to "View Accounts", migration_path(@migration, :view => "accounts") unless current_user.is_tech? %></li>
+    <li><%= link_to "View Accounts", migration_path(@migration, :view => "accounts") if current_user.is_admin? %></li>
   </ul>
 </div>
 
