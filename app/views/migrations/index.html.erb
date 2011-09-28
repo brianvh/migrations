@@ -1,10 +1,12 @@
 <% title "BlitzMail Migrations: Migrations", false %>
 <h2 id="group-header">Migrations List</h2>
-<div class="secondary-navigation">
-  <ul class="wat-cf">
-    <li><%= link_to "Add Migration", new_migration_path %></li>
-  </ul>
-</div>
+<% if current_user.is_admin? %>
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li><%= link_to "Add Migration", new_migration_path %></li>
+    </ul>
+  </div>
+<% end -%>
 <div id="groups" class="fieldset">
   <h2>Migrations</h2>
   <div class="inner">

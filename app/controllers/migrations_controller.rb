@@ -1,18 +1,44 @@
 class MigrationsController < ApplicationController
   layout 'wide'
-  before_filter :admin_user?
+  
+  before_filter :admin_user?, :except => [:index, :show]
   
   def index
+    send_to_current_user unless current_user.is_tech?
     @migrations = Migration.all
   end
   
   def show
+    send_to_current_user unless current_user.is_tech?
     @migration = Migration.find(params[:id])
-    if show_accounts? || show_info?
-      @accounts = @migration.users_sorted
-    elsif show_resources?
-      @resources = @migration.resources_sorted
+    if params[:view].nil?
+      case 
+      when current_user.is_admin?
+        params[:view] = 'accounts'
+      when current_user.is_tech?
+        params[:view] = 'export'        
+      end
     end
+
+    case 
+    when show_accounts?, show_info?
+      @accounts = @migration.users_sorted
+    when show_resources?
+      @resources = @migration.resources_sorted
+    when show_export?
+      @accounts = @migration.migration_events
+    end
+
+    respond_to do |wants|
+      wants.html
+      wants.csv do
+        csv = ''
+        csv << CSV.generate_line(MigrationEvent.export_header) + "\r\n"
+        @accounts.each { |act| csv << CSV.generate_line(act.export) + "\r\n" }
+        send_data(csv, :filename => "#{@migration.date}_migration.csv")
+      end
+    end
+
   end
   
   def new
@@ -49,7 +75,7 @@ class MigrationsController < ApplicationController
   end
 
   def show_accounts?
-    params[:view] == 'accounts'
+    params[:view] == 'accounts' # || params[:view].nil?
   end
   helper_method :show_accounts?
   
@@ -63,15 +89,29 @@ class MigrationsController < ApplicationController
   end
   helper_method :show_info?
   
+  def show_export?
+    params[:view] == 'export'
+  end
+  helper_method :show_export?
+  
   private
   
   def admin_user?
     return true if current_user.is_admin?
-    redirect_to user_path(current_user)
+    send_to_current_user
+  end
+
+  def admin_or_tech_user?
+    return true if current_user.is_tech?
+    send_to_current_user
   end
 
   def send_to_migration
     redirect_to migration_path(@migration)
+  end
+  
+  def send_to_current_user
+    redirect_to user_path(current_user)
   end
   
   def cancel_user_migration

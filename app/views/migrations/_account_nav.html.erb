@@ -4,5 +4,6 @@
     <li><%= show_div_link 'Send 2-Week Email', 'two-week-email' unless @accounts.empty? %></li>
     <li><%= show_div_link 'Send 1-Week Email', 'one-week-email' unless @accounts.empty? %></li>
     <li><%= show_div_link 'Send 1-Day Email', 'one-day-email' unless @accounts.empty? %></li>
+    <li><%= link_to "View Export", migration_path(migration, :view => "export") %></li>
   </ul>
 </div>
