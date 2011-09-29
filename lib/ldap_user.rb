@@ -93,7 +93,7 @@ module LDAPUser
    def update_from_ldap_entry(entry)
      self.deptclass = entry.dnddeptclass unless entry.dnddeptclass.nil?
      self.expire_on = entry.dndexpires.to_date unless entry.dndexpires.nil?
-     self.email = entry.dndemail unless entry.dndemail.nil?
+     self.email = entry.mail unless entry.mail.nil?
      self.assignednetid = entry.dndassignednetid unless entry.dndassignednetid.nil?
      self.save
    end
