@@ -21,6 +21,7 @@ class MigrationEvent < ActiveRecord::Base
   def self.export_field_map
     [
       [ "cn" , :cn ],
+      [ "netid", :assignednetid ],
       [ "move type" , :move_type ],
       [ "include oc migration" , :include_oc_migration ],
       [ "emailsuffix" , :emailsuffix ],
