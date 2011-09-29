@@ -5,6 +5,10 @@ class ResourceMigrationEvent < MigrationEvent
   def cn
     resource.name
   end
+  
+  def assignednetid
+    ""
+  end
 
   def move_type
     "resource"
