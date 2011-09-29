@@ -58,6 +58,10 @@ class UserMigrationEvent < MigrationEvent
   def cn
     user.name
   end
+  
+  def assignednetid
+    user.assignednetid
+  end
 
   def move_type
     user.mailboxtype == "" ? "imap" : "onprem"
