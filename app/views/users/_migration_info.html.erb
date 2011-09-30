@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <% if user.email.downcase != user.newemailaddress.downcase %>
+  <% if user.email && (user.email.downcase != user.newemailaddress.downcase) %>
     <div class="group wat-cf">
       <div class="left label">New email address after migration</div>
       <div class="right"><%= user.newemailaddress %></div>
