@@ -49,6 +49,10 @@ module ApplicationHelper
     content_for(:head_script, javascript_include_tag('form_scripts'))
   end
 
+  def expired_warning
+    content_tag(:div, content_tag(:h2, "THIS DND ENTRY HAS EXPIRED", :style => "color: red; font-weight: bold; text-align: center;"))
+  end
+
   private
   
   def active_tab_class(controller_name, classes="")

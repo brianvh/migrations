@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
     event :deactivate do
       transition any => :expired
     end
+    after_transition :on => :deactivate, :do => :drop_from_migration
 
     event :skip_migration do
       transition [:active, :pending] => :do_not_migrate
@@ -116,6 +117,7 @@ class User < ActiveRecord::Base
   end
 
   def migration_state
+    return "EXPIRED" if expired?
     return migration_event_state_for_display if has_migration?
     return 'Complete' if mailboxtype == 'cloud'
     return 'DO NOT MIGRATE' if do_not_migrate?

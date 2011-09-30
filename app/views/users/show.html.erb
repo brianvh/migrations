@@ -1,5 +1,8 @@
 <% title "BlitzMail Migrations: User Info", false %>
 <h2 id="user-header">User Status for <%= @user.name %></h2>
+
+<%= expired_warning if @user.expired? %>
+
 <div id="user-info" class="fieldset form">
   <h2>User Info</h2>
   <div class="group wat-cf">
