@@ -1,47 +1,33 @@
 Account Name:  <%%= dndname %>
 Primary E-Mail Address:  <%%= newemailaddress %>
 NetID:  <%%= netid %>
-Migration Date:  <%%= migdate %>
+Migration Date:  <%%= migday %>, <%%= migdate %>
 
 Dear <%%= dndname %>,
+ 
+You are receiving this message because your OLD BlitzMail account is scheduled to switch to the NEW Blitz system tomorrow morning, starting at 4:00 a.m.  THE INFORMATION IN THIS MESSAGE IS ESSENTIAL for your successful transition to the new Blitz system.  Print out this e-mail NOW for reference.  
 
-EXTREMELY URGENT. Please read this entire message for important information about changes to your Dartmouth e-mail.  Print this message for reference.  
+IF YOU’RE FORWARDING your BlitzMail to another e-mail account, you're all set -- we'll keep that forwarding in place when we switch your account.  Please confirm that your forwarding is working properly after your Blitz transition -- you can check it by logging in to the Dartmouth Directory Manager (<http://dartdm.dartmouth.edu>) and clicking on the "E-mail Delivery Options" link to view or edit your forwarding address.
 
-On <%%= migdate %>, Computing Services will be:
-1. Moving your e-mail from the old BlitzMail system to the new Blitz system, and
-2. Changing your e-mail address to the new student address format.
-3. Converting your general Dartmouth login credentials to a new Network identification number (NetID), rather than your name.
-These changes will occur regardless of whether you are on campus or not.
+REMEMBER:
+1.  Your NetID activation will occur at 4:00 a.m. tomorrow morning when your BlitzMail migration begins.  Your NetID is displayed above and replaces your name as your log on for most Dartmouth systems.
+2.  Log out of your BlitzMail account no later than 4:00 a.m. tomorrow morning.   After 9:00 a.m., you can log into your account in the NEW Blitz system, but you MUST stay out of your now OLD BlitzMail account for 24 hours – until 4:00 a.m. the day after tomorrow.  See below for more information.
+3.  Delete any profile/account that you have on any mobile device (smartphone, iPad, etc.) that connects to your BlitzMail by 4:00 a.m. tomorrow morning.  Just turning off the device is not sufficient; you must delete the profile/account.  
+4.  Expect that tomorrow will be a day of limited productivity for you (and other students who are switching); it may take most of the day to get semi-comfortable with the new system. 
+5.  It may take up to the entire day for all your e-mail folders and messages to appear in your new mailbox.  Please be patient!  No e-mail will be lost.
 
-IT IS ESSENTIAL you do the following to ensure your e-mail migrates successfully: 
+TOMORROW AFTER 9:00 A.M.:
+1.  If you don’t forward your account, LOGIN TO BLITZ WEB ACCESS (BWA; <https://bwa.dartmouth.edu/>) to confirm that you can access your new Blitz account, and to manage your e-mail until you are able to configure an e-mail program to access your new mailbox (if you plan to use one). Use your NetID as your username and your current Dartmouth password to login to BWA. 
+2.  From the BWA home page, WINDOWS USERS should click "Downloads" in the right-hand column, and follow the instructions for #2 (Install Microsoft Lync) and #3 (Set up and configure your Office desktop apps) before proceeding.  You DO NOT NEED TO DO #1 (Install Microsoft Office Professional Plus); we RECOMMEND YOU DO #2 to install Lync on your computer; and you MUST DO #3.
+3.  IF YOU'RE PLANNING ON USING AN E-MAIL PROGRAM to access your new Blitz account, go to <http://www.dartmouth.edu/comp/email-cal/email/outlook/blitzsetup.html> for configuration information.  
+4.  IF YOU NEED ASSISTANCE, please e-mail the B2B Project Team at b2b@mac.dartmouth.edu or, for the period October 3-16, visit the special Blitz drop-in center in Berry 178B, 8:00 a.m.-8:00 p.m., Monday-Friday, and 10:00 a.m.-4:00 p.m., Saturday and Sunday.
+5.  Go to <http://www.dartmouth.edu/comp/email-cal/initiatives/blitz/personallist.html> for information on how to migrate your PERSONAL MAILING LISTS from BlitzMail to your new Blitz account.
+6.  If you need to send e-mail to a GROUP LIST, remember to append "@mac.dartmouth.edu" to the group list name.
+7.  From now on, use the Dartmouth Directory Manager (<http://dartdm.dartmouth.edu>) whenever you want/need to change the PASSWORD FOR YOUR NEW BLITZ ACCOUNT.  
+8.  If you haven’t already done so, please check out your LEARNING RESOURCES for the new Blitz system at <http://www.dartmouth.edu/comp/email-cal/learning.html>.
+9.  Within 24 hours after the start of your blitz transition, you will receive an e-mail message with details regarding the results of your message migration.  Please know that not all of your e-mail messages may migrate successfully -- this can be due to a variety of factors including account access during the migrations, corrupt attachments, invalid folder names, etc.  If the e-mail indicates that not all of your e-mail messages migrated, please follow the instructions provided for assistance with recovering your messages, as desired.  
 
-1. Check the folder names in your BlitzMail account to ensure the names include only alphanumeric characters (spaces).  If a folder name contains a non-alpahnumeric character, the messages in that folder will likely not migrate.
-2. Check the folder names in your BlitzMail account to ensure there is no folder named just "notes," "contacts," or "drafts."  Rename them now, if indicated.  Folders whose names include these words in combination with other words -- e.g., "Meeting Notes" -- are fine. 
-3. Remove attachments from any messages that are greater than 35 MB so that the accompanying message will migrate successfully.  Store these attachments on your hard drive. 
-
-ON THE DAY OF YOUR MIGRATION you will need to log out of everything that accesses your Dartmouth e-mail account -- including mobile devices.   
-
-IF YOU HAVE A MOBILE DEVICE (iPhone or other smartphone, iPad, etc.) that you use to check your Dartmouth e-mail, you will need to remove your profile/account from this device prior to the start of your migration. This prevents your device from logging into your account while it is being moved. You will need to set up a new profile on the device for the new system the next day. The IT Service Desk (Help Desk) can assist you with this after your account has been copied.
-
-When your e-mail migration begins, YOUR PRIMARY DARTMOUTH E-MAIL ADDRESS WILL CHANGE TO <%%= newemailaddress %>. This address is yours for the rest of your life; it will NOT go away when you leave Dartmouth.  Any Dartmouth e-mail address you used previously will continue to work after your account migrates, but you should use your new primary address on resumes, or when signing up for services.
-
-When your e-mail migration is complete, you will BEGIN USING YOUR NEW NETID TO LOG INTO SYSTEMS IN PLACE OF YOUR USER NAME. Your NetID is:  <%%= netid %>. Most primary systems that students use, such as the new Blitz system, Banner, Blackboard, Greenprint, Web Authentication and others, accept the NetID.  To see a full listing of systems that accept NetID logins, go to <http://www.dartmouth.edu/comp/systems/initiatives/idm/systems.html>. (If a system is not listed here, you can still try using your NetID for log in. If it doesn't work, use the name you had been using prior to your account migration, e.g., John A. Doe.)
-
-Once you are migrated, you can USE ANY OF THE FOLLOWING TOOLS to access the new system:
-- Windows users: Outlook 2007, Outlook 2010, a Web Browser, or any IMAP client;
-- Macintosh Mac OS X 10.6 users: Outlook 2011, Apple Mail using Exchange Active Sync, a Web Browser, or any IMAP client;
-- Macintosh Mac OS X 10.5 users:  Outlook 2011, a Web Browser, or any IMAP client;
-- Macintosh Mac OS X 10.4 or earlier users: a Web Browser or any IMAP client;
-- Linux users: a Web Browser or any IMAP client
-
-If you want to check your account using a web browser or using a machine other than your own, use Blitz Web Access (BWA). The URL is <https://bwa.dartmouth.edu/> - log in with your NetID and your normal Dartmouth e-mail password. You can also use BWA if you are having problems configuring the client that you want to use for the new system until someone from the IT Service Desk can help you.
-
-Training sessions and other learning resources will be provided. Additional information about these and other important details will be e-mailed to you in a week – keep an eye out for this information!
-
-Additional information about this project is available online at <http://www.dartmouth.edu/comp/email-cal/initiatives/blitz/>.
-
-If you have questions, please let us know by responding to this e-mail or calling the IT Service Desk at 646-2999.
+Remember, you can access your new account via Blitz Web Access (BWA; <https://bwa.dartmouth.edu/>) until your computer/mobile device can be set up.  
 
 Thanks!
-
-Blitz-2-Blitz Project Team
+The Blitz-2-Blitz Project Team  
