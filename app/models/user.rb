@@ -117,9 +117,10 @@ class User < ActiveRecord::Base
   end
 
   def migration_state
+    # return 'Complete' if mailboxtype == 'cloud'
+    return 'Complete' if profile.mailboxtype == 'cloud'
     return "EXPIRED" if expired?
     return migration_event_state_for_display if has_migration?
-    return 'Complete' if mailboxtype == 'cloud'
     return 'DO NOT MIGRATE' if do_not_migrate?
     'Pending'
   end
@@ -129,9 +130,10 @@ class User < ActiveRecord::Base
   end
   
   def needs_migration?
+    # return false if mailboxtype == 'cloud'
+    return false if profile.mailboxtype == 'cloud'
     return false unless active?
     return false if do_not_migrate?
-    return false if mailboxtype == 'cloud'
     return false if migration_events.first
     true
   end
@@ -149,8 +151,9 @@ class User < ActiveRecord::Base
   end
   
   def display_mailboxtype
-    return "Blitz" if mailboxtype.blank?
-    mailboxtype.titleize
+    mbt = profile.mailboxtype
+    return "Blitz" if mbt.blank?
+    mbt.titleize
   end
 
   def emailsuffix
