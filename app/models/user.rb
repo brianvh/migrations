@@ -117,8 +117,7 @@ class User < ActiveRecord::Base
   end
 
   def migration_state
-    # return 'Complete' if mailboxtype == 'cloud'
-    return 'Complete' if profile.mailboxtype == 'cloud'
+    return 'Complete' if mailboxtype == 'cloud'
     return "EXPIRED" if expired?
     return migration_event_state_for_display if has_migration?
     return 'DO NOT MIGRATE' if do_not_migrate?
@@ -130,8 +129,7 @@ class User < ActiveRecord::Base
   end
   
   def needs_migration?
-    # return false if mailboxtype == 'cloud'
-    return false if profile.mailboxtype == 'cloud'
+    return false if mailboxtype == 'cloud'
     return false unless active?
     return false if do_not_migrate?
     return false if migration_events.first
@@ -151,7 +149,7 @@ class User < ActiveRecord::Base
   end
   
   def display_mailboxtype
-    mbt = profile.mailboxtype
+    mbt = mailboxtype
     return "Blitz" if mbt.blank?
     mbt.titleize
   end
@@ -194,6 +192,10 @@ class User < ActiveRecord::Base
 
   def migdate
     migration_events.first.migration.date.strftime('%B %d, %Y').sub(/ 0([\d])/,' \1')
+  end
+
+  def day_after_migdate
+    (migration_events.first.migration.date + 1.day).strftime('%B %d, %Y').sub(/ 0([\d])/,' \1')
   end
 
   def migday
