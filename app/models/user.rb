@@ -194,6 +194,10 @@ class User < ActiveRecord::Base
     migration_events.first.migration.date.strftime('%B %d, %Y').sub(/ 0([\d])/,' \1')
   end
 
+  def day_after_migdate
+    (migration_events.first.migration.date + 1.day).strftime('%B %d, %Y').sub(/ 0([\d])/,' \1')
+  end
+
   def migday
     migration_events.first.migration.date.strftime('%A')
   end

@@ -47,5 +47,9 @@ class NotificationMailer < ActionMailer::Base
   def migday
     @user.migday
   end
+  
+  def day_after_migdate
+    @user.day_after_migdate
+  end
 
 end
