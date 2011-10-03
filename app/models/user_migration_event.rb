@@ -64,8 +64,7 @@ class UserMigrationEvent < MigrationEvent
   end
 
   def move_type
-    # user.mailboxtype == "" ? "imap" : "onprem"
-    user.profile.mailboxtype == "" ? "imap" : "onprem"
+    user.mailboxtype == "" ? "imap" : "onprem"
   end
 
   def include_oc_migration
