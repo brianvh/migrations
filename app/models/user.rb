@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
 
   attr_writer :action
 
-  delegate :netid, :affiliation, :blitzserv, :emailsuffix, :phone, :to => :profile
+  delegate :netid, :affiliation, :blitzserv, :emailsuffix, :phone, :mailboxtype, :to => :profile
 
   state_machine :initial => :pending do
 
