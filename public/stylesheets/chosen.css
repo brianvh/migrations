@@ -61,7 +61,8 @@ select.chzn-select {
   white-space: nowrap;
   -o-text-overflow: ellipsis;
   -ms-text-overflow: ellipsis;
-  -moz-binding: url('/xml/ellipsis.xml#ellipsis');
+/*  -moz-binding: url('/xml/ellipsis.xml#ellipsis');*/
+  -moz-binding: none;
   text-overflow: ellipsis;
 }
 .chzn-container-single .chzn-single div {

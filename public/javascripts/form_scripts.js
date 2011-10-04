@@ -1,5 +1,5 @@
 function confirm_reschedule () {
-  if ($("#date-select").val() == "") {
+  if ($("#date-select").val() === "") {
     alert("Please select a date.");
     return false;
   }
@@ -7,15 +7,16 @@ function confirm_reschedule () {
 };
 
 function count_checked () {
-  if ($("input:checked").length == 0) {
+  if ($("input:checked").length === 0) {
     alert("You must specify at least one account before assigning a date.");
     return false;
   }
-  if ($("#date-select").val() == "") {
+  if ($("#date-select").val() === "") {
     alert("Please select a date.");
     return false;
   }
-  return true;
+  $("#migrations-form").submit();
+	return true;
 };
 
 function check_all_checkboxes () {
