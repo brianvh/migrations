@@ -89,10 +89,10 @@ class Migration < ActiveRecord::Base
     users.size + resources.size
   end
   
-  def add_users_and_resources(new_users)
+  def add_users_and_resources(new_users, skip_notifications)
     new_users.each do |new_user|
       user = User.find(new_user)
-      add_user(user)
+      add_user(user, skip_notifications)
       add_user_resources(user)
     end
   end
@@ -106,7 +106,7 @@ class Migration < ActiveRecord::Base
     end
   end
   
-  def add_user(new_user)
+  def add_user(new_user, skip_notifications)
     if new_user.needs_migration?
       users << new_user
       self.users_added += 1
