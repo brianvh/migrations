@@ -95,6 +95,7 @@ module LDAPUser
      self.expire_on = entry.dndexpires.to_date unless entry.dndexpires.nil?
      self.email = entry.mail unless entry.mail.nil?
      self.assignednetid = entry.dndassignednetid unless entry.dndassignednetid.nil?
+     self.mailboxtype = entry.dndmailboxtype
      self.save
    end
 
