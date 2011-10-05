@@ -150,7 +150,7 @@ class User < ActiveRecord::Base
   
   def display_mailboxtype
     mbt = mailboxtype
-    return "Blitz" if mbt.blank?
+    return "Blitz" if (mbt.blank? || mbt == 'blitz')
     mbt.titleize
   end
 
