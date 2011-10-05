@@ -64,7 +64,7 @@ class UserMigrationEvent < MigrationEvent
   end
 
   def move_type
-    user.mailboxtype == ("" || "blitz") ? "imap" : "onprem"
+    (user.mailboxtype.blank? || user.mailboxtype.downcase == "blitz") ? "imap" : "onprem"
   end
 
   def include_oc_migration
