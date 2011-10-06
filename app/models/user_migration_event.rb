@@ -35,12 +35,16 @@ class UserMigrationEvent < MigrationEvent
     event :reset do
       transition any => :pending
     end
+    
+    event :skip_notifications do
+      transition any => :no_notifications
+    end
 
     state :pending, :human_name => 'Pending'
     state :two_week_notification_sent, :human_name => '2-Week'
     state :one_week_notification_sent, :human_name => '1-Week'
     state :day_before_notification_sent, :human_name => '1-Day'
-    
+    state :no_notifications, :human_name => 'Silent'
   end
 
   def deliver_two_week_notification
