@@ -10,6 +10,9 @@
   <td id="member-<%= member.id %>-devices">
     &nbsp;<%= member.devices.size %>
   </td>
+  <td id="member-<%= member.id %>-mailboxtype">
+    &nbsp;<%= member.display_mailboxtype %>
+  </td>
   <td id="member-<%= member.id %>-migration">
     <% if current_user.is_admin? && member.has_migration? %>
       <%= link_to member.migration_state, migration_path(member.migrations.first) %>
