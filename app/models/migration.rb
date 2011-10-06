@@ -109,6 +109,7 @@ class Migration < ActiveRecord::Base
   def add_user(new_user, skip_notifications)
     if new_user.needs_migration?
       users << new_user
+      new_user.migration.skip_notifications if skip_notifications == "1"
       self.users_added += 1
     end
   end

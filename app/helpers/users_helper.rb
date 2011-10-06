@@ -25,7 +25,7 @@ module UsersHelper
       link_text = user.migdate
       return link_to link_text, migration_path(user.migrations.first) if current_user.is_admin?
     when user.needs_migration?
-      link_text = "Not yet scheduled"
+      link_text = "Unscheduled"
     when user.do_not_migrate?
       link_text = "DO NOT MIGRATE"
     else
