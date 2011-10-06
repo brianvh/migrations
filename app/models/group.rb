@@ -19,6 +19,15 @@ class Group < ActiveRecord::Base
 
   attr_accessor :accounts
   attr_accessor :migration_id
+  attr_accessor :skip_notifications
+  
+  def skip_notifications=(params)
+    @skip_notifications = params
+  end
+  
+  def skip_notifications
+    @skip_notifications ||= false
+  end
   
   def accounts=(params)
     @accounts = params
@@ -105,7 +114,7 @@ class Group < ActiveRecord::Base
   
   def schedule_migrations
     migration = Migration.find(migration_id)
-    migration.add_users_and_resources(accounts)
+    migration.add_users_and_resources(accounts, skip_notifications)
     @users_added = migration.users_added
     @resources_added = migration.resources_added
   end
