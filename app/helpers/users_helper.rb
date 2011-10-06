@@ -3,7 +3,7 @@ module UsersHelper
   def links_to_groups(user)
     group_list = []
     user.groups.uniq.each do |g|
-      if current_user.is_contact?(g) || current_user.is_consultant?(g) || current_user.is_support?
+      if current_user.can_access_group?(g)
         group_list << link_to(g.name, group_path(g))
       else
         group_list << g.name
