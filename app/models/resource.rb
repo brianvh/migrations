@@ -74,7 +74,7 @@ class Resource < ActiveRecord::Base
 
   def migration_state
     return migration_events.first.migration.date if has_migration?
-    "Pending"
+    "Unscheduled"
   end
   
   def migdate

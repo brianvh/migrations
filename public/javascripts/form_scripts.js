@@ -20,14 +20,14 @@ function count_checked () {
 };
 
 function check_all_checkboxes () {
-  $("input[type=checkbox]").each (
+  $(".migration-checkbox").each (
     function () {
       this.checked = true;
     });
 };
 
 function uncheck_all_checkboxes () {
-  $("input[type=checkbox]").each (
+  $(".migration-checkbox").each (
     function () {
       this.checked = false;
     });

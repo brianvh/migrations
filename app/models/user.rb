@@ -107,7 +107,7 @@ class User < ActiveRecord::Base
   end
 
   def migration_event_state_for_display
-    return migration_events.first.migration.date if migration_events.first.pending?
+    return migration.migration.date if migration.pending?
     migration_events.first.human_state_name
   end
   
@@ -115,13 +115,17 @@ class User < ActiveRecord::Base
     return true if migration_events.first
     false
   end
+  
+  def migration
+    return migration_events.first if has_migration?
+  end
 
   def migration_state
-    return 'Complete' if mailboxtype == 'cloud'
+    return 'Complete' if mailboxtype.downcase == 'cloud'
     return "EXPIRED" if expired?
     return migration_event_state_for_display if has_migration?
     return 'DO NOT MIGRATE' if do_not_migrate?
-    'Pending'
+    'Unscheduled'
   end
   
   def drop_from_migration
@@ -129,7 +133,7 @@ class User < ActiveRecord::Base
   end
   
   def needs_migration?
-    return false if mailboxtype == 'cloud'
+    return false if mailboxtype.downcase == 'cloud'
     return false unless active?
     return false if do_not_migrate?
     return false if migration_events.first
