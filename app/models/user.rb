@@ -108,8 +108,6 @@ class User < ActiveRecord::Base
 
   def migration_event_state_for_display
     return migration.migration.date if migration.pending?
-    return "Silent" if migration.no_notifications?
-    # return migration_events.first.migration.date if (migration_events.first.pending? || migration_events.first.no_notifications?)
     migration_events.first.human_state_name
   end
   

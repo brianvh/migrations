@@ -41,10 +41,10 @@ class UserMigrationEvent < MigrationEvent
     end
 
     state :pending, :human_name => 'Pending'
-    state :two_week_notification_sent, :human_name => '2-Week'
-    state :one_week_notification_sent, :human_name => '1-Week'
-    state :day_before_notification_sent, :human_name => '1-Day'
-    state :no_notifications, :human_name => 'Silent'
+    state :two_week_notification_sent, :human_name => '2-Wk Sent'
+    state :one_week_notification_sent, :human_name => '1-Wk Sent'
+    state :day_before_notification_sent, :human_name => '1-Day Sent'
+    state :no_notifications, :human_name => 'No Notifications'
   end
 
   def deliver_two_week_notification
