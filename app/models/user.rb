@@ -171,6 +171,7 @@ class User < ActiveRecord::Base
   end
 
   def newemailaddress
+    return email if mailboxtype =~ /cloud/i
     parts = email.split('@')
     "#{parts[0]}#{emailsuffix}@#{parts[1]}"
   end
