@@ -23,6 +23,11 @@
                  :class => "chzn-select",
                  :style => "width: 150px;"}) %>
         </div>
+        <p>&nbsp;</p>
+        <div class="left label"><%= f.label :skip_notifications, "Skip Notifications" %></div>
+        <div class="right">
+          <%= f.check_box :skip_notifications %>
+        </div>
       </div>
   </div>
 <% end -%>

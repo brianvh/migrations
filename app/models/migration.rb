@@ -28,6 +28,16 @@ class Migration < ActiveRecord::Base
   attr_accessor :action
   attr_accessor :users_added
   attr_accessor :resources_added
+  attr_accessor :skip_notifications
+  
+  def skip_notifications=(params)
+    @skip_notifications = params
+  end
+  
+  def skip_notifications
+    @skip_notifications ||= false
+  end
+  
   
   def users_sorted
     users.order("users.lastname, users.firstname")
@@ -137,9 +147,9 @@ class Migration < ActiveRecord::Base
     false
   end
   
-  def reschedule_user_migration(user_id, migration_id)
-    cancel_user_migration(user_id)
-    Migration.find(migration_id).add_user(User.find(user_id))
+  def reschedule_user_migration(params)
+    cancel_user_migration(params[:user_id])
+    Migration.find(params[:migration_id]).add_user(User.find(params[:user_id]),params[:skip_notifications])
     true
   end
   
