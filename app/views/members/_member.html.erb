@@ -15,11 +15,20 @@
   </td>
   <td id="member-<%= member.id %>-migration">
     
-    <% if member.has_migration? %>
-      <%= link_to member.migration.migration.date, migration_path(member.migration.migration) if current_user.is_admin? %>
-      <%= member.migration.migration.date unless current_user.is_admin? %>
+    <% if member.migration_state == 'Complete' %>
+      Complete
+      <% if member.has_migration? %>
+        <%= (": " + link_to(member.migration.migration.date, migration_path(member.migration.migration))).html_safe if current_user.is_admin? %>
+        <%= (": " + member.migration.migration.date).html_safe unless current_user.is_admin? %>
+      <% end -%>
     <% else %>
-      <%= member.migration_state %>
+      <% if member.has_migration? %>
+        <%= member.migration_events.first.human_state_name %>
+        <%= (": " + link_to(member.migration.migration.date, migration_path(member.migration.migration))).html_safe if current_user.is_admin? %>
+        <%= (": " + member.migration.migration.date).html_safe unless current_user.is_admin? %>
+      <% else %>
+        <%= member.migration_state %>
+      <% end -%>
     <% end -%>
 
   </td>

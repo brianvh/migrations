@@ -129,7 +129,7 @@ class MigrationsController < ApplicationController
   end
   
   def reschedule_user_migration
-    if @migration.reschedule_user_migration(params[:migration][:user_id], params[:migration][:migration_id])
+    if @migration.reschedule_user_migration(params[:migration])
       flash[:notice] = "Migration successfully rescheduled."
     end
     redirect_to user_path(params[:migration][:user_id])
