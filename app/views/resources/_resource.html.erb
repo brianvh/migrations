@@ -14,4 +14,8 @@
   <td><%= boolean_display resource.migrate %></td>
   <td><%= boolean_display resource.migrate_data %></td>
   <td><%= links_to_groups(resource.primary_owner) if resource.has_owner? %></td>
+  <td>
+    <%= resource.migration_state unless resource.has_migration? %>
+    <%= link_to resource.migration_state, migration_path(resource.migration_events.first.migration) if resource.has_migration? %>
+  </td>
 </tr>
