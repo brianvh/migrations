@@ -136,7 +136,7 @@ class User < ActiveRecord::Base
     return false if ( !mailboxtype.nil? && mailboxtype.downcase == 'cloud' )
     return false unless active?
     return false if do_not_migrate?
-    return false if migration_events.first
+    return false if has_migration?
     true
   end
 
