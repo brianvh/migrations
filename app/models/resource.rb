@@ -65,7 +65,16 @@ class Resource < ActiveRecord::Base
   end
   
   def set_primary_owner
-    self.primary_owner = primary_owner_name.blank? ? nil : lookup_primary_owner_name
+    if owner = lookup_primary_owner_name
+      if self.has_migration? # cancel migration as scheduled with previous owner
+        migration_events.first.delete
+      end
+      if self.migrate? && owner.has_migration? && owner.migration_state != 'Complete'
+        owner.migration.migration.resources << self
+      end
+    end
+    # self.primary_owner = primary_owner_name.blank? ? nil : lookup_primary_owner_name
+    self.primary_owner = owner
   end
 
   def set_secondary_owner

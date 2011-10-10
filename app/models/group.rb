@@ -112,6 +112,18 @@ class Group < ActiveRecord::Base
     users_to_migrate + resources_to_migrate.flatten
   end
   
+  def find_users_for_migration
+    users_to_migrate = []
+    (members + contacts).each do |member|
+      users_to_migrate << member if member.needs_migration?
+    end
+    users_to_migrate
+  end
+  
+  def find_unowned_resources_for_migration
+    calendars.where(:primary_owner_id => nil)
+  end
+  
   def schedule_migrations
     migration = Migration.find(migration_id)
     migration.add_users_and_resources(accounts, skip_notifications)
