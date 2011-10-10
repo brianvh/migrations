@@ -6,7 +6,9 @@
     <%= member.name %>
     <% unless member.primary_resource_ownerships.empty? %>
       <% member.primary_resource_ownerships.each do |calendar| %>
-        <br /><%= calendar.name %>
+        <% if calendar.migrate? %>
+          <br /><%= calendar.name %>
+        <% end -%>
       <% end -%>
     <% end -%>
   </td>
@@ -18,7 +20,9 @@
     <%= member.display_mailboxtype %>
     <% unless member.primary_resource_ownerships.empty? %>
       <% member.primary_resource_ownerships.each do |calendar| %>
-        <br />Calendar
+        <% if calendar.migrate? %>
+          <br /><%= "Calendar" %>
+        <% end -%>
       <% end -%>
     <% end -%>
   </td>
