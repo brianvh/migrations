@@ -25,8 +25,7 @@ class GroupsController < ApplicationController
     send_to_user unless current_user.can_access_group?(@group)
     
     if schedule_migrations?
-      # @members = @group.find_for_migrate
-      @members = @group.find_users_for_migration + @group.find_unowned_resources_for_migration
+      @members = @group.find_users_for_migration
     else
       if show_devices?
         @devices = Device.for_group(@group.id)
