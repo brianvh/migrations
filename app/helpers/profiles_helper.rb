@@ -2,14 +2,14 @@ module ProfilesHelper
 
   def email_clients_display_string(profile)
     if profile.used_email_clients.blank? || profile.used_email_clients.empty?
-      "Unspecified"
+      content_tag(:span, "Unspecified", :style => "color: red;")
     else
       profile.used_email_clients.join(", ") || ""
     end
   end
 
   def boolean_display_as_todo(val)
-    return "Unspecified" if val.nil?
+    return content_tag(:span, "Unspecified", :style => "color: red;") if val.nil?
     val ? "Yes" : "No"
   end
 
