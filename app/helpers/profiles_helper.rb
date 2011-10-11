@@ -8,8 +8,9 @@ module ProfilesHelper
     end
   end
 
-  def boolean_display_as_todo(val)
-    return content_tag(:span, "Unspecified", :style => "color: red;") if val.nil?
+  def boolean_display_as_todo(val, red=true)
+    style = red ? "color: red;" : ""
+    return content_tag(:span, "Unspecified", :style => style) if val.nil?
     val ? "Yes" : "No"
   end
 
