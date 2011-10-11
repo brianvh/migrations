@@ -8,6 +8,9 @@
     <li>
       <%= link_to "Status Page", user_path(@profile.user) %>
     </li>
+    <li>
+      <%= link_to "Add/Edit Devices", user_path(@profile.user, :anchor => "devices") %>
+    </li>
   </ul>
 </div>
 <div class="fieldset form" id="email-services">
