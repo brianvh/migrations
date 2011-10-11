@@ -9,7 +9,7 @@
   <div class="group wat-cf">
     <div class="left label wide"><%= f.label :complexity_level, "Complexity Level" %></div>
     <div class="right wide">
-      <%= f.select :complexity_level, (1..5).map, {:include_blank => "Choose..."} %>
+      <%= f.select :complexity_level, ["High","Medium","Low"], {:include_blank => "Choose..."} %>
     </div>
   </div>
   <div class="group wat-cf">
