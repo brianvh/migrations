@@ -21,6 +21,20 @@ class Group < ActiveRecord::Base
   attr_accessor :migration_id
   attr_accessor :skip_notifications
   
+  attr_accessor :migration_types_choices
+  
+  serialize :migration_types
+  
+  def migration_types_choices=(choices)
+    unless choices.nil?
+      choices.delete("") # remove blank hidden field
+      unless choices.empty?
+        return self.migration_types = choices
+      end
+    end
+    self.migration_types = []
+  end
+
   def skip_notifications=(params)
     @skip_notifications = params
   end
