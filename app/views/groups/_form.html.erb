@@ -1,0 +1,33 @@
+<%= form_for @group do |f| -%>
+  <div class="fieldset form">
+    <h2><%= @group.new_record? ? "New" : "Edit" %> Group Info</h2>
+    <div class="group navform wat-cf">
+      <div class="text_button_padding"><%= link_to "Cancel", groups_path %></div>
+      <div class="right">
+        <button class="button" type="submit"><%= @group.new_record? ? "Create" : "Update" %> Group</button>
+      </div>
+    </div>
+
+    <div class="group wat-cf">
+      <div class="left label"><%= f.label :name, "Name" %></div>
+      <div class="right"><%= f.text_field :name, :size => 40 %></div>
+    </div>
+    <div class="group wat-cf">
+      <div class="left label"><%= f.label :week_of, "Week Of" %></div>
+      <div class="right"><%= f.text_field :week_of, :size => 15 %></div>
+    </div>
+    <% if @group.new_record? %>
+      <div class="group wat-cf">
+        <div class="left label"><%= f.label :deptclass, "Add Deptclass(es)" %></div>
+        <div class="right">
+          <%= f.select(:deptclass,
+                [""].concat(User.deptclass_unique_array), {},
+                {"data-placeholder" => "Choose deptclass...",
+                 :multiple => true, 
+                 :class => "chzn-select",
+                 :style => "width: 50%"}) %>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+<% end -%>

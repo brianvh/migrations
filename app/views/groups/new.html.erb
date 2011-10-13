@@ -1,35 +1,6 @@
 <% add_chosen_assets %>
 
 <% title "BlitzMail Migrations: New Group", false %>
-<h2 id="group-header">Add a New Group of Users</h2>
-<%= form_for @group do |f| -%>
-  <div class="fieldset form">
-    <h2>New Group Info</h2>
-    <div class="group navform wat-cf">
-      <div class="text_button_padding"><%= link_to "Cancel", groups_path %></div>
-      <div class="right">
-        <button class="button" type="submit">Create Group</button>
-      </div>
-    </div>
-    <%= f.hidden_field :action, :value => :create %>
-    <div class="group wat-cf">
-      <div class="left label"><%= f.label :name, "Name" %></div>
-      <div class="right"><%= f.text_field :name, :size => 40 %></div>
-    </div>
-    <div class="group wat-cf">
-      <div class="left label"><%= f.label :week_of, "Week Of" %></div>
-      <div class="right"><%= f.text_field :week_of, :size => 15 %></div>
-    </div>
-    <div class="group wat-cf">
-      <div class="left label"><%= f.label :deptclass, "Add Deptclass(es)" %></div>
-      <div class="right">
-        <%= f.select(:deptclass,
-              [""].concat(User.deptclass_unique_array), {},
-              {"data-placeholder" => "Choose deptclass...",
-               :multiple => true, 
-               :class => "chzn-select",
-               :style => "width: 50%"}) %>
-      </div>
-    </div>
-  </div>
-<% end -%>
+<h2 id="group-header">Create a New Group</h2>
+
+<%= render :partial => 'form' %>

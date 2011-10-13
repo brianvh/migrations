@@ -39,10 +39,19 @@ class GroupsController < ApplicationController
     
   end
 
+  def edit
+    @group = Group.find(params[:id])
+    send_to_user unless current_user.can_access_group?(@group)
+  end
+  
   def update
     @group = Group.find(params[:id])
     if @group.update_attributes(params[:group])
-      self.send(params[:group][:action])
+      if params[:group][:action]
+        self.send(params[:group][:action])
+      else
+        send_to_group
+      end
     else
       render :show
     end
