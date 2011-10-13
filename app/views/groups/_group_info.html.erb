@@ -1,0 +1,28 @@
+<div class="secondary-navigation">
+  <ul class="wat-cf">
+    <li><%= link_to "Edit Group Info", edit_group_path(@group) %></li>
+  </ul>
+</div>
+<div id="group-info" class="fieldset form">
+  <h2>Group Information</h2>
+    <div class="group wat-cf">
+      <div class="left label">Name</div>
+      <div class="right"><%= @group.name %></div>
+    </div>
+    <div class="group wat-cf">
+      <div class="left label">Week Of</div>
+      <div class="right"><%= @group.week_of %></div>
+    </div>
+    <div class="group wat-cf">
+      <div class="left label">Migration Types</div>
+      <div class="right"><%= (@group.migration_types.nil? || @group.migration_types.empty?) ? "Any" : @group.migration_types.join(", ") %></div>
+    </div>
+    <div class="group wat-cf">
+      <div class="left label">Number of Group Members</div>
+      <div class="right"><%= @group.members.size + @group.contacts.size %></div>
+    </div>
+    <div class="group wat-cf">
+      <div class="left label">Number of Resource Calendars</div>
+      <div class="right"><%= @group.calendars.size %></div>
+    </div>
+</div>
