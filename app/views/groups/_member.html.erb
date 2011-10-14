@@ -2,8 +2,11 @@
   <td align="left;" style="vertical-align: top;">
     &nbsp;&nbsp;&nbsp;<%= check_box_tag "group[accounts][]", member.id, @group.accounts.include?(member.id) %>
   </td>
+  <td align="left;" style="vertical-align: top;">
+    <%= member.deptclass if member.is_a?(User) %>
+  </td>
   <td>
-    <%= member.name %>
+    <%= member.last_first %>
     <% unless member.primary_resource_ownerships.empty? %>
       <% member.primary_resource_ownerships.each do |calendar| %>
         <% if calendar.migrate? %>
@@ -12,11 +15,7 @@
       <% end -%>
     <% end -%>
   </td>
-  <td align="left;" style="vertical-align: top;">
-    <%= member.deptclass if member.is_a?(User) %>
-  </td>
   <td>
-    <%# member.is_a?(User) ? member.display_mailboxtype : "Calendar" %>
     <%= member.display_mailboxtype %>
     <% unless member.primary_resource_ownerships.empty? %>
       <% member.primary_resource_ownerships.each do |calendar| %>

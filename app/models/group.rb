@@ -128,8 +128,11 @@ class Group < ActiveRecord::Base
   
   def find_users_for_migration
     users_to_migrate = []
-    (members + contacts).each do |member|
-      users_to_migrate << member if member.needs_migration?
+    memberships.where(
+     "memberships.type = 'Member' or memberships.type='Contact'").includes(
+     :user).order(
+     "users.deptclass, users.lastname, users.firstname").each do |member|
+      users_to_migrate << member.user if (member.user.needs_migration? && !users_to_migrate.include?(member.user))
     end
     users_to_migrate
   end
