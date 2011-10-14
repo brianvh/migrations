@@ -1,6 +1,6 @@
 class Migration < ActiveRecord::Base
   
-  default_scope order("date")
+  default_scope order("date DESC")
 
   has_many :migration_events
   

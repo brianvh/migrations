@@ -1,6 +1,7 @@
 <tr id="member-<%= member.id %>">
-  <td><%= link_to member.last_first, user_path(member) %></td>
   <td><%= member.deptclass %></td>
+
+  <td><%= link_to member.name, user_path(member) %></td>
 
   <td><%= member.invitation_sent_for_group?(@group) ? "Sent" : "" %>
 
