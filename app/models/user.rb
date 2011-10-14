@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   include DNDUser
   include LDAPUser
   
+  default_scope :order => [:deptclass, :name]
+  
   has_many :profiles
   has_many :devices
   has_many :memberships

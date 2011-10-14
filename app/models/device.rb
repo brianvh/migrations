@@ -41,8 +41,7 @@ class Device < ActiveRecord::Base
 
   def self.for_group(group_id)
     Device.includes([:user => [:groups, :memberships]]).
-        where("memberships.type != 'Consultant' AND groups.id = #{group_id}").
-        order('users.lastname, users.firstname')
+        where("memberships.type != 'Consultant' AND groups.id = #{group_id}")
   end
 
   def device_name

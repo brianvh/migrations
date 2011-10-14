@@ -1,6 +1,6 @@
 <tr id="calendar-<%= calendar.id %>">
   <td><%= link_to calendar.name, resource_path(calendar) %></td>
-  <td><%= calendar.display_primary_owner_name(true) %></td>
+  <td><%= calendar.display_primary_owner_name %></td>
   <td><%= boolean_display calendar.migrate %></td>
   <td><%= boolean_display calendar.migrate_data %></td>
   <td>

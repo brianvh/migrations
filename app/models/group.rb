@@ -131,7 +131,7 @@ class Group < ActiveRecord::Base
     memberships.where(
      "memberships.type = 'Member' or memberships.type='Contact'").includes(
      :user).order(
-     "users.deptclass, users.lastname, users.firstname").each do |member|
+     "users.deptclass, users.name").each do |member|
       users_to_migrate << member.user if (member.user.needs_migration? && !users_to_migrate.include?(member.user))
     end
     users_to_migrate

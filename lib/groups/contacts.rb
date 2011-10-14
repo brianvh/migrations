@@ -19,7 +19,7 @@ module Groups
 
       def members_for_contact_list
         contact_ids = contacts.map(&:id)
-        members.select { |m| !contact_ids.include?(m.id) }.map { |m| [m.last_first, m.id] }
+        Membership.where("memberships.group_id = #{self.id} and memberships.type = 'Member'").includes(:user).order("users.name").select { |m| !contact_ids.include?(m.user.id) }.map { |m| [m.user.name, m.user.id] }
       end
 
       def add_contact
@@ -46,13 +46,13 @@ module Groups
 
       def promote_to_contact
         new_contact = get_member_user(contact_id)
-        @contact_name = new_contact.user.last_first
+        @contact_name = new_contact.user.name
         new_contact.update_attribute :type, 'Contact'
       end
 
       def demote_from_contact
         contact = get_contact_user(contact_id)
-        @contact_name = contact.user.last_first
+        @contact_name = contact.user.name
         contact.update_attribute :type, 'Member'
       end
 

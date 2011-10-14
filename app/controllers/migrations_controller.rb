@@ -22,9 +22,9 @@ class MigrationsController < ApplicationController
 
     case 
     when show_accounts?, show_info?
-      @accounts = @migration.users_sorted
+      @accounts = @migration.users
     when show_resources?
-      @resources = @migration.resources_sorted
+      @resources = @migration.resources
     when show_export?
       @accounts = @migration.migration_events
     end
