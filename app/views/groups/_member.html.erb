@@ -1,6 +1,6 @@
 <tr id="member-<%= member.id %>">
   <td align="left;" style="vertical-align: top;">
-    &nbsp;&nbsp;&nbsp;<%= check_box_tag "group[accounts][]", member.id, @group.accounts.include?(member.id) %>
+    &nbsp;&nbsp;&nbsp;<%= check_box_tag "group[accounts][]", member.id, @group.accounts.include?(member.id), :class => "migration-checkbox" %>
   </td>
   <td align="left;" style="vertical-align: top;">
     <%= member.deptclass if member.is_a?(User) %>
