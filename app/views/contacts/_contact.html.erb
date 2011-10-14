@@ -1,5 +1,5 @@
 <tr id="contact-<%= contact.id %>">
-  <td><%= link_to contact.last_first, user_path(contact) %></td>
+  <td><%= link_to contact.name, user_path(contact) %></td>
   <td><%= contact.deptclass %></td>
   <td id="contact-<%= contact.id %>-profile">
     <%= contact.profile_state %>

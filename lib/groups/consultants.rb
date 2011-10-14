@@ -41,12 +41,12 @@ module Groups
 
       def assign_consultant
         consultant = consultant_users.create(:user_id => consultant_id)
-        @consultant_name = consultant.user.last_first
+        @consultant_name = consultant.user.name
       end
 
       def unassign_consultant
         consultant = get_consultant_user(consultant_id)
-        @consultant_name = consultant.user.last_first
+        @consultant_name = consultant.user.name
         consultant.destroy
       end
 

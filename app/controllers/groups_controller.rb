@@ -30,11 +30,11 @@ class GroupsController < ApplicationController
       if show_devices?
         @devices = Device.for_group(@group.id)
       else
-        @members = @group.members.order('lastname, firstname')
+        @members = @group.members
       end
-      @contacts = @group.contacts.order('lastname, firstname')
-      @consultants = @group.consultants.order('lastname, firstname')
-      @calendars = @group.calendars.order('name')
+      @contacts = @group.contacts
+      @consultants = @group.consultants.sort { |a, b| a.name <=> b.name }
+      @calendars = @group.calendars
     end
     
   end
