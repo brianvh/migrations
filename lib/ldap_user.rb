@@ -91,6 +91,7 @@ module LDAPUser
  module InstanceMethods
 
    def update_from_ldap_entry(entry)
+     self.name = entry.cn unless entry.cn.nil?
      self.deptclass = entry.dnddeptclass unless entry.dnddeptclass.nil?
      self.expire_on = entry.dndexpires.to_date unless entry.dndexpires.nil?
      self.email = entry.mail unless entry.mail.nil?
