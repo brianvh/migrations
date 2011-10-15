@@ -31,11 +31,11 @@
   </div>
   <div class="group wat-cf">
     <div class="left label wide">Syncs with other accounts?</div>
-    <div class="right wide"><%= boolean_display_as_todo(@profile.uses_sync, false) %></div>
+    <div class="right wide"><%= unspecified_if_blank(@profile.uses_sync, false) %></div>
   </div>
   <div class="group wat-cf">
     <div class="left label wide">VIP?</div>
-    <div class="right wide"><%= boolean_display_as_todo(@profile.vip, false) %></div>
+    <div class="right wide"><%= unspecified_if_blank(@profile.vip, false) %></div>
   </div>
   <div class="group wat-cf">
     <div class="left label wide">Support Notes:</div>

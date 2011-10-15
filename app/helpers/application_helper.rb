@@ -53,6 +53,12 @@ module ApplicationHelper
     content_tag(:div, content_tag(:h2, "THIS DND ENTRY HAS EXPIRED", :style => "color: red; font-weight: bold; text-align: center;"))
   end
 
+  def unspecified_if_blank(val, red=true)
+    style = red ? "color: red;" : ""
+    return content_tag(:span, "Unspecified", :style => style) if val.nil?
+    val ? "Yes" : "No"
+  end
+
   private
   
   def active_tab_class(controller_name, classes="")
