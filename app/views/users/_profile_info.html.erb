@@ -13,16 +13,16 @@
 
   <div class="group wat-cf">
     <div class="left label">Email Forwarded?</div>
-    <div class="right"><%= @profile.uses_mail_forward ? "Yes" : "No" %></div>
+    <div class="right"><%= unspecified_if_blank(@profile.uses_mail_forward) %></div>
   </div>
 
   <div class="group wat-cf">
     <div class="left label">Calendar Migration?</div>
-    <div class="right"><%= @profile.migrate_oracle_calendar ? "Yes" : "No" %></div>
+    <div class="right"><%= unspecified_if_blank(@profile.migrate_oracle_calendar) %></div>
   </div>
 
   <div class="group wat-cf">
     <div class="left label">Other Calendars?</div>
-    <div class="right"><%= @profile.used_other_calendars ? "Yes" : "No" %></div>
+    <div class="right"><%= unspecified_if_blank(@profile.used_other_calendars) %></div>
   </div>
 </div>

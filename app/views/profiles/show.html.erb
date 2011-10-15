@@ -26,14 +26,14 @@
   <div class="group wat-cf">
     <div class="left label wide">Is your Email being sent to another account?</div>
     <div class="right wide">
-      <%= boolean_display_as_todo @profile.uses_mail_forward %>
+      <%= unspecified_if_blank @profile.uses_mail_forward %>
     </div>
   </div>
 
   <div class="group wat-cf">
     <div class="left label wide">Email stored on local hard drive?</div>
     <div class="right wide">
-      <%= boolean_display_as_todo @profile.uses_local_mail %>
+      <%= unspecified_if_blank @profile.uses_local_mail %>
     </div>
   </div>
 
@@ -44,14 +44,14 @@
   <div class="group wat-cf">
     <div class="left label wide">Oracle Calendar to be migrated?</div>
     <div class="right wide">
-      <%= boolean_display_as_todo @profile.migrate_oracle_calendar %>
+      <%= unspecified_if_blank @profile.migrate_oracle_calendar %>
     </div>
   </div>
 
   <div class="group wat-cf">
     <div class="left label wide">Other calendar software used?</div>
     <div class="right wide">
-      <%= boolean_display_as_todo @profile.used_other_calendars %>
+      <%= unspecified_if_blank @profile.used_other_calendars %>
     </div>
   </div>
 
@@ -63,14 +63,14 @@
   <div class="group wat-cf">
     <div class="left label wide">IRA Application used?</div>
     <div class="right wide">
-      <%= boolean_display_as_todo @profile.uses_ira %>
+      <%= unspecified_if_blank @profile.uses_ira %>
     </div>
   </div>
   
   <div class="group wat-cf">
     <div class="left label wide">Hyperion Budget & Planning used?</div>
     <div class="right wide">
-      <%= boolean_display_as_todo @profile.uses_hyperion %>
+      <%= unspecified_if_blank @profile.uses_hyperion %>
     </div>
   </div>
   
