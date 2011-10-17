@@ -25,7 +25,7 @@ class NotificationMailer < ActionMailer::Base
   def notify_at_one_day(user, msg)
     @user = user
     @msg = ERB.new(msg.html_safe).result(binding)
-    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving TOMORROW!')
+    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving TONIGHT!')
   end
   
   def dndname
