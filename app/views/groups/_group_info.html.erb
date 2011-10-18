@@ -1,6 +1,8 @@
 <div class="secondary-navigation">
   <ul class="wat-cf">
     <li><%= link_to "Edit Group Info", edit_group_path(@group) %></li>
+    <li><%= link_to "Delete This Group", @group,
+                    :confirm => 'Are you sure you want to delete this Group, disassociating its Members, Contacts and Consultants?', :method => :delete %></li>
   </ul>
 </div>
 <div id="group-info" class="fieldset form">

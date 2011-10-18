@@ -148,6 +148,14 @@ class Group < ActiveRecord::Base
     @resources_added = migration.resources_added
   end
 
+  def delete_group_and_memberships
+    members.delete_all
+    calendars.delete_all
+    contacts.delete_all
+    consultants.delete_all
+    self.delete
+  end
+
   private
 
   def valid_deplclasses?
