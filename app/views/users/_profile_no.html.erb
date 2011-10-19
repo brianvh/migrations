@@ -1,10 +1,14 @@
 <div class="secondary-navigation" id="profile-info-nav">
   <ul class="wat-cf">
-    <li><%= link_to "Create and Submit Migration Profile", new_profile_path %></li>
+    <% if current_user == @user %>
+      <li><%= link_to(content_tag(:strong, "Create and Submit Migration Profile"), new_profile_path) %></li>
+    <% else %>
+      <li><%= link_to "(Not yet created by this user)", '#' %></li>
+    <% end -%>
   </ul>
 </div>
 <div id="profile-info" class="fieldset form">
   <h2>Profile Summary</h2>
 
-  <p>You don't currently have a migration profile. Please submit one.</p>
+  <p>You don't currently have a migration profile. <%= (link_to("Please submit one", new_profile_path) + ".").html_safe if current_user == @user %></p>
 </div>

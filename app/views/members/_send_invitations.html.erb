@@ -13,9 +13,8 @@
   <div class="group wat-cf">
     <div class="left label"><%= f.label :invite_msg, "Message" %></div>
     <div class="right">
-      <%= f.text_area :invite_msg, :size => '80x10', :value => !@group.invite_msg.blank? ? @group.invite_msg :
-      %{We need information about your current email and calendar accounts, your computer and other devices (including smartphones), and the software you use now and plan to use with (new) Blitz.  Please go to our web-based form and complete your profile; it will take five minutes:
-} %>
+      <%= f.text_area :invite_msg, :size => '80x10',
+      :value => !@group.invite_msg.blank? ? @group.invite_msg : render(:file => 'members/_invitation_message_default.text') %>
     </div>
   </div>
 </div>

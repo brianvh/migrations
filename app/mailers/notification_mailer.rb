@@ -2,7 +2,7 @@ class NotificationMailer < ActionMailer::Base
   
   def invite_group(group, recipients, bcc)
     @group = group
-    mail(:from => "help@dartmouth.edu", :to => recipients, :bcc => bcc, :subject => "Prepare for New Email System")
+    mail(:from => "e-mail.transition@dartmouth.edu", :to => recipients, :bcc => bcc, :subject => "Your Blitz Transition is Around the Corner!")
   end
   
   def notify_webmaster(subject, msg, recipients)
@@ -50,6 +50,10 @@ class NotificationMailer < ActionMailer::Base
   
   def day_after_migdate
     @user.day_after_migdate
+  end
+
+  def week_of_date
+    @group.week_of_date
   end
 
 end

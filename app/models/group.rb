@@ -12,6 +12,7 @@ class Group < ActiveRecord::Base
   include Groups::Calendars
 
   validates_presence_of :name, :on => :create, :message => "can't be blank"
+  validates_presence_of :week_of, :on => :create, :message => "can't be blank"
   validates_uniqueness_of :name, :on => :create, :message => "must be unique"
   validate :valid_deplclasses?, :on => :create
 
@@ -154,6 +155,10 @@ class Group < ActiveRecord::Base
     contacts.delete_all
     consultants.delete_all
     self.delete
+  end
+
+  def week_of_date
+    week_of.blank? ? "" : week_of.strftime('%B %d, %Y').sub(/ 0([\d])/,' \1')
   end
 
   private
