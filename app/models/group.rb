@@ -158,7 +158,13 @@ class Group < ActiveRecord::Base
   end
 
   def week_of_date
-    week_of.blank? ? "" : week_of.strftime('%B %d, %Y').sub(/ 0([\d])/,' \1')
+    return "" if week_of.blank?
+    begin
+      the_date = Chronic.parse(week_of)
+      the_date.strftime('%B %d, %Y').sub(/ 0([\d])/,' \1')
+    rescue
+      week_of
+    end
   end
 
   private

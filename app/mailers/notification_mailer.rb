@@ -2,6 +2,7 @@ class NotificationMailer < ActionMailer::Base
   
   def invite_group(group, recipients, bcc)
     @group = group
+    @msg = ERB.new(group.invite_msg.html_safe).result(binding)
     mail(:from => "e-mail.transition@dartmouth.edu", :to => recipients, :bcc => bcc, :subject => "Your Blitz Transition is Around the Corner!")
   end
   
