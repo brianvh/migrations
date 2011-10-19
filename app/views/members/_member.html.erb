@@ -19,14 +19,14 @@
     <% if member.migration_state == 'Complete' %>
       Complete
       <% if member.has_migration? %>
-        <%= (": " + link_to(member.migration.migration.date, migration_path(member.migration.migration))).html_safe if current_user.is_admin? %>
-        <%= (": " + member.migration.migration.date).html_safe unless current_user.is_admin? %>
+        <%= (": " + link_to(member.migration.migration.date.to_s, migration_path(member.migration.migration))).html_safe if current_user.is_admin? %>
+        <%= (": " + member.migration.migration.date.to_s).html_safe unless current_user.is_admin? %>
       <% end -%>
     <% else %>
       <% if member.has_migration? %>
         <%= member.migration_events.first.human_state_name %>
-        <%= (": " + link_to(member.migration.migration.date, migration_path(member.migration.migration))).html_safe if current_user.is_admin? %>
-        <%= (": " + member.migration.migration.date).html_safe unless current_user.is_admin? %>
+        <%= (": " + link_to(member.migration.migration.date.to_s, migration_path(member.migration.migration))).html_safe if current_user.is_admin? %>
+        <%= (": " + member.migration.migration.date.to_s).html_safe unless current_user.is_admin? %>
       <% else %>
         <%= member.migration_state %>
       <% end -%>
