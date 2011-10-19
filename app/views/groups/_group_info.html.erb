@@ -16,10 +16,6 @@
       <div class="right"><%= @group.week_of %></div>
     </div>
     <div class="group wat-cf">
-      <div class="left label">Migration Types</div>
-      <div class="right"><%= (@group.migration_types.nil? || @group.migration_types.empty?) ? "Any" : @group.migration_types.join(", ") %></div>
-    </div>
-    <div class="group wat-cf">
       <div class="left label">Number of Group Members</div>
       <div class="right"><%= @group.members.size + @group.contacts.size %></div>
     </div>

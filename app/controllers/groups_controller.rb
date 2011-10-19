@@ -53,7 +53,7 @@ class GroupsController < ApplicationController
         send_to_group
       end
     else
-      render :show
+      render :edit
     end
   end
   
