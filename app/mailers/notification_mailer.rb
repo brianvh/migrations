@@ -13,7 +13,7 @@ class NotificationMailer < ActionMailer::Base
   def notify_at_two_weeks(user, msg)
     @user = user
     @msg = ERB.new(msg.html_safe).result(binding)
-    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving!')
+    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'Your E-Mail and Calendar Accounts Are Moving Soon!')
   end
   
   def notify_at_one_week(user, msg)
