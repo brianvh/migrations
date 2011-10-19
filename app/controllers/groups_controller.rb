@@ -56,6 +56,13 @@ class GroupsController < ApplicationController
       render :show
     end
   end
+  
+  def destroy
+    @group = Group.find(params[:id])
+    @group.delete_group_and_memberships
+    flash[:notice] = "Group '#{@group.name}' successfully removed."
+    redirect_to groups_path
+  end
 
   def show_devices?
     params[:view] == 'devices'
