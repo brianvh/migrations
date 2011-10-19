@@ -16,19 +16,6 @@
       <div class="left label"><%= f.label :week_of, "Week Of" %></div>
       <div class="right"><%= f.text_field :week_of, :size => 15 %></div>
     </div>
-    <div class="group wat-cf">
-      <div class="left label"><%= f.label :migration_types, "Migration Types" %></div>
-      <div class="right">
-        <div style="float: left; margin-right: 20px;">
-          <%= hidden_field_tag "group[migration_types_choices][]" %>
-          <% ["On-Premises","Blitz/OC","Blitz-Only"].each_with_index do |choice, i| %>
-            <%= migration_type_checkbox(choice, i) %> <%= choice %><br />
-          <% end -%>
-        </div>
-      <div style="">
-        <p style="font-style: italic;">Check all that apply.</p>
-      </div>
-    </div>
     <% if @group.new_record? %>
       <div class="group wat-cf">
         <div class="left label"><%= f.label :deptclass, "Add Deptclass(es)" %></div>

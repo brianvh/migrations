@@ -11,8 +11,9 @@ class Group < ActiveRecord::Base
   include Groups::Consultants
   include Groups::Calendars
 
-  validates_presence_of :name, :on => :create, :message => "can't be blank"
-  validates_uniqueness_of :name, :on => :create, :message => "must be unique"
+  validates :name, :presence => { :message => "can't be blank" }
+  validates :week_of, :presence => { :message => "can't be blank" }
+  validates :name, :uniqueness => { :message => "must be unique" }
   validate :valid_deplclasses?, :on => :create
 
   attr_writer :action
@@ -154,6 +155,16 @@ class Group < ActiveRecord::Base
     contacts.delete_all
     consultants.delete_all
     self.delete
+  end
+
+  def week_of_date
+    return "" if week_of.blank?
+    begin
+      the_date = Chronic.parse(week_of)
+      the_date.strftime('%B %d, %Y').sub(/ 0([\d])/,' \1')
+    rescue
+      week_of
+    end
   end
 
   private
