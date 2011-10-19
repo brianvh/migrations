@@ -11,7 +11,14 @@
   </div>
   <%= f.hidden_field :action, :value => :send_invitations %>
   <div class="group wat-cf">
-    <div class="left label"><%= f.label :invite_msg, "Message" %></div>
+    <div class="left label">&nbsp;</div>
+    <div class="right email-font">
+      From: e-mail.transition@dartmouth.edu<br />
+      Subject: Your Blitz Transition is Around the Corner!
+    </div>
+  </div>
+  <div class="group wat-cf">
+    <div class="left label"><%= f.label :invite_msg, "Message Body" %></div>
     <div class="right">
       <%= f.text_area :invite_msg, :size => '80x10',
       :value => !@group.invite_msg.blank? ? @group.invite_msg : render(:file => 'members/_invitation_message_default.text') %>
