@@ -7,7 +7,7 @@
         <button class="button" type="submit"><%= @group.new_record? ? "Create" : "Update" %> Group</button>
       </div>
     </div>
-
+    <%= f.hidden_field :action, :value => :create %>
     <div class="group wat-cf">
       <div class="left label"><%= f.label :name, "Name" %></div>
       <div class="right"><%= f.text_field :name, :size => 40 %></div>
