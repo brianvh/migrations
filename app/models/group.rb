@@ -101,7 +101,7 @@ class Group < ActiveRecord::Base
     sent_to_ids = []
     recips = contacts.map { |c| c.email } # contacts always get email addressed to them
     memberships.find_all_by_type('Member').each do |m| # other group members addressed in bulk as bcc
-      unless m.invitation_sent || !m.user.needs_migration?
+      unless m.invitation_sent || m.user.should_not_receive_invitation?
         bcc << m.user.email
         sent_to_ids << m.id
       end
@@ -110,7 +110,7 @@ class Group < ActiveRecord::Base
     unless recips.empty? && bcc.empty?
       NotificationMailer.invite_group(self, recips, bcc).deliver
       Membership.update_all({:invitation_sent => true},
-                             "group_id = #{self.id} AND type = 'Member' AND id IN (#{sent_to_ids.join(',')})")
+                             "group_id = #{self.id} AND type = 'Member' AND id IN (#{sent_to_ids.join(',')})") unless sent_to_ids.empty?
     end
 
     @invitations_sent = recips.count + bcc.count
