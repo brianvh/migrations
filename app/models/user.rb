@@ -141,6 +141,13 @@ class User < ActiveRecord::Base
     return false if has_migration?
     true
   end
+  
+  def should_not_receive_invitation?
+    return true if ( !mailboxtype.nil? && mailboxtype.downcase == 'cloud' )
+    return true if do_not_migrate?
+    return true if affiliation =~ /DEPT|GROUP|ORG/
+    false
+  end
 
   def resources_to_migrate
     resources = []
