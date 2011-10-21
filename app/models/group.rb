@@ -11,9 +11,9 @@ class Group < ActiveRecord::Base
   include Groups::Consultants
   include Groups::Calendars
 
-  validates :name, :presence => { :message => "can't be blank" }
-  validates :week_of, :presence => { :message => "can't be blank" }
-  validates :name, :uniqueness => { :message => "must be unique" }
+  validates_presence_of :name
+  validates_uniqueness_of :name, :message => "must be unique"
+  validates_presence_of :week_of
   validate :valid_deplclasses?, :on => :create
 
   attr_writer :action
