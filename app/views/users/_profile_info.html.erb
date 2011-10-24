@@ -4,7 +4,7 @@
   </ul>
 </div>
 <div id="profile-info" class="fieldset form">
-  <h2>Profile Summary<%= content_tag(:span, " (Profile incomplete. Please complete as soon as possible.)", :style => "font-size: 0.85em; color: red;") %></h2>
+  <h2>Profile Summary<%= content_tag(:span, " (Profile incomplete. Please complete as soon as possible.)", :style => "font-size: 0.85em; color: red;") if @profile.missing_vital_attributes? %></h2>
 
   <div class="group wat-cf">
     <div class="left label">Email Programs</div>
