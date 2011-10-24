@@ -121,12 +121,17 @@ class User < ActiveRecord::Base
   def migration
     return migration_events.first if has_migration?
   end
+  
+  def migration_complete?
+    return true if ( !mailboxtype.nil? && mailboxtype.downcase == 'cloud' )
+    false
+  end
 
   def migration_state
-    return 'Complete' if ( !mailboxtype.nil? && mailboxtype.downcase == 'cloud' )
     return "EXPIRED" if expired?
-    return migration_event_state_for_display if has_migration?
     return 'DO NOT MIGRATE' if do_not_migrate?
+    return 'Complete' if migration_complete?
+    return migration_event_state_for_display if has_migration?
     'Unscheduled'
   end
   
@@ -135,7 +140,7 @@ class User < ActiveRecord::Base
   end
   
   def needs_migration?
-    return false if ( !mailboxtype.nil? && mailboxtype.downcase == 'cloud' )
+    return false if migration_complete?
     return false unless active?
     return false if do_not_migrate?
     return false if has_migration?
@@ -143,7 +148,7 @@ class User < ActiveRecord::Base
   end
   
   def should_not_receive_invitation?
-    return true if ( !mailboxtype.nil? && mailboxtype.downcase == 'cloud' )
+    return true if migration_complete?
     return true if do_not_migrate?
     return true if affiliation =~ /DEPT|GROUP|ORG/
     false
