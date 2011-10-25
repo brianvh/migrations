@@ -4,12 +4,12 @@ class MigrationsController < ApplicationController
   before_filter :admin_user?, :except => [:index, :show]
   
   def index
-    send_to_current_user unless current_user.is_tech?
+    send_to_current_user and return unless current_user.is_tech?
     @migrations = Migration.all
   end
   
   def show
-    send_to_current_user unless current_user.is_tech?
+    send_to_current_user and return unless current_user.is_tech?
     @migration = Migration.find(params[:id])
     if params[:view].nil?
       case 

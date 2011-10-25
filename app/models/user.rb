@@ -147,11 +147,15 @@ class User < ActiveRecord::Base
     true
   end
   
+  def is_group_account?
+    return true if affiliation =~ /DEPT|GROUP|ORG/
+    false
+  end
+  
   def should_not_receive_invitation?
     return true if migration_complete?
     return true if do_not_migrate?
-    return true if affiliation =~ /DEPT|GROUP|ORG/
-    false
+    is_group_account?
   end
 
   def resources_to_migrate
@@ -191,7 +195,7 @@ class User < ActiveRecord::Base
   end
 
   def invitation_sent_for_group?(group)
-    memberships.where(:group_id => group.id, :type => 'Member').first.invitation_sent?
+    memberships.where("group_id = #{group.id} AND (type = 'Member' OR type = 'Contact')").first.invitation_sent?
   end
   
   def block_from_migration

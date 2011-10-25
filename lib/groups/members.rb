@@ -17,7 +17,7 @@ module Groups
         return unless adding_member?
         return bad_member_name if lookup_member_name.nil?
         @member_name = lookup_member_name.name
-        return existing_member if member_ids.include?(lookup_member_name.id)
+        return existing_member if (member_ids.include?(lookup_member_name.id) || contact_ids.include?(lookup_member_name.id))
         add_member_user(lookup_member_name.id)
       end
 

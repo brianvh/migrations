@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.includes([:profiles, :devices]).find(params[:id])
+    redirect_to user_path(current_user) unless (current_user.is_support? || current_user == @user)
     @profile = @user.profiles.first
     @devices = @user.devices
     @resources = @user.primary_resource_ownerships

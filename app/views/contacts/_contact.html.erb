@@ -1,14 +1,26 @@
 <tr id="contact-<%= contact.id %>">
-  <td><%= link_to contact.name, user_path(contact) %></td>
   <td><%= contact.deptclass %></td>
+  <td><%= current_user.is_support? ? link_to(contact.name, user_path(contact)) : contact.name %></td>
+  <td id="contact-<%= contact.id %>-invitation">
+    <%= contact.invitation_sent_for_group?(@group) ? "Sent" : "" %>
+  </td>
   <td id="contact-<%= contact.id %>-profile">
     <%= contact.profile_state %>
   </td>
   <td id="contact-<%= contact.id %>-devices">
     &nbsp;<%= contact.devices.size %>
   </td>
+  <td id="contact-<%= contact.id %>-mailboxtype">
+    &nbsp;<%= contact.display_mailboxtype %>
+  </td>
   <td id="contact-<%= contact.id %>-migration">
     <%= contact.migration_state %>
   </td>
-  <td><%= render 'contacts/clear', :contact => contact if current_user.is_support? %></td>
+  <td>
+    <% if current_user.is_support? %>
+      <%= render 'contacts/clear', :contact => contact %>
+    <% else %>
+      &nbsp;
+    <% end -%>
+  </td>
 </tr>
