@@ -195,7 +195,7 @@ class User < ActiveRecord::Base
   end
 
   def invitation_sent_for_group?(group)
-    memberships.where(:group_id => group.id, :type => 'Member').first.invitation_sent?
+    memberships.where("group_id = #{group.id} AND (type = 'Member' OR type = 'Contact')").first.invitation_sent?
   end
   
   def block_from_migration

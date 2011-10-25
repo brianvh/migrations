@@ -1,11 +1,12 @@
 <tr id="calendar-<%= calendar.id %>">
-  <td><%= link_to calendar.name, resource_path(calendar) %></td>
+  <td><%= current_user.is_support? ? link_to(calendar.name, resource_path(calendar)) : calendar.name %></td>
+  
   <td><%= calendar.display_primary_owner_name %></td>
   <td><%= boolean_display calendar.migrate %></td>
   <td><%= boolean_display calendar.migrate_data %></td>
   <td>
     <% if calendar.has_migration? %>
-      <%= link_to calendar.migration_state, migration_path(calendar.migration_events.first.migration) %>
+      <%= current_user.is_support? ? link_to(calendar.migration_state, migration_path(calendar.migration_events.first.migration)) : calendar.migration_state %>
     <% else %>
       <%= calendar.migration_state %>
     <% end -%>

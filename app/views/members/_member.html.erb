@@ -1,7 +1,7 @@
 <tr id="member-<%= member.id %>">
   <td><%= member.deptclass %></td>
 
-  <td><%= link_to member.name, user_path(member) %></td>
+  <td><%= current_user.is_support? ? link_to(member.name, user_path(member)) : member.name %></td>
 
   <td>
     <% if member.is_group_account? %>
@@ -40,6 +40,10 @@
 
   </td>
   <td>
-    <%= render 'members/remove', :member => member if current_user.is_support? %>
+    <% if current_user.is_support? %>
+      <%= render 'members/remove', :member => member %>
+    <% else %>
+      &nbsp;
+    <% end -%>
   </td>
 </tr>
