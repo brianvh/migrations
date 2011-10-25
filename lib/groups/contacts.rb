@@ -19,7 +19,7 @@ module Groups
 
       def members_for_contact_list
         contact_ids = contacts.map(&:id)
-        Membership.where("memberships.group_id = #{self.id} and memberships.type = 'Member'").includes(:user).order("users.name").select { |m| !contact_ids.include?(m.user.id) }.map { |m| [m.user.name, m.user.id] }
+        Membership.where("memberships.group_id = #{self.id} and memberships.type = 'Member'").includes(:user).order("users.name").select { |m| !contact_ids.include?(m.user.id) && !m.user.is_group_account? }.map { |m| [m.user.name, m.user.id] }
       end
 
       def add_contact

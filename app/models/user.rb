@@ -147,11 +147,15 @@ class User < ActiveRecord::Base
     true
   end
   
+  def is_group_account?
+    return true if affiliation =~ /DEPT|GROUP|ORG/
+    false
+  end
+  
   def should_not_receive_invitation?
     return true if migration_complete?
     return true if do_not_migrate?
-    return true if affiliation =~ /DEPT|GROUP|ORG/
-    false
+    is_group_account?
   end
 
   def resources_to_migrate
