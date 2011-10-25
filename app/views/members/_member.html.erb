@@ -4,7 +4,7 @@
   <td><%= current_user.is_support? ? link_to(member.name, user_path(member)) : member.name %></td>
 
   <td>
-    <% if member.is_group_account? %>
+    <% if member.is_group_account? || !member.active? %>
       N/A
     <% else %>
       <%= member.invitation_sent_for_group?(@group) ? "Sent" : "" %>
