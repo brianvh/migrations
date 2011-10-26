@@ -6,8 +6,11 @@
   <div class="secondary-navigation">
     <ul class="wat-cf">
       <li><%= link_to "Edit Migration Info", edit_migration_path(@migration) %></li>
-      <li><%= link_to "Delete This Migration", @migration,
-                      :confirm => 'Are you sure you want to delete this Migration, canceling any accounts assigned to it?', :method => :delete %></li>
+      <li>
+      <%= link_to("Delete This Migration", @migration,
+                      :confirm => 'Are you sure you want to delete this Migration, canceling any accounts assigned to it?',
+                      :method => :delete) if @migration.date >= Date.today %>
+      </li>
     </ul>
   </div>
 <% end -%>

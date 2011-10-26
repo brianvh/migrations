@@ -57,6 +57,11 @@ class Migration < ActiveRecord::Base
     @skip_notifications ||= false
   end
   
+  def delete_events_and_self
+    self.user_migration_events.destroy_all
+    self.resource_migration_events.destroy_all
+    self.delete
+  end
   
   def users_sorted
     users.order("users.lastname, users.firstname")
