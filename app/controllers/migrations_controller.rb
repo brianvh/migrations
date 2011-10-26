@@ -73,6 +73,15 @@ class MigrationsController < ApplicationController
       render :edit
     end
   end
+  
+  def destroy
+    @migration = Migration.find(params[:id])
+    if @migration
+      @migration.delete_events_and_self
+      flash[:notice] = "Migration for #{@migration.date} successfully removed."
+    end
+    redirect_to migrations_path
+  end
 
   def show_accounts?
     params[:view] == 'accounts' # || params[:view].nil?
