@@ -30,6 +30,25 @@ class Migration < ActiveRecord::Base
   attr_accessor :resources_added
   attr_accessor :skip_notifications
   
+  attr_accessor :migration_types_choices
+  
+  serialize :migration_types
+  
+  def migration_types_choices=(choices)
+    unless choices.nil?
+      choices.delete("") # remove blank hidden field
+      unless choices.empty?
+        return self.migration_types = choices
+      end
+    end
+    self.migration_types = []
+  end
+
+  def display_migration_types
+    return "Any" if (migration_types.nil? || migration_types.empty? || migration_types.size == 3)
+    migration_types.join(", ")
+  end
+  
   def skip_notifications=(params)
     @skip_notifications = params
   end
@@ -38,6 +57,11 @@ class Migration < ActiveRecord::Base
     @skip_notifications ||= false
   end
   
+  def delete_events_and_self
+    self.user_migration_events.destroy_all
+    self.resource_migration_events.destroy_all
+    self.delete
+  end
   
   def users_sorted
     users.order("users.lastname, users.firstname")

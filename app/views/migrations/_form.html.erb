@@ -18,5 +18,19 @@
       <div class="left label"><%= f.label :max_accounts, "Max # of Accounts" %></div>
       <div class="right"><%= f.text_field :max_accounts, :size => 4 %></div>
     </div>
+    <div class="group wat-cf">
+      <div class="left label"><%= f.label :migration_types, "Allowed Types" %></div>
+      <div class="right">
+        <div style="float: left; margin-right: 20px;">
+          <%= hidden_field_tag "migration[migration_types_choices][]" %>
+          <% ["On-Premises","Blitz/OC","Blitz-Only"].each_with_index do |choice, i| %>
+            <%= migration_type_checkbox(choice, i) %> <%= choice %><br />
+          <% end -%>
+        </div>
+        <div style="">
+          <p style="font-style: italic;">Check any that apply.</p>
+        </div>
+      </div>
+    </div>
   </div>
 <% end -%>

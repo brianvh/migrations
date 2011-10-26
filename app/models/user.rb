@@ -153,7 +153,7 @@ class User < ActiveRecord::Base
   end
   
   def should_not_receive_invitation?
-    return true if active?
+    return true if !active?
     return true if migration_complete?
     return true if do_not_migrate?
     is_group_account?
