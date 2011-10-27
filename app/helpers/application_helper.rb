@@ -64,6 +64,7 @@ module ApplicationHelper
           "bFilter": false,
           "bInfo": false,
           "bPaginate": false,
+          "aaSorting": [[0,'asc'], [1,'asc']],
           "aoColumnDefs": [ 
       			{ "bSortable": false, "aTargets": [ 8 ] }
       		]
