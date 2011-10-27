@@ -63,7 +63,10 @@ module ApplicationHelper
             $('#members-table').dataTable( {
           "bFilter": false,
           "bInfo": false,
-          "bPaginate": false
+          "bPaginate": false,
+          "aoColumnDefs": [ 
+      			{ "bSortable": false, "aTargets": [ 8 ] }
+      		]
           });
         });
         </script>
