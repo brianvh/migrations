@@ -97,6 +97,7 @@ module LDAPUser
      self.email = entry.mail unless entry.mail.nil?
      self.assignednetid = entry.dndassignednetid unless entry.dndassignednetid.nil?
      self.mailboxtype = entry.dndmailboxtype
+     self.affiliation = entry.dndAffiliation unless entry.dndAffiliation.nil?
      self.save
    end
 
