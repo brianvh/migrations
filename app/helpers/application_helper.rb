@@ -66,9 +66,17 @@ module ApplicationHelper
           "bPaginate": false,
           "aaSorting": [[0,'asc'], [1,'asc']],
           "aoColumnDefs": [ 
-      			{ "bSortable": false, "aTargets": [ 8 ] }
-      		]
+      			  { "bSortable": false, "aTargets": [ 8 ] }
+      		  ]
           });
+            $('#groups-table').dataTable( {
+              "bFilter": false,
+              "bInfo": false,
+              "bPaginate": false,
+              "aoColumnDefs": [ 
+          			  { "bSortable": false, "aTargets": [ 0, 1, 3, 4 ] }
+          		  ]
+            });
         });
         </script>
       }.html_safe
