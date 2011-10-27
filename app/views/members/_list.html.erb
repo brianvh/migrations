@@ -1,15 +1,22 @@
+<% add_table_assets %>
+
 <div class="inner">
-  <table class="table">
-    <tr>
+  <table id="members-table" class="table">
+    <thead>
+      <tr>
       <th align="left">Deptclass</th>
       <th align="left">Name</th>
+      <th align="left">Affiliation</th>
       <th align="left">Invitation</th>
       <th align="left">Profile</th>
-      <th align="left">Devices</th>
+      <th align="left">Devices&nbsp;</th>
       <th align="left">Mailbox Type</th>
       <th align="left">Migration</th>
       <th>&nbsp;</th>
-    </tr>
-    <%= render :partial => 'members/member', :collection => @members %>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render :partial => 'members/member', :collection => @members %>
+    </tbody>
   </table>
 </div>

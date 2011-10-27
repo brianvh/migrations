@@ -48,6 +48,31 @@ module ApplicationHelper
   def add_form_assets
     content_for(:head_script, javascript_include_tag('form_scripts'))
   end
+  
+  def add_table_assets
+    content_for :head_css do
+      content_for(:head_css) +
+      stylesheet_link_tag("datatable")
+    end
+    content_for :head_script do
+      content_for(:head_script) +
+      javascript_include_tag('jquery.dataTables.min.js') +
+      %{
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $('#members-table').dataTable( {
+          "bFilter": false,
+          "bInfo": false,
+          "bPaginate": false,
+          "aoColumnDefs": [ 
+      			{ "bSortable": false, "aTargets": [ 8 ] }
+      		]
+          });
+        });
+        </script>
+      }.html_safe
+    end
+  end
 
   def expired_warning
     content_tag(:div, content_tag(:h2, "THIS DND ENTRY HAS EXPIRED", :style => "color: red; font-weight: bold; text-align: center;"))
