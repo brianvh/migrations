@@ -1,6 +1,7 @@
 <tr id="contact-<%= contact.id %>">
   <td><%= contact.deptclass %></td>
   <td><%= current_user.is_support? ? link_to(contact.name, user_path(contact)) : contact.name %></td>
+  <td><%= contact.affiliation %></td>
   <td id="contact-<%= contact.id %>-invitation">
     <%= contact.invitation_sent_for_group?(@group) ? "Sent" : "" %>
   </td>

@@ -1,5 +1,7 @@
-<%= form_for @group do |f| -%>
-  <%= f.hidden_field :action, :value => :remove_member %>
-  <%= f.hidden_field :member_id, :value => member.id %>
-  <%= f.submit "Remove", :confirm => "Remove #{member.name} from this group?" %>
+<% unless @group.contacts.include?(member) %>
+  <%= form_for @group do |f| -%>
+    <%= f.hidden_field :action, :value => :remove_member %>
+    <%= f.hidden_field :member_id, :value => member.id %>
+    <%= f.submit "Remove", :confirm => "Remove #{member.name} from this group?" %>
+  <% end -%>
 <% end -%>

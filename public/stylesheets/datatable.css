@@ -1,0 +1,13 @@
+.table th.sorting {
+	cursor: pointer;
+}
+
+.table th.sorting_asc {
+	background: #48625B url('../images/sort_asc.png') no-repeat center right;
+	cursor: pointer;
+}
+
+.table th.sorting_desc {
+	background: #48625B url('../images/sort_desc.png') no-repeat center right;
+	cursor: pointer;
+}
