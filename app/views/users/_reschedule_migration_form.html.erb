@@ -17,11 +17,11 @@
         <div class="left label"><%= f.label :migration_id, "Select New Migration Date" %></div>
         <div class="right">
           <%= select("migration","migration_id",
-                [""] + (Migration.available_dates.select { |d| d[0] != user.migrations.first.date }), {},
+                [""] + (Migration.available_dates(user.migrations.first.date)), {},
                 {"data-placeholder" => "Choose date...",
                  :id => "date-select",
                  :class => "chzn-select",
-                 :style => "width: 150px;"}) %>
+                 :style => "width: 250px;"}) %>
         </div>
         <p>&nbsp;</p>
         <div class="left label"><%= f.label :skip_notifications, "Skip Notifications" %></div>

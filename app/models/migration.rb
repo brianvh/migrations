@@ -195,8 +195,10 @@ class Migration < ActiveRecord::Base
     users_to_notify.size
   end
   
-  def self.available_dates
-    where("date >= '#{Date.today}'").select { |m| m.max_accounts > m.migration_events.size }.map { |m| [m.date, m.id] }
+  def self.available_dates(exclude_date=nil)
+    avail = where("date >= '#{Date.today}'").select { |m| m.max_accounts > m.migration_events.size }
+    avail = avail.select { |d| d[0] != exclude_date } if exclude_date
+    avail.map { |m| ["#{m.date} - #{m.display_migration_types}", m.id] }
   end
   
   private
