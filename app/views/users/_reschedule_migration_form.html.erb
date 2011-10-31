@@ -2,6 +2,7 @@
 
 <%= form_for user.migrations.first do |f| -%>
   <%= f.hidden_field :user_id, :value => user.id %>
+  <%= f.hidden_field :action, :value => :reschedule_user_migration %>
   <div id="reschedule-migration" class="fieldset form" style="display: none">
     <h2>Reschedule this Migration</h2>
     <div class="group navform wat-cf">
@@ -12,22 +13,53 @@
         <button class="button" type="submit" onclick="return confirm_reschedule();">Reschedule Migration</button>
       </div>
     </div>
-    <%= f.hidden_field :action, :value => :reschedule_user_migration %>
+    <div class="group wat-cf">
+      <div class="left label"><%= f.label :migration_id, "Select New Migration Date" %></div>
+      <div class="right">
+        <%= select("migration","migration_id",
+              [""] + (Migration.available_dates(user.migrations.first.date)), {},
+              {"data-placeholder" => "Choose date...",
+               :id => "date-select",
+               :class => "chzn-select",
+               :style => "width: 250px;"}) %>
+      </div>
+      <p>&nbsp;</p>
+      <div class="left label"><%= f.label :skip_notifications, "Skip Notifications" %></div>
+      <div class="right">
+        <%= f.check_box :skip_notifications %>
+      </div>
+    </div>
+    <fieldset style="margin-left: 30px; width: 95%;">
+      <legend>Reschedule Notification (Optional)</legend><br />
       <div class="group wat-cf">
-        <div class="left label"><%= f.label :migration_id, "Select New Migration Date" %></div>
+        <div class="left label"><%= f.label :send_reschedule_notification, "Send Reschedule Notification" %></div>
         <div class="right">
-          <%= select("migration","migration_id",
-                [""] + (Migration.available_dates(user.migrations.first.date)), {},
-                {"data-placeholder" => "Choose date...",
-                 :id => "date-select",
-                 :class => "chzn-select",
-                 :style => "width: 250px;"}) %>
-        </div>
-        <p>&nbsp;</p>
-        <div class="left label"><%= f.label :skip_notifications, "Skip Notifications" %></div>
-        <div class="right">
-          <%= f.check_box :skip_notifications %>
+          <%= f.check_box :send_reschedule_notification, {:checked => true} %>
         </div>
       </div>
+      <div class="group wat-cf">
+        <div class="left label">&nbsp;</div>
+        <div class="right email-font">
+          From: e-mail.transition@dartmouth.edu<br />
+          To: <%= @user.email %>
+        </div>
+      </div>
+      <div class="group wat-cf">
+        <div class="left label">
+          <%= f.label :reschedule_email_subject, "Subject" %>
+        </div>
+        <div class="right">
+          <%= f.text_field :reschedule_email_subject, :size => 80, :value => "IMPORTANT: Your Email/Calendar Migration has been RESCHEDULED" %>
+        </div>
+      </div>
+      <div class="group wat-cf">
+        <div class="left label"><%= f.label :reschedule_email_message, "Message" %></div>
+        <div class="right">
+          <%= f.text_area :reschedule_email_message, :style => "height: 5em; width: 98%", :value => 
+          %{Your Email/Calendar migration originally scheduled for #{@user.migration.migration.date.to_s(:long)} has been rescheduled to }
+           %>
+        </div>
+      </div>
+    </fieldset>
   </div>
 <% end -%>

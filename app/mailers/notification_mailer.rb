@@ -29,6 +29,18 @@ class NotificationMailer < ActionMailer::Base
     mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving TONIGHT!')
   end
   
+  def notify_on_cancel(user, subject, msg)
+    @user = user
+    @msg = msg
+    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => subject)
+  end
+  
+  def notify_on_reschedule(user, subject, msg)
+    @user = user
+    @msg = msg
+    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => subject)
+  end
+  
   def dndname
     @user.name
   end

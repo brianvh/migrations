@@ -31,6 +31,9 @@ class Migration < ActiveRecord::Base
   attr_accessor :skip_notifications
   
   attr_accessor :migration_types_choices
+
+  attr_accessor :cancel_email_message, :cancel_email_subject, :send_cancel_notification
+  attr_accessor :reschedule_email_message, :reschedule_email_subject, :send_reschedule_notification
   
   serialize :migration_types
   
@@ -152,11 +155,13 @@ class Migration < ActiveRecord::Base
     date.beginning_of_week
   end
   
-  def cancel_user_migration(user_id)
-    event = migration_events.where(:user_id => user_id).first
+  def cancel_user_migration(params)
+    event = migration_events.where(:user_id => params[:user_id]).first
     if event
       event.user.cancel_resource_migrations
       UserMigrationEvent.delete(event)
+      NotificationMailer.notify_on_cancel(event.user, params[:cancel_email_subject], params[:cancel_email_message]).deliver if params[:send_cancel_notification] == "1"
+      NotificationMailer.notify_on_reschedule(event.user, params[:reschedule_email_subject], params[:reschedule_email_message]).deliver if params[:send_reschedule_notification] == "1"
       return true
     end
     false
@@ -172,7 +177,7 @@ class Migration < ActiveRecord::Base
   end
   
   def reschedule_user_migration(params)
-    cancel_user_migration(params[:user_id])
+    return false unless cancel_user_migration(params)
     Migration.find(params[:migration_id]).add_user(User.find(params[:user_id]),params[:skip_notifications])
     true
   end
@@ -197,7 +202,7 @@ class Migration < ActiveRecord::Base
   
   def self.available_dates(exclude_date=nil)
     avail = where("date >= '#{Date.today}'").select { |m| m.max_accounts > m.migration_events.size }
-    avail = avail.select { |d| d[0] != exclude_date } if exclude_date
+    avail = avail.select { |d| d.date != exclude_date } if exclude_date
     avail.map { |m| ["#{m.date} - #{m.display_migration_types}", m.id] }
   end
   
