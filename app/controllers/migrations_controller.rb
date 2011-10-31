@@ -124,7 +124,7 @@ class MigrationsController < ApplicationController
   end
   
   def cancel_user_migration
-    if @migration.cancel_user_migration(params[:migration][:user_id])
+    if @migration.cancel_user_migration(params[:migration])
       flash[:notice] = "Migration successfully canceled."
     end
     redirect_to user_path(params[:migration][:user_id])

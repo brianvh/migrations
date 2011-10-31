@@ -1,7 +1,8 @@
 <% add_form_assets %>
 
 <%= form_for user.migrations.first do |f| -%>
-<%= f.hidden_field :user_id, :value => user.id %>
+  <%= f.hidden_field :user_id, :value => user.id %>
+  <%= f.hidden_field :action, :value => :cancel_user_migration %>
   <div id="cancel-migration" class="fieldset form" style="display: none">
     <h2>Cancel This Migration</h2>
     <div class="group navform wat-cf">
@@ -12,6 +13,37 @@
         <button class="button" type="submit" onclick="return confirm_cancel();">Cancel Migration</button>
       </div>
     </div>
-    <%= f.hidden_field :action, :value => :cancel_user_migration %>
+    <fieldset style="margin-left: 30px; width: 95%;">
+      <legend>Cancel Notification (Optional)</legend><br />
+      <div class="group wat-cf">
+        <div class="left label"><%= f.label :send_cancel_notification, "Send Cancel Notification" %></div>
+        <div class="right">
+          <%= f.check_box :send_cancel_notification, {:checked => true} %>
+        </div>
+      </div>
+      <div class="group wat-cf">
+        <div class="left label">&nbsp;</div>
+        <div class="right email-font">
+          From: e-mail.transition@dartmouth.edu<br />
+          To: <%= @user.email %>
+        </div>
+      </div>
+      <div class="group wat-cf">
+        <div class="left label">
+          <%= f.label :cancel_email_subject, "Subject" %>
+        </div>
+        <div class="right">
+          <%= f.text_field :cancel_email_subject, :size => 80, :value => "IMPORTANT: Your Email/Calendar Migration has been CANCELED" %>
+        </div>
+      </div>
+      <div class="group wat-cf">
+        <div class="left label"><%= f.label :cancel_email_message, "Message" %></div>
+        <div class="right">
+          <%= f.text_area :cancel_email_message, :style => "height: 5em; width: 98%", :value => 
+          %{Your Email/Calendar migration originally scheduled for #{@user.migration.migration.date.to_s(:long)} has been canceled. }
+           %>
+        </div>
+      </div>
+    </fieldset>
   </div>
 <% end -%>
