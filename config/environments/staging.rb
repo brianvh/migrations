@@ -47,4 +47,10 @@ Migrations::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  config.middleware.use ExceptionNotifier,
+    :email_prefix => '[Migrations Error] ',
+    :sender_address => 'noreply@migrations.dartmouth.edu',
+    :exception_recipients => 'web.apps@dartmouth.edu'
+
 end
