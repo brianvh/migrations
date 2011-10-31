@@ -11,6 +11,7 @@ gem 'awesome_print', '~> 0.4.0', :require => 'ap'
 gem 'jquery-rails', '>= 1.0.12'
 gem 'whenever', :require => false
 gem 'chronic'
+gem 'exception_notification', '~> 2.5.2'
 
 group :development, :test do
   gem 'nifty-generators', '~> 0.4.6'
