@@ -98,6 +98,7 @@ module LDAPUser
      self.assignednetid = entry.dndassignednetid unless entry.dndassignednetid.nil?
      self.mailboxtype = entry.dndmailboxtype
      self.affiliation = entry.dndaffiliation unless entry.dndaffiliation.nil?
+     self.activate if self.expired?
      self.save
    end
 
