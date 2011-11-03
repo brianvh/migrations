@@ -161,7 +161,6 @@ class Migration < ActiveRecord::Base
       event.user.cancel_resource_migrations
       UserMigrationEvent.delete(event)
       NotificationMailer.notify_on_cancel(event.user, params[:cancel_email_subject], params[:cancel_email_message]).deliver if params[:send_cancel_notification] == "1"
-      NotificationMailer.notify_on_reschedule(event.user, params[:reschedule_email_subject], params[:reschedule_email_message]).deliver if params[:send_reschedule_notification] == "1"
       return true
     end
     false
@@ -178,7 +177,9 @@ class Migration < ActiveRecord::Base
   
   def reschedule_user_migration(params)
     return false unless cancel_user_migration(params)
-    Migration.find(params[:migration_id]).add_user(User.find(params[:user_id]),params[:skip_notifications])
+    user = User.find(params[:user_id])
+    Migration.find(params[:migration_id]).add_user(user, params[:skip_notifications])
+    NotificationMailer.notify_on_reschedule(user, params[:reschedule_email_subject], params[:reschedule_email_message]).deliver if params[:send_reschedule_notification] == "1"
     true
   end
   

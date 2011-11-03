@@ -18,7 +18,7 @@
       <div class="group wat-cf">
         <div class="left label"><%= f.label :send_cancel_notification, "Send Cancel Notification" %></div>
         <div class="right">
-          <%= f.check_box :send_cancel_notification, {:checked => true} %>
+          <%= f.check_box :send_cancel_notification, {:checked => false} %>
         </div>
       </div>
       <div class="group wat-cf">
@@ -39,8 +39,8 @@
       <div class="group wat-cf">
         <div class="left label"><%= f.label :cancel_email_message, "Message" %></div>
         <div class="right">
-          <%= f.text_area :cancel_email_message, :style => "height: 5em; width: 98%", :value => 
-          %{Your Email/Calendar migration originally scheduled for #{@user.migration.migration.date.to_s(:long)} has been canceled. }
+          <%= f.text_area :cancel_email_message, :style => "height: 20em; width: 98%", :value => 
+          render(:file => 'users/_cancel_email_message_default.text')
            %>
         </div>
       </div>

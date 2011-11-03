@@ -214,6 +214,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def dndname
+    name
+  end
+
   def migdate
     migration_events.first.migration.date.strftime('%B %d, %Y').sub(/ 0([\d])/,' \1')
   end

@@ -1,0 +1,7 @@
+Dear <%= dndname %>,
+
+Your transition to the new Blitz system has been rescheduled from <%= migdate %> to <%%= migdate %> at your or your department/organization's request.  All future communications regarding your Blitz transition will reference your new migration date.
+
+If you have any questions about this change, please respond to this e-mail at your earliest convenience.
+
+The Blitz-2-Blitz Project Team
