@@ -125,7 +125,10 @@ class MigrationsController < ApplicationController
   
   def cancel_user_migration
     if @migration.cancel_user_migration(params[:migration])
-      flash[:notice] = "Migration successfully canceled."
+      msg = "Migration successfully canceled"
+      msg += " and the user has been notified." if params[:migration][:send_cancel_notification] == "1"
+      msg += " and the user was NOT notified." if params[:migration][:send_cancel_notification] == "0"
+      flash[:notice] = msg
     end
     redirect_to user_path(params[:migration][:user_id])
   end
@@ -139,7 +142,10 @@ class MigrationsController < ApplicationController
   
   def reschedule_user_migration
     if @migration.reschedule_user_migration(params[:migration])
-      flash[:notice] = "Migration successfully rescheduled."
+      msg = "Migration successfully rescheduled"
+      msg += " and the user has been notified." if params[:migration][:send_reschedule_notification] == "1"
+      msg += " and the user was NOT notified." if params[:migration][:send_reschedule_notification] == "0"
+      flash[:notice] =  msg
     end
     redirect_to user_path(params[:migration][:user_id])
   end

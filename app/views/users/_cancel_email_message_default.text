@@ -1,0 +1,10 @@
+Dear <%= dndname %>,
+
+Your transition to the new Blitz system that was scheduled for <%= migdate %> has been cancelled for one of the following reasons:
+•	You have moved to a College department/organization that has not yet migrated to the new Blitz system; you will be assigned a new migration date when your College department/organization is scheduled to migrate.
+•	Your transition is being rescheduled, but a new migration date has not yet been established for you; you will receive notice of your new migration date at least two weeks before it occurs.
+•	You are leaving the College.
+
+If you have any questions about this change, please respond to this e-mail at your earliest convenience.
+
+The Blitz-2-Blitz Project Team

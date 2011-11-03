@@ -34,7 +34,7 @@
       <div class="group wat-cf">
         <div class="left label"><%= f.label :send_reschedule_notification, "Send Reschedule Notification" %></div>
         <div class="right">
-          <%= f.check_box :send_reschedule_notification, {:checked => true} %>
+          <%= f.check_box :send_reschedule_notification, {:checked => false} %>
         </div>
       </div>
       <div class="group wat-cf">
@@ -55,8 +55,8 @@
       <div class="group wat-cf">
         <div class="left label"><%= f.label :reschedule_email_message, "Message" %></div>
         <div class="right">
-          <%= f.text_area :reschedule_email_message, :style => "height: 5em; width: 98%", :value => 
-          %{Your Email/Calendar migration originally scheduled for #{@user.migration.migration.date.to_s(:long)} has been rescheduled to }
+          <%= f.text_area :reschedule_email_message, :style => "height: 20em; width: 98%", :value => 
+          render(:file => 'users/_reschedule_email_message_default.text')
            %>
         </div>
       </div>

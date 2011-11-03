@@ -31,13 +31,13 @@ class NotificationMailer < ActionMailer::Base
   
   def notify_on_cancel(user, subject, msg)
     @user = user
-    @msg = msg
+    @msg = ERB.new(msg.html_safe).result(binding)
     mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => subject)
   end
   
   def notify_on_reschedule(user, subject, msg)
     @user = user
-    @msg = msg
+    @msg = ERB.new(msg.html_safe).result(binding)
     mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => subject)
   end
   

@@ -38,4 +38,12 @@ module UsersHelper
     "#{user.do_not_migrate? ? "Unblock" : "Block"} Migration"
   end
 
+  def dndname
+    @user.name
+  end
+  
+  def migdate
+    @user.migration.migration.date.to_s(:long)
+  end
+
 end
