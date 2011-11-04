@@ -125,7 +125,7 @@ class MigrationsController < ApplicationController
   
   def cancel_user_migration
     if @migration.cancel_user_migration(params[:migration])
-      msg = "Migration successfully canceled"
+      msg = "Migration successfully cancelled"
       msg += " and the user has been notified." if params[:migration][:send_cancel_notification] == "1"
       msg += " and the user was NOT notified." if params[:migration][:send_cancel_notification] == "0"
       flash[:notice] = msg
@@ -135,7 +135,7 @@ class MigrationsController < ApplicationController
   
   def cancel_resource_migration
     if @migration.cancel_resource_migration(params[:migration][:resource_id])
-      flash[:notice] = "Migration successfully canceled."
+      flash[:notice] = "Migration successfully cancelled."
     end
     redirect_to resource_path(params[:migration][:resource_id])
   end
