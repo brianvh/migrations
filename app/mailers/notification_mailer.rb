@@ -14,7 +14,7 @@ class NotificationMailer < ActionMailer::Base
   def notify_at_two_weeks(user, msg)
     @user = user
     @msg = ERB.new(msg.html_safe).result(binding)
-    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'Your E-Mail and Calendar Accounts Are Moving Soon!')
+    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'Your BlitzMail Account is Moving SOON!')
   end
   
   def notify_at_one_week(user, msg)
@@ -26,7 +26,7 @@ class NotificationMailer < ActionMailer::Base
   def notify_at_one_day(user, msg)
     @user = user
     @msg = ERB.new(msg.html_safe).result(binding)
-    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving TONIGHT!')
+    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'URGENT: Your BlitzMail Account is Moving TONIGHT!')
   end
   
   def notify_on_cancel(user, subject, msg)
