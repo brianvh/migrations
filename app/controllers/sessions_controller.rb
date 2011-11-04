@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  layout 'wide'
   skip_before_filter :authenticate
 
   def new
