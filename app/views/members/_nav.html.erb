@@ -6,5 +6,6 @@
     <li><%= show_div_link 'Add Deptclass', 'add-deptclass' %></li>
     <li><%= show_div_link 'Remove Deptclass', 'remove-deptclass' %></li>
     <li><%= show_div_link 'Send Invitations', 'send-invitations' %></li>
+    <li><%= link_to "Export", group_path(@group, :format => 'csv') %></li>
   </ul>
 </div>

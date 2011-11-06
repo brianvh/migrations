@@ -36,7 +36,17 @@ class GroupsController < ApplicationController
       @consultants = @group.consultants.sort { |a, b| a.name <=> b.name }
       @calendars = @group.calendars
     end
-    
+
+    respond_to do |wants|
+      wants.html
+      wants.csv do
+        csv = ''
+        csv << CSV.generate_line(User.export_header) + "\r\n"
+        (@members).each { |member| csv << CSV.generate_line(member.export(@group)) + "\r\n" }
+        send_data(csv, :filename => "#{@group.name.strip.gsub(/[^\w\.\-]/, '_')}_group.csv")
+      end
+    end
+
   end
 
   def edit
