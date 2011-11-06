@@ -5,23 +5,14 @@
 
   <td><%= member.affiliation %></td>
 
-  <td>
-    <% if member.is_group_account? || !member.active? %>
-      N/A
-    <% else %>
-      <%= member.invitation_sent_for_group?(@group) ? "Sent" : "" %>
-    <% end -%>
-  </td>
+  <td><%= member.display_invitation_sent_for_group(@group) %></td>
 
-  <td id="member-<%= member.id %>-profile">
-    <%= member.profile_state %>
-  </td>
-  <td id="member-<%= member.id %>-devices">
-    &nbsp;<%= member.devices.size %>
-  </td>
-  <td id="member-<%= member.id %>-mailboxtype">
-    &nbsp;<%= member.display_mailboxtype %>
-  </td>
+  <td id="member-<%= member.id %>-profile"><%= member.profile_state %></td>
+  
+  <td id="member-<%= member.id %>-devices">&nbsp;<%= member.number_of_devices %></td>
+  
+  <td id="member-<%= member.id %>-mailboxtype">&nbsp;<%= member.display_mailboxtype %></td>
+  
   <td id="member-<%= member.id %>-migration">
     
     <% if member.migration_state == 'Complete' %>

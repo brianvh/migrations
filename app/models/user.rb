@@ -113,6 +113,18 @@ class User < ActiveRecord::Base
     migration_events.first.human_state_name
   end
   
+  def migration_event_state_for_export
+    if migration_state == 'Complete'
+      "Complete" + (has_migration? ? ": #{migration.migration.date.to_s}" : "")
+    else
+      if has_migration?
+        "#{migration_events.first.human_state_name}: #{migration.migration.date.to_s}"
+      else
+        migration_state
+      end
+    end
+  end
+  
   def has_migration?
     return true if migration_events.first
     false
@@ -198,6 +210,10 @@ class User < ActiveRecord::Base
   def invitation_sent_for_group?(group)
     memberships.where("group_id = #{group.id} AND (type = 'Member' OR type = 'Contact')").first.invitation_sent?
   end
+
+  def invitation_sent_for_current_group?
+    invitation_sent_for_group?(@for_group)
+  end
   
   def block_from_migration
     skip_migration
@@ -230,6 +246,24 @@ class User < ActiveRecord::Base
     migration_events.first.migration.date.strftime('%A')
   end
 
+  def display_invitation_sent_for_group(group)
+    return "N/A" if (is_group_account? || !active?)
+    invitation_sent_for_group?(group) ? "Sent" : ""
+  end
+
+  def display_invitation_sent_for_current_group
+    display_invitation_sent_for_group(@for_group)
+  end
+  
+  def number_of_devices
+    devices.size
+  end
+  
+  def export(group)
+    @for_group = group
+    User.export_field_map(group).map { |k,v| self.send(v) }
+  end
+
   def self.authenticate(authenticator)
     User.find_by_uid(authenticator.uid)
   end
@@ -246,7 +280,24 @@ class User < ActiveRecord::Base
   def self.find_for_deptclass(dept, ids_to_exclude=[])
     User.where(:deptclass => dept).select { |u| ! ids_to_exclude.include?(u.id) }
   end
-
+  
+  def self.export_field_map(group)
+    [
+      [ "deptclass", :deptclass ],
+      [ "name", :name ],
+      [ "affiliation", :affiliation ],
+      [ "invitation", :display_invitation_sent_for_current_group ],
+      [ "profile", :profile_state ],
+      [ "devices", :number_of_devices ],
+      [ "mailboxtype", :display_mailboxtype ],
+      [ "migration", :migration_event_state_for_export ]
+    ]
+  end
+  
+  def self.export_header
+    self.export_field_map(nil).map { |efm| efm[0] }
+  end
+  
   private
 
   def fetch_profile

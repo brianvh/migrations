@@ -93,3 +93,9 @@ legend {
 	padding-left: 3px;
 	padding-right: 3px;
 }
+
+a[name]:hover {
+	text-decoration: inherit;
+	color: inherit;
+	background: inherit
+}
