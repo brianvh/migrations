@@ -34,6 +34,7 @@ class Migration < ActiveRecord::Base
 
   attr_accessor :cancel_email_message, :cancel_email_subject, :send_cancel_notification
   attr_accessor :reschedule_email_message, :reschedule_email_subject, :send_reschedule_notification
+  attr_accessor :followup_email_subject, :followup_email_message, :send_followup_email
   
   serialize :migration_types
   
