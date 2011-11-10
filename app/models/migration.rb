@@ -202,6 +202,12 @@ class Migration < ActiveRecord::Base
     users_to_notify.size
   end
   
+  def send_followup
+    users_to_notify = users.where(:mailboxtype => 'cloud').select { |u| !u.is_group_account? && !u.migration.no_notifications? }
+    NotificationMailer.send_followup_email(users_to_notify, @followup_email_subject, @followup_email_message).deliver
+    users_to_notify.size
+  end
+  
   def self.available_dates(exclude_date=nil)
     avail = where("date >= '#{Date.today}'").select { |m| m.max_accounts > m.migration_events.size }
     avail = avail.select { |d| d.date != exclude_date } if exclude_date
