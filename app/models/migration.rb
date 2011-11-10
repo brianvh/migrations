@@ -203,7 +203,7 @@ class Migration < ActiveRecord::Base
   end
   
   def send_followup
-    users_to_notify = users.where(:mailboxtype => 'cloud').select { |u| !u.is_group_account? && !u.migration.no_notifications? && !u.user.expired? }
+    users_to_notify = users.where(:mailboxtype => 'cloud').select { |u| !u.is_group_account? && !u.migration.no_notifications? && !u.expired? }
     NotificationMailer.send_followup_email(users_to_notify, @followup_email_subject, @followup_email_message).deliver
     users_to_notify.size
   end
