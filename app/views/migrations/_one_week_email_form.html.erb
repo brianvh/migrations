@@ -10,19 +10,24 @@
       </div>
     </div>
     <%= f.hidden_field :action, :value => :send_one_week_email %>
-    <div class="group wat-cf">
-      <div class="left label">&nbsp;</div>
-      <div class="right email-font">
-        From: e-mail.transition@dartmouth.edu<br />
-        Subject: IMPORTANT: Your BlitzMail Account Is Moving NEXT WEEK!
-      </div>
-    </div>
-    <div class="group wat-cf">
-      <div class="left label"><%= f.label :one_week_email, "Message Body" %></div>
-      <div class="right">
-        <%= f.text_area :one_week_email, :size => '80x10',
-            :value => !@migration.one_week_email.blank? ? @migration.one_week_email : render(:file => 'migrations/_one_week_message_default.text') %>
-      </div>
-    </div>
+    <table border="0" cellspacing="5" cellpadding="5" width="100%">
+      <tr>
+        <td width="40%" style="padding-left: 10px;">
+          <strong><%= f.label :one_week_email, "Message for BlitzMail Users" %></strong><br /><br />
+          <span class="email-font">From: e-mail.transition@dartmouth.edu<br />
+          Subject: IMPORTANT: Your BlitzMail Account Is Moving NEXT WEEK!</span>
+          <%= f.text_area :one_week_email, :style => "width: 90%;",
+              :value => !@migration.one_week_email.blank? ? @migration.one_week_email : render(:file => 'migrations/_one_week_message_default.text') %>
+        </td>
+        <td width="40%" style="padding-left: 10px;">
+          <strong><%= f.label :one_week_onprem_email, "Message for On-Premises Exchange Users" %></strong><br /><br />
+          <span class="email-font">From: e-mail.transition@dartmouth.edu<br />
+          Subject: IMPORTANT: Your Exchange/Outlook Account Is Moving NEXT WEEK!</span>
+          <%= f.text_area :one_week_onprem_email, :style => "width: 90%;",
+              :value => !@migration.one_week_onprem_email.blank? ? @migration.one_week_onprem_email : render(:file => 'migrations/_one_week_onprem_message_default.text') %>
+        </td>
+      </tr>
+    </table>
   </div>
 <% end -%>
+

@@ -11,18 +11,24 @@
     </div>
     <%= f.hidden_field :action, :value => :send_day_before_email %>
     <div class="group wat-cf">
-      <div class="left label">&nbsp;</div>
-      <div class="right email-font">
-        From: e-mail.transition@dartmouth.edu<br />
-      Subject: URGENT: Your BlitzMail Account is Moving TONIGHT!
-      </div>
-    </div>
-    <div class="group wat-cf">
-      <div class="left label"><%= f.label :day_before_email, "Message Body" %></div>
-      <div class="right">
-        <%= f.text_area :day_before_email, :size => '80x10',
-            :value => !@migration.day_before_email.blank? ? @migration.day_before_email : render(:file => 'migrations/_day_before_message_default.text') %>
-      </div>
+      <table border="0" cellspacing="5" cellpadding="5" width="100%">
+        <tr>
+          <td width="40%" style="padding-left: 10px;">
+            <strong><%= f.label :day_before_email, "Message for BlitzMail Users" %></strong><br /><br />
+            <span class="email-font">From: e-mail.transition@dartmouth.edu<br />
+            Subject: URGENT: Your BlitzMail Account is Moving TONIGHT!</span>
+            <%= f.text_area :day_before_email, :style => "width: 90%;",
+                :value => !@migration.day_before_email.blank? ? @migration.day_before_email : render(:file => 'migrations/_day_before_message_default.text') %>
+          </td>
+          <td width="40%" style="padding-left: 10px;">
+            <strong><%= f.label :day_before_email, "Message for On-Premises Exchange Users" %></strong><br /><br />
+            <span class="email-font">From: e-mail.transition@dartmouth.edu<br />
+            Subject: URGENT: Your Exchange/Outlook Account is Moving TONIGHT!</span>
+            <%= f.text_area :day_before_onprem_email, :style => "width: 90%;",
+                :value => !@migration.day_before_onprem_email.blank? ? @migration.day_before_onprem_email : render(:file => 'migrations/_day_before_onprem_message_default.text') %>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 <% end -%>

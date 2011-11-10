@@ -26,7 +26,9 @@ class MigrationsController < ApplicationController
     when show_resources?
       @resources = @migration.resources
     when show_export?
-      @accounts = @migration.migration_events
+      @accounts = @migration.migration_events.sort do |a, b|
+        (a.is_a?(UserMigrationEvent) ? a.user.name : a.resource.name) <=> (b.is_a?(UserMigrationEvent) ? b.user.name : b.resource.name)
+      end
     end
 
     respond_to do |wants|
@@ -165,6 +167,12 @@ class MigrationsController < ApplicationController
   def send_day_before_email
     count_sent = @migration.send_day_before_email
     flash[:notice] = "#{count_sent} 1-Day Notification#{(count_sent == 0 || count_sent > 1) ? 's' : ''} sent."
+    send_to_migration
+  end
+  
+  def send_followup_email
+    count_sent = @migration.send_followup
+    flash[:notice] = "#{count_sent} Followup Notification#{(count_sent == 0 || count_sent > 1) ? 's' : ''} sent."
     send_to_migration
   end
 
