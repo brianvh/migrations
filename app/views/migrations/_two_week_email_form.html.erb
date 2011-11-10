@@ -11,18 +11,24 @@
       </div>
       <%= f.hidden_field :action, :value => :send_two_week_email %>
       <div class="group wat-cf">
-        <div class="left label">&nbsp;</div>
-        <div class="right email-font">
-          From: e-mail.transition@dartmouth.edu<br />
-          Subject: Your BlitzMail Account is Moving SOON!
-        </div>
-      </div>
-      <div class="group wat-cf">
-        <div class="left label"><%= f.label :two_week_email, "Message Body" %></div>
-        <div class="right">
-          <%= f.text_area :two_week_email, :size => '80x10',
-              :value => !@migration.two_week_email.blank? ? @migration.two_week_email : render(:file => 'migrations/_two_week_message_default.text') %>
-        </div>
+        <table border="0" cellspacing="5" cellpadding="5" width="100%">
+          <tr>
+            <td width="40%" style="padding-left: 10px;">
+              <strong><%= f.label :two_week_email, "Message for BlitzMail Users" %></strong><br /><br />
+              <span class="email-font">From: e-mail.transition@dartmouth.edu<br />
+              Subject: Your BlitzMail Account is Moving SOON!</span>
+              <%= f.text_area :two_week_email, :style => "width: 90%;",
+                  :value => !@migration.two_week_email.blank? ? @migration.two_week_email : render(:file => 'migrations/_two_week_message_default.text') %>
+            </td>
+            <td width="40%" style="padding-left: 10px;">
+              <strong><%= f.label :two_week_onprem_email, "Message for On-Premises Exchange Users" %></strong><br /><br />
+              <span class="email-font">From: e-mail.transition@dartmouth.edu<br />
+              Subject: Your Exchange/Outlook Account is Moving SOON!</span>
+              <%= f.text_area :two_week_onprem_email, :style => "width: 90%;",
+                  :value => !@migration.two_week_onprem_email.blank? ? @migration.two_week_onprem_email : render(:file => 'migrations/_two_week_onprem_message_default.text') %>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
 <% end -%>

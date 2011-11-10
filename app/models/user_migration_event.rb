@@ -48,15 +48,33 @@ class UserMigrationEvent < MigrationEvent
   end
 
   def deliver_two_week_notification
-    NotificationMailer.notify_at_two_weeks(user, migration.two_week_email).deliver unless user.expired?
+    unless user.expired?
+      if move_type == "imap"
+        NotificationMailer.notify_at_two_weeks(user, 'Your BlitzMail Account is Moving SOON!', migration.two_week_email).deliver
+      else
+        NotificationMailer.notify_at_two_weeks(user, 'Your Exchange/Outlook Account is Moving SOON!', migration.two_week_onprem_email).deliver
+      end
+    end
   end
   
   def deliver_one_week_notification
-    NotificationMailer.notify_at_one_week(user, migration.one_week_email).deliver unless user.expired?
+    unless user.expired?
+      if move_type == "imap"
+        NotificationMailer.notify_at_one_week(user, 'IMPORTANT: Your BlitzMail Account Is Moving NEXT WEEK!', migration.one_week_email).deliver
+      else
+        NotificationMailer.notify_at_one_week(user, 'IMPORTANT: Your Exchange/Outlook Account Is Moving NEXT WEEK!', migration.one_week_onprem_email).deliver
+      end
+    end
   end
 
   def deliver_day_before_notification
-    NotificationMailer.notify_at_one_day(user, migration.day_before_email).deliver unless user.expired?
+    unless user.expired?
+      if move_type == "imap"
+        NotificationMailer.notify_at_one_day(user, 'URGENT: Your BlitzMail Account is Moving TONIGHT!',  migration.day_before_email).deliver
+      else
+        NotificationMailer.notify_at_one_day(user, 'URGENT: Your Exchange/Outlook Account is Moving TONIGHT!',  migration.day_before_onprem_email).deliver
+      end
+    end
   end
   
   def cn

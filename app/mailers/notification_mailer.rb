@@ -11,22 +11,22 @@ class NotificationMailer < ActionMailer::Base
     mail(:from => 'webmaster@dartmouth.edu', :to => recipients, :subject => subject)
   end
 
-  def notify_at_two_weeks(user, msg)
+  def notify_at_two_weeks(user, subject, msg)
     @user = user
     @msg = ERB.new(msg.html_safe).result(binding)
-    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'Your BlitzMail Account is Moving SOON!')
+    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => subject)
   end
   
-  def notify_at_one_week(user, msg)
+  def notify_at_one_week(user, subject, msg)
     @user = user
     @msg = ERB.new(msg.html_safe).result(binding)
-    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'IMPORTANT: Your BlitzMail Account Is Moving NEXT WEEK!')
+    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => subject)
   end
   
-  def notify_at_one_day(user, msg)
+  def notify_at_one_day(user, subject, msg)
     @user = user
     @msg = ERB.new(msg.html_safe).result(binding)
-    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => 'URGENT: Your BlitzMail Account is Moving TONIGHT!')
+    mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => subject)
   end
   
   def notify_on_cancel(user, subject, msg)
@@ -44,7 +44,7 @@ class NotificationMailer < ActionMailer::Base
   def send_followup_email(bcc_users, subject, msg)
     @bcc = bcc_users.map { |u| u.newemailaddress }
     @msg = ERB.new(msg.html_safe).result(binding)
-    mail(:from => 'e-mail.transition@dartmouth.edu', :bcc => @bcc, :subject => subject)
+    mail(:from => 'b2b@mac.dartmouth.edu', :bcc => @bcc, :subject => subject)
   end
   
   def dndname
