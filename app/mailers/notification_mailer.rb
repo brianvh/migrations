@@ -41,6 +41,12 @@ class NotificationMailer < ActionMailer::Base
     mail(:from => 'e-mail.transition@dartmouth.edu', :to => @user.email, :subject => subject)
   end
   
+  def send_followup_email(bcc_users, subject, msg)
+    @bcc = bcc_users.map { |u| u.newemailaddress }
+    @msg = ERB.new(msg.html_safe).result(binding)
+    mail(:from => 'e-mail.transition@dartmouth.edu', :bcc => @bcc, :subject => subject)
+  end
+  
   def dndname
     @user.name
   end

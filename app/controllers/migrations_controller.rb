@@ -167,5 +167,11 @@ class MigrationsController < ApplicationController
     flash[:notice] = "#{count_sent} 1-Day Notification#{(count_sent == 0 || count_sent > 1) ? 's' : ''} sent."
     send_to_migration
   end
+  
+  def send_followup_email
+    count_sent = @migration.send_followup
+    flash[:notice] = "#{count_sent} Followup Notification#{(count_sent == 0 || count_sent > 1) ? 's' : ''} sent."
+    send_to_migration
+  end
 
 end
