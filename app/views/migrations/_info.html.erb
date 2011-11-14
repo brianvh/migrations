@@ -11,7 +11,7 @@
   </div>
 
   <div class="group wat-cf">
-    <div class="left label">Maximum # of accounts</div>
+    <div class="left label">Migration Count Limit</div>
     <div class="right tight"><%= @migration.max_accounts %></div>
   </div>
 
@@ -21,12 +21,17 @@
   </div>
 
   <div class="group wat-cf">
-    <div class="left label"># of user accounts</div>
+    <div class="left label">User accounts</div>
     <div class="right tight"><%= @migration.users.size %></div>
   </div>
 
   <div class="group wat-cf">
-    <div class="left label"># of resource accounts</div>
+    <div class="left label">Resource accounts</div>
     <div class="right tight"><%= @migration.resources.size %></div>
+  </div>
+
+  <div class="group wat-cf">
+    <div class="left label">Follow-up Sent on</div>
+    <div class="right tight"><%= @migration.followup_sent_on.nil? ? "Never" : @migration.followup_sent_on %></div>
   </div>
 </div>
