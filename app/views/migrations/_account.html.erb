@@ -2,6 +2,7 @@
   <td><%= account.deptclass %></td>
   <td><%= link_to account.name, user_path(account) %></td>
   <td><%= account.newemailaddress %></td>
+  <td><%= account.affiliation %></td>
   <td><%= account.display_mailboxtype %></td>
   <td><%= link_to account.group_name, group_path(account.groups.first) %></td>
   <td><%= account.migration_events.first.human_state_name %></td>
