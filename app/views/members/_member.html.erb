@@ -7,7 +7,7 @@
 
   <td><%= member.display_invitation_sent_for_group(@group) %></td>
 
-  <td id="member-<%= member.id %>-profile"><%= member.profile_state %></td>
+  <td id="member-<%= member.id %>-profile"><%= member.profiles.empty? ? member.profile_state : link_to(member.profile_state, profile_path(member.profiles.first)) %></td>
   
   <td id="member-<%= member.id %>-devices">&nbsp;<%= member.number_of_devices %></td>
   

@@ -1,9 +1,4 @@
-<div class="secondary-navigation">
-  <ul class="wat-cf">
-    <li><%= link_to "Add Computer Device", current_user == @user ? new_device_path(:type => 'computer') : '#' %></li>
-    <li><%= link_to "Add Mobile Device", current_user == @user ? new_device_path(:type => 'mobile') : '#' %></li>
-  </ul>
-</div>
+<%= render :partial => 'devices_nav' %>
 <div id="devices" class="fieldset form">
   <h2>Your Devices <span style="font-size: 0.8em;">(desktop, laptop, smartphone, tablet, etc.)</span></h2>
 
