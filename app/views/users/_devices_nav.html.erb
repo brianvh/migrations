@@ -1,4 +1,4 @@
-<% if current_user == @user %>
+<% if current_user == @user || current_user.is_support? %>
   <div class="secondary-navigation">
     <ul class="wat-cf">
       <li><%= link_to "Add Computer Device", new_device_path(:type => 'computer') %></li>
