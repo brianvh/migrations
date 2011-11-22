@@ -10,14 +10,18 @@ class DevicesController < ApplicationController
   end
   
   def new
-    @device = Device.new_from_type(type_param, :user => current_user)
+    @user = User.find(params[:user])
+    send_to_user_status unless current_user == @user || current_user.is_support?
+    @device = Device.new_from_type(type_param, :user => @user)
   end
   
   def create
+    @user = User.find(params[:user_id])
+    send_to_user_status unless current_user == @user || current_user.is_support?
     @device = Device.new_from_type(type_param, params[:device])
     
     if @device.save
-      current_user.devices << @device
+      @user.devices << @device
       flash[:notice] = "Successfully created Device."
       redirect_to device_path(@device)
     else
