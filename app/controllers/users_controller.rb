@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
 
   before_filter :support_user?, :except => [:index, :show]
-
+  # before_filter :can_access?, :except => [:index, :show]
+  
   def index
     redirect_to user_path(current_user)
   end
 
   def show
     @user = User.includes([:profiles, :devices]).find(params[:id])
-    redirect_to user_path(current_user) unless (current_user.is_support? || current_user == @user)
+    redirect_to user_path(current_user) unless (current_user.is_support? || current_user == @user || current_user.can_access_groups_for?(@user))
     @profile = @user.profiles.first
     @devices = @user.devices
     @resources = @user.primary_resource_ownerships
@@ -26,6 +27,10 @@ class UsersController < ApplicationController
 
   private
 
+  # def can_access?
+  #   current_user.is_support? || current_user.can_access_groups_for?(@user)
+  # end
+  
   def support_user?
     return true if current_user.is_support?
     redirect_to user_path(current_user)

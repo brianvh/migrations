@@ -1,7 +1,7 @@
 <tr id="member-<%= member.id %>">
   <td><%= member.deptclass %></td>
 
-  <td><%= current_user.is_support? ? link_to(member.name, user_path(member)) : member.name %></td>
+  <td><%= current_user.is_support? || current_user.can_access_groups_for?(member) ? link_to(member.name, user_path(member)) : member.name %></td>
 
   <td><%= member.affiliation %></td>
 

@@ -62,6 +62,14 @@ class User < ActiveRecord::Base
   def can_access_device?(device)
     is_support? ? true : device.user_id == self.id
   end
+  
+  def can_access_groups_for?(other_user)
+    return false if other_user.groups.empty?
+    other_user.groups.each do |group|
+      return true if is_contact?(group)
+    end
+    false
+  end
 
   def can_access_group?(group)
     is_support? ? true : is_contact?(group)
