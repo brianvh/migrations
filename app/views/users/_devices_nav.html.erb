@@ -1,8 +1,8 @@
-<% if current_user == @user %>
+<% if current_user == @user || current_user.is_support? || current_user.can_access_groups_for?(@user) %>
   <div class="secondary-navigation">
     <ul class="wat-cf">
-      <li><%= link_to "Add Computer Device", new_device_path(:type => 'computer') %></li>
-      <li><%= link_to "Add Mobile Device", new_device_path(:type => 'mobile') %></li>
+      <li><%= link_to "Add Computer Device", new_device_path(:type => 'computer', :user => @user) %></li>
+      <li><%= link_to "Add Mobile Device", new_device_path(:type => 'mobile', :user => @user) %></li>
     </ul>
   </div>
 <% end -%>
