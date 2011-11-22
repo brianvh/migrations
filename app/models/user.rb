@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def can_access_device?(device)
-    is_support? ? true : device.user_id == self.id
+    is_support? || can_access_groups_for?(device.user)? true : device.user_id == self.id
   end
   
   def can_access_groups_for?(other_user)

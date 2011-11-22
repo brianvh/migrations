@@ -11,13 +11,13 @@ class DevicesController < ApplicationController
   
   def new
     @user = User.find(params[:user])
-    send_to_user_status unless current_user == @user || current_user.is_support?
+    send_to_user_status unless current_user == @user || current_user.is_support? || current_user.can_access_groups_for?(@user)
     @device = Device.new_from_type(type_param, :user => @user)
   end
   
   def create
     @user = User.find(params[:user_id])
-    send_to_user_status unless current_user == @user || current_user.is_support?
+    send_to_user_status unless current_user == @user || current_user.is_support? || current_user.can_access_groups_for?(@user)
     @device = Device.new_from_type(type_param, params[:device])
     
     if @device.save
