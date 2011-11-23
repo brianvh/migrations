@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
   before_filter :support_user?, :except => [:index, :show]
-  # before_filter :can_access?, :except => [:index, :show]
   
   def index
     redirect_to user_path(current_user)
@@ -26,10 +25,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  # def can_access?
-  #   current_user.is_support? || current_user.can_access_groups_for?(@user)
-  # end
   
   def support_user?
     return true if current_user.is_support?
