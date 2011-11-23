@@ -5,12 +5,13 @@
     <h2>Device Info</h2>
     <div class="group navform wat-cf">
       <div class="text_button_padding">
-        <%= link_to "Cancel", user_path(current_user) %>
+        <%= link_to "Cancel", user_path(@user) %>
       </div>
       <div class="right">
         <button class="button" type="submit">Create Device</button>
       </div>
     </div>
+    <input type="hidden" name="user_id" value="<%= @user.id %>" id="user_id" />
     <%= f.hidden_field :type, :value => @device.type %>
     <%= render "#{@device.type_name}_form", {:f => f} %>
   </div>

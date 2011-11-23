@@ -10,31 +10,22 @@ class ResourcesController < ApplicationController
   end
 
   def show
-    if current_user.is_support?
-      @resource = Resource.find(params[:id])
-    else
-      @resource = current_user.primary_resource_ownerships.find(params[:id])
-      redirect_to user_path if @resource.nil?
-    end
+    @resource = Resource.find(params[:id])
+    redirect_to user_path unless current_user.is_support? || current_user.can_access_groups_for?(@resource.primary_owner) || !current_user.primary_resource_ownerships.find(params[:id])
   end
 
   def edit
-    if current_user.is_support?
-      @resource = Resource.find(params[:id])
-    else
-      @resource = current_user.primary_resource_ownerships.find(params[:id])
-      redirect_to user_path if @resource.nil?
-    end
+    @resource = Resource.find(params[:id])
+    redirect_to user_path unless current_user.is_support? || current_user.can_access_groups_for?(@resource.primary_owner) || !current_user.primary_resource_ownerships.find(params[:id])
   end
 
   def update
-    if current_user.is_support?
-      @resource = Resource.find(params[:id])
-    else
-      @resource = current_user.primary_resource_ownerships.find(params[:id], :readonly => false)
-      redirect_to user_path and return if @resource.nil?
+    @resource = Resource.find(params[:id])
+    unless current_user.is_support? || current_user.can_access_groups_for?(@resource.primary_owner)
+      redirect_to user_path and return if current_user.primary_resource_ownerships.find(params[:id], :readonly => false) == nil
     end
-    if @resource.update_attributes(params[:resource])
+
+    if @resource.update_attributes(params[:resource].merge(:primary_owner_name => @resource.primary_owner.name))
       redirect_to @resource, :notice  => "Successfully updated resource."
     else
       flash.now[:error] = "Error updating Resource."
