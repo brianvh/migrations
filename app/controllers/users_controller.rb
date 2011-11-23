@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def show
     @user = User.includes([:profiles, :devices]).find(params[:id])
     redirect_to user_path(current_user) unless (current_user.is_support? || current_user == @user || current_user.can_access_groups_for?(@user))
+    @user.profiles << Profile.create if @user.profiles.empty?
     @profile = @user.profiles.first
     @devices = @user.devices
     @resources = @user.primary_resource_ownerships
