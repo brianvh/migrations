@@ -25,7 +25,10 @@ class ResourcesController < ApplicationController
       redirect_to user_path and return if current_user.primary_resource_ownerships.find(params[:id], :readonly => false) == nil
     end
 
-    if @resource.update_attributes(params[:resource].merge(:primary_owner_name => @resource.primary_owner.name))
+    if params[:resource][:primary_owner_name].nil?
+      params[:resource].merge!(:primary_owner_name => @resource.primary_owner.name)
+    end
+    if @resource.update_attributes(params[:resource])
       redirect_to @resource, :notice  => "Successfully updated resource."
     else
       flash.now[:error] = "Error updating Resource."
