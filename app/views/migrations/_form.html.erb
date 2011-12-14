@@ -23,7 +23,7 @@
       <div class="right">
         <div style="float: left; margin-right: 20px;">
           <%= hidden_field_tag "migration[migration_types_choices][]" %>
-          <% ["On-Premises","Blitz/OC","Blitz-Only"].each_with_index do |choice, i| %>
+          <% ["On-Premises","Blitz/OC","Blitz-Only","BWA-Only"].each_with_index do |choice, i| %>
             <%= migration_type_checkbox(choice, i) %> <%= choice %><br />
           <% end -%>
         </div>

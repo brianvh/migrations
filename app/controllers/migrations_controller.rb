@@ -26,7 +26,9 @@ class MigrationsController < ApplicationController
     when show_resources?
       @resources = @migration.resources
     when show_export?
-      @accounts = @migration.migration_events.sort do |a, b|
+      @accounts = []
+      Migration.find_all_by_date(@migration.date).each { |a| @accounts += a.migration_events}
+      @accounts.sort! do |a, b|
         (a.is_a?(UserMigrationEvent) ? a.user.name : a.resource.name) <=> (b.is_a?(UserMigrationEvent) ? b.user.name : b.resource.name)
       end
     end
