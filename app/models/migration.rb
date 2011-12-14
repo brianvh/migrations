@@ -12,9 +12,9 @@ class Migration < ActiveRecord::Base
   has_many :resource_migration_events
   has_many :resources, :through => :resource_migration_events
   
-  validates :date,
-            :uniqueness => { :message => "there is already a migration established for that day" },
-            :on => :create, :unless => Proc.new { |m| m.action }
+  # validates :date,
+  #           :uniqueness => { :message => "there is already a migration established for that day" },
+  #           :on => :create, :unless => Proc.new { |m| m.action }
             
   validates :max_accounts,
             :numericality => { :greater_than_or_equal_to => 0, :only_integer => true },
