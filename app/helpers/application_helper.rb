@@ -88,8 +88,9 @@ module ApplicationHelper
   end
 
   def unspecified_if_blank(val, red=true)
-    style = red ? "color: red;" : ""
-    return content_tag(:span, "Unspecified", :style => style) if val.nil?
+    # style = red ? "color: red;" : ""
+    # return content_tag(:span, "Unspecified", :style => style) if val.nil?
+    return content_tag(:span, "Unspecified", :style => "font-weight: bold;") if val.nil?
     val ? "Yes" : "No"
   end
 
