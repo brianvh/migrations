@@ -55,8 +55,9 @@ class Profile < ActiveRecord::Base
   end
   
   def boolean_attributes
-    [:migrate_oracle_calendar, :uses_mail_forward, :uses_local_mail,
-     :uses_ira, :uses_hyperion, :used_other_calendars]
+    # [:migrate_oracle_calendar, :uses_mail_forward, :uses_local_mail,
+    #  :uses_ira, :uses_hyperion, :used_other_calendars]
+    [:migrate_oracle_calendar, :uses_mail_forward, :uses_local_mail, :used_other_calendars]
   end
 
 end

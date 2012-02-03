@@ -9,56 +9,62 @@ On <%%= migday %>, <%%= migdate %>, you will begin your transition to the new Bl
 
 PRE-MIGRATION PREPARATIONS:  If you have not done so already, it is critical that you:
 
-1.  Check the folder names in your BlitzMail account to ensure there are no names that contain special characters. Folder names should only contain letters, numbers and spaces.
+1.  Check the folder names in your BlitzMail account to ensure none contain special characters. Folder names should only contain letters, numbers, and spaces.
 
-2.  Check the folder names in your BlitzMail account to ensure there is no folder named just "notes," just "contacts" or just "drafts".  Folders whose names include the word "notes", "contacts" or "drafts" with other words -- e.g., "Meeting Notes" -- are fine.
+2.  Check the folder names in your BlitzMail account to ensure there is no folder named just "notes," just "contacts" or just "drafts".  Folders whose names include the word "notes", "contacts," or "drafts" with other words -- e.g., "Meeting Notes" -- are fine.
 
-3.  Remove attachments from any messages that are greater than 35 MB so that the accompanying message will migrate successfully.  Store these attachments on your hard drive.
+3.  Remove attachments from any messages that are greater than 35 MB (35,000 KB) so that the accompanying message will migrate successfully.  Store these attachments on your hard drive.
 
-4.  Sign up for a Blitz-2-Blitz Overview session, if you have mainly used the BlitzMail or Oracle Calendar programs for the past few years.  To register for an upcoming Overview session, please go to:  <http://library.dartmouth.edu/classes/calendar.php?MAIN_CALENDAR_ID=241>.
+4.  Sign up for a Blitz-2-Blitz Overview session, if you have mainly been using the BlitzMail or Oracle Calendar programs.  To register for an upcoming Overview session, please go to:  <http://library.dartmouth.edu/classes/calendar.php?MAIN_CALENDAR_ID=241>.
 
-MIGRATION DAY ACTIVITIES:  Here's what you need to do on <%%= migday %>, <%%= migdate %>:
+MIGRATION DAY ACTIVITIES:  Here's what you will need to do on <%%= migday %>, <%%= migdate %>:
 
 1.  If you use Oracle Calendar:
-  -  An hour or so prior to 11:00 a.m., go into your Oracle Calendar account and stop allowing others to add data to your Oracle Calendar.
+
+  -  Before 11:00 a.m., go into your Oracle Calendar account and stop allowing others to add data to your Oracle Calendar.
+
   -  At 11:00 a.m., we will take a snapshot of your calendar data and begin uploading it to your new Blitz mailbox.  Any changes you make to your Oracle Calendar account after this time will not appear on your new calendar.
-  -  Also at 11:00 a.m., if you're an Oracle Calendar user, your new network login credentials will be activated – see Network ID section below for more information about what to do.
 
-2.  All users:  At 5:00 p.m., log out of any applications that access your BlitzMail account and do not login back in to them until after 8:00 a.m. the following morning.
+  -  Also at 11:00 a.m., if you're an Oracle Calendar user, your new network login credentials will be activated ñ see Network ID section below for more information about what to do.
 
-3.  If you have a mobile device (smartphone, iPad, etc.) that you use to check your mail or calendar, you will need to delete your profile/account from this device by 5:00 p.m., as well. For instructions on how to remove your account from commonly-used mobile devices, please see:  <http://www.dartmouth.edu/comp/about/initiatives/blitz/removeblitz.html>.
+2.  All users:  At 5:00 p.m., log out of any applications that access your BlitzMail account and do not log back in to them until after 8:00 a.m. the following morning.
 
-POST-MIGRATION ACTIVITIES:  Here's what you need to do on <%%= day_after_migdate %>:
+3.  If you have mobile devices (iPhones, Androids, BlackBerrys and other smartphones; iPads and other tablets; iPod Touches, etc.) that you use to check your mail or calendar, you will need to delete your profile/account from these devices by 5:00 p.m., as well. For instructions on how to remove your account from commonly-used mobile devices, please see:  <http://www.dartmouth.edu/comp/about/initiatives/blitz/removeblitz.html>.
 
-1.  Use Your Network ID:  After 8:00 a.m., you will begin using an assigned Network Identifier (NetID) to log into systems in place of your user name. Your NetID is displayed at the top of this message.
+POST-MIGRATION ACTIVITIES:  Here's what you will need to do on <%%= day_after_migdate %>:
 
-Note:  If you are an Oracle Calendar user, your new NetID will be activated at 11:00 a.m. on <%%= migday %>, <%%= migdate %>, instead.
+1.  Activate Your New Network ID:  On <%%= day_after_migdate %>, you will begin using your new Network Identifier (NetID) to log into systems in place of your user name, but you must activate it first.
+   
+Note:  If you use a Windows computer where the Domain field on the login window is set to "Kiewit," after your Blitz transition, your user name for logging into that computer will also be your NetID rather than your name (e.g., D12345A rather than John_A_Doe).
+  
+After 8:00 a.m. on <%%= day_after_migdate %>, go to: <https://claim.dartmouth.edu> and establish a new strong password, as well as security questions, for your NetID.  Follow all the directions found on that web site before proceeding with your (new) Blitz setup.  You will need your NetID (displayed at the top of this message) for this task.  Please note:  You may be directed to the Dartmouth Web Authentication page to login before you activate your NetID.  If so, please use your NetID and your current password to log in.
+ 
+Note:  If you are an Oracle Calendar user, your new NetID will be available for activation after 11:00 a.m. on <%%= migday %>, <%%= migdate %>, instead.
+ 
+See <http://www.dartmouth.edu/comp/systems/initiatives/idm/systems.html> for a list of systems that are currently accepting NetID credentials for log in. If a system is not listed, you can try using your NetID for log in. If it doesn't work, you should use the name you had been using prior to your Blitz transition (e.g., John A. Doe or John_A_Doe, etc.).
 
-Note:  If you use a Windows computer where the Domain field on the login window is set to "Kiewit," after your Blitz transition, your user name for logging into that computer will be your NetID rather than your name (e.g., D12345A rather than John_a_Doe).
+2.  Access Your New Mailbox:  After you've set your new password, you can access your new Blitz account via Blitz Web Access (BWA) at <https://bwa.dartmouth.edu> right away until you are able to set up your chosen desktop client.  Log in to BWA using your new NetID (displayed at the top of this message) and your new Blitz password.
 
-2.  Create a Strong Password:  After 8:00 a.m., go to <https://claim.dartmouth.edu> to establish a new password, as well as security questions for your account.  Follow all the directions found on that web site before proceeding. You will need your NetID (displayed at the top of this message) for this task.
+3.  Set Up Desktop Software:  If you plan to use a desktop client (e.g., Outlook, AppleMail), self-help instructions for setting them up are available at <http://www.dartmouth.edu/comp/email-cal/setup/index.html>.   If you need assistance, see Getting Help section below.  In the meantime, please use Blitz Web Access <https://bwa.dartmouth.edu> to check your mail and calendar.
 
-3.  Access Your New Mailbox:  After you've set your new password, you can access your new Blitz account via Blitz Web Access (BWA) at <https://bwa.dartmouth.edu> until you are able to set up your chosen desktop client.  Log in to BWA using your new NetID (displayed at the top of this message) and your new Dartmouth password.
+4.  Set Up Mobile Devices.  If you are planning to use mobile devices (iPhones, Androids, BlackBerrys and other smartphones; iPads and other tablets; iPod Touches) to access your new Blitz account, please visit <http://www.dartmouth.edu/comp/email-cal/ setup/index.html> for information about how to set them up.  If you need assistance, see Getting Help section below.
 
-4.  Set Up a Desktop Client:  If you plan to use a desktop client (e.g., Outlook, AppleMail), self-help instructions for setting up desktop clients are available at <http://www.dartmouth.edu/comp/email-cal/setup/index.html>.   If you need assistance, see Getting Help section below.  In the meantime, please use Blitz Web Access <https://bwa.dartmouth.edu> to check your mail and calendar.
+5.  Attend Training:  If you are not familiar with the e-mail/calendar program that you will be using with your new Blitz account, we strongly encourage you to sign up for training on that tool.  Course information and registration is at:  <https://library.dartmouth.edu/classes/calendar.php?MAIN_CALENDAR_ID=241>.
 
-5.  Set Up Mobile Devices.  If you are planning to use a mobile device to access your new Blitz account, please visit <http://www.dartmouth.edu/comp/email-cal/initiatives/blitz/mobile.html> for information about how to set it up.  If you need assistance, see Getting Help section below.
+6.  Transfer Your Personal Mailing Lists:  If you have created personal address lists in BlitzMail, you can use a tool to transfer them to your new Blitz account after your account migration.  Please go to:  <http://www.dartmouth.edu/comp/email-cal/setup/personallist.html> for more information.
 
-6.  Attend Training:  If you are not familiar with the e-mail/calendar program that you will be using with your new Blitz account, we strongly encourage you to sign up for training on that tool the morning after your migration.  Course information and registration is at:  <https://library.dartmouth.edu/classes/calendar.php?MAIN_CALENDAR_ID=241>.
-
-7.  Transfer Your Personal Mailing Lists:  If you have created personal address lists in BlitzMail, you can use a tool to transfer them to your new Blitz account after your account migration.  Please go to:  <http://www.dartmouth.edu/comp/email-cal/setup/personallist.html> for more information.
-
-8.  Check Your Spam Settings:  Once you're set up to access your new Blitz account, check your spam filter settings to make sure they are set correctly.  Please go to:  <http://www.dartmouth.edu/comp/email-cal/reset_spam_filter.html> for detailed instructions on how to do this.
+7.  Check Your Spam/Junk E-Mail Settings:  Once you're set up to access your new Blitz account, check your spam/junk e-mail filter settings to make sure they are set correctly.  Please go to:  <http://www.dartmouth.edu/comp/email-cal/reset_spam_filter.html> for detailed instructions on how to do this.
 
 OTHER MIGRATION INFORMATION:
 
 Account Forwarding:  If you currently have your BlitzMail account forwarded to another e-mail account, that forwarding setting will be transferred to your new Blitz account.
 
-Data Migration:  Please know that all messages may not copy successfully into your new account for a variety of reasons, but don't worry, they are still in your old BlitzMail account.  You will be notified of any messages that did not migrate to your new account, and the migration team can help you recover those messages if you wish.
+Data Migration:  Please know that all messages may not copy successfully into your new account for a variety of reasons.  You will be notified of any messages that did not migrate to your new account, and the migration team can help you recover those messages if you wish.
 
-Getting Help:  The migration team will be checking in with you the morning after your transition.  If you need assistance with getting your computer or mobile devices set up, or recovering missing messages, please let a migration team member know, or e-mail b2b@mac.dartmouth.edu, the morning after your migration.  In the meantime, please use Blitz Web Access <https://bwa.dartmouth.edu> to check your mail and calendar.
+Getting Help:  The migration team will be checking in with you the day after your transition.  If you need assistance with getting your computer or mobile devices setup, or recovering missing messages, please let a migration team member know, or e-mail b2b@mac.dartmouth.edu, the morning after your migration.  In the meantime, please use Blitz Web Access <https://bwa.dartmouth.edu> to check your mail and calendar.
 
 Additional Information:  More information about the Blitz-2-Blitz transition can be found at:  <http://www.dartmouth.edu/comp/email-cal/faqs/index.html>.
 
 Thanks!
+
 The Blitz-2-Blitz Project Team

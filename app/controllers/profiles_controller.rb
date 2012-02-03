@@ -40,7 +40,7 @@ class ProfilesController < ApplicationController
 
   def incomplete_warning(new_or_update)
     flash[:notice] = "Successfully #{new_or_update} Profile." unless @profile.missing_vital_attributes?
-    flash[:error] = "Profile is incomplete. Provide all information as soon as possible." if @profile.missing_vital_attributes?
+    flash[:notice] = "PROFILE IS INCOMPLETE!<br />Please edit the profile again and provide information for all items marked 'Unspecified'.".html_safe if @profile.missing_vital_attributes?
   end
 
   private
