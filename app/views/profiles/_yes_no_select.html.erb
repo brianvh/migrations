@@ -1,1 +1,1 @@
-<%= f.select field, [['Yes', true],['No', false]], {:include_blank => "Choose..."} %>
+<%= f.select field, [['Yes', true],['No', false]], {:include_blank => prompt.blank? ? "Choose..." : prompt} %>

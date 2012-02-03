@@ -2,7 +2,7 @@ module ProfilesHelper
 
   def email_clients_display_string(profile)
     if profile.used_email_clients.blank? || profile.used_email_clients.empty?
-      content_tag(:span, "Unspecified", :style => "color: red;")
+      content_tag(:span, "Unspecified", :style => "font-weight: bold;")
     else
       profile.used_email_clients.join(", ") || ""
     end

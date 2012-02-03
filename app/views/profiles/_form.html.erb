@@ -27,7 +27,7 @@
         <%= f.label :uses_mail_forward, "Is your Email being sent to another account?" %>
       </div>
       <div class="right wide">
-        <%= render 'yes_no_select', {:f => f, :field => :uses_mail_forward } %>
+        <%= render 'yes_no_select', {:f => f, :field => :uses_mail_forward, :prompt => "" } %>
       </div>
     </div>
 
@@ -36,7 +36,7 @@
         <%= f.label :uses_local_mail, "Email stored on local hard drive?" %>
       </div>
       <div class="right wide">
-        <%= render 'yes_no_select', {:f => f, :field => :uses_local_mail } %>
+        <%= render 'yes_no_select', {:f => f, :field => :uses_local_mail, :prompt => "" } %>
       </div>
     </div>
   </div>
@@ -49,7 +49,7 @@
         <%= f.label :migrate_oracle_calendar, "Migrate Oracle Calendar?" %>
       </div>
       <div class="right wide">
-        <%= render 'yes_no_select', {:f => f, :field => :migrate_oracle_calendar } %>
+        <%= render 'yes_no_select', {:f => f, :field => :migrate_oracle_calendar, :prompt => "" } %>
       </div>
     </div>
 
@@ -58,7 +58,7 @@
         <%= f.label :used_other_calendars, "Have you used a calendar system other than Oracle?" %>
       </div>
       <div class="right wide">
-        <%= render 'yes_no_select', {:f => f, :field => :used_other_calendars } %>
+        <%= render 'yes_no_select', {:f => f, :field => :used_other_calendars, :prompt => "" } %>
       </div>
     </div>
   </div>
@@ -71,7 +71,7 @@
         <%= f.label :uses_ira, "Using the IRA Application?" %>
       </div>
       <div class="right wide">
-        <%= render 'yes_no_select', {:f => f, :field => :uses_ira } %>
+        <%= render 'yes_no_select', {:f => f, :field => :uses_ira, :prompt => "Don't Know" } %>
       </div>
     </div>
 
@@ -80,7 +80,7 @@
         <%= f.label :uses_hyperion, "Using Hyperion Budget & Planning?" %>
       </div>
       <div class="right wide">
-        <%= render 'yes_no_select', {:f => f, :field => :uses_hyperion } %>
+        <%= render 'yes_no_select', {:f => f, :field => :uses_hyperion, :prompt => "Don't Know" } %>
       </div>
     </div>
   </div>

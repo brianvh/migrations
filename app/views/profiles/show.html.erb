@@ -60,14 +60,14 @@
   <div class="group wat-cf">
     <div class="left label wide">IRA Application used?</div>
     <div class="right wide">
-      <%= unspecified_if_blank @profile.uses_ira %>
+      <%= @profile.uses_ira.nil? ? "Don't Know" : @profile.uses_ira? ? "Yes" : "No" %>
     </div>
   </div>
   
   <div class="group wat-cf">
     <div class="left label wide">Hyperion Budget & Planning used?</div>
     <div class="right wide">
-      <%= unspecified_if_blank @profile.uses_hyperion %>
+      <%= @profile.uses_hyperion.nil? ? "Don't Know" : @profile.uses_hyperion? ? "Yes" : "No" %>
     </div>
   </div>
   
