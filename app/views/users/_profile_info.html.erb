@@ -1,10 +1,10 @@
 <div class="secondary-navigation" id="profile-info-nav">
   <ul class="wat-cf">
-    <li><%= link_to "View/Edit Full Migration Profile", profile_path(@profile) %></li>
+    <li><%= link_to "Edit Migration Profile", edit_profile_path(@profile) %></li>
   </ul>
 </div>
 <div id="profile-info" class="fieldset form">
-  <h2>Profile Summary<%= content_tag(:span, " (Profile incomplete. Please complete as soon as possible.)", :style => "font-size: 0.85em; color: red;") if @profile.missing_vital_attributes? %></h2>
+  <h2>Profile Summary<%= content_tag(:span, " (Profile is incomplete. Please complete as soon as possible.)", :style => "font-size: 0.75em; font-weight: bold;") if @profile.missing_vital_attributes? %></h2>
 
   <div class="group wat-cf">
     <div class="left label">Email Programs</div>

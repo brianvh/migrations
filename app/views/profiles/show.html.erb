@@ -6,15 +6,12 @@
       <%= link_to "Edit Profile", edit_profile_path(@profile) %>
     </li>
     <li>
-      <%= link_to "Status Page", user_path(@profile.user) %>
-    </li>
-    <li>
       <%= link_to "Add/Edit Devices", user_path(@profile.user, :anchor => "devices") %>
     </li>
   </ul>
 </div>
 <div class="fieldset form" id="email-services">
-  <h2>Email Services</h2>
+  <h2>Current E-Mail Systems</h2>
 
   <div class="group wat-cf">
     <div class="left label wide">Email programs used:</div>
