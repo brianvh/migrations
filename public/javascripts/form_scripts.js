@@ -7,7 +7,7 @@ function confirm_reschedule () {
 };
 
 function count_checked () {
-  if ($("input:checked").length === 0) {
+  if ($("input.migration-checkbox:checked").length === 0) {
     alert("You must specify at least one account before assigning a date.");
     return false;
   }
@@ -15,7 +15,6 @@ function count_checked () {
     alert("Please select a date.");
     return false;
   }
-  $("#migrations-form").submit();
 	return true;
 };
 
