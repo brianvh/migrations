@@ -4,7 +4,7 @@
       <%= link_to 'Cancel', group_path(@group) %>
     </div>
     <div class="right">
-      <button class="button" onclick="return count_checked();">Assign Migration Date</button>
+      <button class="button" type="submit" data-disable-with="Working..." onclick="return count_checked();">Assign Migration Date</button>
     </div>
   </div>
   <%= f.hidden_field :action, :value => :schedule_migrations %>
