@@ -26,4 +26,5 @@ group :development, :test do
   gem 'rcov', '~> 0.9.9'
   gem 'web-app-theme', '~> 0.7.0'
   gem 'rails-erd'
+  gem 'capistrano_colors'
 end
