@@ -27,4 +27,5 @@ group :development, :test do
   gem 'web-app-theme', '~> 0.7.0'
   gem 'rails-erd'
   gem 'capistrano_colors'
+  gem 'capistrano-ext'
 end
