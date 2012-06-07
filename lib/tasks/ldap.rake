@@ -11,7 +11,7 @@ namespace :ldap do
   end
 
   def ldap_attrs
-    ['cn', 'dnduid', 'dnddeptclass', 'dndexpires', 'mail', 'dndassignednetid', 'dndmailboxtype', 'dndaffiliation']
+    ['cn', 'dnduid', 'dnddeptclass', 'dndexpires', 'mail', 'dndassignednetid', 'dndmailboxtype', 'dndaffiliation', 'uid']
   end
 
   def ldap_auth
