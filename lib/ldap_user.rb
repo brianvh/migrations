@@ -99,6 +99,7 @@ module LDAPUser
      self.mailboxtype = entry.dndmailboxtype
      self.affiliation = entry.dndaffiliation unless entry.dndaffiliation.nil?
      self.activate if self.expired?
+     self.ldap_uid = entry.uid unless entry.uid.nil?
      self.save
    end
 
